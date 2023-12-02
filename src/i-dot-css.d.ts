@@ -1,53 +1,53 @@
 // Building blocks.
-declare type BasicCommonValues = "inherit"|"initial"|"unset"|"revert"|"revert-layer";
-declare type AbsoluteUnits = "cm"|"mm"|"in"|"px"|"pt"|"pc";
-declare type RelativeUnits = "em"|"ex"|"ch"|"rem"|"vw"|"vh"|"vmin"|"vmax"|"%";
-declare type AllUnits = AbsoluteUnits|RelativeUnits;
-declare type OptionalWhitespace = ""|" ";
-declare type UrlType = `url('${string}')`;
-declare type NumericLength = number|`${number}${AllUnits}`;
-declare type NumericLengthOrAuto = NumericLength|"auto";
-declare type AngleUnits = "deg"|"turn"|"rad"|"grad";
-declare type NumericAngle = number|`${number}${AngleUnits}`;
-declare type Percentage = number|`${number}%`; // Used for filters.
+export type BasicCommonValues = "inherit"|"initial"|"unset"|"revert"|"revert-layer";
+export type AbsoluteUnits = "cm"|"mm"|"in"|"px"|"pt"|"pc";
+export type RelativeUnits = "em"|"ex"|"ch"|"rem"|"vw"|"vh"|"vmin"|"vmax"|"%";
+export type AllUnits = AbsoluteUnits|RelativeUnits;
+export type OptionalWhitespace = ""|" ";
+export type UrlType = `url('${string}')`;
+export type NumericLength = number|`${number}${AllUnits}`;
+export type NumericLengthOrAuto = NumericLength|"auto";
+export type AngleUnits = "deg"|"turn"|"rad"|"grad";
+export type NumericAngle = number|`${number}${AngleUnits}`;
+export type Percentage = number|`${number}%`; // Used for filters.
 
 // ts starts complaining about the complexity of the type :(
 //export declare type DigitStr = "0"|"1"|"2"|"3"|"4"|"5"|"6"|"7"|"8"|"9";
 // export declare type HexStr = DigitStr|"A"|"B"|"C"|"D"|"E"|"F"|"a"|"b"|"c"|"d"|"e"|"f";
 
 // Types
-declare type AppearanceValues = BasicCommonValues|"none"|"menulist-button"|"textfield"|"button"|"searchfield"|"textarea"|"push-button"|"slider-horizontal"|"checkbox"|"radio"|"square-button"|"menulist"|"listbox"|"meter"|"progress-bar"|"scrollbarbutton-up"|"button-bevel"|"media-mute-button"|"caret";
-declare type BackgroundAttachmentValues = BasicCommonValues|"scroll"|"fixed"|"local";
-declare type BackgroundRepeatValues = BasicCommonValues|"no-repeat"|"repeat"|"space"|"round";
-declare type BackgroundOriginValues = BasicCommonValues|"padding-box"|"border-box"|"content-box";
-declare type BackgroundSizeValues = BasicCommonValues|"auto"|NumericLength|"cover"|"contain";
-declare type BackfaceVisibilityValues = BasicCommonValues|"visible"|"hidden";
-declare type BorderStyles = BasicCommonValues|"dotted"|"dashed"|"solid"|"double"|"groove"|"ridge"|"inset"|"outset"|"none"|"hidden";
-declare type ColorName = BasicCommonValues|"aliceblue"|"antiquewhite"|"aqua"|"aquamarine"|"azure"|"beige"|"bisque"|"black"|"blanchedalmond"|"blue"|"blueviolet"|"brown"|"burlywood"|"cadetblue"|"chartreuse"|"chocolate"|"coral"|"cornflowerblue"|"cornsilk"|"crimson"|"cyan"|"darkblue"|"darkcyan"|"darkgoldenrod"|"darkgray"|"darkgrey"|"darkgreen"|"darkkhaki"|"darkmagenta"|"darkolivegreen"|"darkorange"|"darkorchid"|"darkred"|"darksalmon"|"darkseagreen"|"darkslateblue"|"darkslategray"|"darkslategrey"|"darkturquoise"|"darkviolet"|"deeppink"|"deepskyblue"|"dimgray"|"dimgrey"|"dodgerblue"|"firebrick"|"floralwhite"|"forestgreen"|"fuchsia"|"gainsboro"|"ghostwhite"|"gold"|"goldenrod"|"gray"|"grey"|"green"|"greenyellow"|"honeydew"|"hotpink"|"indianred"|"indigo"|"ivory"|"khaki"|"lavender"|"lavenderblush"|"lawngreen"|"lemonchiffon"|"lightblue"|"lightcoral"|"lightcyan"|"lightgoldenrodyellow"|"lightgray"|"lightgrey"|"lightgreen"|"lightpink"|"lightsalmon"|"lightseagreen"|"lightskyblue"|"lightslategray"|"lightslategrey"|"lightsteelblue"|"lightyellow"|"lime"|"limegreen"|"linen"|"magenta"|"maroon"|"mediumaquamarine"|"mediumblue"|"mediumorchid"|"mediumpurple"|"mediumseagreen"|"mediumslateblue"|"mediumspringgreen"|"mediumturquoise"|"mediumvioletred"|"midnightblue"|"mintcream"|"mistyrose"|"moccasin"|"navajowhite"|"navy"|"oldlace"|"olive"|"olivedrab"|"orange"|"orangered"|"orchid"|"palegoldenrod"|"palegreen"|"paleturquoise"|"palevioletred"|"papayawhip"|"peachpuff"|"peru"|"pink"|"plum"|"powderblue"|"purple"|"rebeccapurple"|"red"|"rosybrown"|"royalblue"|"saddlebrown"|"salmon"|"sandybrown"|"seagreen"|"seashell"|"sienna"|"silver"|"skyblue"|"slateblue"|"slategray"|"slategrey"|"snow"|"springgreen"|"steelblue"|"tan"|"teal"|"thistle"|"tomato"|"turquoise"|"violet"|"wheat"|"white"|"whitesmoke"|"yellow"|"yellowgreen";
-declare type DisplayValues = BasicCommonValues|"inline"|"block"|"contents"|"flex"|"grid"|"inline-block"|"inline-flex"|"inline-grid"|"inline-table"|"list-item"|"run-in"|"table"|"table-caption"|"table-column-group"|"table-header-group"|"table-footer-group"|"table-row-group"|"table-cell"|"table-column"|"table-row"|"none";
-declare type DirectionValues = BasicCommonValues|"ltr"|"rtl";
-declare type FontStyleValues = BasicCommonValues|"normal"|"italic"|"oblique";
-declare type FontVariantValues = BasicCommonValues|"normal"|"small-caps";
-declare type FontVariantCapsValues = FontVariantValues|"all-small-caps"|"petite-caps"|"all-petite-caps"|"unicase"|"titling-caps";
-declare type FontWeightValues = BasicCommonValues|number|"normal"|"bold"|"bolder"|"lighter";
-declare type LengthProp = BasicCommonValues|"maxHeight"|"minHeight"|"top"|"bottom"|"height"|"maxHidth"|"minWidth"|"right"|"left"|"width"|"margin"|"marginTop"|"marginBottom"|"marginLeft"|"marginRight"|"outlineOffset"|"padding"|"paddingTop"|"paddingBottom"|"paddingLeft"|"paddingRight"|"lineHeight"|"flexBasis"|"fontSize";
-declare type OutlineWidthValues = BasicCommonValues|"medium"|"thin"|"thick"|NumericLength;
-declare type PositionNames = BasicCommonValues|"static"|"relative"|"fixed"|"absolute"|"sticky";
+export type AppearanceValues = BasicCommonValues|"none"|"menulist-button"|"textfield"|"button"|"searchfield"|"textarea"|"push-button"|"slider-horizontal"|"checkbox"|"radio"|"square-button"|"menulist"|"listbox"|"meter"|"progress-bar"|"scrollbarbutton-up"|"button-bevel"|"media-mute-button"|"caret";
+export type BackgroundAttachmentValues = BasicCommonValues|"scroll"|"fixed"|"local";
+export type BackgroundRepeatValues = BasicCommonValues|"no-repeat"|"repeat"|"space"|"round";
+export type BackgroundOriginValues = BasicCommonValues|"padding-box"|"border-box"|"content-box";
+export type BackgroundSizeValues = BasicCommonValues|"auto"|NumericLength|"cover"|"contain";
+export type BackfaceVisibilityValues = BasicCommonValues|"visible"|"hidden";
+export type BorderStyles = BasicCommonValues|"dotted"|"dashed"|"solid"|"double"|"groove"|"ridge"|"inset"|"outset"|"none"|"hidden";
+export type ColorName = BasicCommonValues|"aliceblue"|"antiquewhite"|"aqua"|"aquamarine"|"azure"|"beige"|"bisque"|"black"|"blanchedalmond"|"blue"|"blueviolet"|"brown"|"burlywood"|"cadetblue"|"chartreuse"|"chocolate"|"coral"|"cornflowerblue"|"cornsilk"|"crimson"|"cyan"|"darkblue"|"darkcyan"|"darkgoldenrod"|"darkgray"|"darkgrey"|"darkgreen"|"darkkhaki"|"darkmagenta"|"darkolivegreen"|"darkorange"|"darkorchid"|"darkred"|"darksalmon"|"darkseagreen"|"darkslateblue"|"darkslategray"|"darkslategrey"|"darkturquoise"|"darkviolet"|"deeppink"|"deepskyblue"|"dimgray"|"dimgrey"|"dodgerblue"|"firebrick"|"floralwhite"|"forestgreen"|"fuchsia"|"gainsboro"|"ghostwhite"|"gold"|"goldenrod"|"gray"|"grey"|"green"|"greenyellow"|"honeydew"|"hotpink"|"indianred"|"indigo"|"ivory"|"khaki"|"lavender"|"lavenderblush"|"lawngreen"|"lemonchiffon"|"lightblue"|"lightcoral"|"lightcyan"|"lightgoldenrodyellow"|"lightgray"|"lightgrey"|"lightgreen"|"lightpink"|"lightsalmon"|"lightseagreen"|"lightskyblue"|"lightslategray"|"lightslategrey"|"lightsteelblue"|"lightyellow"|"lime"|"limegreen"|"linen"|"magenta"|"maroon"|"mediumaquamarine"|"mediumblue"|"mediumorchid"|"mediumpurple"|"mediumseagreen"|"mediumslateblue"|"mediumspringgreen"|"mediumturquoise"|"mediumvioletred"|"midnightblue"|"mintcream"|"mistyrose"|"moccasin"|"navajowhite"|"navy"|"oldlace"|"olive"|"olivedrab"|"orange"|"orangered"|"orchid"|"palegoldenrod"|"palegreen"|"paleturquoise"|"palevioletred"|"papayawhip"|"peachpuff"|"peru"|"pink"|"plum"|"powderblue"|"purple"|"rebeccapurple"|"red"|"rosybrown"|"royalblue"|"saddlebrown"|"salmon"|"sandybrown"|"seagreen"|"seashell"|"sienna"|"silver"|"skyblue"|"slateblue"|"slategray"|"slategrey"|"snow"|"springgreen"|"steelblue"|"tan"|"teal"|"thistle"|"tomato"|"turquoise"|"violet"|"wheat"|"white"|"whitesmoke"|"yellow"|"yellowgreen";
+export type DisplayValues = BasicCommonValues|"inline"|"block"|"contents"|"flex"|"grid"|"inline-block"|"inline-flex"|"inline-grid"|"inline-table"|"list-item"|"run-in"|"table"|"table-caption"|"table-column-group"|"table-header-group"|"table-footer-group"|"table-row-group"|"table-cell"|"table-column"|"table-row"|"none";
+export type DirectionValues = BasicCommonValues|"ltr"|"rtl";
+export type FontStyleValues = BasicCommonValues|"normal"|"italic"|"oblique";
+export type FontVariantValues = BasicCommonValues|"normal"|"small-caps";
+export type FontVariantCapsValues = FontVariantValues|"all-small-caps"|"petite-caps"|"all-petite-caps"|"unicase"|"titling-caps";
+export type FontWeightValues = BasicCommonValues|number|"normal"|"bold"|"bolder"|"lighter";
+export type LengthProp = BasicCommonValues|"maxHeight"|"minHeight"|"top"|"bottom"|"height"|"maxHidth"|"minWidth"|"right"|"left"|"width"|"margin"|"marginTop"|"marginBottom"|"marginLeft"|"marginRight"|"outlineOffset"|"padding"|"paddingTop"|"paddingBottom"|"paddingLeft"|"paddingRight"|"lineHeight"|"flexBasis"|"fontSize";
+export type OutlineWidthValues = BasicCommonValues|"medium"|"thin"|"thick"|NumericLength;
+export type PositionNames = BasicCommonValues|"static"|"relative"|"fixed"|"absolute"|"sticky";
 
-declare type FlexDirectionNames = BasicCommonValues|"row"|"row-reverse"|"column"|"column-reverse";
-declare type FlexWrapNames = BasicCommonValues|"nowrap"|"wrap"|"wrap-reverse";
+export type FlexDirectionNames = BasicCommonValues|"row"|"row-reverse"|"column"|"column-reverse";
+export type FlexWrapNames = BasicCommonValues|"nowrap"|"wrap"|"wrap-reverse";
 
 
 // Advanced formatted types.
-declare type ColorFormat = BasicCommonValues|ColorName|number|`#${string}`|`rgb(${number},${OptionalWhitespace}${number},${OptionalWhitespace}${number})`|`rgba(${number},${OptionalWhitespace}${number},${OptionalWhitespace}${number},${OptionalWhitespace}${number})`|`hsl(${number},${OptionalWhitespace}${number}%,${OptionalWhitespace}${number}%)`|`hsla(${number},${OptionalWhitespace}${number}%,${OptionalWhitespace}${number}%,${OptionalWhitespace}${number})`;
+export type ColorFormat = BasicCommonValues|ColorName|number|`#${string}`|`rgb(${number},${OptionalWhitespace}${number},${OptionalWhitespace}${number})`|`rgba(${number},${OptionalWhitespace}${number},${OptionalWhitespace}${number},${OptionalWhitespace}${number})`|`hsl(${number},${OptionalWhitespace}${number}%,${OptionalWhitespace}${number}%)`|`hsla(${number},${OptionalWhitespace}${number}%,${OptionalWhitespace}${number}%,${OptionalWhitespace}${number})`;
 
-declare type BackgroundRepeatValues2d = BackgroundRepeatValues|"repeat-x"|"repeat-y"|`${BackgroundRepeatValues} ${BackgroundRepeatValues}`;
-declare type BorderShorthand = BasicCommonValues|`${BorderStyles}`|`${BorderStyles} ${ColorFormat}`|`${number}${AllUnits} ${BorderStyles} ${ColorFormat}`;
-declare type BackgroundImageFormat = BasicCommonValues|UrlType|`${UrlType}, ${UrlType}`;
-declare type BackgroundPositionShorthand2D = BasicCommonValues|`${BasicCommonValues|number} ${BasicCommonValues|number}`|`${number}% ${number}%`|`${"left"|"right"|"center"} ${"top"|"center"|"bottom"}`;
-declare type BackgroundShorthand = BasicCommonValues|`${ColorFormat} ${UrlType} ${BackgroundRepeatValues} ${BackgroundPositionShorthand2D}`;
-declare type FlexFlowShorthand = BasicCommonValues|`${FlexDirectionNames} ${FlexWrapNames}`;
-declare type FlexShorthand = BasicCommonValues|`${BasicCommonValues|number} ${BasicCommonValues|number} ${BasicCommonValues|`${number}${AllUnits}`}`;
+export type BackgroundRepeatValues2d = BackgroundRepeatValues|"repeat-x"|"repeat-y"|`${BackgroundRepeatValues} ${BackgroundRepeatValues}`;
+export type BorderShorthand = BasicCommonValues|`${BorderStyles}`|`${BorderStyles} ${ColorFormat}`|`${number}${AllUnits} ${BorderStyles} ${ColorFormat}`;
+export type BackgroundImageFormat = BasicCommonValues|UrlType|`${UrlType}, ${UrlType}`;
+export type BackgroundPositionShorthand2D = BasicCommonValues|`${BasicCommonValues|number} ${BasicCommonValues|number}`|`${number}% ${number}%`|`${"left"|"right"|"center"} ${"top"|"center"|"bottom"}`;
+export type BackgroundShorthand = BasicCommonValues|`${ColorFormat} ${UrlType} ${BackgroundRepeatValues} ${BackgroundPositionShorthand2D}`;
+export type FlexFlowShorthand = BasicCommonValues|`${FlexDirectionNames} ${FlexWrapNames}`;
+export type FlexShorthand = BasicCommonValues|`${BasicCommonValues|number} ${BasicCommonValues|number} ${BasicCommonValues|`${number}${AllUnits}`}`;
 
 
 interface IDotcssProp{
@@ -991,27 +991,27 @@ export default interface IDotCss extends IDotcssProp{
 	version: string;
 }
 
-interface IDotcssAnimatable<T> extends IDotcssProp{
+export interface IDotcssAnimatable<T> extends IDotcssProp{
 	(value: T): IDotcssProp;
 
 	animate(value: number|string, duration: number, style: "ease", complete: Function): IDotcssProp;
 }
 
-interface IDotcssAnimatableColor extends IDotcssProp{
+export interface IDotcssAnimatableColor extends IDotcssProp{
 	(value: ColorFormat|Array<number>): IDotcssProp;
 	(r: number, g: number, b: number, a?: number): IDotcssProp;
 
 	animate(value: ColorFormat|Array<number>, duration: number, style: "ease", complete: Function): IDotcssProp;
 }
 
-interface HideParams{
+export interface HideParams{
 	duration?: number,
 	complete?: Function,
 	hideStyle?: "normal"|"fade"|"shrink",
 	animationStyle?: "ease",
 }
 
-interface ShowParams{
+export interface ShowParams{
 	duration?: number,
 	display?: DisplayValues, // TODO: potential to expand this.
 	complete?: Function,
@@ -1022,7 +1022,7 @@ interface ShowParams{
 	animationStyle?: "ease",
 }
 
-interface TransformationBuilder {
+export interface TransformationBuilder {
 	// TODO: it would be cool if this didn't have to return anything, and the trns parameter that's passed in would just retain a memory of the transformations.
 	(trns: ITransformationContext): ITransformationContext|string;
 }
@@ -1178,7 +1178,7 @@ export type ITransformationContext = {
 	perspectiveVMin: (v: number)=>ITransformationContext;
 }
 
-interface FilterBuilder{
+export interface FilterBuilder{
 	(filtCtx: IFilterContext): IFilterContext|string;
 }
 

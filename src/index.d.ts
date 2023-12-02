@@ -1,7 +1,8 @@
 
-export { default as IDotCss } from "./i-dot";
+export { default as IDotCss } from "./i-dot-css";
+export * from "./i-dot-css";
 
-export { DotContent, IDotDocument, IDotCore, IDotElement, IDotElementDocument, IDotGenericElement } from "./i-dot";
+export * from "./i-dot";
 
 export { default as IComponent } from "./i-component";
 
