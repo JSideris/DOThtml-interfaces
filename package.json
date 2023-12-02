@@ -1,0 +1,13 @@
+{
+  "name": "dothtml-interfaces",
+  "version": "0.1.0",
+  "description": "Dependency injection interfaces for DOTHtml.",
+  "main": "src/index.d.ts",
+  "types": "src/index.d.ts",
+  "scripts": {},
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "typescript": "^5.3.2"
+  }
+}
