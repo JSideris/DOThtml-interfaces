@@ -1,5 +1,5 @@
 
-import IComponent from "./i-component";
+import IComponent, { FrameworkItems } from "./i-component";
 import IDotCss, { IDotcssProp } from "./i-dot-css";
 import IEventBus from "./i-event-bus";
 
@@ -241,15 +241,21 @@ export interface IDotCore extends IDotDocument
 	navigate(path: string, noHistory?: boolean, force?: boolean): void;
 	css: IDotCss;
 	bus: IEventBus;
-	resetScopeClass(): void;
-	setTargetWindow(target: Window): IDotDocument;
-	unsetTargetWindow(): void;
+	
+	component<T extends {new(...args: any[]): (IComponent)}>(ComponentClass: T): T&{new(...args: any[]): ({$: FrameworkItems})};
+
+	/**
+	 * DOThtml's component factory. Use it to create component classes.
+	 */
+	component(callback: (
+		({
+			html: IDotDocument,
+			css: IDotCss,
+			$: IComponentInternal
+		})=>new (...args: any[])=>IComponent
+	)): (new (...args: any[]) => IComponent);
 	// component(component: typeof Component): void;
 	// removeComponent = removeComponent;
-
-	Component: {
-		new (...args: any[]): IComponent
-	};
 }
 
 /**
