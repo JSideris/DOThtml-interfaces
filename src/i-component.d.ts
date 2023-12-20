@@ -21,8 +21,7 @@ export default interface IComponent {
     // Lifecycle hooks
 
 	/**
-	 * 
-	 * @param args 
+	 * A function returning DOThtml (required).
 	 */
     build(...args: Array<any>): IDotElement;
 

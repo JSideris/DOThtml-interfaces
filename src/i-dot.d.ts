@@ -11,7 +11,7 @@ export type DotContent = DotContentBasic|Array<DotContent>|(()=>DotContent);
 export interface IDotDocument
 {
 	// Creating a blank DotDocument.
-	(document?: Element, classPrefix?: number): void;
+	(document?: Element, classPrefix?: number, targetWindow?: Window&(typeof globalThis)): void;
 
 	// Internal use only:
 	_appendOrCreateDocument(content: DotContent, parentEl?: Element, beforeNode?: Node|number);
@@ -244,18 +244,6 @@ export interface IDotCore extends IDotDocument
 	
 	component<T extends {new(...args: any[]): (IComponent)}>(ComponentClass: T): T&{new(...args: any[]): ({$: FrameworkItems})};
 
-	/**
-	 * DOThtml's component factory. Use it to create component classes.
-	 */
-	component(callback: (
-		({
-			html: IDotDocument,
-			css: IDotCss,
-			$: IComponentInternal
-		})=>new (...args: any[])=>IComponent
-	)): (new (...args: any[]) => IComponent);
-	// component(component: typeof Component): void;
-	// removeComponent = removeComponent;
 }
 
 /**
