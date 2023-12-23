@@ -2,6 +2,7 @@
 import IComponent, { FrameworkItems } from "./i-component";
 import IDotCss, { IDotcssProp } from "./i-dot-css";
 import IEventBus from "./i-event-bus";
+import IObservable from "./i-observable";
 
 type DotContentPrimitive = string|number|boolean;
 type DotContentBasic = DotContentPrimitive|Node|Element|NodeList|IComponent|IDotDocument//typeof DotDocument;
@@ -15,6 +16,11 @@ export interface IDotDocument
 
 	// Internal use only:
 	_appendOrCreateDocument(content: DotContent, parentEl?: Element, beforeNode?: Node|number);
+
+	/**
+	 * A conditional function, analogous to if. Renders the specified DOT if a condition is met. Dynamic binding is possible when condition and callback are functions.
+	*/
+	when(condition:IObservable|boolean, DotContent): IDotConditionalDocument;
 
 	// Main functions.
 	// TODO: please make this into a test case.
@@ -65,20 +71,6 @@ export interface IDotDocument
 	 * Executes a function immediately.
 	*/
 	script(callback: Function): IDotDocument;
-	/**
-	 * A conditional function, analogous to if. Renders the specified DOT if a condition is met. Dynamic binding is possible when condition and callback are functions.
-	*/
-	when(condition:(()=>boolean)|boolean, callback: (()=>void)|DotContent): IDotDocument;
-	/**
-	 * A conditional catch, analogous to else if. Can be used after a when function. Evaluates if the previous when's condition was false.
-	 * Renders the specified DOT if a condition is met. Dynamic binding is possible when condition and callback are functions.
-	*/
-	otherwiseWhen(condition:(()=>boolean)|boolean, callback: (()=>void)|DotContent): IDotDocument;
-	/**
-	 * A conditional final catch, analogous to else. Can be used after a when or otherwiseWhen function. Evaluates if the previous when/otherwiseWhen evaluated to false.
-	 * Renders the specified DOT if a condition is met. Dynamic binding is possible when callback is a function.
-	*/
-	otherwise(callback: (()=>void)|DotContent): IDotDocument;
 
 	scopeClass(prefix: number|string|null, content: DotContent): IDotDocument;
 
@@ -241,9 +233,26 @@ export interface IDotCore extends IDotDocument
 	navigate(path: string, noHistory?: boolean, force?: boolean): void;
 	css: IDotCss;
 	bus: IEventBus;
+	window: IDotWindowBuilder;
 	
 	component<T extends {new(...args: any[]): (IComponent)}>(ComponentClass: T): T&{new(...args: any[]): ({$: FrameworkItems})};
+}
 
+export interface IDotWindowBuilder{
+	(content): Window;
+}
+
+export interface IDotConditionalDocument extends IDotDocument{
+	/**
+	 * A conditional catch, analogous to else if. Can be used after a when function. Evaluates if the previous when's condition was false.
+	 * Renders the specified DOT if a condition is met. Dynamic binding is possible when condition and callback are functions.
+	*/
+	otherwiseWhen(condition:IObservable|boolean, callback: DotContent): IDotConditionalDocument;
+	/**
+	 * A conditional final catch, analogous to else. Can be used after a when or otherwiseWhen function. Evaluates if the previous when/otherwiseWhen evaluated to false.
+	 * Renders the specified DOT if a condition is met. Dynamic binding is possible when callback is a function.
+	*/
+	otherwise(callback: DotContent): IDotDocument;
 }
 
 /**
@@ -260,6 +269,11 @@ export interface IDotElementDocument<T extends IDotDocument> extends IDotDocumen
 	// TODO: I'd really like to enable this. Unfortunately it's not terribly easy to implement.
 	// Might be impossible in ES5 (notwithstanding some possible hackery).
 	//(content?: DotContent): IDotElementDocument<IDotGenericElement>;
+
+	/**
+	 * A conditional function, analogous to if. Renders the specified DOT if a condition is met. Dynamic binding is possible when condition and callback are functions.
+	*/
+	when(condition: IObservable|boolean, callback: DotContent): IDotConditionalDocument;
 	
 	// TODO: this will erase element context, which could be a bug.
 	// It can be duplicated multiple times below, or find a new solution.
