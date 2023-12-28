@@ -1,5 +1,3 @@
-import { IDotDocument } from "./i-dot";
-
 
 export default interface IObservable<Ti = any, To = Ti>{
 	// The untransformed value.
@@ -15,8 +13,8 @@ export default interface IObservable<Ti = any, To = Ti>{
 	key: string;
 	// Optional transformer that can transform the input.
 	transformer?: (input: Ti)=>To;
-	subscribeNode(node: Node): number;
-	subscribeAttr(node: HTMLElement, attributeName: string): number;
+	// subscribeNode(node: Node): number;
+	// subscribeAttr(node: HTMLElement, attributeName: string): number;
 	subscribeCallback(callback: (value: To)=>void): number;
 	detachBinding(id: number);
 	updateObservers(): void;

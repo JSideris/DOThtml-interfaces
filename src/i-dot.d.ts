@@ -235,7 +235,7 @@ export interface IDotCore extends IDotDocument
 	bus: IEventBus;
 	window: IDotWindowBuilder;
 
-	observe<Ti extends IObservable|Array<any>|{[key: string|number]: any}|string|number|boolean = any, To = Ti>(props?: {value: Ti, key?: string, transformer?: (value: Ti)=>To}): IObservable<Ti, To>;
+	observe<Ti = IObservable|Array<any>|{[key: string|number]: any}|string|number|boolean, To = Ti>(props?: {value: Ti, key?: string, transformer?: (value: Ti)=>To}): IObservable<Ti, To>;
 	
 	component<T extends {new(...args: any[]): (IComponent)}>(ComponentClass: T): T&{new(...args: any[]): ({$: FrameworkItems})};
 }
