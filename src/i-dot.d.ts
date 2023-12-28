@@ -52,7 +52,7 @@ export interface IDotDocument
 	 * @param callback The markup-generating callback.
 	*/
 	iterate(n: number, callback: (i: number)=>DotContent): IDotDocument;
-	each<T>(a: Array<T>|(()=>Array<T>)|{[key: string]: T}, callback: (x: T, i: number|string)=>DotContent): IDotDocument;
+	each<T>(a: Array<T>|{[key: string|number]: T}|IObservable<any, Array<T>|{[key: string|number]: T}>, callback: (x: T, i: string|number, k: string|number)=>DotContent): IDotDocument;
 
 	/**
 	 * Removes the targeted document and everything in it.
@@ -234,6 +234,8 @@ export interface IDotCore extends IDotDocument
 	css: IDotCss;
 	bus: IEventBus;
 	window: IDotWindowBuilder;
+
+	observe<Ti extends IObservable|Array<any>|{[key: string|number]: any}|string|number|boolean = any, To = Ti>(props: {value: Ti, key?: string, transformer?: (value: Ti)=>To}): IObservable<Ti, To>;
 	
 	component<T extends {new(...args: any[]): (IComponent)}>(ComponentClass: T): T&{new(...args: any[]): ({$: FrameworkItems})};
 }
