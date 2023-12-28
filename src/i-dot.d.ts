@@ -235,7 +235,7 @@ export interface IDotCore extends IDotDocument
 	bus: IEventBus;
 	window: IDotWindowBuilder;
 
-	observe<Ti extends IObservable|Array<any>|{[key: string|number]: any}|string|number|boolean = any, To = Ti>(props: {value: Ti, key?: string, transformer?: (value: Ti)=>To}): IObservable<Ti, To>;
+	observe<Ti extends IObservable|Array<any>|{[key: string|number]: any}|string|number|boolean = any, To = Ti>(props?: {value: Ti, key?: string, transformer?: (value: Ti)=>To}): IObservable<Ti, To>;
 	
 	component<T extends {new(...args: any[]): (IComponent)}>(ComponentClass: T): T&{new(...args: any[]): ({$: FrameworkItems})};
 }
@@ -579,9 +579,8 @@ interface IDotInput extends IDotElementDocument<IDotInput>{
 	width(value: unknown): IDotInput;
 
 	// Special functions:
-	bindTo(value: unknown): IDotInput;
-	getVal(): string
-	setVal(value: unknown): IDotInput;
+	// getVal(): string
+	// setVal(value: unknown): IDotInput;
 
 	// Input-specific events:
 	onSearch(callback: (e: Event)=>void): IDotInput;
@@ -644,9 +643,8 @@ interface IDotOption extends IDotElementDocument<IDotOption>{
 	value(value: unknown): IDotOption;
 
 	// Special functions:
-	bindTo(value: unknown): IDotOption;
-	getVal(): string;
-	setVal(value: unknown): IDotOption;
+	// getVal(): string;
+	// setVal(value: unknown): IDotOption;
 }
 interface IDotOutput extends IDotElementDocument<IDotOutput>{
 	for(value: unknown): IDotOutput;
@@ -675,9 +673,8 @@ interface IDotSelect extends IDotElementDocument<IDotSelect>{
 	whichForm(value: unknown): IDotSelect; // form
 
 	// Special functions:
-	bindTo(value: unknown): IDotSelect;
-	getVal(): string;
-	setVal(value: unknown): IDotSelect;
+	// getVal(): string;
+	// setVal(value: unknown): IDotSelect;
 }
 interface IDotSource extends IDotElementDocument<IDotSource>{
 	media(value: unknown): IDotSource;
@@ -715,9 +712,8 @@ interface IDotTextArea extends IDotElementDocument<IDotTextArea>{
 	wrap(value: unknown): IDotTextArea;
 
 	// Special functions:
-	bindTo(value: unknown): IDotTextArea;
-	getVal(): string;
-	setVal(value: unknown): IDotTextArea;
+	// getVal(): string;
+	// setVal(value: unknown): IDotTextArea;
 }
 interface IDotTBody extends IDotElementDocument<IDotTBody>{
 	/** @deprecated Deprecated in HTML5. Use CSS. */
