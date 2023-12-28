@@ -6,7 +6,7 @@ import IObservable from "./i-observable";
 
 type DotContentPrimitive = string|number|boolean;
 type DotContentBasic = DotContentPrimitive|Node|Element|NodeList|IComponent|IDotDocument//typeof DotDocument;
-export type DotContent = DotContentBasic|Array<DotContent>|(()=>DotContent);
+export type DotContent = DotContentBasic|Array<DotContent>|IObservable|(()=>DotContent);
 
 // Global interface containing elements:
 export interface IDotDocument
