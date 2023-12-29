@@ -41,11 +41,11 @@ export interface IDotDocument
 	/**
 	 * Creates a generic HTML node that can render a string, HTML nodes, or dotHTML content.
 	*/
-	h(content?: DotContent): IDotDocument;
+	html(content: string): IDotDocument;
 	/**
 	 * Creates a text node that will render as a string, rather than being parsed as markup.
 	*/
-	t(content?: any): IDotA;
+	text(content: string): IDotDocument;
 	/**
 	 * Iterates n times, appending the result of each iteration to the VDBO.
 	 * @param n The number of iterations.
