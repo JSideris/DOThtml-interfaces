@@ -41,18 +41,19 @@ export interface IDotDocument
 	/**
 	 * Creates a generic HTML node that can render a string, HTML nodes, or dotHTML content.
 	*/
-	html(content: string): IDotDocument;
+	html(content: string|number|boolean|IObservable): IDotDocument;
 	/**
 	 * Creates a text node that will render as a string, rather than being parsed as markup.
 	*/
-	text(content: string): IDotDocument;
+	text(content: string|number|boolean|IObservable): IDotDocument;
 	/**
 	 * Iterates n times, appending the result of each iteration to the VDBO.
 	 * @param n The number of iterations.
 	 * @param callback The markup-generating callback.
 	*/
 	iterate(n: number, callback: (i: number)=>DotContent): IDotDocument;
-	each<T>(a: Array<T>|{[key: string|number]: T}|IObservable<any, Array<T>|{[key: string|number]: T}>, callback: (x: T, i: string|number, k: string|number)=>DotContent): IDotDocument;
+	each<T>(a: Array<T>|{[key: string|number]: T}, callback: (x: T, i: number, k: string|number)=>DotContent): IDotDocument;
+	each<T>(a: IObservable<any, Array<T>|{[key: string|number]: T}>, callback: (x: T, i: IObservable<number>, k: string|number)=>DotContent): IDotDocument;
 
 	/**
 	 * Removes the targeted document and everything in it.
