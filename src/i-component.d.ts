@@ -3,17 +3,19 @@ import { IDotElement, IDotGenericElement } from "./i-dot";
 import IDotCss from "./i-dot-css";
 
 export interface FrameworkItems {
+	/**
+	 * The root element of the component.
+	 */
 	el: HTMLElement;
-	css: IDotCss;
-	html: IDotGenericElement;
 	refs: { [key: string]: HTMLElement };
+	emit: (event: string, ...args: Array<any>)=>void;
 	restyle(): void;
+	// css: IDotCss;
+	// html: IDotGenericElement;
 }
 
 export default interface IComponent {
     // Properties
-    props?: { [key: string]: any };
-    bindings?: { [key: string]: any };
     events?: Array<string>;
 
 	readonly $?: FrameworkItems;

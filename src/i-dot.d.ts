@@ -6,9 +6,11 @@ import IObservable from "./i-observable";
 
 type DotContentPrimitive = string|number|boolean;
 type DotContentBasic = DotContentPrimitive|Node|Element|NodeList|IComponent|IDotDocument//typeof DotDocument;
-export type DotContent = DotContentBasic|Array<DotContent>|IObservable|(()=>DotContent);
+export type DotContent = DotContentBasic|Array<DotContent>|IObservable;//|(()=>DotContent);
 
-// Global interface containing elements:
+/**
+ * Global interface containing elements.
+ */
 export interface IDotDocument
 {
 	// Creating a blank DotDocument.
@@ -47,6 +49,10 @@ export interface IDotDocument
 	*/
 	text(content: string|number|boolean|IObservable): IDotDocument;
 	/**
+	 * Mounts a component.
+	 */
+	mount(component: IComponent): IMountedComponent;
+	/**
 	 * Iterates n times, appending the result of each iteration to the VDBO.
 	 * @param n The number of iterations.
 	 * @param callback The markup-generating callback.
@@ -68,15 +74,7 @@ export interface IDotDocument
 	*/
 	empty(): IDotDocument;
 
-	/**
-	 * Executes a function immediately.
-	*/
-	script(callback: Function): IDotDocument;
-
 	scopeClass(prefix: number|string|null, content: DotContent): IDotDocument;
-
-	wait(timeout, callback);
-	defer(callback);
 
 	// Tags.
 	a(content?: DotContent): IDotA;
@@ -224,7 +222,9 @@ export interface IDotDocument
 	wbr(content?: DotContent): IDotElementDocument<IDotGenericElement>;
 }
 
-// Interface for the dot object:
+/**
+ * Interface for the dot object.
+ */
 export interface IDotCore extends IDotDocument
 {
 	(targetSelector: string|Element|Node|NodeList|Array<Node|Element>): IDotElementDocument<IDotGenericElement>;
@@ -238,7 +238,7 @@ export interface IDotCore extends IDotDocument
 
 	observe<Ti = IObservable|Array<any>|{[key: string|number]: any}|string|number|boolean, To = Ti>(props?: {value: Ti, key?: string, transformer?: (value: Ti)=>To}): IObservable<Ti, To>;
 	
-	component<T extends {new(...args: any[]): (IComponent)}>(ComponentClass: T): T&{new(...args: any[]): ({$: FrameworkItems})};
+	component<T extends IComponent>(ComponentClass: new(...args: any[])=>T): (new(...args: any[])=>(T&{readonly $:FrameworkItems}));
 }
 
 export interface IDotWindowBuilder{
@@ -272,11 +272,6 @@ export interface IDotElementDocument<T extends IDotDocument> extends IDotDocumen
 	// TODO: I'd really like to enable this. Unfortunately it's not terribly easy to implement.
 	// Might be impossible in ES5 (notwithstanding some possible hackery).
 	//(content?: DotContent): IDotElementDocument<IDotGenericElement>;
-
-	/**
-	 * A conditional function, analogous to if. Renders the specified DOT if a condition is met. Dynamic binding is possible when condition and callback are functions.
-	*/
-	when(condition: IObservable|boolean, callback: DotContent): IDotConditionalDocument;
 	
 	// TODO: this will erase element context, which could be a bug.
 	// It can be duplicated multiple times below, or find a new solution.
@@ -383,6 +378,12 @@ export interface IDotElementDocument<T extends IDotDocument> extends IDotDocumen
 export interface IDotGenericElement extends IDotElementDocument<IDotGenericElement>{}
 
 // Interface for specific elements:
+
+interface IMountedComponent extends IDotDocument{
+	on(event: string, callback: (...args: Array<any>)=>void): IMountedComponent;
+	prop(name: string, value: any): IMountedComponent;
+}
+
 interface IDotA extends IDotElementDocument<IDotA>{
 	download(value: unknown): IDotA;
 	hRef(value: unknown): IDotA;
