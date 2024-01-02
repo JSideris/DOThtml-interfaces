@@ -306,15 +306,15 @@ export interface IDotElementDocument<T extends IDotDocument> extends IDotDocumen
 	// TODO: we're still missing some additional global attributes. See https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/
 	accessKey(value: PrimativeOrObservable<string>): T; // This could potentially be enumerated. But care should be taken as these types are already quite complex.
 	class(value: unknown): T; // TODO: need a better way of setting classes.
-	contentEditable(value: PrimativeOrObservable<"true"|"false"|"plaintext-only">): T;
+	contentEditable(value: PrimativeOrObservable<"true">|PrimativeOrObservable<"false">|PrimativeOrObservable<"plaintext-only">): T;
 	dir(value: PrimativeOrObservable<string>): T;
-	draggable(value: PrimativeOrObservable<"true"|"false">): T; // This one is enumerated. "true" or "false" is mandatory.
+	draggable(value: PrimativeOrObservable<"true">|PrimativeOrObservable<"false">): T; // This one is enumerated. "true" or "false" is mandatory.
 	dropZone(value: "move"|"copy"|"link"): T; // Might not be supported anywhere.
 	hidden(value: PrimativeOrObservable<boolean>): T;
 	id(value: string): T;
 	itemProp(value: PrimativeOrObservable<string>): T;
 	lang(value: PrimativeOrObservable<string>): T;
-	spellCheck(value: PrimativeOrObservable<"true"|"false">): T; // This one should ideally render as "true" or "false", not be removed.
+	spellCheck(value: PrimativeOrObservable<"true">|PrimativeOrObservable<"false">): T; // This one should ideally render as "true" or "false", not be removed.
 	style(value: string|IDotcssProp): T;
 	tabIndex(value: PrimativeOrObservable<number>): T;
 	title(value: PrimativeOrObservable<string>): T;
@@ -415,7 +415,7 @@ interface IDotAudio extends IDotElementDocument<IDotAudio>{
 	controls(value: PrimativeOrObservable<boolean>): IDotAudio;
 	loop(value: PrimativeOrObservable<boolean>): IDotAudio;
 	muted(value: PrimativeOrObservable<boolean>): IDotAudio;
-	preload(value: PrimativeOrObservable<"auto"|"metadata"|"none">): IDotAudio;
+	preload(value: PrimativeOrObservable<"auto">|PrimativeOrObservable<"metadata">|PrimativeOrObservable<"none">): IDotAudio;
 	src(value: PrimativeOrObservable<string>): IDotAudio;
 	
 	// Special functions:
@@ -579,7 +579,7 @@ interface IDotInput extends IDotElementDocument<IDotInput>{
 	step(value: unknown): IDotInput;
 	type(value: "button"|"checkbox"|"color"|"date"|"datetime-local"|"email"|"file"|"hidden"|"image"|"month"|"number"|"password"|"radio"|"range"|"reset"|"search"|"submit"|"tel"|"text"|"time"|"url"|"week"): IDotInput;
 	whichForm(value: unknown): IDotInput; // form
-	value(value: PrimativeOrObservable<string|boolean|number>): IDotInput;
+	value(value: PrimativeOrObservable<string>): IDotInput;
 	width(value: PrimativeOrObservable<number>): IDotInput;
 
 	// Special functions:
