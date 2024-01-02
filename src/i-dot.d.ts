@@ -8,6 +8,8 @@ type DotContentPrimitive = string|number|boolean;
 type DotContentBasic = DotContentPrimitive|Node|Element|NodeList|IComponent|IDotDocument//typeof DotDocument;
 export type DotContent = DotContentBasic|Array<DotContent>|IObservable;//|(()=>DotContent);
 
+type PrimativeOrObservable<T = string|number|boolean> = T|IObservable<T>;
+
 /**
  * Global interface containing elements.
  */
@@ -301,20 +303,21 @@ export interface IDotElementDocument<T extends IDotDocument> extends IDotDocumen
 	// /** @deprecated Non-standard attribute. */
 	// autoSave(value: unknown): IDotMajor;
 	
-	accessKey(value: unknown): T;
-	class(value: unknown): T;
-	contentEditable(value: unknown): T;
-	dir(value: unknown): T;
-	draggable(value: unknown): T;
+	// TODO: we're still missing some additional global attributes. See https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/
+	accessKey(value: PrimativeOrObservable<string>): T; // This could potentially be enumerated. But care should be taken as these types are already quite complex.
+	class(value: unknown): T; // TODO: need a better way of setting classes.
+	contentEditable(value: PrimativeOrObservable<"true"|"false"|"plaintext-only">): T;
+	dir(value: PrimativeOrObservable<string>): T;
+	draggable(value: PrimativeOrObservable<"true"|"false">): T; // This one is enumerated. "true" or "false" is mandatory.
 	dropZone(value: "move"|"copy"|"link"): T; // Might not be supported anywhere.
-	hidden(value: unknown): T;
-	id(value: unknown): T;
-	itemProp(value: unknown): T;
-	lang(value: unknown): T;
-	spellCheck(value: unknown): T;
+	hidden(value: PrimativeOrObservable<boolean>): T;
+	id(value: string): T;
+	itemProp(value: PrimativeOrObservable<string>): T;
+	lang(value: PrimativeOrObservable<string>): T;
+	spellCheck(value: PrimativeOrObservable<"true"|"false">): T; // This one should ideally render as "true" or "false", not be removed.
 	style(value: string|IDotcssProp): T;
-	tabIndex(value: unknown): T;
-	title(value: unknown): T;
+	tabIndex(value: PrimativeOrObservable<number>): T;
+	title(value: PrimativeOrObservable<string>): T;
 
 	// Events
 
@@ -323,7 +326,6 @@ export interface IDotElementDocument<T extends IDotDocument> extends IDotDocumen
 	onCut(callback: (e: Event)=>void): T; // global
 	onPagePaste(callback: (e: Event)=>void): T; // global
 
-	// TODO: Really really add:
 	onDrag(callback: (e: DragEvent)=>void): T; // global
 	onDragEnd(callback: (e: DragEvent)=>void): T; // global
 	onDragStart(callback: (e: DragEvent)=>void): T; // global
@@ -385,15 +387,15 @@ interface IMountedComponent extends IDotDocument{
 }
 
 interface IDotA extends IDotElementDocument<IDotA>{
-	download(value: unknown): IDotA;
-	hRef(value: unknown): IDotA;
-	hRefLang(value: unknown): IDotA;
+	download(value: PrimativeOrObservable<boolean>): IDotA;
+	hRef(value: PrimativeOrObservable<string>): IDotA;
+	hRefLang(value: PrimativeOrObservable<string>): IDotA;
 	media(value: unknown): IDotA;
 	ping(value: unknown): IDotA;
-	rel(value: unknown): IDotA;
+	rel(value: PrimativeOrObservable<string>): IDotA;
 	rev(value: unknown): IDotA;
-	target(value: unknown): IDotA;
-	type(value: unknown): IDotA;
+	target(value: PrimativeOrObservable<"_blank"|"_parent"|"_self"|"_top">): IDotA;
+	type(value: unknown): IDotA; // This might be fake news.
 }
 interface IDotArea extends IDotElementDocument<IDotArea>{
 	alt(value: unknown): IDotArea;
@@ -402,19 +404,19 @@ interface IDotArea extends IDotElementDocument<IDotArea>{
 	hRef(value: unknown): IDotArea;
 	hRefLang(value: unknown): IDotArea;
 	media(value: unknown): IDotArea;
-	noHRef(value: unknown): IDotArea;
-	rel(value: unknown): IDotArea;
-	shape(value: unknown): IDotArea;
-	target(value: unknown): IDotArea;
+	noHRef(value: PrimativeOrObservable<string>): IDotArea;
+	rel(value: unknown): IDotArea; // Fake?
+	shape(value: PrimativeOrObservable<string>): IDotArea;
+	target(value: PrimativeOrObservable<string>): IDotArea;
 }
 interface IDotAudio extends IDotElementDocument<IDotAudio>{
-	autoPlay(value: unknown): IDotAudio;
+	autoPlay(value: PrimativeOrObservable<boolean>): IDotAudio;
 	buffered(value: unknown): IDotAudio;
-	controls(value: unknown): IDotAudio;
-	loop(value: unknown): IDotAudio;
-	muted(value: unknown): IDotAudio;
-	preload(value: unknown): IDotAudio;
-	src(value: unknown): IDotAudio;
+	controls(value: PrimativeOrObservable<boolean>): IDotAudio;
+	loop(value: PrimativeOrObservable<boolean>): IDotAudio;
+	muted(value: PrimativeOrObservable<boolean>): IDotAudio;
+	preload(value: PrimativeOrObservable<"auto"|"metadata"|"none">): IDotAudio;
+	src(value: PrimativeOrObservable<string>): IDotAudio;
 	
 	// Special functions:
 	pause(): IDotAudio;
@@ -541,44 +543,44 @@ interface IDotIFrame extends IDotElementDocument<IDotIFrame>{
 	width(value: unknown): IDotIFrame;
 }
 interface IDotImg extends IDotElementDocument<IDotImg>{
-	alt(value: unknown): IDotImg;
-	height(value: unknown): IDotImg;
+	alt(value: PrimativeOrObservable<string>): IDotImg;
+	height(value: PrimativeOrObservable<number>): IDotImg;
 	/** @deprecated Deprecated in HTML5. Use CSS. */
 	hSpace(value: unknown): IDotImg;
 	isMap(value: unknown): IDotImg;
 	longDesc(value: unknown): IDotImg;
 	sizes(value: unknown): IDotImg;
-	src(value: unknown): IDotImg;
+	src(value: PrimativeOrObservable<string>): IDotImg;
 	srcSet(value: unknown): IDotImg;
 	useMap(value: unknown): IDotImg;
-	width(value: unknown): IDotImg;
+	width(value: PrimativeOrObservable<number>): IDotImg;
 }
 interface IDotInput extends IDotElementDocument<IDotInput>{
 	accept(value: unknown): IDotInput;
 	alt(value: unknown): IDotInput;
 	autoComplete(value: unknown): IDotInput;
 	autoFocus(value: unknown): IDotInput;
-	checked(value?: boolean): IDotInput;
-	dirName(value: unknown): IDotInput;
-	disabled(value: unknown): IDotInput;
+	checked(value?: PrimativeOrObservable<boolean>): IDotInput;
+	dirName(value: PrimativeOrObservable<string>): IDotInput;
+	disabled(value: PrimativeOrObservable<boolean>): IDotInput;
 	formAction(value: unknown): IDotInput;
 	list(value: unknown): IDotInput;
-	max(value: unknown): IDotInput;
-	maxLength(value: unknown): IDotInput;
-	min(value: unknown): IDotInput;
+	max(value: PrimativeOrObservable<number>): IDotInput;
+	maxLength(value: PrimativeOrObservable<number>): IDotInput;
+	min(value: PrimativeOrObservable<number>): IDotInput;
 	multiple(value: unknown): IDotInput;
-	name(value: unknown): IDotInput;
-	pattern(value: unknown): IDotInput;
+	name(value: PrimativeOrObservable<string>): IDotInput;
+	pattern(value: PrimativeOrObservable<string>): IDotInput;
 	placeholder(value: unknown): IDotInput;
-	readOnly(value: unknown): IDotInput;
-	required(value: unknown): IDotInput;
+	readOnly(value: PrimativeOrObservable<boolean>): IDotInput;
+	required(value: PrimativeOrObservable<boolean>): IDotInput;
 	size(value: unknown): IDotInput;
-	src(value: unknown): IDotInput;
+	src(value: PrimativeOrObservable<string>): IDotInput;
 	step(value: unknown): IDotInput;
-	type(value: unknown): IDotInput;
+	type(value: "button"|"checkbox"|"color"|"date"|"datetime-local"|"email"|"file"|"hidden"|"image"|"month"|"number"|"password"|"radio"|"range"|"reset"|"search"|"submit"|"tel"|"text"|"time"|"url"|"week"): IDotInput;
 	whichForm(value: unknown): IDotInput; // form
-	value(value: unknown): IDotInput;
-	width(value: unknown): IDotInput;
+	value(value: PrimativeOrObservable<string|boolean|number>): IDotInput;
+	width(value: PrimativeOrObservable<number>): IDotInput;
 
 	// Special functions:
 	// getVal(): string
@@ -649,8 +651,8 @@ interface IDotOption extends IDotElementDocument<IDotOption>{
 	// setVal(value: unknown): IDotOption;
 }
 interface IDotOutput extends IDotElementDocument<IDotOutput>{
-	for(value: unknown): IDotOutput;
-	name(value: unknown): IDotOutput;
+	for(value: PrimativeOrObservable<string>): IDotOutput;
+	name(value: PrimativeOrObservable<string>): IDotOutput;
 	whichForm(value: unknown): IDotOutput; // form
 }
 interface IDotParam extends IDotElementDocument<IDotParam>{
@@ -700,16 +702,16 @@ interface IDotTable extends IDotElementDocument<IDotTable>{
 	tableSummary(value: unknown): IDotTable; // summary
 }
 interface IDotTextArea extends IDotElementDocument<IDotTextArea>{
-	autoFocus(value: unknown): IDotTextArea;
-	cols(value: unknown): IDotTextArea;
-	dirName(value: unknown): IDotTextArea;
-	disabled(value: unknown): IDotTextArea;
+	autoFocus(value: PrimativeOrObservable<boolean>): IDotTextArea;
+	cols(value: PrimativeOrObservable<number>): IDotTextArea;
+	dirName(value: PrimativeOrObservable<string>): IDotTextArea;
+	disabled(value: PrimativeOrObservable<boolean>): IDotTextArea;
 	maxLength(value: unknown): IDotTextArea;
-	name(value: unknown): IDotTextArea;
+	name(value: string): IDotTextArea;
 	placeholder(value: unknown): IDotTextArea;
 	readOnly(value: unknown): IDotTextArea;
 	required(value: unknown): IDotTextArea;
-	rows(value: unknown): IDotTextArea;
+	rows(value: PrimativeOrObservable<number>): IDotTextArea;
 	whichForm(value: unknown): IDotTextArea; // form
 	wrap(value: unknown): IDotTextArea;
 
@@ -778,16 +780,16 @@ interface IDotTrack extends IDotElementDocument<IDotTrack>{
 	onCueChange(callback: (e: Event)=>void): IDotTrack;
 }
 interface IDotVideo extends IDotElementDocument<IDotVideo>{
-	autoPlay(value: unknown): IDotVideo;
+	autoPlay(value: PrimativeOrObservable<boolean>): IDotVideo;
 	buffered(value: unknown): IDotVideo;
-	controls(value: unknown): IDotVideo;
-	height(value: unknown): IDotVideo;
-	loop(value: unknown): IDotVideo;
-	muted(value: unknown): IDotVideo;
-	poster(value: unknown): IDotVideo;
-	preload(value: unknown): IDotVideo;
-	src(value: unknown): IDotVideo;
-	width(value: unknown): IDotVideo;
+	controls(value: PrimativeOrObservable<boolean>): IDotVideo;
+	height(value: PrimativeOrObservable<number>): IDotVideo;
+	loop(value: PrimativeOrObservable<boolean>): IDotVideo;
+	muted(value: PrimativeOrObservable<boolean>): IDotVideo;
+	poster(value: PrimativeOrObservable<string>): IDotVideo;
+	preload(value: PrimativeOrObservable<boolean>): IDotVideo;
+	src(value: PrimativeOrObservable<string>): IDotVideo;
+	width(value: PrimativeOrObservable<number>): IDotVideo;
 	
 	// Special functions:
 	pause(): IDotVideo;
