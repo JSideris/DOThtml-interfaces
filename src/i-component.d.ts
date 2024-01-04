@@ -1,5 +1,5 @@
 
-import { IDotElement, IDotGenericElement } from "./i-dot";
+import { IDotGenericElement } from "./i-dot";
 import IDotCss from "./i-dot-css";
 
 export interface FrameworkItems {
@@ -25,7 +25,7 @@ export default interface IComponent {
 	/**
 	 * A function returning DOThtml (required).
 	 */
-    build(...args: Array<any>): IDotElement;
+    build(...args: Array<any>): IDotGenericElement;
 
 	/**
 	 * An optional function that is called after builder that stylizes the component using a scoped style builder.
