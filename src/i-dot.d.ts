@@ -8,7 +8,7 @@ type DotContentPrimitive = string|number|boolean;
 type DotContentBasic = DotContentPrimitive|Node|Element|NodeList|IComponent|IDotDocument//typeof DotDocument;
 export type DotContent = DotContentBasic|Array<DotContent>|IObservable;//|(()=>DotContent);
 
-type PrimativeOrObservable<T = string|number|boolean> = T|IObservable<T>;
+type AttrVal<T = string|number|boolean> = T|IObservable<T>;
 
 /**
  * Global interface containing elements.
@@ -285,34 +285,51 @@ export interface IDotElementDocument<T extends IDotDocument> extends IDotDocumen
 	*/
 	ref(name: string, index?:number): T;
 
-	// TODO: move to specific elements.
 	/** @deprecated Deprecated in HTML5. Use CSS. */
-	bgColor(value: PrimativeOrObservable<unknown>): T;
+	bgColor(value: AttrVal<unknown>): T;
 	/** @deprecated Deprecated in HTML5. Use CSS. */
-	color(value: PrimativeOrObservable<unknown>): T;
+	color(value: AttrVal<unknown>): T;
 	/** @deprecated Deprecated in HTML5. Use CSS. */
-	aLink(value: PrimativeOrObservable<unknown>): T;
+	aLink(value: AttrVal<unknown>): T;
 	/** @deprecated Deprecated in HTML5. */
-	archive(value: PrimativeOrObservable<unknown>): T;
-	// Only add this if we decide to add the search element.
-	// /** @deprecated Non-standard attribute. */
-	// autoSave(value: unknown): IDotMajor;
+	archive(value: AttrVal<unknown>): T;
 	
 	// TODO: we're still missing some additional global attributes. See https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/
-	accessKey(value: PrimativeOrObservable<string>): T; // This could potentially be enumerated. But care should be taken as these types are already quite complex.
+	areaHidden(value: AttrVal<boolean>): T;
+	areaLabel(value: AttrVal<string>): T;
+	areaDescribedBy(value: AttrVal<string>): T;
+	areaControls(value: AttrVal<string>): T;
+	areaExpanded(value: AttrVal<boolean>): T;
+	areaChecked(value: AttrVal<string>): T;
+	areaSelected(value: AttrVal<boolean>): T;
+	accessKey(value: AttrVal<string>): T; // This could potentially be enumerated. But care should be taken as these types are already quite complex.
 	class(value: unknown): T; // TODO: need a better way of setting classes.
-	contentEditable(value: PrimativeOrObservable<"true">|PrimativeOrObservable<"false">|PrimativeOrObservable<"plaintext-only">): T;
-	dir(value: PrimativeOrObservable<string>): T;
-	draggable(value: PrimativeOrObservable<"true">|PrimativeOrObservable<"false">): T; // This one is enumerated. "true" or "false" is mandatory.
-	dropZone(value: PrimativeOrObservable<"move">|PrimativeOrObservable<"copy">|PrimativeOrObservable<"link">): T; // Might not be supported anywhere.
-	hidden(value: PrimativeOrObservable<boolean>): T;
+	contentEditable(value: AttrVal<"true">|AttrVal<"false">|AttrVal<"plaintext-only">): T;
+	contextMenu(value: AttrVal<string>): T;
+	dir(value: AttrVal<string>): T;
+	draggable(value: AttrVal<"true">|AttrVal<"false">): T;
+	dropZone(value: AttrVal<"move">|AttrVal<"copy">|AttrVal<"link">): T;
+	exportParts(value: AttrVal<string>): T;
+	hidden(value: AttrVal<boolean>): T;
 	id(value: string): T;
-	itemProp(value: PrimativeOrObservable<string>): T;
-	lang(value: PrimativeOrObservable<string>): T;
-	spellCheck(value: PrimativeOrObservable<"true">|PrimativeOrObservable<"false">): T; // This one should ideally render as "true" or "false", not be removed.
+	inert(value: AttrVal<boolean>): T;
+	inputMode(value: AttrVal<string>): T;
+	is(value: AttrVal<string>): T;
+	itemId(value: AttrVal<string>): T;
+	itemProp(value: AttrVal<string>): T;
+	itemRef(value: AttrVal<string>): T;
+	itemScope(value: AttrVal<string>): T;
+	itemType(value: AttrVal<string>): T;
+	lang(value: AttrVal<string>): T;
+	nOnce(value: AttrVal<string>): T;
+	part(value: AttrVal<string>): T;
+	role(value: AttrVal<string>): T;
+	spellCheck(value: AttrVal<"true">|AttrVal<"false">): T;
 	style(value: string|IDotcssProp): T;
-	tabIndex(value: PrimativeOrObservable<number>): T;
-	title(value: PrimativeOrObservable<string>): T;
+	tabIndex(value: AttrVal<number>): T;
+	title(value: AttrVal<string>): T;
+	translate(value: AttrVal<string>): T;
+	virtualKeyboardPolicy(value: AttrVal<"auto">|AttrVal<"manual">): T;
 
 	// Events
 
@@ -382,44 +399,44 @@ interface IMountedComponent extends IDotDocument{
 }
 
 interface IDotA extends IDotElementDocument<IDotA>{
-	download(value: PrimativeOrObservable<boolean>): IDotA;
-	hRef(value: PrimativeOrObservable<string>): IDotA;
-	hRefLang(value: PrimativeOrObservable<string>): IDotA;
-	charset(value: PrimativeOrObservable<string>): IDotA;
-	coords(value: PrimativeOrObservable<string>): IDotA;
-	shape(value: PrimativeOrObservable<string>): IDotA;
-	media(value: PrimativeOrObservable<string>): IDotA;
-	ping(value: PrimativeOrObservable<string>): IDotA; // Space separated. Consider an array. Or do what we're doing for class.
-	rel(value: PrimativeOrObservable<string>): IDotA;
+	download(value: AttrVal<boolean>): IDotA;
+	hRef(value: AttrVal<string>): IDotA;
+	hRefLang(value: AttrVal<string>): IDotA;
+	charset(value: AttrVal<string>): IDotA;
+	coords(value: AttrVal<string>): IDotA;
+	shape(value: AttrVal<string>): IDotA;
+	media(value: AttrVal<string>): IDotA;
+	ping(value: AttrVal<string>): IDotA; // Space separated. Consider an array. Or do what we're doing for class.
+	rel(value: AttrVal<string>): IDotA;
 	/** @deprecated Deprecated in HTML5. */
-	rev(value: PrimativeOrObservable<unknown>): IDotA;
-	name(value: PrimativeOrObservable<string>): IDotA;
+	rev(value: AttrVal<unknown>): IDotA;
+	name(value: AttrVal<string>): IDotA;
 	// rev(value: unknown): IDotA; // Not supported in HTML 5.
-	target(value: PrimativeOrObservable<"_blank">|PrimativeOrObservable<"_parent">|PrimativeOrObservable<"_self">|PrimativeOrObservable<"_top">): IDotA;
-	type(value: PrimativeOrObservable<string>): IDotA;
+	target(value: AttrVal<"_blank">|AttrVal<"_parent">|AttrVal<"_self">|AttrVal<"_top">): IDotA;
+	type(value: AttrVal<string>): IDotA;
 }
 interface IDotArea extends IDotElementDocument<IDotArea>{
-	alt(value: PrimativeOrObservable<string>): IDotArea;
-	coords(value: PrimativeOrObservable<string>): IDotArea;
-	download(value: PrimativeOrObservable<string>): IDotArea;
-	hRef(value: PrimativeOrObservable<string>): IDotArea;
-	hRefLang(value: PrimativeOrObservable<string>): IDotArea;
-	media(value: PrimativeOrObservable<string>): IDotArea;
+	alt(value: AttrVal<string>): IDotArea;
+	coords(value: AttrVal<string>): IDotArea;
+	download(value: AttrVal<string>): IDotArea;
+	hRef(value: AttrVal<string>): IDotArea;
+	hRefLang(value: AttrVal<string>): IDotArea;
+	media(value: AttrVal<string>): IDotArea;
 	/** @deprecated Deprecated in HTML5. */
-	noHRef(value: PrimativeOrObservable<string>): IDotArea;
-	rel(value: PrimativeOrObservable<string>): IDotArea;
-	shape(value: PrimativeOrObservable<string>): IDotArea;
-	target(value: PrimativeOrObservable<string>): IDotArea;
+	noHRef(value: AttrVal<string>): IDotArea;
+	rel(value: AttrVal<string>): IDotArea;
+	shape(value: AttrVal<string>): IDotArea;
+	target(value: AttrVal<string>): IDotArea;
 }
 interface IDotAudio extends IDotElementDocument<IDotAudio>{
-	autoPlay(value: PrimativeOrObservable<boolean>): IDotAudio;
+	autoPlay(value: AttrVal<boolean>): IDotAudio;
 	// buffered(value: unknown): IDotAudio; // Not used?
-	controls(value: PrimativeOrObservable<boolean>): IDotAudio;
-	loop(value: PrimativeOrObservable<boolean>): IDotAudio;
-	muted(value: PrimativeOrObservable<boolean>): IDotAudio;
-	preload(value: PrimativeOrObservable<"auto">|PrimativeOrObservable<"metadata">|PrimativeOrObservable<"none">): IDotAudio;
-	src(value: PrimativeOrObservable<string>): IDotAudio;
-	crossOrigin(value: PrimativeOrObservable<"anonymous">|PrimativeOrObservable<"use-credentials">): IDotAudio;
+	controls(value: AttrVal<boolean>): IDotAudio;
+	loop(value: AttrVal<boolean>): IDotAudio;
+	muted(value: AttrVal<boolean>): IDotAudio;
+	preload(value: AttrVal<"auto">|AttrVal<"metadata">|AttrVal<"none">): IDotAudio;
+	src(value: AttrVal<string>): IDotAudio;
+	crossOrigin(value: AttrVal<"anonymous">|AttrVal<"use-credentials">): IDotAudio;
 	
 	// Special functions:
 	pause(): IDotAudio;
@@ -450,7 +467,7 @@ interface IDotAudio extends IDotElementDocument<IDotAudio>{
 	onCanPlay(callback: (e: Event)=>void): IDotAudio;
 }
 interface IDotBlockQuote extends IDotElementDocument<IDotBlockQuote>{
-	quoteCite(value: PrimativeOrObservable<string>): IDotBlockQuote; // alias for cite
+	quoteCite(value: AttrVal<string>): IDotBlockQuote; // alias for cite
 }
 interface IDotBody extends IDotElementDocument<IDotBody>{
 	/** @deprecated Deprecated in HTML5. Use CSS. */
@@ -473,131 +490,133 @@ interface IDotBr extends IDotElementDocument<IDotBr>{
 	clear(value: unknown): IDotBr;
 }
 interface IDotButton extends IDotElementDocument<IDotButton>{
-	autoFocus(value: PrimativeOrObservable<boolean>): IDotButton;
-	formAction(value: PrimativeOrObservable<string>): IDotButton;
-	disabled(value?: PrimativeOrObservable<boolean>): IDotButton;
-	name(value: PrimativeOrObservable<string>): IDotButton;
-	type(value: PrimativeOrObservable<"button">|PrimativeOrObservable<"submit">|PrimativeOrObservable<"reset">): IDotButton;
-	whichForm(value: PrimativeOrObservable<string>): IDotButton; // alias for form
-	value(value: PrimativeOrObservable<string>): IDotButton;
+	autoFocus(value: AttrVal<boolean>): IDotButton;
+	formAction(value: AttrVal<string>): IDotButton;
+	disabled(value?: AttrVal<boolean>): IDotButton;
+	name(value: AttrVal<string>): IDotButton;
+	type(value: AttrVal<"button">|AttrVal<"submit">|AttrVal<"reset">): IDotButton;
+	whichForm(value: AttrVal<string>): IDotButton; // alias for form
+	value(value: AttrVal<string>): IDotButton;
 }
 interface IDotCanvas extends IDotElementDocument<IDotCanvas>{
-	height(value: PrimativeOrObservable<number>): IDotCanvas;
-	width(value: PrimativeOrObservable<number>): IDotCanvas;
+	height(value: AttrVal<number>): IDotCanvas;
+	width(value: AttrVal<number>): IDotCanvas;
 }
 interface IDotCol extends IDotElementDocument<IDotCol>{
 	/** @deprecated Deprecated in HTML5. Use CSS. */
-	charOff(value: PrimativeOrObservable<unknown>): IDotCol;
-	colSpan(value: PrimativeOrObservable<number>): IDotCol; // alias for span
-	vAlign(value: PrimativeOrObservable<number>): IDotCol;
+	charOff(value: AttrVal<unknown>): IDotCol;
+	colSpan(value: AttrVal<number>): IDotCol; // alias for span
+	vAlign(value: AttrVal<number>): IDotCol;
 }
 interface IDotColGroup extends IDotElementDocument<IDotColGroup>{
 	/** @deprecated Deprecated in HTML5. Use CSS. */
-	charOff(value: PrimativeOrObservable<unknown>): IDotColGroup;
-	colSpan(value: PrimativeOrObservable<number>): IDotColGroup; // alias for span
+	charOff(value: AttrVal<unknown>): IDotColGroup;
+	colSpan(value: AttrVal<number>): IDotColGroup; // alias for span
 	/** @deprecated Deprecated in HTML5. Use CSS. */
-	vAlign(value: PrimativeOrObservable<unknown>): IDotColGroup;
+	vAlign(value: AttrVal<unknown>): IDotColGroup;
 }
 interface IDotDel extends IDotElementDocument<IDotDel>{
-	dateTime(value: PrimativeOrObservable<string>): IDotDel; // Would be cool if this could accept dates and just format them internally...
-	quoteCite(value: PrimativeOrObservable<string>): IDotDel; // alias for cite
+	dateTime(value: AttrVal<string>): IDotDel; // Would be cool if this could accept dates and just format them internally...
+	quoteCite(value: AttrVal<string>): IDotDel; // alias for cite
 }
 interface IDotDetails extends IDotElementDocument<IDotDetails>{
-	open(value: PrimativeOrObservable<boolean>): IDotDetails;
+	open(value: AttrVal<boolean>): IDotDetails;
 
 	// Events:
 	onToggle (callback: (e: Event)=>void): IDotDetails;
 }
 interface IDotEmbed extends IDotElementDocument<IDotEmbed>{
-	height(value: PrimativeOrObservable<number>): IDotEmbed;
-	src(value: PrimativeOrObservable<string>): IDotEmbed;
-	type(value: PrimativeOrObservable<string>): IDotEmbed;
-	width(value: PrimativeOrObservable<number>): IDotEmbed;
+	height(value: AttrVal<number>): IDotEmbed;
+	src(value: AttrVal<string>): IDotEmbed;
+	type(value: AttrVal<string>): IDotEmbed;
+	width(value: AttrVal<number>): IDotEmbed;
 }
 interface IDotFieldSet extends IDotElementDocument<IDotFieldSet>{
-	disabled(value: PrimativeOrObservable<boolean>): IDotFieldSet;
-	name(value: PrimativeOrObservable<string>): IDotFieldSet;
-	whichForm(value: PrimativeOrObservable<string>): IDotFieldSet; // alias for form
+	disabled(value: AttrVal<boolean>): IDotFieldSet;
+	name(value: AttrVal<string>): IDotFieldSet;
+	whichForm(value: AttrVal<string>): IDotFieldSet; // alias for form
 }
 interface IDotForm extends IDotElementDocument<IDotForm>{
-	acceptCharset(value: PrimativeOrObservable<string>): IDotForm; // accept-charset, apparently the only hyphenated attribute (aside from data-*)...
-	action(value: PrimativeOrObservable<string>): IDotForm;
-	autoComplete(value: PrimativeOrObservable<"on">|PrimativeOrObservable<"off">): IDotForm;
-	encType(value: PrimativeOrObservable<"application/x-www-form-urlencoded">|PrimativeOrObservable<"multipart/form-data">|PrimativeOrObservable<"text/plain">): IDotForm;
-	method(value: PrimativeOrObservable<"get">|PrimativeOrObservable<"post">): IDotForm;
-	name(value: PrimativeOrObservable<string>): IDotForm;
-	noValidate(value: PrimativeOrObservable<boolean>): IDotForm;
+	acceptCharset(value: AttrVal<string>): IDotForm; // accept-charset, apparently the only hyphenated attribute (aside from data-*)...
+	action(value: AttrVal<string>): IDotForm;
+	autoComplete(value: AttrVal<"on">|AttrVal<"off">): IDotForm;
+	encType(value: AttrVal<"application/x-www-form-urlencoded">|AttrVal<"multipart/form-data">|AttrVal<"text/plain">): IDotForm;
+	method(value: AttrVal<"get">|AttrVal<"post">): IDotForm;
+	name(value: AttrVal<string>): IDotForm;
+	noValidate(value: AttrVal<boolean>): IDotForm;
 	// rel(value: PrimativeOrObservable<string>): IDotForm; // Not used with forms?
-	target(value: PrimativeOrObservable<"_self">|PrimativeOrObservable<"_blank">|PrimativeOrObservable<"_parent">|PrimativeOrObservable<"_top">): IDotForm;
+	target(value: AttrVal<"_self">|AttrVal<"_blank">|AttrVal<"_parent">|AttrVal<"_top">): IDotForm;
 }
 interface IDotHr extends IDotElementDocument<IDotHr>{
 	noShade(value: unknown): IDotHr;
 }
 interface IDotIFrame extends IDotElementDocument<IDotIFrame>{
-	allow(value: PrimativeOrObservable<string>): IDotIFrame;
-	allowFullScreen(value: PrimativeOrObservable<boolean>): IDotIFrame;
+	allow(value: AttrVal<string>): IDotIFrame;
+	allowFullScreen(value: AttrVal<boolean>): IDotIFrame;
 	/** @deprecated Deprecated in HTML5. */
-	frameBorder(value: PrimativeOrObservable<0>|PrimativeOrObservable<1>): IDotIFrame;
-	height(value: PrimativeOrObservable<number>): IDotIFrame;
+	frameBorder(value: AttrVal<0>|AttrVal<1>): IDotIFrame;
+	height(value: AttrVal<number>): IDotIFrame;
 	/** @deprecated Deprecated in HTML5. */
-	longDesc(value: PrimativeOrObservable<string>): IDotIFrame;
-	marginHeight(value: PrimativeOrObservable<number>): IDotIFrame;
-	marginWidth(value: PrimativeOrObservable<number>): IDotIFrame;
-	name(value: PrimativeOrObservable<string>): IDotIFrame;
-	referrerPolicy(value: PrimativeOrObservable<string>): IDotIFrame;
-	sandbox(value: PrimativeOrObservable<string>): IDotIFrame;
+	longDesc(value: AttrVal<string>): IDotIFrame;
+	marginHeight(value: AttrVal<number>): IDotIFrame;
+	marginWidth(value: AttrVal<number>): IDotIFrame;
+	name(value: AttrVal<string>): IDotIFrame;
+	referrerPolicy(value: AttrVal<string>): IDotIFrame;
+	sandbox(value: AttrVal<string>): IDotIFrame;
 	/** @deprecated Deprecated in HTML5. */
-	scrolling(value: PrimativeOrObservable<string>): IDotIFrame;
-	seamless(value: PrimativeOrObservable<boolean>): IDotIFrame;
-	src(value: PrimativeOrObservable<string>): IDotIFrame;
-	srcDoc(value: PrimativeOrObservable<string>): IDotIFrame;
-	width(value: PrimativeOrObservable<number>): IDotIFrame;
+	scrolling(value: AttrVal<string>): IDotIFrame;
+	seamless(value: AttrVal<boolean>): IDotIFrame;
+	src(value: AttrVal<string>): IDotIFrame;
+	srcDoc(value: AttrVal<string>): IDotIFrame;
+	width(value: AttrVal<number>): IDotIFrame;
 }
 interface IDotImg extends IDotElementDocument<IDotImg>{
-	alt(value: PrimativeOrObservable<string>): IDotImg;
-	crossOrigin(value: PrimativeOrObservable<"anonymous">|PrimativeOrObservable<"use-credentials">): IDotImg;
-	decoding(value: PrimativeOrObservable<"async">|PrimativeOrObservable<"auto">|PrimativeOrObservable<"sync">): IDotImg;
-	height(value: PrimativeOrObservable<number>): IDotImg;
+	alt(value: AttrVal<string>): IDotImg;
+	crossOrigin(value: AttrVal<"anonymous">|AttrVal<"use-credentials">): IDotImg;
+	decoding(value: AttrVal<"async">|AttrVal<"auto">|AttrVal<"sync">): IDotImg;
+	height(value: AttrVal<number>): IDotImg;
 	/** @deprecated Deprecated in HTML5. Use CSS. */
-	hSpace(value: PrimativeOrObservable<unknown>): IDotImg;
-	isMap(value: PrimativeOrObservable<boolean>): IDotImg;
+	hSpace(value: AttrVal<unknown>): IDotImg;
+	isMap(value: AttrVal<boolean>): IDotImg;
 	/** @deprecated Deprecated in HTML5. Use CSS. */
-	loading(value: PrimativeOrObservable<"eager">|PrimativeOrObservable<"lazy">): IDotImg;
-	longDesc(value: PrimativeOrObservable<string>): IDotImg;
-	referrerPolicy(value: PrimativeOrObservable<string>): IDotImg;
-	sizes(value: PrimativeOrObservable<string>): IDotImg;
-	src(value: PrimativeOrObservable<string>): IDotImg;
-	srcSet(value: PrimativeOrObservable<string>): IDotImg; // Comma separated. Consider accepting an array.
-	useMap(value: PrimativeOrObservable<number>): IDotImg;
-	width(value: PrimativeOrObservable<number>): IDotImg;
+	loading(value: AttrVal<"eager">|AttrVal<"lazy">): IDotImg;
+	longDesc(value: AttrVal<string>): IDotImg;
+	referrerPolicy(value: AttrVal<string>): IDotImg;
+	sizes(value: AttrVal<string>): IDotImg;
+	src(value: AttrVal<string>): IDotImg;
+	srcSet(value: AttrVal<string>): IDotImg; // Comma separated. Consider accepting an array.
+	useMap(value: AttrVal<number>): IDotImg;
+	width(value: AttrVal<number>): IDotImg;
 }
 interface IDotInput extends IDotElementDocument<IDotInput>{
-	accept(value: PrimativeOrObservable<string>): IDotInput;
-	alt(value: PrimativeOrObservable<string>): IDotInput;
-	autoComplete(value: PrimativeOrObservable<"on">|PrimativeOrObservable<"off">): IDotInput;
-	autoFocus(value: PrimativeOrObservable<boolean>): IDotInput;
-	checked(value?: PrimativeOrObservable<boolean>): IDotInput;
-	dirName(value: PrimativeOrObservable<string>): IDotInput;
-	disabled(value: PrimativeOrObservable<boolean>): IDotInput;
-	formAction(value: PrimativeOrObservable<string>): IDotInput;
-	height(value: PrimativeOrObservable<number>): IDotInput;
-	list(value: PrimativeOrObservable<string>): IDotInput;
-	max(value: PrimativeOrObservable<number>): IDotInput;
-	maxLength(value: PrimativeOrObservable<number>): IDotInput;
-	min(value: PrimativeOrObservable<number>): IDotInput;
-	multiple(value: PrimativeOrObservable<boolean>): IDotInput;
-	name(value: PrimativeOrObservable<string>): IDotInput;
-	pattern(value: PrimativeOrObservable<string>): IDotInput;
-	placeholder(value: PrimativeOrObservable<string>): IDotInput;
-	readOnly(value: PrimativeOrObservable<boolean>): IDotInput;
-	required(value: PrimativeOrObservable<boolean>): IDotInput;
-	size(value: PrimativeOrObservable<number>): IDotInput;
-	src(value: PrimativeOrObservable<string>): IDotInput;
-	step(value: PrimativeOrObservable<string>|PrimativeOrObservable<number>): IDotInput;
+	accept(value: AttrVal<string>): IDotInput;
+	alt(value: AttrVal<string>): IDotInput;
+	autoCapitalize(value: AttrVal<"none">|AttrVal<"sentences">|AttrVal<"words">|AttrVal<"characters">): IDotInput;
+	autoComplete(value: AttrVal<"on">|AttrVal<"off">): IDotInput;
+	autoFocus(value: AttrVal<boolean>): IDotInput;
+	checked(value?: AttrVal<boolean>): IDotInput;
+	enterKeyHint(value: AttrVal<"enter">|AttrVal<"done">|AttrVal<"go">|AttrVal<"next">|AttrVal<"preveous">|AttrVal<"search">|AttrVal<"send">): IDotInput;
+	dirName(value: AttrVal<string>): IDotInput;
+	disabled(value: AttrVal<boolean>): IDotInput;
+	formAction(value: AttrVal<string>): IDotInput;
+	height(value: AttrVal<number>): IDotInput;
+	list(value: AttrVal<string>): IDotInput;
+	max(value: AttrVal<number>): IDotInput;
+	maxLength(value: AttrVal<number>): IDotInput;
+	min(value: AttrVal<number>): IDotInput;
+	multiple(value: AttrVal<boolean>): IDotInput;
+	name(value: AttrVal<string>): IDotInput;
+	pattern(value: AttrVal<string>): IDotInput;
+	placeholder(value: AttrVal<string>): IDotInput;
+	readOnly(value: AttrVal<boolean>): IDotInput;
+	required(value: AttrVal<boolean>): IDotInput;
+	size(value: AttrVal<number>): IDotInput;
+	src(value: AttrVal<string>): IDotInput;
+	step(value: AttrVal<string>|AttrVal<number>): IDotInput;
 	type(value: "button"|"checkbox"|"color"|"date"|"datetime-local"|"email"|"file"|"hidden"|"image"|"month"|"number"|"password"|"radio"|"range"|"reset"|"search"|"submit"|"tel"|"text"|"time"|"url"|"week"): IDotInput;
-	whichForm(value: PrimativeOrObservable<string>): IDotInput; // form
-	value(value: PrimativeOrObservable<string>): IDotInput;
-	width(value: PrimativeOrObservable<number>): IDotInput;
+	whichForm(value: AttrVal<string>): IDotInput; // form
+	value(value: AttrVal<string>): IDotInput;
+	width(value: AttrVal<number>): IDotInput;
 
 	// Special functions:
 	// getVal(): string
@@ -607,46 +626,46 @@ interface IDotInput extends IDotElementDocument<IDotInput>{
 	onSearch(callback: (e: Event)=>void): IDotInput;
 }
 interface IDotIns extends IDotElementDocument<IDotIns>{
-	dateTime(value: PrimativeOrObservable<string>): IDotIns;
-	quoteCite(value: PrimativeOrObservable<string>): IDotIns; // alias for cite
+	dateTime(value: AttrVal<string>): IDotIns;
+	quoteCite(value: AttrVal<string>): IDotIns; // alias for cite
 }
 interface IDotKeyGen extends IDotElementDocument<IDotKeyGen>{
-	challenge(value: PrimativeOrObservable<string>): IDotKeyGen;
-	keyType(value: PrimativeOrObservable<string>): IDotKeyGen;
+	challenge(value: AttrVal<string>): IDotKeyGen;
+	keyType(value: AttrVal<string>): IDotKeyGen;
 }
 interface IDotLabel extends IDotElementDocument<IDotLabel>{
-	for(value: PrimativeOrObservable<string>): IDotLabel;
+	for(value: AttrVal<string>): IDotLabel;
 }
 interface IDotLi extends IDotElementDocument<IDotLi>{
-	value(value: PrimativeOrObservable<number>): IDotLi;
+	value(value: AttrVal<number>): IDotLi;
 }
 interface IDotMap extends IDotElementDocument<IDotMap>{
-	name(value: PrimativeOrObservable<string>): IDotMap;
+	name(value: AttrVal<string>): IDotMap;
 }
 interface IDotMenu extends IDotElementDocument<IDotMenu>{
-	type(value: PrimativeOrObservable<string>): IDotMenu;
+	type(value: AttrVal<string>): IDotMenu;
 }
 interface IDotMeter extends IDotElementDocument<IDotMeter>{
-	high(value: PrimativeOrObservable<number>): IDotMeter;
-	low(value: PrimativeOrObservable<number>): IDotMeter;
-	max(value: PrimativeOrObservable<number>): IDotMeter;
-	min(value: PrimativeOrObservable<number>): IDotMeter;
-	optimum(value: PrimativeOrObservable<number>): IDotMeter;
-	value(value: PrimativeOrObservable<number>): IDotMeter;
+	high(value: AttrVal<number>): IDotMeter;
+	low(value: AttrVal<number>): IDotMeter;
+	max(value: AttrVal<number>): IDotMeter;
+	min(value: AttrVal<number>): IDotMeter;
+	optimum(value: AttrVal<number>): IDotMeter;
+	value(value: AttrVal<number>): IDotMeter;
 }
 interface IDotObject extends IDotElementDocument<IDotObject>{
-	archive(value: PrimativeOrObservable<string>): IDotObject;
-	classId(value: PrimativeOrObservable<string>): IDotObject;
-	codeBase(value: PrimativeOrObservable<string>): IDotObject;
-	codeType(value: PrimativeOrObservable<string>): IDotObject;
-	objectData(value: PrimativeOrObservable<string>): IDotObject; // alias for data
-	declare(value: PrimativeOrObservable<boolean>): IDotObject;
-	height(value: PrimativeOrObservable<number>): IDotObject;
-	name(value: PrimativeOrObservable<string>): IDotObject;
-	standby(value: PrimativeOrObservable<string>): IDotObject;
-	type(value: PrimativeOrObservable<string>): IDotObject;
-	useMap(value: PrimativeOrObservable<string>): IDotObject;
-	width(value: PrimativeOrObservable<number>): IDotObject;
+	archive(value: AttrVal<string>): IDotObject;
+	classId(value: AttrVal<string>): IDotObject;
+	codeBase(value: AttrVal<string>): IDotObject;
+	codeType(value: AttrVal<string>): IDotObject;
+	objectData(value: AttrVal<string>): IDotObject; // alias for data
+	declare(value: AttrVal<boolean>): IDotObject;
+	height(value: AttrVal<number>): IDotObject;
+	name(value: AttrVal<string>): IDotObject;
+	standby(value: AttrVal<string>): IDotObject;
+	type(value: AttrVal<string>): IDotObject;
+	useMap(value: AttrVal<string>): IDotObject;
+	width(value: AttrVal<number>): IDotObject;
 }
 interface IDotOl extends IDotElementDocument<IDotOl>{
 	reversed(value: boolean): IDotOl;
@@ -656,164 +675,166 @@ interface IDotOptGroup extends IDotElementDocument<IDotOptGroup>{
 	disabled(value: boolean): IDotOptGroup;
 }
 interface IDotOption extends IDotElementDocument<IDotOption>{
-	disabled(value: PrimativeOrObservable<boolean>): IDotOption;
-	optionLabel(value: PrimativeOrObservable<string>): IDotOption; // alias for label
-	selected(value: PrimativeOrObservable<boolean>): IDotOption;
-	value(value: PrimativeOrObservable<string>): IDotOption;
+	disabled(value: AttrVal<boolean>): IDotOption;
+	optionLabel(value: AttrVal<string>): IDotOption; // alias for label
+	selected(value: AttrVal<boolean>): IDotOption;
+	value(value: AttrVal<string>): IDotOption;
 
 	// Special functions:
 	// getVal(): string;
 	// setVal(value: unknown): IDotOption;
 }
 interface IDotOutput extends IDotElementDocument<IDotOutput>{
-	for(value: PrimativeOrObservable<string>): IDotOutput;
-	name(value: PrimativeOrObservable<string>): IDotOutput;
-	whichForm(value: PrimativeOrObservable<string>): IDotOutput; // alias for form
+	for(value: AttrVal<string>): IDotOutput;
+	name(value: AttrVal<string>): IDotOutput;
+	whichForm(value: AttrVal<string>): IDotOutput; // alias for form
 }
 interface IDotParam extends IDotElementDocument<IDotParam>{
-	name(value: PrimativeOrObservable<string>): IDotParam;
-	value(value: PrimativeOrObservable<string>): IDotParam;
+	name(value: AttrVal<string>): IDotParam;
+	value(value: AttrVal<string>): IDotParam;
 	/** @deprecated Deprecated in HTML5. */
-	valueType(value: PrimativeOrObservable<unknown>): IDotParam;
+	valueType(value: AttrVal<unknown>): IDotParam;
 }
 interface IDotProgress extends IDotElementDocument<IDotProgress>{
-	max(value: PrimativeOrObservable<number>): IDotProgress;
-	value(value: PrimativeOrObservable<number>): IDotProgress;
+	max(value: AttrVal<number>): IDotProgress;
+	value(value: AttrVal<number>): IDotProgress;
 }
 interface IDotQ extends IDotElementDocument<IDotQ>{
-	quoteCite(value: PrimativeOrObservable<string>): IDotQ; // alias for cite
+	quoteCite(value: AttrVal<string>): IDotQ; // alias for cite
 }
 interface IDotSelect extends IDotElementDocument<IDotSelect>{
-	autoFocus(value: PrimativeOrObservable<boolean>): IDotSelect;
-	disabled(value: PrimativeOrObservable<boolean>): IDotSelect;
-	multiple(value: PrimativeOrObservable<boolean>): IDotSelect;
-	name(value: PrimativeOrObservable<string>): IDotSelect;
-	required(value: PrimativeOrObservable<boolean>): IDotSelect;
-	size(value: PrimativeOrObservable<number>): IDotSelect;
-	whichForm(value: PrimativeOrObservable<string>): IDotSelect; // alias for form
-	value(value: PrimativeOrObservable<string>); // Pseudo attribute for convenience. 
+	autoFocus(value: AttrVal<boolean>): IDotSelect;
+	disabled(value: AttrVal<boolean>): IDotSelect;
+	multiple(value: AttrVal<boolean>): IDotSelect;
+	name(value: AttrVal<string>): IDotSelect;
+	required(value: AttrVal<boolean>): IDotSelect;
+	size(value: AttrVal<number>): IDotSelect;
+	whichForm(value: AttrVal<string>): IDotSelect; // alias for form
+	value(value: AttrVal<string>); // Pseudo attribute for convenience. 
 }
 interface IDotSource extends IDotElementDocument<IDotSource>{
-	media(value: PrimativeOrObservable<string>): IDotSource;
-	src(value: PrimativeOrObservable<string>): IDotSource;
-	type(value: PrimativeOrObservable<string>): IDotSource;
-	sizes(value: PrimativeOrObservable<string>): IDotSource;
-	src(value: PrimativeOrObservable<string>): IDotSource;
-	srcSet(value: PrimativeOrObservable<string>): IDotSource;
-	type(value: PrimativeOrObservable<string>): IDotSource;
+	media(value: AttrVal<string>): IDotSource;
+	src(value: AttrVal<string>): IDotSource;
+	type(value: AttrVal<string>): IDotSource;
+	sizes(value: AttrVal<string>): IDotSource;
+	src(value: AttrVal<string>): IDotSource;
+	srcSet(value: AttrVal<string>): IDotSource;
+	type(value: AttrVal<string>): IDotSource;
 }
 interface IDotTable extends IDotElementDocument<IDotTable>{
 	/** @deprecated Deprecated in HTML5. Use CSS. */
-	border(value: PrimativeOrObservable<string>|PrimativeOrObservable<number>): IDotTable;
+	border(value: AttrVal<string>|AttrVal<number>): IDotTable;
 	/** @deprecated Deprecated in HTML5. Use CSS. */
-	cellPadding(value: PrimativeOrObservable<string>|PrimativeOrObservable<number>): IDotTable;
+	cellPadding(value: AttrVal<string>|AttrVal<number>): IDotTable;
 	/** @deprecated Deprecated in HTML5. Use CSS. */
-	cellSpacing(value: PrimativeOrObservable<string>|PrimativeOrObservable<number>): IDotTable;
+	cellSpacing(value: AttrVal<string>|AttrVal<number>): IDotTable;
 	/** @deprecated Deprecated in HTML5. Use CSS. */
-	frame(value: PrimativeOrObservable<string>|PrimativeOrObservable<number>): IDotTable;
+	frame(value: AttrVal<string>|AttrVal<number>): IDotTable;
 	/** @deprecated Deprecated in HTML5. */
-	height(value: PrimativeOrObservable<number>): IDotTable;
+	height(value: AttrVal<number>): IDotTable;
 	/** @deprecated Deprecated in HTML5. Use CSS. */
-	rules(value: PrimativeOrObservable<string>): IDotTable;
+	rules(value: AttrVal<string>): IDotTable;
 	/** @deprecated Deprecated in HTML5. */
-	tableSummary(value: PrimativeOrObservable<string>): IDotTable; // summary
+	tableSummary(value: AttrVal<string>): IDotTable; // summary
 	/** @deprecated Deprecated in HTML5. */
-	width(value: PrimativeOrObservable<number>): IDotTable;
+	width(value: AttrVal<number>): IDotTable;
 }
 interface IDotTextArea extends IDotElementDocument<IDotTextArea>{
-	autoFocus(value: PrimativeOrObservable<boolean>): IDotTextArea;
-	cols(value: PrimativeOrObservable<number>): IDotTextArea;
-	dirName(value: PrimativeOrObservable<string>): IDotTextArea;
-	disabled(value: PrimativeOrObservable<boolean>): IDotTextArea;
-	maxLength(value: PrimativeOrObservable<number>): IDotTextArea;
-	name(value: PrimativeOrObservable<string>): IDotTextArea;
-	placeholder(value: PrimativeOrObservable<string>): IDotTextArea;
-	readOnly(value: PrimativeOrObservable<boolean>): IDotTextArea;
-	required(value: PrimativeOrObservable<boolean>): IDotTextArea;
-	rows(value: PrimativeOrObservable<number>): IDotTextArea;
-	whichForm(value: PrimativeOrObservable<string>): IDotTextArea; // alias for form
-	wrap(value: PrimativeOrObservable<string>): IDotTextArea;
-	value(value: PrimativeOrObservable<string>); // Pseudo attribute for convenience. 
+	autoCapitalize(value: AttrVal<"none">|AttrVal<"sentences">|AttrVal<"words">|AttrVal<"characters">): IDotTextArea;
+	autoFocus(value: AttrVal<boolean>): IDotTextArea;
+	cols(value: AttrVal<number>): IDotTextArea;
+	dirName(value: AttrVal<string>): IDotTextArea;
+	disabled(value: AttrVal<boolean>): IDotTextArea;
+	enterKeyHint(value: AttrVal<"enter">|AttrVal<"done">|AttrVal<"go">|AttrVal<"next">|AttrVal<"preveous">|AttrVal<"search">|AttrVal<"send">): IDotTextArea;
+	maxLength(value: AttrVal<number>): IDotTextArea;
+	name(value: AttrVal<string>): IDotTextArea;
+	placeholder(value: AttrVal<string>): IDotTextArea;
+	readOnly(value: AttrVal<boolean>): IDotTextArea;
+	required(value: AttrVal<boolean>): IDotTextArea;
+	rows(value: AttrVal<number>): IDotTextArea;
+	whichForm(value: AttrVal<string>): IDotTextArea; // alias for form
+	wrap(value: AttrVal<string>): IDotTextArea;
+	value(value: AttrVal<string>); // Pseudo attribute for convenience. 
 }
 interface IDotTBody extends IDotElementDocument<IDotTBody>{
 	/** @deprecated Deprecated in HTML5. Use CSS. */
-	charOff(value: PrimativeOrObservable<unknown>): IDotTBody;
+	charOff(value: AttrVal<unknown>): IDotTBody;
 	/** @deprecated Deprecated in HTML5. Use CSS. */
-	vAlign(value: PrimativeOrObservable<unknown>): IDotTBody;
+	vAlign(value: AttrVal<unknown>): IDotTBody;
 }
 interface IDotTd extends IDotElementDocument<IDotTd>{
 	
 	/** @deprecated Deprecated in HTML5. Use CSS. */
-	axis(value: PrimativeOrObservable<string>): IDotTd;
+	axis(value: AttrVal<string>): IDotTd;
 	/** @deprecated Deprecated in HTML5. Use CSS. */
-	char(value: PrimativeOrObservable<string>): IDotTd;
-	colSpan(value: PrimativeOrObservable<number>): IDotTd;
+	char(value: AttrVal<string>): IDotTd;
+	colSpan(value: AttrVal<number>): IDotTd;
 	/** @deprecated Deprecated in HTML5. Use CSS. */
-	charOff(value: PrimativeOrObservable<string>): IDotTd;
-	headers(value: PrimativeOrObservable<string>): IDotTd;
+	charOff(value: AttrVal<string>): IDotTd;
+	headers(value: AttrVal<string>): IDotTd;
 	/** @deprecated Deprecated in HTML5. Use CSS. */
-	noWrap(value: PrimativeOrObservable<boolean>): IDotTd;
-	rowSpan(value: PrimativeOrObservable<number>): IDotTd;
-	scope(value: PrimativeOrObservable<string>): IDotTd;
+	noWrap(value: AttrVal<boolean>): IDotTd;
+	rowSpan(value: AttrVal<number>): IDotTd;
+	scope(value: AttrVal<string>): IDotTd;
 	/** @deprecated Deprecated in HTML5. Use CSS. */
-	vAlign(value: PrimativeOrObservable<string>): IDotTd;
+	vAlign(value: AttrVal<string>): IDotTd;
 }
 interface IDotTFoot extends IDotElementDocument<IDotTFoot>{
 	/** @deprecated Deprecated in HTML5. Use CSS. */
-	charOff(value: PrimativeOrObservable<number>): IDotTFoot;
+	charOff(value: AttrVal<number>): IDotTFoot;
 	/** @deprecated Deprecated in HTML5. Use CSS. */
-	vAlign(value: PrimativeOrObservable<string>): IDotTFoot;
+	vAlign(value: AttrVal<string>): IDotTFoot;
 }
 interface IDotTime extends IDotElementDocument<IDotTime>{
-	dateTime(value: PrimativeOrObservable<string>): IDotTime;
+	dateTime(value: AttrVal<string>): IDotTime;
 }
 interface IDotTh extends IDotElementDocument<IDotTh>{
 	/** @deprecated Deprecated in HTML5. Use CSS. */
-	axis(value: PrimativeOrObservable<string>): IDotTh;
-	colSpan(value: PrimativeOrObservable<number>): IDotTh;
+	axis(value: AttrVal<string>): IDotTh;
+	colSpan(value: AttrVal<number>): IDotTh;
 	/** @deprecated Deprecated in HTML5. Use CSS. */
-	charOff(value: PrimativeOrObservable<string>): IDotTh;
-	headers(value: PrimativeOrObservable<string>): IDotTh;
-	rowSpan(value: PrimativeOrObservable<number>): IDotTh;
-	scope(value: PrimativeOrObservable<string>): IDotTh;
+	charOff(value: AttrVal<string>): IDotTh;
+	headers(value: AttrVal<string>): IDotTh;
+	rowSpan(value: AttrVal<number>): IDotTh;
+	scope(value: AttrVal<string>): IDotTh;
 	/** @deprecated Deprecated in HTML5. Use CSS. */
-	vAlign(value: PrimativeOrObservable<string>): IDotTh;
+	vAlign(value: AttrVal<string>): IDotTh;
 }
 interface IDotTHead extends IDotElementDocument<IDotTHead>{
 	/** @deprecated Deprecated in HTML5. Use CSS. */
-	charOff(value: PrimativeOrObservable<string>|PrimativeOrObservable<number>): IDotTHead;
+	charOff(value: AttrVal<string>|AttrVal<number>): IDotTHead;
 	/** @deprecated Deprecated in HTML5. Use CSS. */
-	vAlign(value: PrimativeOrObservable<string>): IDotTHead;
+	vAlign(value: AttrVal<string>): IDotTHead;
 }
 interface IDotTr extends IDotElementDocument<IDotTr>{
 	/** @deprecated Deprecated in HTML5. Use CSS. */
-	charOff(value: PrimativeOrObservable<string>|PrimativeOrObservable<number>): IDotTr;
+	charOff(value: AttrVal<string>|AttrVal<number>): IDotTr;
 	/** @deprecated Deprecated in HTML5. Use CSS. */
-	vAlign(value: PrimativeOrObservable<string>): IDotTr;
+	vAlign(value: AttrVal<string>): IDotTr;
 }
 interface IDotTrack extends IDotElementDocument<IDotTrack>{
-	default(value: PrimativeOrObservable<boolean>): IDotTrack;
-	kind(value: PrimativeOrObservable<string>): IDotTrack;
-	src(value: PrimativeOrObservable<string>): IDotTrack;
-	srcLang(value: PrimativeOrObservable<string>): IDotTrack;
-	trackLabel(value: PrimativeOrObservable<string>): IDotTrack; // alias for label
+	default(value: AttrVal<boolean>): IDotTrack;
+	kind(value: AttrVal<string>): IDotTrack;
+	src(value: AttrVal<string>): IDotTrack;
+	srcLang(value: AttrVal<string>): IDotTrack;
+	trackLabel(value: AttrVal<string>): IDotTrack; // alias for label
 
 	// Events:
 	onCueChange(callback: (e: Event)=>void): IDotTrack;
 }
 interface IDotVideo extends IDotElementDocument<IDotVideo>{
-	autoPlay(value: PrimativeOrObservable<boolean>): IDotVideo;
+	autoPlay(value: AttrVal<boolean>): IDotVideo;
 	buffered(value: IObservable<unknown>): IDotVideo; // Managed by browser not user. TODO: we can possibly use events to update observable objects.
-	controls(value: PrimativeOrObservable<boolean>): IDotVideo;
-	crossOrigin(value: PrimativeOrObservable<"anonymous">|PrimativeOrObservable<"use-credentials">): IDotVideo;
-	height(value: PrimativeOrObservable<number>): IDotVideo;
-	loop(value: PrimativeOrObservable<boolean>): IDotVideo;
-	muted(value: PrimativeOrObservable<boolean>): IDotVideo;
-	playsInline(value: PrimativeOrObservable<boolean>): IDotVideo;
-	poster(value: PrimativeOrObservable<string>): IDotVideo;
-	preload(value: PrimativeOrObservable<"none">|PrimativeOrObservable<"metadata">|PrimativeOrObservable<"auto">): IDotVideo;
-	src(value: PrimativeOrObservable<string>): IDotVideo;
-	width(value: PrimativeOrObservable<number>): IDotVideo;
+	controls(value: AttrVal<boolean>): IDotVideo;
+	crossOrigin(value: AttrVal<"anonymous">|AttrVal<"use-credentials">): IDotVideo;
+	height(value: AttrVal<number>): IDotVideo;
+	loop(value: AttrVal<boolean>): IDotVideo;
+	muted(value: AttrVal<boolean>): IDotVideo;
+	playsInline(value: AttrVal<boolean>): IDotVideo;
+	poster(value: AttrVal<string>): IDotVideo;
+	preload(value: AttrVal<"none">|AttrVal<"metadata">|AttrVal<"auto">): IDotVideo;
+	src(value: AttrVal<string>): IDotVideo;
+	width(value: AttrVal<number>): IDotVideo;
 	
 	// Special functions:
 	pause(): IDotVideo;
