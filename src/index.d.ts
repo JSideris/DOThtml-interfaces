@@ -7,5 +7,5 @@ export * from "./i-dot-css";
 
 export { default as IComponent, FrameworkItems } from "./i-component";
 
-export { default as IObservable } from "./i-observable";
+export { default as IReactive } from "./i-reactive";
 export { default as IEventBus } from "./i-event-bus";

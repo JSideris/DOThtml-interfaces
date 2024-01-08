@@ -2,13 +2,13 @@
 import IComponent, { FrameworkItems } from "./i-component";
 import IDotCss, { IDotcssProp } from "./i-dot-css";
 import IEventBus from "./i-event-bus";
-import IObservable from "./i-observable";
+import IReactive from "./i-reactive";
 
 type DotContentPrimitive = string|number|boolean;
 type DotContentBasic = DotContentPrimitive|Node|Element|NodeList|IComponent|IDotDocument//typeof DotDocument;
-export type DotContent = DotContentBasic|Array<DotContent>|IObservable;//|(()=>DotContent);
+export type DotContent = DotContentBasic|Array<DotContent>|IReactive;//|(()=>DotContent);
 
-type AttrVal<T = string|number|boolean> = T|IObservable<T>;
+type AttrVal<T = string|number|boolean> = T|IReactive<T>;
 
 /**
  * Global interface containing elements.
@@ -24,7 +24,7 @@ export interface IDotDocument
 	/**
 	 * A conditional function, analogous to if. Renders the specified DOT if a condition is met. Dynamic binding is possible when condition and callback are functions.
 	*/
-	when(condition:IObservable|boolean, DotContent): IDotConditionalDocument;
+	when(condition:IReactive|boolean, DotContent): IDotConditionalDocument;
 
 	// Main functions.
 	// TODO: please make this into a test case.
@@ -45,11 +45,11 @@ export interface IDotDocument
 	/**
 	 * Creates a generic HTML node that can render a string, HTML nodes, or dotHTML content.
 	*/
-	html(content: string|number|boolean|IObservable): IDotDocument;
+	html(content: string|number|boolean|IReactive): IDotDocument;
 	/**
 	 * Creates a text node that will render as a string, rather than being parsed as markup.
 	*/
-	text(content: string|number|boolean|IObservable): IDotDocument;
+	text(content: string|number|boolean|IReactive): IDotDocument;
 	/**
 	 * Mounts a component.
 	 */
@@ -61,7 +61,7 @@ export interface IDotDocument
 	*/
 	iterate(n: number, callback: (i: number)=>DotContent): IDotDocument;
 	each<T>(a: Array<T>|{[key: string|number]: T}, callback: (x: T, i: number, k: string|number)=>DotContent): IDotDocument;
-	each<T>(a: IObservable<any, Array<T>|{[key: string|number]: T}>, callback: (x: T, i: IObservable<number>, k: string|number)=>DotContent): IDotDocument;
+	each<T>(a: IReactive<any, Array<T>|{[key: string|number]: T}>, callback: (x: T, i: IReactive<number>, k: string|number)=>DotContent): IDotDocument;
 
 	/**
 	 * Removes the targeted document and everything in it.
@@ -239,7 +239,7 @@ export interface IDotCore extends IDotDocument
 	bus: IEventBus;
 	window: IDotWindowBuilder;
 
-	observe<Ti = IObservable|Array<any>|{[key: string|number]: any}|string|number|boolean, To = Ti>(props?: {value: Ti, key?: string, transformer?: (value: Ti)=>To}): IObservable<Ti, To>;
+	watch<Ti = IReactive|Array<any>|{[key: string|number]: any}|string|number|boolean, To = Ti>(props?: {value: Ti, key?: string, transformer?: (value: Ti)=>To}): IReactive<Ti, To>;
 	
 	component<T extends IComponent>(ComponentClass: new(...args: any[])=>T): (new(...args: any[])=>(T&{readonly $:FrameworkItems}));
 }
@@ -253,7 +253,7 @@ export interface IDotConditionalDocument extends IDotDocument{
 	 * A conditional catch, analogous to else if. Can be used after a when function. Evaluates if the previous when's condition was false.
 	 * Renders the specified DOT if a condition is met. Dynamic binding is possible when condition and callback are functions.
 	*/
-	otherwiseWhen(condition:IObservable|boolean, callback: DotContent): IDotConditionalDocument;
+	otherwiseWhen(condition:IReactive|boolean, callback: DotContent): IDotConditionalDocument;
 	/**
 	 * A conditional final catch, analogous to else. Can be used after a when or otherwiseWhen function. Evaluates if the previous when/otherwiseWhen evaluated to false.
 	 * Renders the specified DOT if a condition is met. Dynamic binding is possible when callback is a function.
@@ -824,7 +824,7 @@ interface IDotTrack extends IDotElementDocument<IDotTrack>{
 }
 interface IDotVideo extends IDotElementDocument<IDotVideo>{
 	autoPlay(value: AttrVal<boolean>): IDotVideo;
-	buffered(value: IObservable<unknown>): IDotVideo; // Managed by browser not user. TODO: we can possibly use events to update observable objects.
+	buffered(value: IReactive<unknown>): IDotVideo; // Managed by browser not user. TODO: we can possibly use events to update observable objects.
 	controls(value: AttrVal<boolean>): IDotVideo;
 	crossOrigin(value: AttrVal<"anonymous">|AttrVal<"use-credentials">): IDotVideo;
 	height(value: AttrVal<number>): IDotVideo;

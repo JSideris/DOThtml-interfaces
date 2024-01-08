@@ -1,5 +1,5 @@
 
-export default interface IObservable<Ti = any, To = Ti>{
+export default interface IReactive<Ti = any, To = Ti>{
 	// The untransformed value.
 	_value: Ti;
 	// Get the value.
