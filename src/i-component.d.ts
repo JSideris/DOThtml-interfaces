@@ -4,9 +4,9 @@ import IDotCss from "./i-dot-css";
 
 export interface FrameworkItems {
 	/**
-	 * The root element of the component.
+	 * The shadow root element of the component.
 	 */
-	el: HTMLElement;
+	root: ShadowRoot;
 	refs: { [key: string]: HTMLElement };
 	emit: (event: string, ...args: Array<any>)=>void;
 	restyle(): void;
