@@ -241,7 +241,9 @@ export interface IDotCore extends IDotDocument
 
 	watch<Ti = IReactive|Array<any>|{[key: string|number]: any}|string|number|boolean, To = Ti>(props?: {value: Ti, key?: string, transformer?: (value: Ti)=>To}): IReactive<Ti, To>;
 	
-	component<T extends IComponent>(ComponentClass: new(...args: any[])=>T): (new(...args: any[])=>(T&{readonly $:FrameworkItems}));
+	// component<T extends IComponent>(ComponentClass: new(...args: any[])=>T): (new(...args: ConstructorParameters<T['build']>)=>(T&{readonly $:FrameworkItems}));
+	// component<T extends IComponent>(Base: new (...args: any[]) => T): new (...args: ConstructorParameters<T['build']>) => T
+	component<T extends IComponent>(Base: new (...args: Parameters<T['build']>) => T): new (...args: Parameters<T['build']>) => T;
 }
 
 export interface IDotWindowBuilder{
