@@ -10,6 +10,10 @@ export interface FrameworkItems {
 	refs: { [key: string]: HTMLElement };
 	emit: (event: string, ...args: Array<any>)=>void;
 	restyle(): void;
+	readonly _meta: {
+		readonly isRendered: boolean;
+		readonly tagName: string;
+	}
 	// css: IDotCss;
 	// html: IDotGenericElement;
 }
@@ -18,7 +22,7 @@ export default interface IComponent {
     // Properties
     events?: Array<string>;
 
-	readonly $?: FrameworkItems;
+	readonly _?: FrameworkItems;
 
     // Lifecycle hooks
 
