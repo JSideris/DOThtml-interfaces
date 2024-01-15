@@ -13,6 +13,8 @@ export interface FrameworkItems {
 	readonly _meta: {
 		readonly isRendered: boolean;
 		readonly tagName: string;
+		readonly args: Array<any>;
+		readonly styleElement: HTMLStyleElement;
 	}
 	// css: IDotCss;
 	// html: IDotGenericElement;
