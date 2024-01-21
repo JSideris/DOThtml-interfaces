@@ -225,6 +225,13 @@ export interface IDotDocument
 	wbr(content?: DotContent): IDotElementDocument<IDotGenericElement>;
 }
 
+type Styles = string|((css: IDotCss) => IDotcssProp|string);
+interface IComponentFactory {
+    <T extends IComponent>(Base: new (...args: Parameters<T['build']>) => T, styles?: Styles[]): new (...args: Parameters<T['build']>) => T;
+	useStyles<T extends IComponent>(styles: Styles): (Base: new (...args: Parameters<T['build']>) => T) => new (...args: Parameters<T['build']>) => T;
+}
+
+
 /**
  * Interface for the dot object.
  */
@@ -233,16 +240,21 @@ export interface IDotCore extends IDotDocument
 	(targetSelector: string|Element|Node|NodeList|Array<Node|Element>): IDotElementDocument<IDotGenericElement>;
 
 	version: string;
+	styleMode: "sync"|"async";
 
 	navigate(path: string, noHistory?: boolean, force?: boolean): void;
 	css: IDotCss;
 	bus: IEventBus;
-	window: IDotWindowBuilder;
+	// window: IDotWindowBuilder;
 
 	watch<Ti = IReactive|Array<any>|{[key: string|number]: any}|string|number|boolean, To = Ti>(props?: {value: Ti, key?: string, transformer?: (value: Ti)=>To}): IReactive<Ti, To>;
 	
-	component<T extends IComponent>(Base: new (...args: Parameters<T['build']>) => T): new (...args: Parameters<T['build']>) => T;
-	useStyles<T extends IComponent>(styles: string|((css: IDotCss)=>IDotcssProp|string)): ((Base: new (...args: Parameters<T['build']>) => T) => new (...args: Parameters<T['build']>) => T);
+	// Keep these around for a bit to show how it was done before in case I need to change anything prior to the v6 launch.
+	// component<T extends IComponent>(Base: new (...args: Parameters<T['build']>) => T): new (...args: Parameters<T['build']>) => T;
+	// useStyles<T extends IComponent>(styles: string|((css: IDotCss)=>IDotcssProp|string)): ((Base: new (...args: Parameters<T['build']>) => T) => new (...args: Parameters<T['build']>) => T);
+
+	component: IComponentFactory;
+	useStyles(document: Document, styles: Styles): HTMLStyleElement;
 }
 
 export interface IDotWindowBuilder{
