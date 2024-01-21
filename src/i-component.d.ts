@@ -6,15 +6,16 @@ export interface FrameworkItems {
 	/**
 	 * The shadow root element of the component.
 	 */
-	root: ShadowRoot;
 	refs: { [key: string]: HTMLElement };
 	emit: (event: string, ...args: Array<any>)=>void;
 	restyle(): void;
 	readonly _meta: {
+		readonly shadowRoot: ShadowRoot;
 		readonly isRendered: boolean;
 		readonly tagName: string;
 		readonly args: Array<any>;
-		readonly styleElement: HTMLStyleElement;
+		// readonly styleElement: HTMLStyleElement;
+		readonly sharedStyles: CSSStyleSheet[];
 	}
 	// css: IDotCss;
 	// html: IDotGenericElement;

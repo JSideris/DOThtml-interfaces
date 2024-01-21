@@ -1,3 +1,4 @@
+import { IDotCore } from "./i-dot";
 
 export * from "./i-dot";
 
@@ -9,3 +10,9 @@ export { default as IComponent, FrameworkItems } from "./i-component";
 
 export { default as IReactive } from "./i-reactive";
 export { default as IEventBus } from "./i-event-bus";
+
+declare global {
+	interface Window {
+		dot: IDotCore;
+	}
+}

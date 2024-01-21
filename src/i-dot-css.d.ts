@@ -1,54 +1,306 @@
+
+
+type BasicCommonValues = "inherit"|"initial"|"unset"|"revert"|"revert-layer";
+
+type ComplexType = string;
+
+// BASIC TYPES
+type Str = `"${string|""}"`|`'${string|""}'`; // TODO: wherever str is required, we could just inject quotes...
+type Int = number;
+type Percentage = `${number}%`;
+type AlphaValue = number | Percentage; // Number should be interpreted as a decimal (x/1);
+type Ratio = number|`${number}/${number}`;
+
+// type DigitStr = "0"|"1"|"2"|"3"|"4"|"5"|"6"|"7"|"8"|"9";
+// type HexStr = DigitStr|"A"|"B"|"C"|"D"|"E"|"F"|"a"|"b"|"c"|"d"|"e"|"f";
+// type Hex2 = `${HexStr}${HexStr}`;
+// type Hex3 = `${Hex2}${HexStr}`;
+// type Hex4 = `${Hex3}${HexStr}`;
+// type Hex5 = `${Hex4}${HexStr}`;
+// type Hex6 = `${Hex5}${HexStr}`;
+// type HexColor = `#${Hex3|Hex6}`;
+type HexColor = `#${ComplexType}`;
+
+// LENGTH
+type AbsoluteUnits = "cm"|"mm"|"in"|"px"|"pt"|"pc"|"Q";
+type RelativeUnits = "cap"|"ch"|"em"|"ex"|"ic"|"lh"|"rem"|"rlh"
+	|"vh"|"vw"|"vmin"|"vmax"|"vb"|"vi"
+	|"cqw"|"cqh"|"cqi"|"cqb"|"cqmin"|"cqmax"
+	|"%"; 
+type AllLengthUnits = AbsoluteUnits|RelativeUnits;
+type NumericLength = `${number}${AllLengthUnits}`;
+type LengthPercentage = NumericLength|Percentage;
+
+// TIME & FREQUENCY
+type Time = `${number}${"s"|"ms"}`;
+type TimePercentage = Time|Percentage;
+type Frequency = `${number}${"Hz"|"kHz"}`;
+type FrequencyPercentage = Frequency|Percentage;
+
+// RESOLUTION
+type Resolution = `${number}${"dpi"|"dpcm"|"dppx"|"x"}`;
+
+// MISC ENUM TYPES
+type AbsoluteSize = "xx-small"|"x-small"|"small"|"medium"|"large"|"x-large"|"xx-large"|"xxx-large";
+type BlendMode = "normal"|"multiply"|"screen"|"overlay"|"darken"|"lighten"|"color-dodge"|"color-burn"|"hard-light"|"soft-light"|"difference"|"exclusion"|"hue"|"saturation"|"color"|"luminosity";
+type LineStyle = "none"|"hidden"|"dotted"|"dashed"|"solid"|"double"|"groove"|"ridge"|"inset"|"outset";
+type DisplayBox = "contents"|"none"
+type DisplayInside = "flow"|"flow-root"|"table"|"flex"|"grid"|"ruby";
+type DisplayInternal = "table-row-group"|"table-header-group"|"table-footer-group"|"table-row"|"table-cell"|"table-column-group"|"table-column"|"table-caption"|"ruby-base"|"ruby-text"|"ruby-base-container"|"ruby-text-container";
+type DisplayLegacy = "inline-block"|"inline-table"|"inline-flex"|"inline-grid";
+type DisplayOutside = "block"|"inline"|"run-in";
+type DisplayFlow = "flow"|"flow-root";
+type Overflow = "visible"|"hidden"|"clip"|"scroll";
+type RelativeSize = "smaller"|"larger";
+
+// BASIC SHAPE 
+// TODO need a builder.
+// Most of these are too complex to represent as a typescript type.
+// Realistically they should just be constructed usign a builder rather than setting the strings.
+// https://developer.mozilla.org/en-US/docs/Web/CSS/basic-shape
+type InsetFunction = `inset(${ComplexType})`;
+type RectFunction = `rect(${ComplexType})`;
+type XywhFunction = `xywh(${ComplexType})`;
+type CircleFunction = `circle(${ComplexType})`;
+type EllipseFunction = `ellipse(${ComplexType})`;
+type PolygonFunction = `polygon(${ComplexType})`;
+type PathFunction = `path(${ComplexType})`;
+type BasicShape = InsetFunction|RectFunction|XywhFunction|CircleFunction|EllipseFunction|PolygonFunction|PathFunction; 
+
+// ANGLES
+type AngleUnits = "deg"|"turn"|"rad"|"grad";
+type Angle = number | `${number}${AngleUnits}`; // Pure number should be interpreted as degrees.
+type AnglePercentage = number | Angle | Percentage; // Number should be interpreted as a decimal (x/1);
+
+// ADVANCED TYPES
+// Box.
+type VisualBox = "content-box" | "padding-box" | "border-box"; // the three <box> values
+type RayoutBox = VisualBox | "margin-box" // the <shape-box> values
+type PaintBox = VisualBox | "fill-box" | "stroke-box"
+type CoordBox = VisualBox | "fill-box" | "stroke-box" | "view-box"
+type GeometryBox = RayoutBox | "fill-box" | "stroke-box" | "view-box"
+type BoxEdge = VisualBox | RayoutBox | PaintBox | CoordBox | GeometryBox;
+
+// DIMENSION
+type Dimension = Angle|Time|Frequency|NumericLength;
+
+// Calc.
+type Calc = ComplexType; 
+
+// It's difficult to compose calc types because they're too complex. See below.
+// May consider adding a builder for this, but not sure what it will look like.
+
+/*
+	// Can't get this working because the types get too complex for TS.
+	// type Decrement = [
+	//     never, 0, 1, 2, 3, 4, 5, 6, 7
+	// ];
+	// type CalcConstant = "e"|"-e"|"E"|"pi"|"-pi"|"infinity"|"-infinity"|"NaN"; // Defined on a different page. Not sure what it's for.
+	// type CalcKeyword = 'e' | 'pi' | 'infinity' | '-infinity' | 'NaN';
+	// type CalcValue = number | Percentage | Dimension | CalcKeyword;// | CalcSum;
+	// type CalcProductSuffix<T extends CalcValue, Depth extends number> = Depth extends 0 ? string : `${"*"|"/"}${T}${CalcProductSuffix<T, Decrement[Depth]>}`;
+	// type CalcSumSuffix<T extends CalcValue, Depth extends number> = Depth extends 0 ? string : `${"+"|"-"}${T}${CalcProductSuffix<T, 8>}`;
+	// // TODO: optional space can go here.
+	// type CalcProduct<T extends CalcValue> = T|`${T}${CalcProductSuffix<T, 8>}`;
+	// type CalcSum<T extends CalcValue> = CalcProduct<T>|`${CalcProduct<T>}${"+"|"-"}${CalcProduct<T>}`
+	// CalcValue type definition
+	// Helper types for CalcProduct and CalcSum
+	// type CalcOperation = '+' | '-' | '*' | '/';
+	// type CalcProductPart = CalcValue | [CalcOperation, CalcValue];
+*/
+
+// Color Interpolation.
+type RectangularColorSpace = "srgb"|"srgb-linear"|"display-p3"|"a98-rgb"|"prophoto-rgb"|"rec2020"|"lab"|"oklab"|"xyz"|"xyz-d50"|"xyz-d65";
+type PolarColorSpace = "hsl"|"hwb"|"lch"|"oklch";
+type HueInterpolationMethod = `${"shorter"|"longer"|"increasing"|"decreasing"} hue`
+type ColorInterpolationMethod = RectangularColorSpace|PolarColorSpace|`${PolarColorSpace} ${HueInterpolationMethod}`;
+
+// Color
+type NamedColor = "aliceblue"|"antiquewhite"|"aqua"|"aquamarine"|"azure"|"beige"|"bisque"|"black"|"blanchedalmond"|"blue"|"blueviolet"|"brown"|"burlywood"|"cadetblue"|"chartreuse"|"chocolate"|"coral"|"cornflowerblue"|"cornsilk"|"crimson"|"cyan"|"darkblue"|"darkcyan"|"darkgoldenrod"|"darkgray"|"darkgrey"|"darkgreen"|"darkkhaki"|"darkmagenta"|"darkolivegreen"|"darkorange"|"darkorchid"|"darkred"|"darksalmon"|"darkseagreen"|"darkslateblue"|"darkslategray"|"darkslategrey"|"darkturquoise"|"darkviolet"|"deeppink"|"deepskyblue"|"dimgray"|"dimgrey"|"dodgerblue"|"firebrick"|"floralwhite"|"forestgreen"|"fuchsia"|"gainsboro"|"ghostwhite"|"gold"|"goldenrod"|"gray"|"grey"|"green"|"greenyellow"|"honeydew"|"hotpink"|"indianred"|"indigo"|"ivory"|"khaki"|"lavender"|"lavenderblush"|"lawngreen"|"lemonchiffon"|"lightblue"|"lightcoral"|"lightcyan"|"lightgoldenrodyellow"|"lightgray"|"lightgrey"|"lightgreen"|"lightpink"|"lightsalmon"|"lightseagreen"|"lightskyblue"|"lightslategray"|"lightslategrey"|"lightsteelblue"|"lightyellow"|"lime"|"limegreen"|"linen"|"magenta"|"maroon"|"mediumaquamarine"|"mediumblue"|"mediumorchid"|"mediumpurple"|"mediumseagreen"|"mediumslateblue"|"mediumspringgreen"|"mediumturquoise"|"mediumvioletred"|"midnightblue"|"mintcream"|"mistyrose"|"moccasin"|"navajowhite"|"navy"|"oldlace"|"olive"|"olivedrab"|"orange"|"orangered"|"orchid"|"palegoldenrod"|"palegreen"|"paleturquoise"|"palevioletred"|"papayawhip"|"peachpuff"|"peru"|"pink"|"plum"|"powderblue"|"purple"|"rebeccapurple"|"red"|"rosybrown"|"royalblue"|"saddlebrown"|"salmon"|"sandybrown"|"seagreen"|"seashell"|"sienna"|"silver"|"skyblue"|"slateblue"|"slategray"|"slategrey"|"snow"|"springgreen"|"steelblue"|"tan"|"teal"|"thistle"|"tomato"|"turquoise"|"violet"|"wheat"|"white"|"whitesmoke"|"yellow"|"yellowgreen";
+type SystemColor = "AccentColor"|"AccentColorText"|"ActiveText"|"ButtonBorder"|"ButtonFace"|"ButtonText"|"Canvas"|"CanvasText"|"Field"|"FieldText"|"GrayText"|"Highlight"|"HighlightText"|"LinkText"|"Mark"|"MarkText"|"SelectedItem"|"SelectedItemText"|"VisitedText";
+type Hue = number|Angle;
+type PredefinedRgb = "srgb"|"srgb-linear"|"display-p3"|"a98-rgb"|"prophoto-rgb"|"rec2020";
+type XyzSpace = "xyz"|"xyz-d50"|"xyz-d65";
+type XyzParams = `${XyzSpace} ${number|Percentage|"none"} ${number|Percentage|"none"} ${number|Percentage|"none"}`
+type PredefinedRgbParams = `${PredefinedRgb} ${number|Percentage|"none"} ${number|Percentage|"none"} ${number|Percentage|"none"}`
+type ColorspaceParams = PredefinedRgbParams|XyzParams;
+
+type LRgba<T extends number|AlphaValue> = `rgb(${T}, ${T}, ${T})` | `rgba(${T}, ${T}, ${T}, ${AlphaValue})`;
+type MRgba = `rgb(${number|Percentage|"none"} ${number|Percentage|"none"} ${number|Percentage|"none"})` | `rgba(${number|Percentage|"none"} ${number|Percentage|"none"} ${number|Percentage|"none"} / ${AlphaValue})`;
+type Rgba = LRgba<number|AlphaValue>|MRgba;
+type LHsla = `hsl(${Hue}, ${Percentage}, ${Percentage})` | `hsla(${Hue}, ${Percentage}, ${Percentage}, ${AlphaValue})`;
+type MHsla = `hsl(${Hue|"none"} ${Percentage|number|"none"} ${Percentage|number|"none"})` | `hsla(${Hue|"none"} ${Percentage|number|"none"} ${Percentage|number|"none"} / ${AlphaValue|"none"})`;
+type Hsla = LHsla|MHsla;
+type Hwb = `hwb(${Hue|"none"} ${Percentage|number|"none"} ${Percentage|number|"none"})` | `hwb(${Hue|"none"} ${Percentage|number|"none"} ${Percentage|number|"none"} / ${AlphaValue|"none"})`;
+type Lab = `${"lab"|"oklab"}(${number|Percentage|"none"} ${number|Percentage|"none"} ${number|Percentage|"none"})` | `${"lab"|"oklab"}(${number|Percentage|"none"} ${number|Percentage|"none"} ${number|Percentage|"none"} / ${AlphaValue|"none"})`;
+type Lch = `${"lch"|"oklch"}(${number|Percentage|"none"} ${number|Percentage|"none"} ${Hue|"none"})` | `${"lch"|"oklch"}(${number|Percentage|"none"} ${number|Percentage|"none"} ${Hue|"none"} / ${AlphaValue|"none"})`;
+type ColorFunc = `color(${ColorspaceParams})`| `color(${ColorspaceParams} / ${AlphaValue|"none"})`;
+type AbsoluteColorFunction = Rgba|Hsla|Hwb|Lab|Lch|ColorFunc;
+
+type AbsoluteColorBase = HexColor|AbsoluteColorFunction|NamedColor|"transparent";
+type Color = AbsoluteColorBase|SystemColor|"currentcolor";
+type SimpleColor = HexColor|`${"rgb"|"rgba"|"hsl"|"hsla"|"hwb"|"lab"|"lch"|"oklab"|"oklch"|"color"}(${ComplexType})`|NamedColor|SystemColor|"currentcolor";
+
+// Display List Item
+
+type DisplayListItem = 
+    | 'list-item'
+    | `${DisplayOutside} list-item`
+    | `list-item ${DisplayOutside}`
+    | `${DisplayFlow} list-item`
+    | `list-item ${DisplayFlow}`
+    | `${DisplayOutside} ${DisplayFlow} list-item`
+    | `${DisplayOutside} list-item ${DisplayFlow}`
+    | `${DisplayFlow} ${DisplayOutside} list-item`
+    | `${DisplayFlow} list-item ${DisplayOutside}`
+    | `list-item ${DisplayOutside} ${DisplayFlow}`
+    | `list-item ${DisplayFlow} ${DisplayOutside}`;
+
+// ID
+type Ident = string;
+type CustomIdent = string;
+type DashedIdent = `--${string}`;
+
+// EASING FUNCTION
+
+type StepPosition = "jump-start"|"jump-end"|"jump-none"|"jump-both"|"start"|"end";
+type LinearStopLength = Percentage|`${Percentage} ${Percentage}`;
+type LinearStop = number|`${number} ${LinearStopLength}`|`${LinearStopLength} ${number}`;
+type LinearStopList = `${LinearStop}${`, ${LinearStop}${`, ${LinearStop}${`, ${LinearStop}${`, ${LinearStop}${ComplexType}`|""}`|""}`|""}`|""}`;
+
+type StepEasingFunction = "step-start"|"step-end"|`steps(${Int}${`, ${StepPosition}`|""})`;
+type CubicBezierEasingFunction = "ease"|"ease-in"|"ease-out"|"ease-in-out"|`cubic-bezier(${number}, ${number}, ${number}, ${number})`;
+type LinearEasingFunction = `linear(${LinearStopList})`;
+type EasingFunction = "linear"|LinearEasingFunction|CubicBezierEasingFunction|StepEasingFunction;
+
+// FILTER FUNCTION
+// TODO: don't forget to provide builders for these. Already put work into some.
+type SaturateFunction = `saturate(${number|Percentage|""})`;
+type SepiaFunction = `sepia(${number|Percentage|""})`;
+type OpacityFunction = `opacity(${number|Percentage|""})`;
+type InvertFunction = `invert(${number|Percentage|""})`;
+type GrayscaleFunction = `grayscale(${number|Percentage|""})`;
+type ContrastFunction = `contrast(${number|Percentage|""})`;
+type BrightnessFunction = `brightness(${number|Percentage|""})`;
+type BlurFunction = `blur(${NumericLength|""})`;
+// Regrettably, strong typing for color isn't possible due to the type complexity.
+// Even SimpleColor doesn't work. We use string in place of Color.
+type DropShadowFunction = `drop-shadow(${`${ComplexType} ${NumericLength} ${NumericLength}`
+	|`${NumericLength} ${NumericLength} ${ComplexType}`
+	|`${NumericLength} ${NumericLength}`
+	|`${ComplexType} ${NumericLength} ${NumericLength} ${NumericLength}`
+	|`${NumericLength} ${NumericLength} ${NumericLength} ${ComplexType}`
+	|`${NumericLength} ${NumericLength} ${NumericLength}`
+})`;
+type HueRotateFunction = `hue-rotate(${Angle|""})`;
+type FilterFunction = SaturateFunction|SepiaFunction|OpacityFunction|InvertFunction|GrayscaleFunction|ContrastFunction|BrightnessFunction|BlurFunction|DropShadowFunction|HueRotateFunction;
+
+// FLEX
+type Flex = `${number}fr`;
+
+// FONT
+
+type GenericFamily = "serif" | "sans-serif" | "monospace" | "cursive" | "fantasy" | "system-ui" | "ui-serif" | "ui-sans-serif" | "ui-monospace" | "ui-rounded" | "emoji" | "math" | "fangsong";
+
+// POSITION
+type HorizontalPosition = "left" | "center" | "right" | LengthPercentage;
+type VerticalPosition = "top" | "center" | "bottom" | LengthPercentage;
+
+type Position = 
+    | HorizontalPosition
+    | VerticalPosition
+    | `${HorizontalPosition} ${VerticalPosition}`
+    | `${VerticalPosition} ${HorizontalPosition}`
+    | `${"left" | "right"} ${LengthPercentage}`
+    | `${"top" | "bottom"} ${LengthPercentage}`
+    | `${"left" | "right"} ${LengthPercentage} ${"top" | "bottom"} ${LengthPercentage}`
+    | `${"top" | "bottom"} ${LengthPercentage} ${"left" | "right"} ${LengthPercentage}`;
+
+// GRADIENT
+// https://developer.mozilla.org/en-US/docs/Web/CSS/gradient
+// TODO: absolutely need a builder for this.
+
+type RadialShape = "circle"|"ellipse";
+type RadialExtent = "closest-corner"|"closest-side"|"farthest-corner"|"farthest-side";
+type SideOrCorner = "left"|"right"|"top"|"bottom"|`${"left" | "right"} ${"top" | "bottom"}`|`${"top" | "bottom"} ${"left" | "right"}`;
+type RadialSize = `${RadialExtent} ${NumericLength} ${LengthPercentage} ${LengthPercentage}`;
+type LinearColorStop = Color|`${Color} ${LengthPercentage}`;
+type LinearColorHint = LengthPercentage;
+// type LinearColorStopListItem = LinearColorStop|`${LinearColorHint}, ${LinearColorStop}`; // TOO COMPLEX :(
+type LinearColorStopListItem = LinearColorStop|`${ComplexType}, ${LinearColorStop}`; // TODO: this type got botched due to complexity.
+type ColorStopList = `${LinearColorStop}${`, ${ComplexType}`}`|`${LinearColorStop}`; 
+
+type AngleOrSideOrCorner = Angle | `to ${SideOrCorner}, `;
+type LinearGradientSyntax = ComplexType; //`${`${AngleOrSideOrCorner} `|""}${ColorStopList}`;
+// type RadiatShapeOrSize = RadialShape | RadialSize | `${RadialShape} ${RadialSize}` | `${RadialSize} ${RadialShape}`;
+type RadiatShapeOrSize = RadialShape | RadialSize | ComplexType;//`${RadialShape} ${RadialSize}` | `${RadialSize} ${RadialShape}`;
+type RadialGradientSyntax = `${`${RadiatShapeOrSize} ` | ""} [ at <position> ]? , <color-stop-list>`;
+type LinearGradientFunction = `linear-gradient(${LinearGradientSyntax})`;
+type RepeatingLinearGradientFunction = `linear-gradient(${LinearGradientSyntax})`;
+type RadialGradientFunction = `radial-gradient(${RadialGradientSyntax})`;
+type RepeatingRadialGradientFunction = `radial-gradient(${RadialGradientSyntax})`;
+type Gradient = LinearGradientFunction | RepeatingLinearGradientFunction | RadialGradientFunction | RepeatingRadialGradientFunction;
+
+// URL
+type Url = `${"src"|"url"}(${Str})`;
+
+// IMAGE
+type Image = Url|Gradient;
+
+// TODO:
+// https://developer.mozilla.org/en-US/docs/Web/CSS/transform-function
+type TransformFunction = ComplexType;
+
 // Building blocks.
-export type BasicCommonValues = "inherit"|"initial"|"unset"|"revert"|"revert-layer";
-export type AbsoluteUnits = "cm"|"mm"|"in"|"px"|"pt"|"pc";
-export type RelativeUnits = "em"|"ex"|"ch"|"rem"|"vw"|"vh"|"vmin"|"vmax"|"%";
-export type AllUnits = AbsoluteUnits|RelativeUnits;
-export type OptionalWhitespace = ""|" ";
-export type UrlType = `url('${string}')`;
-export type NumericLength = number|`${number}${AllUnits}`;
-export type NumericLengthOrAuto = NumericLength|"auto";
-export type AngleUnits = "deg"|"turn"|"rad"|"grad";
-export type NumericAngle = number|`${number}${AngleUnits}`;
-export type Percentage = number|`${number}%`; // Used for filters.
+
+// type OptionalWhitespace = ""|" ";
+// export type Percentage = number|`${number}%`; // Used for filters.
 
 // ts starts complaining about the complexity of the type :(
-//export declare type DigitStr = "0"|"1"|"2"|"3"|"4"|"5"|"6"|"7"|"8"|"9";
-// export declare type HexStr = DigitStr|"A"|"B"|"C"|"D"|"E"|"F"|"a"|"b"|"c"|"d"|"e"|"f";
+
 
 // Types
-export type AppearanceValues = BasicCommonValues|"none"|"menulist-button"|"textfield"|"button"|"searchfield"|"textarea"|"push-button"|"slider-horizontal"|"checkbox"|"radio"|"square-button"|"menulist"|"listbox"|"meter"|"progress-bar"|"scrollbarbutton-up"|"button-bevel"|"media-mute-button"|"caret";
-export type BackgroundAttachmentValues = BasicCommonValues|"scroll"|"fixed"|"local";
-export type BackgroundRepeatValues = BasicCommonValues|"no-repeat"|"repeat"|"space"|"round";
-export type BackgroundOriginValues = BasicCommonValues|"padding-box"|"border-box"|"content-box";
-export type BackgroundSizeValues = BasicCommonValues|"auto"|NumericLength|"cover"|"contain";
-export type BackfaceVisibilityValues = BasicCommonValues|"visible"|"hidden";
-export type BorderStyles = BasicCommonValues|"dotted"|"dashed"|"solid"|"double"|"groove"|"ridge"|"inset"|"outset"|"none"|"hidden";
-export type ColorName = BasicCommonValues|"aliceblue"|"antiquewhite"|"aqua"|"aquamarine"|"azure"|"beige"|"bisque"|"black"|"blanchedalmond"|"blue"|"blueviolet"|"brown"|"burlywood"|"cadetblue"|"chartreuse"|"chocolate"|"coral"|"cornflowerblue"|"cornsilk"|"crimson"|"cyan"|"darkblue"|"darkcyan"|"darkgoldenrod"|"darkgray"|"darkgrey"|"darkgreen"|"darkkhaki"|"darkmagenta"|"darkolivegreen"|"darkorange"|"darkorchid"|"darkred"|"darksalmon"|"darkseagreen"|"darkslateblue"|"darkslategray"|"darkslategrey"|"darkturquoise"|"darkviolet"|"deeppink"|"deepskyblue"|"dimgray"|"dimgrey"|"dodgerblue"|"firebrick"|"floralwhite"|"forestgreen"|"fuchsia"|"gainsboro"|"ghostwhite"|"gold"|"goldenrod"|"gray"|"grey"|"green"|"greenyellow"|"honeydew"|"hotpink"|"indianred"|"indigo"|"ivory"|"khaki"|"lavender"|"lavenderblush"|"lawngreen"|"lemonchiffon"|"lightblue"|"lightcoral"|"lightcyan"|"lightgoldenrodyellow"|"lightgray"|"lightgrey"|"lightgreen"|"lightpink"|"lightsalmon"|"lightseagreen"|"lightskyblue"|"lightslategray"|"lightslategrey"|"lightsteelblue"|"lightyellow"|"lime"|"limegreen"|"linen"|"magenta"|"maroon"|"mediumaquamarine"|"mediumblue"|"mediumorchid"|"mediumpurple"|"mediumseagreen"|"mediumslateblue"|"mediumspringgreen"|"mediumturquoise"|"mediumvioletred"|"midnightblue"|"mintcream"|"mistyrose"|"moccasin"|"navajowhite"|"navy"|"oldlace"|"olive"|"olivedrab"|"orange"|"orangered"|"orchid"|"palegoldenrod"|"palegreen"|"paleturquoise"|"palevioletred"|"papayawhip"|"peachpuff"|"peru"|"pink"|"plum"|"powderblue"|"purple"|"rebeccapurple"|"red"|"rosybrown"|"royalblue"|"saddlebrown"|"salmon"|"sandybrown"|"seagreen"|"seashell"|"sienna"|"silver"|"skyblue"|"slateblue"|"slategray"|"slategrey"|"snow"|"springgreen"|"steelblue"|"tan"|"teal"|"thistle"|"tomato"|"turquoise"|"violet"|"wheat"|"white"|"whitesmoke"|"yellow"|"yellowgreen";
-export type DisplayValues = BasicCommonValues|"inline"|"block"|"contents"|"flex"|"grid"|"inline-block"|"inline-flex"|"inline-grid"|"inline-table"|"list-item"|"run-in"|"table"|"table-caption"|"table-column-group"|"table-header-group"|"table-footer-group"|"table-row-group"|"table-cell"|"table-column"|"table-row"|"none";
-export type DirectionValues = BasicCommonValues|"ltr"|"rtl";
-export type FontStyleValues = BasicCommonValues|"normal"|"italic"|"oblique";
-export type FontVariantValues = BasicCommonValues|"normal"|"small-caps";
-export type FontVariantCapsValues = FontVariantValues|"all-small-caps"|"petite-caps"|"all-petite-caps"|"unicase"|"titling-caps";
-export type FontWeightValues = BasicCommonValues|number|"normal"|"bold"|"bolder"|"lighter";
-export type LengthProp = BasicCommonValues|"maxHeight"|"minHeight"|"top"|"bottom"|"height"|"maxHidth"|"minWidth"|"right"|"left"|"width"|"margin"|"marginTop"|"marginBottom"|"marginLeft"|"marginRight"|"outlineOffset"|"padding"|"paddingTop"|"paddingBottom"|"paddingLeft"|"paddingRight"|"lineHeight"|"flexBasis"|"fontSize";
-export type OutlineWidthValues = BasicCommonValues|"medium"|"thin"|"thick"|NumericLength;
-export type PositionNames = BasicCommonValues|"static"|"relative"|"fixed"|"absolute"|"sticky";
+// TODO: look up types online and correct this.
+// https://developer.mozilla.org/en-US/docs/Web/CSS/absolute-size
 
-export type FlexDirectionNames = BasicCommonValues|"row"|"row-reverse"|"column"|"column-reverse";
-export type FlexWrapNames = BasicCommonValues|"nowrap"|"wrap"|"wrap-reverse";
+// MORE COMPLEX TYPES?
+
+type NumericLengthOrAuto = NumericLength|"auto";
+type NumericAngle = number|`${number}${AngleUnits}`;
+
+type AppearanceValues = BasicCommonValues|"none"|"menulist-button"|"textfield"|"button"|"searchfield"|"textarea"|"push-button"|"slider-horizontal"|"checkbox"|"radio"|"square-button"|"menulist"|"listbox"|"meter"|"progress-bar"|"scrollbarbutton-up"|"button-bevel"|"media-mute-button"|"caret";
+type BackgroundAttachmentValues = BasicCommonValues|"scroll"|"fixed"|"local";
+type BackgroundRepeatValues = BasicCommonValues|"no-repeat"|"repeat"|"space"|"round";
+type BackgroundOriginValues = BasicCommonValues|"padding-box"|"border-box"|"content-box";
+type BackgroundSizeValues = BasicCommonValues|"auto"|NumericLength|"cover"|"contain";
+type BackfaceVisibilityValues = BasicCommonValues|"visible"|"hidden";
+type BorderStyles = BasicCommonValues|"dotted"|"dashed"|"solid"|"double"|"groove"|"ridge"|"inset"|"outset"|"none"|"hidden";
+
+type DisplayValues = BasicCommonValues|"inline"|"block"|"contents"|"flex"|"grid"|"inline-block"|"inline-flex"|"inline-grid"|"inline-table"|"list-item"|"run-in"|"table"|"table-caption"|"table-column-group"|"table-header-group"|"table-footer-group"|"table-row-group"|"table-cell"|"table-column"|"table-row"|"none";
+type DirectionValues = BasicCommonValues|"ltr"|"rtl";
+type FontStyleValues = BasicCommonValues|"normal"|"italic"|"oblique";
+type FontVariantValues = BasicCommonValues|"normal"|"small-caps";
+type FontVariantCapsValues = FontVariantValues|"all-small-caps"|"petite-caps"|"all-petite-caps"|"unicase"|"titling-caps";
+type FontWeightValues = BasicCommonValues|number|"normal"|"bold"|"bolder"|"lighter";
+type LengthProp = BasicCommonValues|"maxHeight"|"minHeight"|"top"|"bottom"|"height"|"maxHidth"|"minWidth"|"right"|"left"|"width"|"margin"|"marginTop"|"marginBottom"|"marginLeft"|"marginRight"|"outlineOffset"|"padding"|"paddingTop"|"paddingBottom"|"paddingLeft"|"paddingRight"|"lineHeight"|"flexBasis"|"fontSize";
+type OutlineWidthValues = BasicCommonValues|"medium"|"thin"|"thick"|NumericLength;
+type PositionNames = BasicCommonValues|"static"|"relative"|"fixed"|"absolute"|"sticky";
+
+type FlexDirectionNames = BasicCommonValues|"row"|"row-reverse"|"column"|"column-reverse";
+type FlexWrapNames = BasicCommonValues|"nowrap"|"wrap"|"wrap-reverse";
 
 
 // Advanced formatted types.
-export type ColorFormat = BasicCommonValues|ColorName|number|`#${string}`|`rgb(${number},${OptionalWhitespace}${number},${OptionalWhitespace}${number})`|`rgba(${number},${OptionalWhitespace}${number},${OptionalWhitespace}${number},${OptionalWhitespace}${number})`|`hsl(${number},${OptionalWhitespace}${number}%,${OptionalWhitespace}${number}%)`|`hsla(${number},${OptionalWhitespace}${number}%,${OptionalWhitespace}${number}%,${OptionalWhitespace}${number})`;
 
-export type BackgroundRepeatValues2d = BackgroundRepeatValues|"repeat-x"|"repeat-y"|`${BackgroundRepeatValues} ${BackgroundRepeatValues}`;
-export type BorderShorthand = BasicCommonValues|`${BorderStyles}`|`${BorderStyles} ${ColorFormat}`|`${number}${AllUnits} ${BorderStyles} ${ColorFormat}`;
-export type BackgroundImageFormat = BasicCommonValues|UrlType|`${UrlType}, ${UrlType}`;
-export type BackgroundPositionShorthand2D = BasicCommonValues|`${BasicCommonValues|number} ${BasicCommonValues|number}`|`${number}% ${number}%`|`${"left"|"right"|"center"} ${"top"|"center"|"bottom"}`;
-export type BackgroundShorthand = BasicCommonValues|`${ColorFormat} ${UrlType} ${BackgroundRepeatValues} ${BackgroundPositionShorthand2D}`;
-export type FlexFlowShorthand = BasicCommonValues|`${FlexDirectionNames} ${FlexWrapNames}`;
-export type FlexShorthand = BasicCommonValues|`${BasicCommonValues|number} ${BasicCommonValues|number} ${BasicCommonValues|`${number}${AllUnits}`}`;
+type BackgroundRepeatValues2d = BackgroundRepeatValues|"repeat-x"|"repeat-y"|`${BackgroundRepeatValues} ${BackgroundRepeatValues}`;
+type BorderShorthand = BasicCommonValues|`${BorderStyles}`|`${BorderStyles} ${Color}`|ComplexType;//`${number}${AllLengthUnits} ${BorderStyles} ${Color}`;
+type BackgroundImageFormat = BasicCommonValues|Url|`${Url}, ${Url}`;
+type BackgroundPositionShorthand2D = BasicCommonValues|`${BasicCommonValues|number} ${BasicCommonValues|number}`|`${number}% ${number}%`|`${"left"|"right"|"center"} ${"top"|"center"|"bottom"}`;
+type BackgroundShorthand = BasicCommonValues|ComplexType;//`${Color} ${Url} ${BackgroundRepeatValues} ${BackgroundPositionShorthand2D}`;
+type FlexFlowShorthand = BasicCommonValues|`${FlexDirectionNames} ${FlexWrapNames}`;
+type FlexShorthand = BasicCommonValues|`${BasicCommonValues|number} ${BasicCommonValues|number} ${BasicCommonValues|`${number}${AllLengthUnits}`}`;
 
+type AtRule = "@charset"|"@color-profile"|"@container"|"@counter-style"|"@font-face"|"@document"|"@font-feature-values"|"@font-palette-values"|"@import"|"@keyframes"|"@layer"|"@media"|"@namespace"|"@page"|"@property"|"@scope"|"@starting-style"|"@supports";
 
 interface IDotcssProp{
 	angleToDeg(a: number|string);
@@ -771,7 +1023,7 @@ interface IDotcssProp{
 	backgroundImage: (value: BackgroundImageFormat)=>IDotcssProp;
 	borderImage: (value: BackgroundImageFormat)=>IDotcssProp;
 	listStyleImage: (value: BackgroundImageFormat)=>IDotcssProp;
-	content: (value: BasicCommonValues|UrlType)=>IDotcssProp;
+	content: (value: BasicCommonValues|Url)=>IDotcssProp;
 
 	//complex: 
 	transform: (transformOrTransformBuilder: BasicCommonValues|TransformationBuilder)=>IDotcssProp;
@@ -986,7 +1238,13 @@ interface IDotcssProp{
 }
 
 export default interface IDotCss extends IDotcssProp{
-	(document?: Array<HTMLElement>|HTMLElement|string): IDotcssProp;
+
+	(selector: "@charset", charset: string): void;
+	(selector: "@color-profile", name: string): IColorProfileBuilder;
+	(selector: "@container", condition: string): IDotcssProp;
+	(selector: "@counter-style", name: string): ICounterStyleBuilder;
+
+	(selector?: Array<HTMLElement>|HTMLElement|string): IDotcssProp;
 
 	version: string;
 }
@@ -998,10 +1256,10 @@ export interface IDotcssAnimatable<T> extends IDotcssProp{
 }
 
 export interface IDotcssAnimatableColor extends IDotcssProp{
-	(value: ColorFormat|Array<number>): IDotcssProp;
+	(value: Color|Array<number>): IDotcssProp;
 	(r: number, g: number, b: number, a?: number): IDotcssProp;
 
-	animate(value: ColorFormat|Array<number>, duration: number, style: "ease", complete: Function): IDotcssProp;
+	animate(value: Color|Array<number>, duration: number, style: "ease", complete: Function): IDotcssProp;
 }
 
 export interface HideParams{
@@ -1187,7 +1445,7 @@ type IFilterContext = {
 	blur(v: NumericLength): IFilterContext;
 	brightness(v: Percentage): IFilterContext;
 	contrast(v: Percentage): IFilterContext;
-	dropShadow(x: NumericLength, y: NumericLength, blur: NumericLength, color: ColorFormat): IFilterContext;
+	dropShadow(x: NumericLength, y: NumericLength, blur: NumericLength, color: Color): IFilterContext;
 	grayscale(v: Percentage): IFilterContext;
 	hueRotate(v: AngleUnits): IFilterContext;
 	invert(v: Percentage): IFilterContext;
@@ -1195,4 +1453,28 @@ type IFilterContext = {
 	sepia(v: Percentage): IFilterContext;
 	saturate(v: Percentage): IFilterContext;
 	// url(filters.svg#filter) blur(4px) saturate(150%); // example.
+}
+
+// AT RULE BUILDERS
+
+interface IColorProfileBuilder{
+	src: (value: Url)=>IColorProfileBuilder;
+	renderingIntent(value: "relative-colorimetric"|"absolute-colorimetric"|"perceptual"|"saturation");
+}
+
+type SystemValue = "cyclic"|"numeric"|"alphabetic"|"symbolic"|"additive"|"fixed"|"extends";
+interface ICounterStyleBuilder{
+
+    system(value: "fixed", arg: number): ICounterStyleBuilder;
+    system(value: "extends", arg: string): ICounterStyleBuilder;
+    system(value: Exclude<SystemValue, "fixed" | "extends">): ICounterStyleBuilder;
+
+	symbols: (value: string)=> ICounterStyleBuilder; // TODO
+	additiveSymbols: (value: string)=> ICounterStyleBuilder; // TODO
+	negative: (value: string)=> ICounterStyleBuilder; // TODO
+	prefix: (value: string)=> ICounterStyleBuilder; // TOOD
+	suffix: (value: string)=> ICounterStyleBuilder; // TODO
+	range: (value: string)=> ICounterStyleBuilder; // TODO
+	pad: (value: string)=> ICounterStyleBuilder; // TODO
+	speakAs: (value: string)=> ICounterStyleBuilder; // TODO
 }
