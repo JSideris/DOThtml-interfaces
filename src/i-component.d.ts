@@ -2,15 +2,19 @@
 import { IDotDocument, IDotGenericElement } from "./i-dot";
 import IDotCss from "./i-dot-css";
 
+// export type EventNames<T> = T extends { allowedEvents: infer E } ? E : never;
+
 // TODO: I think this could be typed so that it forces you to emit events from the list of strings.
 export interface FrameworkItems {
 	/**
 	 * The shadow root element of the component.
 	 */
 	readonly refs: { [key: string]: HTMLElement };
-	readonly emit: (event: string, ...args: Array<any>)=>void;
+	emit<T>(event: string, ...args: Array<any>): void;
 	restyle(): void;
+	readonly props: Record<string, any>;
 	readonly _meta: {
+		readonly allowedEvents: string[];
 		readonly shadowRoot: ShadowRoot;
 		readonly isRendered: boolean;
 		readonly tagName: string;
