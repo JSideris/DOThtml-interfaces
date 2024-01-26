@@ -1,5 +1,5 @@
 
-import { IDotGenericElement } from "./i-dot";
+import { IDotDocument, IDotGenericElement } from "./i-dot";
 import IDotCss from "./i-dot-css";
 
 // TODO: I think this could be typed so that it forces you to emit events from the list of strings.
@@ -7,8 +7,8 @@ export interface FrameworkItems {
 	/**
 	 * The shadow root element of the component.
 	 */
-	refs: { [key: string]: HTMLElement };
-	emit: (event: string, ...args: Array<any>)=>void;
+	readonly refs: { [key: string]: HTMLElement };
+	readonly emit: (event: string, ...args: Array<any>)=>void;
 	restyle(): void;
 	readonly _meta: {
 		readonly shadowRoot: ShadowRoot;
@@ -26,17 +26,13 @@ export interface FrameworkItems {
 // It should be the contsructor that depends on the builder, not the other way around. If we can't get this working, 
 // it might just be better to rethink how stuff gets passed into components.
 export default interface IComponent {
-    // Properties
-    events?: Array<string>;
-
-	readonly _?: FrameworkItems;
 
     // Lifecycle hooks
 
 	/**
 	 * A function returning DOThtml (required).
 	 */
-    build(...args: Array<any>): IDotGenericElement;
+    build(_: FrameworkItems): IDotDocument;
 
 	/**
 	 * An optional function that is called after builder that stylizes the component using a scoped style builder.
@@ -46,7 +42,7 @@ export default interface IComponent {
 	/**
 	 * An optional function that gets called before the component is created, scoped to the new component object.
 	 */
-    creating?(...args: Array<any>): void;
+    creating?(): void;
 
 	/**
 	 * An optional function called after the element has been added. One parameter will be provided containing the added element.
