@@ -518,7 +518,7 @@ interface IDotGenericElement extends IDotAttrBuilder<IDotGenericElement>{}
 
 // Interface for specific elements:
 
-interface IMountedComponent<T extends IComponent> extends IDotDocument{
+interface IMountedComponent<T extends IComponent>{
 	on(event: string, callback: (...args: Array<any>)=>void): IMountedComponent<T>;
 	prop(name: string, value: any): IMountedComponent<T>;
 }
