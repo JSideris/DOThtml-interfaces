@@ -19,7 +19,8 @@ export interface IDotDocument
 	(document?: Element, classPrefix?: number, targetWindow?: Window&(typeof globalThis)): void;
 
 	// Internal use only:
-	_appendOrCreateDocument(content: DotContent, parentEl?: Element, beforeNode?: Node|number);
+	// Removed in v6.
+	// _appendOrCreateDocument(content: DotContent, parentEl?: Element, beforeNode?: Node|number);
 
 	/**
 	 * A conditional function, analogous to if. Renders the specified DOT if a condition is met. Dynamic binding is possible when condition and callback are functions.
@@ -52,6 +53,7 @@ export interface IDotDocument
 	text(content: string|number|boolean|IReactive): IDotDocument;
 	/**
 	 * Mounts a component.
+	 * TODO: add second arg.
 	 */
 	mount(component: IComponent): IMountedComponent;
 	/**
@@ -70,159 +72,265 @@ export interface IDotDocument
 	/**
 	 * Get the last HTML element added to the targeted document.
 	*/
-	getLast(): HTMLElement;
+	// getLast(): HTMLElement;
 	/**
 	 * Deletes each element within the targeted document.
 	*/
 	empty(): IDotDocument;
 
-	scopeClass(prefix: number|string|null, content: DotContent): IDotDocument;
+	// Redundant in v6.
+	// scopeClass(prefix: number|string|null, content: DotContent): IDotDocument;
 
 	// Tags.
-	a(content?: DotContent): IDotA;
+	a(content?: DotContent, attrs?: (attrs: IDotA)=>IDotA): IDotDocument;
+	a(attrs: (attrs: IDotA)=>IDotA): IDotDocument;
 	
-	aside(content?: DotContent): IDotElementDocument<IDotGenericElement>;
-	abbr(content?: DotContent): IDotElementDocument<IDotGenericElement>;
-	address(content?: DotContent): IDotElementDocument<IDotGenericElement>;
+	aside(content?: DotContent, attrs?: (attrs: IDotElementDocument<IDotGenericElement>)=>IDotElementDocument<IDotGenericElement>): IDotDocument;
+	aside(attrs: (attrs: IDotElementDocument<IDotGenericElement>)=>IDotElementDocument<IDotGenericElement>): IDotDocument;
+	abbr(content?: DotContent, attrs?: (attrs: IDotElementDocument<IDotGenericElement>)=>IDotElementDocument<IDotGenericElement>): IDotDocument;
+	abbr(attrs: (attrs: IDotElementDocument<IDotGenericElement>)=>IDotElementDocument<IDotGenericElement>): IDotDocument;
+	address(content?: DotContent, attrs?: (attrs: IDotElementDocument<IDotGenericElement>)=>IDotElementDocument<IDotGenericElement>): IDotDocument;
+	address(attrs: (attrs: IDotElementDocument<IDotGenericElement>)=>IDotElementDocument<IDotGenericElement>): IDotDocument;
 
-	area(content?: DotContent): IDotArea;
+	area(content?: DotContent, attrs?: (attrs: IDotArea)=>IDotArea): IDotDocument;
+	area(attrs: (attrs: IDotArea)=>IDotArea): IDotDocument;
 	
-	article(content?: DotContent): IDotElementDocument<IDotGenericElement>;
+	article(content?: DotContent, attrs?: (attrs: IDotElementDocument<IDotGenericElement>)=>IDotElementDocument<IDotGenericElement>): IDotDocument;
+	article(attrs: (attrs: IDotElementDocument<IDotGenericElement>)=>IDotElementDocument<IDotGenericElement>): IDotDocument;
 
-	audio(content?: DotContent): IDotAudio;
+	audio(content?: DotContent, attrs?: (attrs: IDotAudio)=>IDotAudio): IDotDocument;
+	audio(attrs: (attrs: IDotAudio)=>IDotAudio): IDotDocument;
 
-	b(content?: DotContent): IDotElementDocument<IDotGenericElement>;
-	bdi(content?: DotContent): IDotElementDocument<IDotGenericElement>;
-	bdo(content?: DotContent): IDotElementDocument<IDotGenericElement>;
+	b(content?: DotContent, attrs?: (attrs: IDotElementDocument<IDotGenericElement>)=>IDotElementDocument<IDotGenericElement>): IDotDocument;
+	b(attrs: (attrs: IDotElementDocument<IDotGenericElement>)=>IDotElementDocument<IDotGenericElement>): IDotDocument;
+	bdi(content?: DotContent, attrs?: (attrs: IDotElementDocument<IDotGenericElement>)=>IDotElementDocument<IDotGenericElement>): IDotDocument;
+	bdi(attrs: (attrs: IDotElementDocument<IDotGenericElement>)=>IDotElementDocument<IDotGenericElement>): IDotDocument;
+	bdo(content?: DotContent, attrs?: (attrs: IDotElementDocument<IDotGenericElement>)=>IDotElementDocument<IDotGenericElement>): IDotDocument;
+	bdo(attrs: (attrs: IDotElementDocument<IDotGenericElement>)=>IDotElementDocument<IDotGenericElement>): IDotDocument;
 	
-	blockQuote(content?: DotContent): IDotBlockQuote;
-	body(content?: DotContent): IDotBody; // This shouldn't really be used - if it is, then it should have the custom behavior of rewriting the existing document body, rather than adding a second one.
-	br(content?: DotContent): IDotBr;
-	button(content?: DotContent): IDotButton;
-	canvas(content?: DotContent): IDotCanvas;
+	blockQuote(content?: DotContent, attrs?: (attrs: IDotBlockQuote)=>IDotBlockQuote): IDotDocument;
+	blockQuote(attrs: (attrs: IDotBlockQuote)=>IDotBlockQuote): IDotDocument;
 	
-	caption(content?: DotContent): IDotElementDocument<IDotGenericElement>;
-	cite(content?: DotContent): IDotElementDocument<IDotGenericElement>;
-	code(content?: DotContent): IDotElementDocument<IDotGenericElement>;
+	// This shouldn't really be used - if it is, then it should have the custom behavior of rewriting the existing document body, rather than adding a second one.
+	body(content?: DotContent, attrs?: (attrs: IDotBody)=>IDotBody): IDotDocument;
+	body(content?: DotContent): IDotDocument;
 	
-	col(content?: DotContent): IDotCol;
-	colGroup(content?: DotContent): IDotColGroup;
+	br(content?: DotContent, attrs?: (attrs: IDotBr)=>IDotBr): IDotDocument;
+	br(attrs: (attrs: IDotBr)=>IDotBr): IDotDocument;
+	button(content?: DotContent, attrs?: (attrs: IDotButton)=>IDotButton): IDotDocument;
+	button(attrs: (attrs: IDotButton)=>IDotButton): IDotDocument;
+	canvas(content?: DotContent, attrs?: (attrs: IDotCanvas)=>IDotCanvas): IDotDocument;
+	canvas(attrs: (attrs: IDotCanvas)=>IDotCanvas): IDotDocument;
 	
-	content(content?: DotContent): IDotElementDocument<IDotGenericElement>;
-	data(content?: DotContent): IDotElementDocument<IDotGenericElement>;
-	dataList(content?: DotContent): IDotElementDocument<IDotGenericElement>;
-	dd(content?: DotContent): IDotElementDocument<IDotGenericElement>;
-
-	del(content?: DotContent): IDotDel;
-	details(content?: DotContent): IDotDetails;
-
-	dfn(content?: DotContent): IDotElementDocument<IDotGenericElement>;
-	dialog(content?: DotContent): IDotElementDocument<IDotGenericElement>;
-	div(content?: DotContent): IDotElementDocument<IDotGenericElement>;
-	dl(content?: DotContent): IDotElementDocument<IDotGenericElement>;
-	dt(content?: DotContent): IDotElementDocument<IDotGenericElement>;
-	em(content?: DotContent): IDotElementDocument<IDotGenericElement>;
-
-	embed(content?: DotContent): IDotEmbed;
-	fieldSet(content?: DotContent): IDotFieldSet;
-
-	figCaption(content?: DotContent): IDotElementDocument<IDotGenericElement>;
-	figure(content?: DotContent): IDotElementDocument<IDotGenericElement>;
-	footer(content?: DotContent): IDotElementDocument<IDotGenericElement>;
-
-	form(content?: DotContent): IDotForm;
-
-	h1(content?: DotContent): IDotElementDocument<IDotGenericElement>;
-	h2(content?: DotContent): IDotElementDocument<IDotGenericElement>;
-	h3(content?: DotContent): IDotElementDocument<IDotGenericElement>;
-	h4(content?: DotContent): IDotElementDocument<IDotGenericElement>;
-	h5(content?: DotContent): IDotElementDocument<IDotGenericElement>;
-	h6(content?: DotContent): IDotElementDocument<IDotGenericElement>;
-	header(content?: DotContent): IDotElementDocument<IDotGenericElement>;
-
-	hr(content?: DotContent): IDotHr;
-
-	i(content?: DotContent): IDotElementDocument<IDotGenericElement>;
-
-	iFrame(content?: DotContent): IDotIFrame;
-	img(content?: DotContent): IDotImg;
-	input(content?: DotContent): IDotInput;
-	ins(content?: DotContent): IDotIns;
+	caption(content?: DotContent, attrs?: (attrs: IDotElementDocument<IDotGenericElement>)=>IDotElementDocument<IDotGenericElement>): IDotDocument;
+	caption(attrs: (attrs: IDotElementDocument<IDotGenericElement>)=>IDotElementDocument<IDotGenericElement>): IDotDocument;
+	cite(content?: DotContent, attrs?: (attrs: IDotElementDocument<IDotGenericElement>)=>IDotElementDocument<IDotGenericElement>): IDotDocument;
+	cite(attrs: (attrs: IDotElementDocument<IDotGenericElement>)=>IDotElementDocument<IDotGenericElement>): IDotDocument;
+	code(content?: DotContent, attrs?: (attrs: IDotElementDocument<IDotGenericElement>)=>IDotElementDocument<IDotGenericElement>): IDotDocument;
+	code(attrs: (attrs: IDotElementDocument<IDotGenericElement>)=>IDotElementDocument<IDotGenericElement>): IDotDocument;
 	
-	kbd(content?: DotContent): IDotElementDocument<IDotGenericElement>;
+	col(content?: DotContent, attrs?: (attrs: IDotCol)=>IDotCol): IDotDocument;
+	col(attrs: (attrs: IDotCol)=>IDotCol): IDotDocument;
+	colGroup(content?: DotContent, attrs?: (attrs: IDotColGroup)=>IDotColGroup): IDotDocument;
+	colGroup(attrs: (attrs: IDotColGroup)=>IDotColGroup): IDotDocument;
+	
+	content(content?: DotContent, attrs?: (attrs: IDotElementDocument<IDotGenericElement>)=>IDotElementDocument<IDotGenericElement>): IDotDocument;
+	content(attrs: (attrs: IDotElementDocument<IDotGenericElement>)=>IDotElementDocument<IDotGenericElement>): IDotDocument;
+	data(content?: DotContent, attrs?: (attrs: IDotElementDocument<IDotGenericElement>)=>IDotElementDocument<IDotGenericElement>): IDotDocument;
+	data(attrs: (attrs: IDotElementDocument<IDotGenericElement>)=>IDotElementDocument<IDotGenericElement>): IDotDocument;
+	dataList(content?: DotContent, attrs?: (attrs: IDotElementDocument<IDotGenericElement>)=>IDotElementDocument<IDotGenericElement>): IDotDocument;
+	dataList(attrs: (attrs: IDotElementDocument<IDotGenericElement>)=>IDotElementDocument<IDotGenericElement>): IDotDocument;
+	dd(content?: DotContent, attrs?: (attrs: IDotElementDocument<IDotGenericElement>)=>IDotElementDocument<IDotGenericElement>): IDotDocument;
+	dd(attrs: (attrs: IDotElementDocument<IDotGenericElement>)=>IDotElementDocument<IDotGenericElement>): IDotDocument;
+
+	del(content?: DotContent, attrs?: (attrs: IDotDel)=>IDotDel): IDotDocument;
+	del(attrs: (attrs: IDotDel)=>IDotDel): IDotDocument;
+	details(content?: DotContent, attrs?: (attrs: IDotDetails)=>IDotDetails): IDotDocument;
+	details(attrs: (attrs: IDotDetails)=>IDotDetails): IDotDocument;
+
+	dfn(content?: DotContent, attrs?: (attrs: IDotElementDocument<IDotGenericElement>)=>IDotElementDocument<IDotGenericElement>): IDotDocument;
+	dfn(attrs: (attrs: IDotElementDocument<IDotGenericElement>)=>IDotElementDocument<IDotGenericElement>): IDotDocument;
+	dialog(content?: DotContent, attrs?: (attrs: IDotElementDocument<IDotGenericElement>)=>IDotElementDocument<IDotGenericElement>): IDotDocument;
+	dialog(attrs: (attrs: IDotElementDocument<IDotGenericElement>)=>IDotElementDocument<IDotGenericElement>): IDotDocument;
+	div(content?: DotContent, attrs?: (attrs: IDotElementDocument<IDotGenericElement>)=>IDotElementDocument<IDotGenericElement>): IDotDocument;
+	div(attrs: (attrs: IDotElementDocument<IDotGenericElement>)=>IDotElementDocument<IDotGenericElement>): IDotDocument;
+	dl(content?: DotContent, attrs?: (attrs: IDotElementDocument<IDotGenericElement>)=>IDotElementDocument<IDotGenericElement>): IDotDocument;
+	dl(attrs: (attrs: IDotElementDocument<IDotGenericElement>)=>IDotElementDocument<IDotGenericElement>): IDotDocument;
+	dt(content?: DotContent, attrs?: (attrs: IDotElementDocument<IDotGenericElement>)=>IDotElementDocument<IDotGenericElement>): IDotDocument;
+	dt(attrs: (attrs: IDotElementDocument<IDotGenericElement>)=>IDotElementDocument<IDotGenericElement>): IDotDocument;
+	em(content?: DotContent, attrs?: (attrs: IDotElementDocument<IDotGenericElement>)=>IDotElementDocument<IDotGenericElement>): IDotDocument;
+	em(attrs: (attrs: IDotElementDocument<IDotGenericElement>)=>IDotElementDocument<IDotGenericElement>): IDotDocument;
+
+	embed(content?: DotContent, attrs?: (attrs: IDotEmbed)=>IDotEmbed): IDotDocument;
+	embed(attrs: (attrs: IDotEmbed)=>IDotEmbed): IDotDocument;
+	fieldSet(content?: DotContent, attrs?: (attrs: IDotFieldSet)=>IDotFieldSet): IDotDocument;
+	fieldSet(attrs: (attrs: IDotFieldSet)=>IDotFieldSet): IDotDocument;
+
+	figCaption(content?: DotContent, attrs?: (attrs: IDotElementDocument<IDotGenericElement>)=>IDotElementDocument<IDotGenericElement>): IDotDocument;
+	figCaption(attrs: (attrs: IDotElementDocument<IDotGenericElement>)=>IDotElementDocument<IDotGenericElement>): IDotDocument;
+	figure(content?: DotContent, attrs?: (attrs: IDotElementDocument<IDotGenericElement>)=>IDotElementDocument<IDotGenericElement>): IDotDocument;
+	figure(attrs: (attrs: IDotElementDocument<IDotGenericElement>)=>IDotElementDocument<IDotGenericElement>): IDotDocument;
+	footer(content?: DotContent, attrs?: (attrs: IDotElementDocument<IDotGenericElement>)=>IDotElementDocument<IDotGenericElement>): IDotDocument;
+	footer(attrs: (attrs: IDotElementDocument<IDotGenericElement>)=>IDotElementDocument<IDotGenericElement>): IDotDocument;
+
+	form(content?: DotContent, attrs?: (attrs: IDotForm)=>IDotForm): IDotDocument;
+	form(attrs: (attrs: IDotForm)=>IDotForm): IDotDocument;
+
+	h1(content?: DotContent, attrs?: (attrs: IDotElementDocument<IDotGenericElement>)=>IDotElementDocument<IDotGenericElement>): IDotDocument;
+	h1(attrs: (attrs: IDotElementDocument<IDotGenericElement>)=>IDotElementDocument<IDotGenericElement>): IDotDocument;
+	h2(content?: DotContent, attrs?: (attrs: IDotElementDocument<IDotGenericElement>)=>IDotElementDocument<IDotGenericElement>): IDotDocument;
+	h2(attrs: (attrs: IDotElementDocument<IDotGenericElement>)=>IDotElementDocument<IDotGenericElement>): IDotDocument;
+	h3(content?: DotContent, attrs?: (attrs: IDotElementDocument<IDotGenericElement>)=>IDotElementDocument<IDotGenericElement>): IDotDocument;
+	h3(attrs: (attrs: IDotElementDocument<IDotGenericElement>)=>IDotElementDocument<IDotGenericElement>): IDotDocument;
+	h4(content?: DotContent, attrs?: (attrs: IDotElementDocument<IDotGenericElement>)=>IDotElementDocument<IDotGenericElement>): IDotDocument;
+	h4(attrs: (attrs: IDotElementDocument<IDotGenericElement>)=>IDotElementDocument<IDotGenericElement>): IDotDocument;
+	h5(content?: DotContent, attrs?: (attrs: IDotElementDocument<IDotGenericElement>)=>IDotElementDocument<IDotGenericElement>): IDotDocument;
+	h5(attrs: (attrs: IDotElementDocument<IDotGenericElement>)=>IDotElementDocument<IDotGenericElement>): IDotDocument;
+	h6(content?: DotContent, attrs?: (attrs: IDotElementDocument<IDotGenericElement>)=>IDotElementDocument<IDotGenericElement>): IDotDocument;
+	h6(attrs: (attrs: IDotElementDocument<IDotGenericElement>)=>IDotElementDocument<IDotGenericElement>): IDotDocument;
+	header(content?: DotContent, attrs?: (attrs: IDotElementDocument<IDotGenericElement>)=>IDotElementDocument<IDotGenericElement>): IDotDocument;
+	header(attrs: (attrs: IDotElementDocument<IDotGenericElement>)=>IDotElementDocument<IDotGenericElement>): IDotDocument;
+
+	hr(content?: DotContent, attrs?: (attrs: IDotHr)=>IDotHr): IDotDocument;
+	hr(attrs: (attrs: IDotHr)=>IDotHr): IDotDocument;
+
+	i(content?: DotContent, attrs?: (attrs: IDotElementDocument<IDotGenericElement>)=>IDotElementDocument<IDotGenericElement>): IDotDocument;
+	i(attrs: (attrs: IDotElementDocument<IDotGenericElement>)=>IDotElementDocument<IDotGenericElement>): IDotDocument;
+
+	iFrame(content?: DotContent, attrs?: (attrs: IDotIFrame)=>IDotIFrame): IDotDocument;
+	iFrame(attrs: (attrs: IDotIFrame)=>IDotIFrame): IDotDocument;
+	img(content?: DotContent, attrs?: (attrs: IDotImg)=>IDotImg): IDotDocument;
+	img(attrs: (attrs: IDotImg)=>IDotImg): IDotDocument;
+	input(content?: DotContent, attrs?: (attrs: IDotInput)=>IDotInput): IDotDocument;
+	input(attrs: (attrs: IDotInput)=>IDotInput): IDotDocument;
+	ins(content?: DotContent, attrs?: (attrs: IDotIns)=>IDotIns): IDotDocument;
+	ins(attrs: (attrs: IDotIns)=>IDotIns): IDotDocument;
+	
+	kbd(content?: DotContent, attrs?: (attrs: IDotElementDocument<IDotGenericElement>)=>IDotElementDocument<IDotGenericElement>): IDotDocument;
+	kbd(attrs: (attrs: IDotElementDocument<IDotGenericElement>)=>IDotElementDocument<IDotGenericElement>): IDotDocument;
 	
 	/** @deprecated Deprecated in HTML5. */
-	keyGen(content?: DotContent): IDotKeyGen;
-	label(content?: DotContent): IDotLabel;
+	keyGen(content?: DotContent, attrs?: (attrs: IDotKeyGen)=>IDotKeyGen): IDotDocument;
+	keyGen(attrs: (attrs: IDotKeyGen)=>IDotKeyGen): IDotDocument;
+	label(content?: DotContent, attrs?: (attrs: IDotLabel)=>IDotLabel): IDotDocument;
+	label(attrs: (attrs: IDotLabel)=>IDotLabel): IDotDocument;
 	
-	legend(content?: DotContent): IDotElementDocument<IDotGenericElement>;
+	legend(content?: DotContent, attrs?: (attrs: IDotElementDocument<IDotGenericElement>)=>IDotElementDocument<IDotGenericElement>): IDotDocument;
+	legend(attrs: (attrs: IDotElementDocument<IDotGenericElement>)=>IDotElementDocument<IDotGenericElement>): IDotDocument;
 
-	li(content?: DotContent): IDotLi;
+	li(content?: DotContent, attrs?: (attrs: IDotLi)=>IDotLi): IDotDocument;
+	li(attrs: (attrs: IDotLi)=>IDotLi): IDotDocument;
 
-	main(content?: DotContent): IDotElementDocument<IDotGenericElement>;
+	main(content?: DotContent, attrs?: (attrs: IDotElementDocument<IDotGenericElement>)=>IDotElementDocument<IDotGenericElement>): IDotDocument;
+	main(attrs: (attrs: IDotElementDocument<IDotGenericElement>)=>IDotElementDocument<IDotGenericElement>): IDotDocument;
 
-	map(content?: DotContent): IDotMap;
+	map(content?: DotContent, attrs?: (attrs: IDotMap)=>IDotMap): IDotDocument;
+	map(attrs: (attrs: IDotMap)=>IDotMap): IDotDocument;
 
-	mark(content?: DotContent): IDotElementDocument<IDotGenericElement>;
+	mark(content?: DotContent, attrs?: (attrs: IDotElementDocument<IDotGenericElement>)=>IDotElementDocument<IDotGenericElement>): IDotDocument;
+	mark(attrs: (attrs: IDotElementDocument<IDotGenericElement>)=>IDotElementDocument<IDotGenericElement>): IDotDocument;
 
-	menu(content?: DotContent): IDotMenu;
-	meter(content?: DotContent): IDotMeter;
+	menu(content?: DotContent, attrs?: (attrs: IDotMenu)=>IDotMenu): IDotDocument;
+	menu(attrs: (attrs: IDotMenu)=>IDotMenu): IDotDocument;
+	meter(content?: DotContent, attrs?: (attrs: IDotMeter)=>IDotMeter): IDotDocument;
+	meter(attrs: (attrs: IDotMeter)=>IDotMeter): IDotDocument;
 
-	nav(content?: DotContent): IDotElementDocument<IDotGenericElement>;
+	nav(content?: DotContent, attrs?: (attrs: IDotElementDocument<IDotGenericElement>)=>IDotElementDocument<IDotGenericElement>): IDotDocument;
+	nav(attrs: (attrs: IDotElementDocument<IDotGenericElement>)=>IDotElementDocument<IDotGenericElement>): IDotDocument;
 
-	object(content?: DotContent): IDotObject;
-	ol(content?: DotContent): IDotOl;
-	optGroup(content?: DotContent): IDotOptGroup;
-	option(content?: DotContent): IDotOption;
-	output(content?: DotContent): IDotOutput;
+	object(content?: DotContent, attrs?: (attrs: IDotObject)=>IDotObject): IDotDocument;
+	object(attrs: (attrs: IDotObject)=>IDotObject): IDotDocument;
+	ol(content?: DotContent, attrs?: (attrs: IDotOl)=>IDotOl): IDotDocument;
+	ol(attrs: (attrs: IDotOl)=>IDotOl): IDotDocument;
+	optGroup(content?: DotContent, attrs?: (attrs: IDotOptGroup)=>IDotOptGroup): IDotDocument;
+	optGroup(attrs: (attrs: IDotOptGroup)=>IDotOptGroup): IDotDocument;
+	option(content?: DotContent, attrs?: (attrs: IDotOption)=>IDotOption): IDotDocument;
+	option(attrs: (attrs: IDotOption)=>IDotOption): IDotDocument;
+	output(content?: DotContent, attrs?: (attrs: IDotOutput)=>IDotOutput): IDotDocument;
+	output(attrs: (attrs: IDotOutput)=>IDotOutput): IDotDocument;
 
-	p(content?: DotContent): IDotElementDocument<IDotGenericElement>;
+	p(content?: DotContent, attrs?: (attrs: IDotElementDocument<IDotGenericElement>)=>IDotElementDocument<IDotGenericElement>): IDotDocument;
+	p(attrs: (attrs: IDotElementDocument<IDotGenericElement>)=>IDotElementDocument<IDotGenericElement>): IDotDocument;
 
-	param(content?: DotContent): IDotParam;
+	param(content?: DotContent, attrs?: (attrs: IDotParam)=>IDotParam): IDotDocument;
+	param(attrs: (attrs: IDotParam)=>IDotParam): IDotDocument;
 
-	pre(content?: DotContent): IDotElementDocument<IDotGenericElement>;
+	pre(content?: DotContent, attrs?: (attrs: IDotElementDocument<IDotGenericElement>)=>IDotElementDocument<IDotGenericElement>): IDotDocument;
+	pre(attrs: (attrs: IDotElementDocument<IDotGenericElement>)=>IDotElementDocument<IDotGenericElement>): IDotDocument;
 
-	progress(content?: DotContent): IDotProgress;
-	q(content?: DotContent): IDotQ;
+	progress(content?: DotContent, attrs?: (attrs: IDotProgress)=>IDotProgress): IDotDocument;
+	progress(attrs: (attrs: IDotProgress)=>IDotProgress): IDotDocument;
+	q(content?: DotContent, attrs?: (attrs: IDotQ)=>IDotQ): IDotDocument;
+	q(attrs: (attrs: IDotQ)=>IDotQ): IDotDocument;
 
-	rp(content?: DotContent): IDotElementDocument<IDotGenericElement>;
-	rt(content?: DotContent): IDotElementDocument<IDotGenericElement>;
-	ruby(content?: DotContent): IDotElementDocument<IDotGenericElement>;
-	s(content?: DotContent): IDotElementDocument<IDotGenericElement>;
-	samp(content?: DotContent): IDotElementDocument<IDotGenericElement>;
-	section(content?: DotContent): IDotElementDocument<IDotGenericElement>;
+	rp(content?: DotContent, attrs?: (attrs: IDotElementDocument<IDotGenericElement>)=>IDotElementDocument<IDotGenericElement>): IDotDocument;
+	rp(attrs: (attrs: IDotElementDocument<IDotGenericElement>)=>IDotElementDocument<IDotGenericElement>): IDotDocument;
+	rt(content?: DotContent, attrs?: (attrs: IDotElementDocument<IDotGenericElement>)=>IDotElementDocument<IDotGenericElement>): IDotDocument;
+	rt(attrs: (attrs: IDotElementDocument<IDotGenericElement>)=>IDotElementDocument<IDotGenericElement>): IDotDocument;
+	ruby(content?: DotContent, attrs?: (attrs: IDotElementDocument<IDotGenericElement>)=>IDotElementDocument<IDotGenericElement>): IDotDocument;
+	ruby(attrs: (attrs: IDotElementDocument<IDotGenericElement>)=>IDotElementDocument<IDotGenericElement>): IDotDocument;
+	s(content?: DotContent, attrs?: (attrs: IDotElementDocument<IDotGenericElement>)=>IDotElementDocument<IDotGenericElement>): IDotDocument;
+	s(attrs: (attrs: IDotElementDocument<IDotGenericElement>)=>IDotElementDocument<IDotGenericElement>): IDotDocument;
+	samp(content?: DotContent, attrs?: (attrs: IDotElementDocument<IDotGenericElement>)=>IDotElementDocument<IDotGenericElement>): IDotDocument;
+	samp(attrs: (attrs: IDotElementDocument<IDotGenericElement>)=>IDotElementDocument<IDotGenericElement>): IDotDocument;
+	section(content?: DotContent, attrs?: (attrs: IDotElementDocument<IDotGenericElement>)=>IDotElementDocument<IDotGenericElement>): IDotDocument;
+	section(attrs: (attrs: IDotElementDocument<IDotGenericElement>)=>IDotElementDocument<IDotGenericElement>): IDotDocument;
 
-	select(content?: DotContent): IDotSelect;
+	select(content?: DotContent, attrs?: (attrs: IDotSelect)=>IDotSelect): IDotDocument;
+	select(attrs: (attrs: IDotSelect)=>IDotSelect): IDotDocument;
 
-	small(content?: DotContent): IDotElementDocument<IDotGenericElement>;
+	small(content?: DotContent, attrs?: (attrs: IDotElementDocument<IDotGenericElement>)=>IDotElementDocument<IDotGenericElement>): IDotDocument;
+	small(attrs: (attrs: IDotElementDocument<IDotGenericElement>)=>IDotElementDocument<IDotGenericElement>): IDotDocument;
 
-	source(content?: DotContent): IDotSource;
+	source(content?: DotContent, attrs?: (attrs: IDotSource)=>IDotSource): IDotDocument;
+	source(attrs: (attrs: IDotSource)=>IDotSource): IDotDocument;
 
-	span(content?: DotContent): IDotElementDocument<IDotGenericElement>;
-	strong(content?: DotContent): IDotElementDocument<IDotGenericElement>;
-	svg(content?: DotContent): IDotElementDocument<IDotGenericElement>;
-	sub(content?: DotContent): IDotElementDocument<IDotGenericElement>;
-	summary(content?: DotContent): IDotElementDocument<IDotGenericElement>;
-	sup(content?: DotContent): IDotElementDocument<IDotGenericElement>;
+	span(content?: DotContent, attrs?: (attrs: IDotElementDocument<IDotGenericElement>)=>IDotElementDocument<IDotGenericElement>): IDotDocument;
+	span(attrs: (attrs: IDotElementDocument<IDotGenericElement>)=>IDotElementDocument<IDotGenericElement>): IDotDocument;
+	strong(content?: DotContent, attrs?: (attrs: IDotElementDocument<IDotGenericElement>)=>IDotElementDocument<IDotGenericElement>): IDotDocument;
+	strong(attrs: (attrs: IDotElementDocument<IDotGenericElement>)=>IDotElementDocument<IDotGenericElement>): IDotDocument;
+	svg(content?: DotContent, attrs?: (attrs: IDotElementDocument<IDotGenericElement>)=>IDotElementDocument<IDotGenericElement>): IDotDocument;
+	svg(attrs: (attrs: IDotElementDocument<IDotGenericElement>)=>IDotElementDocument<IDotGenericElement>): IDotDocument;
+	sub(content?: DotContent, attrs?: (attrs: IDotElementDocument<IDotGenericElement>)=>IDotElementDocument<IDotGenericElement>): IDotDocument;
+	sub(attrs: (attrs: IDotElementDocument<IDotGenericElement>)=>IDotElementDocument<IDotGenericElement>): IDotDocument;
+	summary(content?: DotContent, attrs?: (attrs: IDotElementDocument<IDotGenericElement>)=>IDotElementDocument<IDotGenericElement>): IDotDocument;
+	summary(attrs: (attrs: IDotElementDocument<IDotGenericElement>)=>IDotElementDocument<IDotGenericElement>): IDotDocument;
+	sup(content?: DotContent, attrs?: (attrs: IDotElementDocument<IDotGenericElement>)=>IDotElementDocument<IDotGenericElement>): IDotDocument;
+	sup(attrs: (attrs: IDotElementDocument<IDotGenericElement>)=>IDotElementDocument<IDotGenericElement>): IDotDocument;
 
-	table(content?: DotContent): IDotTable;
-	tBody(content?: DotContent): IDotTBody;
-	td(content?: DotContent): IDotTd;
-	textArea(content?: DotContent): IDotTextArea;
-	tFoot(content?: DotContent): IDotTFoot;
-	th(content?: DotContent): IDotTh;
-	tHead(content?: DotContent): IDotTHead;
-	time(content?: DotContent): IDotTime;
-	tr(content?: DotContent): IDotTr;
-	track(content?: DotContent): IDotTrack;
+	table(content?: DotContent, attrs?: (attrs: IDotTable)=>IDotTable): IDotDocument;
+	table(attrs: (attrs: IDotTable)=>IDotTable): IDotDocument;
+	tBody(content?: DotContent, attrs?: (attrs: IDotTBody)=>IDotTBody): IDotDocument;
+	tBody(attrs: (attrs: IDotTBody)=>IDotTBody): IDotDocument;
+	td(content?: DotContent, attrs?: (attrs: IDotTd)=>IDotTd): IDotDocument;
+	td(attrs: (attrs: IDotTd)=>IDotTd): IDotDocument;
+	textArea(content?: DotContent, attrs?: (attrs: IDotTextArea)=>IDotTextArea): IDotDocument;
+	textArea(attrs: (attrs: IDotTextArea)=>IDotTextArea): IDotDocument;
+	tFoot(content?: DotContent, attrs?: (attrs: IDotTFoot)=>IDotTFoot): IDotDocument;
+	tFoot(attrs: (attrs: IDotTFoot)=>IDotTFoot): IDotDocument;
+	th(content?: DotContent, attrs?: (attrs: IDotTh)=>IDotTh): IDotDocument;
+	th(attrs: (attrs: IDotTh)=>IDotTh): IDotDocument;
+	tHead(content?: DotContent, attrs?: (attrs: IDotTHead)=>IDotTHead): IDotDocument;
+	tHead(attrs: (attrs: IDotTHead)=>IDotTHead): IDotDocument;
+	time(content?: DotContent, attrs?: (attrs: IDotTime)=>IDotTime): IDotDocument;
+	time(attrs: (attrs: IDotTime)=>IDotTime): IDotDocument;
+	tr(content?: DotContent, attrs?: (attrs: IDotTr)=>IDotTr): IDotDocument;
+	tr(attrs: (attrs: IDotTr)=>IDotTr): IDotDocument;
+	track(content?: DotContent, attrs?: (attrs: IDotTrack)=>IDotTrack): IDotDocument;
+	track(attrs: (attrs: IDotTrack)=>IDotTrack): IDotDocument;
 
-	u(content?: DotContent): IDotElementDocument<IDotGenericElement>;
-	ul(content?: DotContent): IDotElementDocument<IDotGenericElement>;
-	var(content?: DotContent): IDotElementDocument<IDotGenericElement>;
+	u(content?: DotContent, attrs?: (attrs: IDotElementDocument<IDotGenericElement>)=>IDotElementDocument<IDotGenericElement>): IDotDocument;
+	u(attrs: (attrs: IDotElementDocument<IDotGenericElement>)=>IDotElementDocument<IDotGenericElement>): IDotDocument;
+	ul(content?: DotContent, attrs?: (attrs: IDotElementDocument<IDotGenericElement>)=>IDotElementDocument<IDotGenericElement>): IDotDocument;
+	ul(attrs: (attrs: IDotElementDocument<IDotGenericElement>)=>IDotElementDocument<IDotGenericElement>): IDotDocument;
+	var(content?: DotContent, attrs?: (attrs: IDotElementDocument<IDotGenericElement>)=>IDotElementDocument<IDotGenericElement>): IDotDocument;
+	var(attrs: (attrs: IDotElementDocument<IDotGenericElement>)=>IDotElementDocument<IDotGenericElement>): IDotDocument;
 
-	video(content?: DotContent): IDotVideo;
+	video(content?: DotContent, attrs?: (attrs: IDotVideo)=>IDotVideo): IDotDocument;
+	video(attrs: (attrs: IDotVideo)=>IDotVideo): IDotDocument;
 
-	wbr(content?: DotContent): IDotElementDocument<IDotGenericElement>;
+	wbr(content?: DotContent, attrs?: (attrs: IDotElementDocument<IDotGenericElement>)=>IDotElementDocument<IDotGenericElement>): IDotDocument;
+	wbr(attrs: (attrs: IDotElementDocument<IDotGenericElement>)=>IDotElementDocument<IDotGenericElement>): IDotDocument;
 }
 
 type Styles = string|((css: IDotCss) => IDotcssProp|string);
@@ -275,7 +383,7 @@ export interface IDotConditionalDocument extends IDotDocument{
 }
 
 // Attribute interface (for all elements):
-export interface IDotElementDocument<T extends IDotDocument> extends IDotDocument
+export interface IDotElementDocument<T>
 {
 	// (document?: Element, classPrefix?: number): IDotElement;
 	// TODO: consider allowing a function that passes in the container for the previous element to allow adding attributes to it.
@@ -452,9 +560,10 @@ interface IDotAudio extends IDotElementDocument<IDotAudio>{
 	crossOrigin(value: AttrVal<"anonymous">|AttrVal<"use-credentials">): IDotAudio;
 	
 	// Special functions:
-	pause(): IDotAudio;
-	play(): IDotAudio;
-	stop(): IDotAudio;
+	// TODO: these need to be removed from here.
+	// pause(): IDotAudio;
+	// play(): IDotAudio;
+	// stop(): IDotAudio;
 
 	// Events:
 	onAbort(callback: (e: Event)=>void): IDotAudio;
@@ -850,9 +959,10 @@ interface IDotVideo extends IDotElementDocument<IDotVideo>{
 	width(value: AttrVal<number>): IDotVideo;
 	
 	// Special functions:
-	pause(): IDotVideo;
-	play(): IDotVideo;
-	stop(): IDotVideo;
+	// TODO:
+	// pause(): IDotVideo;
+	// play(): IDotVideo;
+	// stop(): IDotVideo;
 
 	// Events:
 	onAbort(callback: (e: Event)=>void): IDotVideo;

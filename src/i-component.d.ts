@@ -2,6 +2,7 @@
 import { IDotGenericElement } from "./i-dot";
 import IDotCss from "./i-dot-css";
 
+// TODO: I think this could be typed so that it forces you to emit events from the list of strings.
 export interface FrameworkItems {
 	/**
 	 * The shadow root element of the component.
@@ -21,6 +22,9 @@ export interface FrameworkItems {
 	// html: IDotGenericElement;
 }
 
+// TODO: there's a weird problem where if a constructor is not provided, it's not possible have a custom builder.
+// It should be the contsructor that depends on the builder, not the other way around. If we can't get this working, 
+// it might just be better to rethink how stuff gets passed into components.
 export default interface IComponent {
     // Properties
     events?: Array<string>;
