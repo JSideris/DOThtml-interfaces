@@ -5,7 +5,7 @@ export default interface IReactive<Ti = any, To = Ti>{
 	// Get the value.
 	getValue(): To;
 	// Set the value.
-	setValue(v: Ti);
+	setValue(v: Ti|null|undefined);
 
 	// Key is used for observable array proxy bindings.
 	// If a key is provided, it's used to uniquely identify array elements.
