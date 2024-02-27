@@ -4,19 +4,18 @@ import IDotCss, { IDotcssProp } from "./i-dot-css";
 import IEventBus from "./i-event-bus";
 import IReactive from "./i-reactive";
 
-type DotContentPrimitive = string|number|boolean;
-type DotContentBasic = DotContentPrimitive|Node|Element|NodeList|IComponent|IDotDocument//typeof DotDocument;
-export type DotContent = DotContentBasic|Array<DotContent>|IReactive;//|(()=>DotContent);
+type DotContentPrimitive = string | number | boolean;
+type DotContentBasic = DotContentPrimitive | Node | Element | NodeList | IComponent | IDotDocument//typeof DotDocument;
+export type DotContent = DotContentBasic | Array<DotContent> | IReactive;//|(()=>DotContent);
 
-type AttrVal<T = string|number|boolean> = T|IReactive<T>;
+type AttrVal<T = string | number | boolean> = T | IReactive<T>;
 
 /**
  * Global interface containing elements.
  */
-export interface IDotDocument
-{
+export interface IDotDocument {
 	// Creating a blank DotDocument.
-	(document?: Element, classPrefix?: number, targetWindow?: Window&(typeof globalThis)): void;
+	(document?: Element, classPrefix?: number, targetWindow?: Window & (typeof globalThis)): void;
 
 	// Internal use only:
 	// Removed in v6.
@@ -25,7 +24,7 @@ export interface IDotDocument
 	/**
 	 * A conditional function, analogous to if. Renders the specified DOT if a condition is met. Dynamic binding is possible when condition and callback are functions.
 	*/
-	when(condition:IReactive|boolean, DotContent): IDotConditionalDocument;
+	when(condition: IReactive | boolean, DotContent): IDotConditionalDocument;
 
 	// Main functions.
 	// TODO: please make this into a test case.
@@ -36,7 +35,7 @@ export interface IDotDocument
 	 * @example
 	 * dot.h("<a>Click me!</a>").as(dot.a).hRef("https://dothtml.com/")
 	*/
-	as<T extends IDotDocument>(dotElement: (...props: any[])=>T): T;
+	as<T extends IDotDocument>(dotElement: (...props: any[]) => T): T;
 	/**
 	 * Creates a custom element.
 	*/
@@ -46,26 +45,26 @@ export interface IDotDocument
 	/**
 	 * Creates a generic HTML node that can render a string, HTML nodes, or dotHTML content.
 	*/
-	html(content: string|number|boolean|IReactive): IDotDocument;
+	html(content: string | number | boolean | IReactive): IDotDocument;
 	/**
 	 * Creates a text node that will render as a string, rather than being parsed as markup.
 	*/
-	text(content: string|number|boolean|IReactive): IDotDocument;
+	text(content: string | number | boolean | IReactive): IDotDocument;
 	/**
 	 * Mounts a component.
 	 * TODO: add second arg.
 	 */
-	mount<T extends IComponent>(component: T, init?: (e: IMountedComponent<T>)=>IMountedComponent<T>|void): IDotDocument;
-	mount<T extends IComponent>(init: (c: IMountedComponent<T>)=>IMountedComponent<T>|void, component: T): IDotDocument;
+	mount<T extends IComponent>(component: T, init?: (e: IMountedComponent<T>) => IMountedComponent<T> | void): IDotDocument;
+	mount<T extends IComponent>(init: (c: IMountedComponent<T>) => IMountedComponent<T> | void, component: T): IDotDocument;
 	// mount(component: IComponent, init: (init=>IMountedComponent): IMountedComponent|void): IDotDocument;
 	/**
 	 * Iterates n times, appending the result of each iteration to the VDBO.
 	 * @param n The number of iterations.
 	 * @param callback The markup-generating callback.
 	*/
-	iterate(n: number, callback: (i: number)=>DotContent): IDotDocument;
-	each<T>(a: Array<T>|{[key: string|number]: T}, callback: (x: T, i: number, k: string|number)=>DotContent): IDotDocument;
-	each<T>(a: IReactive<any, Array<T>|{[key: string|number]: T}>, callback: (x: T, i: IReactive<number>, k: string|number)=>DotContent): IDotDocument;
+	iterate(n: number, callback: (i: number) => DotContent): IDotDocument;
+	each<T>(a: Array<T> | { [key: string | number]: T }, callback: (x: T, i: number, k: string | number) => DotContent): IDotDocument;
+	each<T>(a: IReactive<any, Array<T> | { [key: string | number]: T }>, callback: (x: T, i: IReactive<number>, k: string | number) => DotContent): IDotDocument;
 
 	/**
 	 * Removes the targeted document and everything in it.
@@ -84,262 +83,262 @@ export interface IDotDocument
 	// scopeClass(prefix: number|string|null, content: DotContent): IDotDocument;
 
 	// Tags.
-	a(content?: DotContent, attrs?: (attrs: IDotA)=>IDotA|void): IDotDocument;
-	a(attrs: (attrs: IDotA)=>IDotA|void, content?: DotContent): IDotDocument;
-	
-	aside(content?: DotContent, attrs?: (e: IDotAttrBuilder<IDotGenericElement>)=>IDotAttrBuilder<IDotGenericElement>|void): IDotDocument;
-	aside(attrs: (e: IDotAttrBuilder<IDotGenericElement>)=>IDotAttrBuilder<IDotGenericElement>|void, content?: DotContent): IDotDocument;
-	abbr(content?: DotContent, attrs?: (e: IDotAttrBuilder<IDotGenericElement>)=>IDotAttrBuilder<IDotGenericElement>|void): IDotDocument;
-	abbr(attrs: (e: IDotAttrBuilder<IDotGenericElement>)=>IDotAttrBuilder<IDotGenericElement>|void, content?: DotContent): IDotDocument;
-	address(content?: DotContent, attrs?: (e: IDotAttrBuilder<IDotGenericElement>)=>IDotAttrBuilder<IDotGenericElement>|void): IDotDocument;
-	address(attrs: (e: IDotAttrBuilder<IDotGenericElement>)=>IDotAttrBuilder<IDotGenericElement>|void, content?: DotContent): IDotDocument;
+	a(content?: DotContent, attrs?: IDotA): IDotDocument;
+	a(attrs: IDotA, content?: DotContent): IDotDocument;
 
-	area(content?: DotContent, attrs?: (attrs: IDotArea)=>IDotArea|void): IDotDocument;
-	area(attrs: (attrs: IDotArea)=>IDotArea|void, content?: DotContent): IDotDocument;
-	
-	article(content?: DotContent, attrs?: (e: IDotAttrBuilder<IDotGenericElement>)=>IDotAttrBuilder<IDotGenericElement>|void): IDotDocument;
-	article(attrs: (e: IDotAttrBuilder<IDotGenericElement>)=>IDotAttrBuilder<IDotGenericElement>|void, content?: DotContent): IDotDocument;
+	aside(content?: DotContent, attrs?: IDotGlobalAttrs): IDotDocument;
+	aside(attrs: IDotGlobalAttrs, content?: DotContent): IDotDocument;
+	abbr(content?: DotContent, attrs?: IDotGlobalAttrs): IDotDocument;
+	abbr(attrs: IDotGlobalAttrs, content?: DotContent): IDotDocument;
+	address(content?: DotContent, attrs?: IDotGlobalAttrs): IDotDocument;
+	address(attrs: IDotGlobalAttrs, content?: DotContent): IDotDocument;
 
-	audio(content?: DotContent, attrs?: (attrs: IDotAudio)=>IDotAudio|void): IDotDocument;
-	audio(attrs: (attrs: IDotAudio)=>IDotAudio|void, content?: DotContent): IDotDocument;
+	area(content?: DotContent, attrs?: IDotArea): IDotDocument;
+	area(attrs: IDotArea, content?: DotContent): IDotDocument;
 
-	b(content?: DotContent, attrs?: (e: IDotAttrBuilder<IDotGenericElement>)=>IDotAttrBuilder<IDotGenericElement>|void): IDotDocument;
-	b(attrs: (e: IDotAttrBuilder<IDotGenericElement>)=>IDotAttrBuilder<IDotGenericElement>|void, content?: DotContent): IDotDocument;
-	bdi(content?: DotContent, attrs?: (e: IDotAttrBuilder<IDotGenericElement>)=>IDotAttrBuilder<IDotGenericElement>|void): IDotDocument;
-	bdi(attrs: (e: IDotAttrBuilder<IDotGenericElement>)=>IDotAttrBuilder<IDotGenericElement>|void, content?: DotContent): IDotDocument;
-	bdo(content?: DotContent, attrs?: (e: IDotAttrBuilder<IDotGenericElement>)=>IDotAttrBuilder<IDotGenericElement>|void): IDotDocument;
-	bdo(attrs: (e: IDotAttrBuilder<IDotGenericElement>)=>IDotAttrBuilder<IDotGenericElement>|void, content?: DotContent): IDotDocument;
-	
-	blockQuote(content?: DotContent, attrs?: (attrs: IDotBlockQuote)=>IDotBlockQuote|void): IDotDocument;
-	blockQuote(attrs: (attrs: IDotBlockQuote)=>IDotBlockQuote|void, content?: DotContent): IDotDocument;
-	
+	article(content?: DotContent, attrs?: IDotGlobalAttrs): IDotDocument;
+	article(attrs: IDotGlobalAttrs, content?: DotContent): IDotDocument;
+
+	audio(content?: DotContent, attrs?: IDotAudio): IDotDocument;
+	audio(attrs: IDotAudio, content?: DotContent): IDotDocument;
+
+	b(content?: DotContent, attrs?: IDotGlobalAttrs): IDotDocument;
+	b(attrs: IDotGlobalAttrs, content?: DotContent): IDotDocument;
+	bdi(content?: DotContent, attrs?: IDotGlobalAttrs): IDotDocument;
+	bdi(attrs: IDotGlobalAttrs, content?: DotContent): IDotDocument;
+	bdo(content?: DotContent, attrs?: IDotGlobalAttrs): IDotDocument;
+	bdo(attrs: IDotGlobalAttrs, content?: DotContent): IDotDocument;
+
+	blockQuote(content?: DotContent, attrs?: IDotBlockQuote): IDotDocument;
+	blockQuote(attrs: IDotBlockQuote, content?: DotContent): IDotDocument;
+
 	// This shouldn't really be used - if it is, then it should have the custom behavior of rewriting the existing document body, rather than adding a second one.
-	body(content?: DotContent, attrs?: (attrs: IDotBody)=>IDotBody|void): IDotDocument;
-	body(attrs: (attrs: IDotBody)=>IDotBody|void, content?: DotContent): IDotDocument;
-	
-	br(content?: DotContent, attrs?: (attrs: IDotBr)=>IDotBr|void): IDotDocument;
-	br(attrs: (attrs: IDotBr)=>IDotBr|void, content?: DotContent): IDotDocument;
-	button(content?: DotContent, attrs?: (attrs: IDotButton)=>IDotButton|void): IDotDocument;
-	button(attrs: (attrs: IDotButton)=>IDotButton|void, content?: DotContent): IDotDocument;
-	canvas(content?: DotContent, attrs?: (attrs: IDotCanvas)=>IDotCanvas|void): IDotDocument;
-	canvas(attrs: (attrs: IDotCanvas)=>IDotCanvas|void, content?: DotContent): IDotDocument;
-	
-	caption(content?: DotContent, attrs?: (e: IDotAttrBuilder<IDotGenericElement>)=>IDotAttrBuilder<IDotGenericElement>|void): IDotDocument;
-	caption(attrs: (e: IDotAttrBuilder<IDotGenericElement>)=>IDotAttrBuilder<IDotGenericElement>|void, content?: DotContent): IDotDocument;
-	cite(content?: DotContent, attrs?: (e: IDotAttrBuilder<IDotGenericElement>)=>IDotAttrBuilder<IDotGenericElement>|void): IDotDocument;
-	cite(attrs: (e: IDotAttrBuilder<IDotGenericElement>)=>IDotAttrBuilder<IDotGenericElement>|void, content?: DotContent): IDotDocument;
-	code(content?: DotContent, attrs?: (e: IDotAttrBuilder<IDotGenericElement>)=>IDotAttrBuilder<IDotGenericElement>|void): IDotDocument;
-	code(attrs: (e: IDotAttrBuilder<IDotGenericElement>)=>IDotAttrBuilder<IDotGenericElement>|void, content?: DotContent): IDotDocument;
-	
-	col(content?: DotContent, attrs?: (attrs: IDotCol)=>IDotCol|void): IDotDocument;
-	col(attrs: (attrs: IDotCol)=>IDotCol|void, content?: DotContent): IDotDocument;
-	colGroup(content?: DotContent, attrs?: (attrs: IDotColGroup)=>IDotColGroup|void): IDotDocument;
-	colGroup(attrs: (attrs: IDotColGroup)=>IDotColGroup|void, content?: DotContent): IDotDocument;
-	
-	content(content?: DotContent, attrs?: (e: IDotAttrBuilder<IDotGenericElement>)=>IDotAttrBuilder<IDotGenericElement>|void): IDotDocument;
-	content(attrs: (e: IDotAttrBuilder<IDotGenericElement>)=>IDotAttrBuilder<IDotGenericElement>|void, content?: DotContent): IDotDocument;
-	data(content?: DotContent, attrs?: (e: IDotAttrBuilder<IDotGenericElement>)=>IDotAttrBuilder<IDotGenericElement>|void): IDotDocument;
-	data(attrs: (e: IDotAttrBuilder<IDotGenericElement>)=>IDotAttrBuilder<IDotGenericElement>|void, content?: DotContent): IDotDocument;
-	dataList(content?: DotContent, attrs?: (e: IDotAttrBuilder<IDotGenericElement>)=>IDotAttrBuilder<IDotGenericElement>|void): IDotDocument;
-	dataList(attrs: (e: IDotAttrBuilder<IDotGenericElement>)=>IDotAttrBuilder<IDotGenericElement>|void, content?: DotContent): IDotDocument;
-	dd(content?: DotContent, attrs?: (e: IDotAttrBuilder<IDotGenericElement>)=>IDotAttrBuilder<IDotGenericElement>|void): IDotDocument;
-	dd(attrs: (e: IDotAttrBuilder<IDotGenericElement>)=>IDotAttrBuilder<IDotGenericElement>|void, content?: DotContent): IDotDocument;
+	body(content?: DotContent, attrs?: IDotBody): IDotDocument;
+	body(attrs: IDotBody, content?: DotContent): IDotDocument;
 
-	del(content?: DotContent, attrs?: (attrs: IDotDel)=>IDotDel|void): IDotDocument;
-	del(attrs: (attrs: IDotDel)=>IDotDel|void, content?: DotContent): IDotDocument;
-	details(content?: DotContent, attrs?: (attrs: IDotDetails)=>IDotDetails|void): IDotDocument;
-	details(attrs: (attrs: IDotDetails)=>IDotDetails|void, content?: DotContent): IDotDocument;
+	br(content?: DotContent, attrs?: IDotBr): IDotDocument;
+	br(attrs: IDotBr, content?: DotContent): IDotDocument;
+	button(content?: DotContent, attrs?: IDotButton): IDotDocument;
+	button(attrs: IDotButton, content?: DotContent): IDotDocument;
+	canvas(content?: DotContent, attrs?: IDotCanvas): IDotDocument;
+	canvas(attrs: IDotCanvas, content?: DotContent): IDotDocument;
 
-	dfn(content?: DotContent, attrs?: (e: IDotAttrBuilder<IDotGenericElement>)=>IDotAttrBuilder<IDotGenericElement>|void): IDotDocument;
-	dfn(attrs: (e: IDotAttrBuilder<IDotGenericElement>)=>IDotAttrBuilder<IDotGenericElement>|void, content?: DotContent): IDotDocument;
-	dialog(content?: DotContent, attrs?: (e: IDotAttrBuilder<IDotGenericElement>)=>IDotAttrBuilder<IDotGenericElement>|void): IDotDocument;
-	dialog(attrs: (e: IDotAttrBuilder<IDotGenericElement>)=>IDotAttrBuilder<IDotGenericElement>|void, content?: DotContent): IDotDocument;
-	div(content?: DotContent, attrs?: (e: IDotAttrBuilder<IDotGenericElement>)=>IDotAttrBuilder<IDotGenericElement>|void): IDotDocument;
-	div(attrs: (e: IDotAttrBuilder<IDotGenericElement>)=>IDotAttrBuilder<IDotGenericElement>|void, content?: DotContent): IDotDocument;
-	dl(content?: DotContent, attrs?: (e: IDotAttrBuilder<IDotGenericElement>)=>IDotAttrBuilder<IDotGenericElement>|void): IDotDocument;
-	dl(attrs: (e: IDotAttrBuilder<IDotGenericElement>)=>IDotAttrBuilder<IDotGenericElement>|void, content?: DotContent): IDotDocument;
-	dt(content?: DotContent, attrs?: (e: IDotAttrBuilder<IDotGenericElement>)=>IDotAttrBuilder<IDotGenericElement>|void): IDotDocument;
-	dt(attrs: (e: IDotAttrBuilder<IDotGenericElement>)=>IDotAttrBuilder<IDotGenericElement>|void, content?: DotContent): IDotDocument;
-	em(content?: DotContent, attrs?: (e: IDotAttrBuilder<IDotGenericElement>)=>IDotAttrBuilder<IDotGenericElement>|void): IDotDocument;
-	em(attrs: (e: IDotAttrBuilder<IDotGenericElement>)=>IDotAttrBuilder<IDotGenericElement>|void, content?: DotContent): IDotDocument;
+	caption(content?: DotContent, attrs?: IDotGlobalAttrs): IDotDocument;
+	caption(attrs: IDotGlobalAttrs, content?: DotContent): IDotDocument;
+	cite(content?: DotContent, attrs?: IDotGlobalAttrs): IDotDocument;
+	cite(attrs: IDotGlobalAttrs, content?: DotContent): IDotDocument;
+	code(content?: DotContent, attrs?: IDotGlobalAttrs): IDotDocument;
+	code(attrs: IDotGlobalAttrs, content?: DotContent): IDotDocument;
 
-	embed(content?: DotContent, attrs?: (attrs: IDotEmbed)=>IDotEmbed|void): IDotDocument;
-	embed(attrs: (attrs: IDotEmbed)=>IDotEmbed|void, content?: DotContent): IDotDocument;
-	fieldSet(content?: DotContent, attrs?: (attrs: IDotFieldSet)=>IDotFieldSet|void): IDotDocument;
-	fieldSet(attrs: (attrs: IDotFieldSet)=>IDotFieldSet|void, content?: DotContent): IDotDocument;
+	col(content?: DotContent, attrs?: IDotCol): IDotDocument;
+	col(attrs: IDotCol, content?: DotContent): IDotDocument;
+	colGroup(content?: DotContent, attrs?: IDotColGroup): IDotDocument;
+	colGroup(attrs: IDotColGroup, content?: DotContent): IDotDocument;
 
-	figCaption(content?: DotContent, attrs?: (e: IDotAttrBuilder<IDotGenericElement>)=>IDotAttrBuilder<IDotGenericElement>|void): IDotDocument;
-	figCaption(attrs: (e: IDotAttrBuilder<IDotGenericElement>)=>IDotAttrBuilder<IDotGenericElement>|void, content?: DotContent): IDotDocument;
-	figure(content?: DotContent, attrs?: (e: IDotAttrBuilder<IDotGenericElement>)=>IDotAttrBuilder<IDotGenericElement>|void): IDotDocument;
-	figure(attrs: (e: IDotAttrBuilder<IDotGenericElement>)=>IDotAttrBuilder<IDotGenericElement>|void, content?: DotContent): IDotDocument;
-	footer(content?: DotContent, attrs?: (e: IDotAttrBuilder<IDotGenericElement>)=>IDotAttrBuilder<IDotGenericElement>|void): IDotDocument;
-	footer(attrs: (e: IDotAttrBuilder<IDotGenericElement>)=>IDotAttrBuilder<IDotGenericElement>|void, content?: DotContent): IDotDocument;
+	content(content?: DotContent, attrs?: IDotGlobalAttrs): IDotDocument;
+	content(attrs: IDotGlobalAttrs, content?: DotContent): IDotDocument;
+	data(content?: DotContent, attrs?: IDotGlobalAttrs): IDotDocument;
+	data(attrs: IDotGlobalAttrs, content?: DotContent): IDotDocument;
+	dataList(content?: DotContent, attrs?: IDotGlobalAttrs): IDotDocument;
+	dataList(attrs: IDotGlobalAttrs, content?: DotContent): IDotDocument;
+	dd(content?: DotContent, attrs?: IDotGlobalAttrs): IDotDocument;
+	dd(attrs: IDotGlobalAttrs, content?: DotContent): IDotDocument;
 
-	form(content?: DotContent, attrs?: (attrs: IDotForm)=>IDotForm|void): IDotDocument;
-	form(attrs: (attrs: IDotForm)=>IDotForm|void, content?: DotContent): IDotDocument;
+	del(content?: DotContent, attrs?: IDotDel): IDotDocument;
+	del(attrs: IDotDel, content?: DotContent): IDotDocument;
+	details(content?: DotContent, attrs?: IDotDetails): IDotDocument;
+	details(attrs: IDotDetails, content?: DotContent): IDotDocument;
 
-	h1(content?: DotContent, attrs?: (e: IDotAttrBuilder<IDotGenericElement>)=>IDotAttrBuilder<IDotGenericElement>|void): IDotDocument;
-	h1(attrs: (e: IDotAttrBuilder<IDotGenericElement>)=>IDotAttrBuilder<IDotGenericElement>|void, content?: DotContent): IDotDocument;
-	h2(content?: DotContent, attrs?: (e: IDotAttrBuilder<IDotGenericElement>)=>IDotAttrBuilder<IDotGenericElement>|void): IDotDocument;
-	h2(attrs: (e: IDotAttrBuilder<IDotGenericElement>)=>IDotAttrBuilder<IDotGenericElement>|void, content?: DotContent): IDotDocument;
-	h3(content?: DotContent, attrs?: (e: IDotAttrBuilder<IDotGenericElement>)=>IDotAttrBuilder<IDotGenericElement>|void): IDotDocument;
-	h3(attrs: (e: IDotAttrBuilder<IDotGenericElement>)=>IDotAttrBuilder<IDotGenericElement>|void, content?: DotContent): IDotDocument;
-	h4(content?: DotContent, attrs?: (e: IDotAttrBuilder<IDotGenericElement>)=>IDotAttrBuilder<IDotGenericElement>|void): IDotDocument;
-	h4(attrs: (e: IDotAttrBuilder<IDotGenericElement>)=>IDotAttrBuilder<IDotGenericElement>|void, content?: DotContent): IDotDocument;
-	h5(content?: DotContent, attrs?: (e: IDotAttrBuilder<IDotGenericElement>)=>IDotAttrBuilder<IDotGenericElement>|void): IDotDocument;
-	h5(attrs: (e: IDotAttrBuilder<IDotGenericElement>)=>IDotAttrBuilder<IDotGenericElement>|void, content?: DotContent): IDotDocument;
-	h6(content?: DotContent, attrs?: (e: IDotAttrBuilder<IDotGenericElement>)=>IDotAttrBuilder<IDotGenericElement>|void): IDotDocument;
-	h6(attrs: (e: IDotAttrBuilder<IDotGenericElement>)=>IDotAttrBuilder<IDotGenericElement>|void, content?: DotContent): IDotDocument;
-	header(content?: DotContent, attrs?: (e: IDotAttrBuilder<IDotGenericElement>)=>IDotAttrBuilder<IDotGenericElement>|void): IDotDocument;
-	header(attrs: (e: IDotAttrBuilder<IDotGenericElement>)=>IDotAttrBuilder<IDotGenericElement>|void, content?: DotContent): IDotDocument;
+	dfn(content?: DotContent, attrs?: IDotGlobalAttrs): IDotDocument;
+	dfn(attrs: IDotGlobalAttrs, content?: DotContent): IDotDocument;
+	dialog(content?: DotContent, attrs?: IDotGlobalAttrs): IDotDocument;
+	dialog(attrs: IDotGlobalAttrs, content?: DotContent): IDotDocument;
+	div(content?: DotContent, attrs?: IDotGlobalAttrs): IDotDocument;
+	div(attrs: IDotGlobalAttrs, content?: DotContent): IDotDocument;
+	dl(content?: DotContent, attrs?: IDotGlobalAttrs): IDotDocument;
+	dl(attrs: IDotGlobalAttrs, content?: DotContent): IDotDocument;
+	dt(content?: DotContent, attrs?: IDotGlobalAttrs): IDotDocument;
+	dt(attrs: IDotGlobalAttrs, content?: DotContent): IDotDocument;
+	em(content?: DotContent, attrs?: IDotGlobalAttrs): IDotDocument;
+	em(attrs: IDotGlobalAttrs, content?: DotContent): IDotDocument;
 
-	hr(content?: DotContent, attrs?: (attrs: IDotHr)=>IDotHr|void): IDotDocument;
-	hr(attrs: (attrs: IDotHr)=>IDotHr|void, content?: DotContent): IDotDocument;
+	embed(content?: DotContent, attrs?: IDotEmbed): IDotDocument;
+	embed(attrs: IDotEmbed, content?: DotContent): IDotDocument;
+	fieldSet(content?: DotContent, attrs?: IDotFieldSet): IDotDocument;
+	fieldSet(attrs: IDotFieldSet, content?: DotContent): IDotDocument;
 
-	i(content?: DotContent, attrs?: (e: IDotAttrBuilder<IDotGenericElement>)=>IDotAttrBuilder<IDotGenericElement>|void): IDotDocument;
-	i(attrs: (e: IDotAttrBuilder<IDotGenericElement>)=>IDotAttrBuilder<IDotGenericElement>|void, content?: DotContent): IDotDocument;
+	figCaption(content?: DotContent, attrs?: IDotGlobalAttrs): IDotDocument;
+	figCaption(attrs: IDotGlobalAttrs, content?: DotContent): IDotDocument;
+	figure(content?: DotContent, attrs?: IDotGlobalAttrs): IDotDocument;
+	figure(attrs: IDotGlobalAttrs, content?: DotContent): IDotDocument;
+	footer(content?: DotContent, attrs?: IDotGlobalAttrs): IDotDocument;
+	footer(attrs: IDotGlobalAttrs, content?: DotContent): IDotDocument;
 
-	iFrame(content?: DotContent, attrs?: (attrs: IDotIFrame)=>IDotIFrame|void): IDotDocument;
-	iFrame(attrs: (attrs: IDotIFrame)=>IDotIFrame|void, content?: DotContent): IDotDocument;
-	img(content?: DotContent, attrs?: (attrs: IDotImg)=>IDotImg|void): IDotDocument;
-	img(attrs: (attrs: IDotImg)=>IDotImg|void, content?: DotContent): IDotDocument;
-	input(content?: DotContent, attrs?: (attrs: IDotInput)=>IDotInput|void): IDotDocument;
-	input(attrs: (attrs: IDotInput)=>IDotInput|void, content?: DotContent): IDotDocument;
-	ins(content?: DotContent, attrs?: (attrs: IDotIns)=>IDotIns|void): IDotDocument;
-	ins(attrs: (attrs: IDotIns)=>IDotIns|void, content?: DotContent): IDotDocument;
-	
-	kbd(content?: DotContent, attrs?: (e: IDotAttrBuilder<IDotGenericElement>)=>IDotAttrBuilder<IDotGenericElement>|void): IDotDocument;
-	kbd(attrs: (e: IDotAttrBuilder<IDotGenericElement>)=>IDotAttrBuilder<IDotGenericElement>|void, content?: DotContent): IDotDocument;
-	
+	form(content?: DotContent, attrs?: IDotForm): IDotDocument;
+	form(attrs: IDotForm, content?: DotContent): IDotDocument;
+
+	h1(content?: DotContent, attrs?: IDotGlobalAttrs): IDotDocument;
+	h1(attrs: IDotGlobalAttrs, content?: DotContent): IDotDocument;
+	h2(content?: DotContent, attrs?: IDotGlobalAttrs): IDotDocument;
+	h2(attrs: IDotGlobalAttrs, content?: DotContent): IDotDocument;
+	h3(content?: DotContent, attrs?: IDotGlobalAttrs): IDotDocument;
+	h3(attrs: IDotGlobalAttrs, content?: DotContent): IDotDocument;
+	h4(content?: DotContent, attrs?: IDotGlobalAttrs): IDotDocument;
+	h4(attrs: IDotGlobalAttrs, content?: DotContent): IDotDocument;
+	h5(content?: DotContent, attrs?: IDotGlobalAttrs): IDotDocument;
+	h5(attrs: IDotGlobalAttrs, content?: DotContent): IDotDocument;
+	h6(content?: DotContent, attrs?: IDotGlobalAttrs): IDotDocument;
+	h6(attrs: IDotGlobalAttrs, content?: DotContent): IDotDocument;
+	header(content?: DotContent, attrs?: IDotGlobalAttrs): IDotDocument;
+	header(attrs: IDotGlobalAttrs, content?: DotContent): IDotDocument;
+
+	hr(content?: DotContent, attrs?: (attrs: IDotHr) => IDotHr): IDotDocument;
+	hr(attrs: (attrs: IDotHr) => IDotHr, content?: DotContent): IDotDocument;
+
+	i(content?: DotContent, attrs?: IDotGlobalAttrs): IDotDocument;
+	i(attrs: IDotGlobalAttrs, content?: DotContent): IDotDocument;
+
+	iFrame(content?: DotContent, attrs?: IDotIFrame): IDotDocument;
+	iFrame(attrs: IDotIFrame, content?: DotContent): IDotDocument;
+	img(content?: DotContent, attrs?: IDotImg): IDotDocument;
+	img(attrs: IDotImg, content?: DotContent): IDotDocument;
+	input(content?: DotContent, attrs?: IDotInput): IDotDocument;
+	input(attrs: IDotInput, content?: DotContent): IDotDocument;
+	ins(content?: DotContent, attrs?: IDotIns): IDotDocument;
+	ins(attrs: IDotIns, content?: DotContent): IDotDocument;
+
+	kbd(content?: DotContent, attrs?: IDotGlobalAttrs): IDotDocument;
+	kbd(attrs: IDotGlobalAttrs, content?: DotContent): IDotDocument;
+
 	/** @deprecated Deprecated in HTML5. */
-	keyGen(content?: DotContent, attrs?: (attrs: IDotKeyGen)=>IDotKeyGen|void): IDotDocument;
-	keyGen(attrs: (attrs: IDotKeyGen)=>IDotKeyGen|void, content?: DotContent): IDotDocument;
-	label(content?: DotContent, attrs?: (attrs: IDotLabel)=>IDotLabel|void): IDotDocument;
-	label(attrs: (attrs: IDotLabel)=>IDotLabel|void, content?: DotContent): IDotDocument;
-	
-	legend(content?: DotContent, attrs?: (e: IDotAttrBuilder<IDotGenericElement>)=>IDotAttrBuilder<IDotGenericElement>|void): IDotDocument;
-	legend(attrs: (e: IDotAttrBuilder<IDotGenericElement>)=>IDotAttrBuilder<IDotGenericElement>|void, content?: DotContent): IDotDocument;
+	keyGen(content?: DotContent, attrs?: IDotKeyGen): IDotDocument;
+	keyGen(attrs: IDotKeyGen, content?: DotContent): IDotDocument;
+	label(content?: DotContent, attrs?: IDotLabel): IDotDocument;
+	label(attrs: IDotLabel, content?: DotContent): IDotDocument;
 
-	li(content?: DotContent, attrs?: (attrs: IDotLi)=>IDotLi|void): IDotDocument;
-	li(attrs: (attrs: IDotLi)=>IDotLi|void, content?: DotContent): IDotDocument;
+	legend(content?: DotContent, attrs?: IDotGlobalAttrs): IDotDocument;
+	legend(attrs: IDotGlobalAttrs, content?: DotContent): IDotDocument;
 
-	main(content?: DotContent, attrs?: (e: IDotAttrBuilder<IDotGenericElement>)=>IDotAttrBuilder<IDotGenericElement>|void): IDotDocument;
-	main(attrs: (e: IDotAttrBuilder<IDotGenericElement>)=>IDotAttrBuilder<IDotGenericElement>|void, content?: DotContent): IDotDocument;
+	li(content?: DotContent, attrs?: IDotLi): IDotDocument;
+	li(attrs: IDotLi, content?: DotContent): IDotDocument;
 
-	map(content?: DotContent, attrs?: (attrs: IDotMap)=>IDotMap|void): IDotDocument;
-	map(attrs: (attrs: IDotMap)=>IDotMap|void, content?: DotContent): IDotDocument;
+	main(content?: DotContent, attrs?: IDotGlobalAttrs): IDotDocument;
+	main(attrs: IDotGlobalAttrs, content?: DotContent): IDotDocument;
 
-	mark(content?: DotContent, attrs?: (e: IDotAttrBuilder<IDotGenericElement>)=>IDotAttrBuilder<IDotGenericElement>|void): IDotDocument;
-	mark(attrs: (e: IDotAttrBuilder<IDotGenericElement>)=>IDotAttrBuilder<IDotGenericElement>|void, content?: DotContent): IDotDocument;
+	map(content?: DotContent, attrs?: IDotMap): IDotDocument;
+	map(attrs: IDotMap, content?: DotContent): IDotDocument;
 
-	menu(content?: DotContent, attrs?: (attrs: IDotMenu)=>IDotMenu|void): IDotDocument;
-	menu(attrs: (attrs: IDotMenu)=>IDotMenu|void, content?: DotContent): IDotDocument;
-	meter(content?: DotContent, attrs?: (attrs: IDotMeter)=>IDotMeter|void): IDotDocument;
-	meter(attrs: (attrs: IDotMeter)=>IDotMeter|void, content?: DotContent): IDotDocument;
+	mark(content?: DotContent, attrs?: IDotGlobalAttrs): IDotDocument;
+	mark(attrs: IDotGlobalAttrs, content?: DotContent): IDotDocument;
 
-	nav(content?: DotContent, attrs?: (e: IDotAttrBuilder<IDotGenericElement>)=>IDotAttrBuilder<IDotGenericElement>|void): IDotDocument;
-	nav(attrs: (e: IDotAttrBuilder<IDotGenericElement>)=>IDotAttrBuilder<IDotGenericElement>|void, content?: DotContent): IDotDocument;
+	menu(content?: DotContent, attrs?: IDotMenu): IDotDocument;
+	menu(attrs: IDotMenu, content?: DotContent): IDotDocument;
+	meter(content?: DotContent, attrs?: IDotMeter): IDotDocument;
+	meter(attrs: IDotMeter, content?: DotContent): IDotDocument;
 
-	object(content?: DotContent, attrs?: (attrs: IDotObject)=>IDotObject|void): IDotDocument;
-	object(attrs: (attrs: IDotObject)=>IDotObject|void, content?: DotContent): IDotDocument;
-	ol(content?: DotContent, attrs?: (attrs: IDotOl)=>IDotOl|void): IDotDocument;
-	ol(attrs: (attrs: IDotOl)=>IDotOl|void, content?: DotContent): IDotDocument;
-	optGroup(content?: DotContent, attrs?: (attrs: IDotOptGroup)=>IDotOptGroup|void): IDotDocument;
-	optGroup(attrs: (attrs: IDotOptGroup)=>IDotOptGroup|void, content?: DotContent): IDotDocument;
-	option(content?: DotContent, attrs?: (attrs: IDotOption)=>IDotOption|void): IDotDocument;
-	option(attrs: (attrs: IDotOption)=>IDotOption|void, content?: DotContent): IDotDocument;
-	output(content?: DotContent, attrs?: (attrs: IDotOutput)=>IDotOutput|void): IDotDocument;
-	output(attrs: (attrs: IDotOutput)=>IDotOutput|void, content?: DotContent): IDotDocument;
+	nav(content?: DotContent, attrs?: IDotGlobalAttrs): IDotDocument;
+	nav(attrs: IDotGlobalAttrs, content?: DotContent): IDotDocument;
 
-	p(content?: DotContent, attrs?: (e: IDotAttrBuilder<IDotGenericElement>)=>IDotAttrBuilder<IDotGenericElement>|void): IDotDocument;
-	p(attrs: (e: IDotAttrBuilder<IDotGenericElement>)=>IDotAttrBuilder<IDotGenericElement>|void, content?: DotContent): IDotDocument;
+	object(content?: DotContent, attrs?: IDotObject): IDotDocument;
+	object(attrs: IDotObject, content?: DotContent): IDotDocument;
+	ol(content?: DotContent, attrs?: IDotOl): IDotDocument;
+	ol(attrs: IDotOl, content?: DotContent): IDotDocument;
+	optGroup(content?: DotContent, attrs?: IDotOptGroup): IDotDocument;
+	optGroup(attrs: IDotOptGroup, content?: DotContent): IDotDocument;
+	option(content?: DotContent, attrs?: IDotOption): IDotDocument;
+	option(attrs: IDotOption, content?: DotContent): IDotDocument;
+	output(content?: DotContent, attrs?: IDotOutput): IDotDocument;
+	output(attrs: IDotOutput, content?: DotContent): IDotDocument;
 
-	param(content?: DotContent, attrs?: (attrs: IDotParam)=>IDotParam|void): IDotDocument;
-	param(attrs: (attrs: IDotParam)=>IDotParam|void, content?: DotContent): IDotDocument;
+	p(content?: DotContent, attrs?: IDotGlobalAttrs): IDotDocument;
+	p(attrs: IDotGlobalAttrs, content?: DotContent): IDotDocument;
 
-	pre(content?: DotContent, attrs?: (e: IDotAttrBuilder<IDotGenericElement>)=>IDotAttrBuilder<IDotGenericElement>|void): IDotDocument;
-	pre(attrs: (e: IDotAttrBuilder<IDotGenericElement>)=>IDotAttrBuilder<IDotGenericElement>|void, content?: DotContent): IDotDocument;
+	param(content?: DotContent, attrs?: IDotParam): IDotDocument;
+	param(attrs: IDotParam, content?: DotContent): IDotDocument;
 
-	progress(content?: DotContent, attrs?: (attrs: IDotProgress)=>IDotProgress|void): IDotDocument;
-	progress(attrs: (attrs: IDotProgress)=>IDotProgress|void, content?: DotContent): IDotDocument;
-	q(content?: DotContent, attrs?: (attrs: IDotQ)=>IDotQ|void): IDotDocument;
-	q(attrs: (attrs: IDotQ)=>IDotQ|void, content?: DotContent): IDotDocument;
+	pre(content?: DotContent, attrs?: IDotGlobalAttrs): IDotDocument;
+	pre(attrs: IDotGlobalAttrs, content?: DotContent): IDotDocument;
 
-	rp(content?: DotContent, attrs?: (e: IDotAttrBuilder<IDotGenericElement>)=>IDotAttrBuilder<IDotGenericElement>|void): IDotDocument;
-	rp(attrs: (e: IDotAttrBuilder<IDotGenericElement>)=>IDotAttrBuilder<IDotGenericElement>|void, content?: DotContent): IDotDocument;
-	rt(content?: DotContent, attrs?: (e: IDotAttrBuilder<IDotGenericElement>)=>IDotAttrBuilder<IDotGenericElement>|void): IDotDocument;
-	rt(attrs: (e: IDotAttrBuilder<IDotGenericElement>)=>IDotAttrBuilder<IDotGenericElement>|void, content?: DotContent): IDotDocument;
-	ruby(content?: DotContent, attrs?: (e: IDotAttrBuilder<IDotGenericElement>)=>IDotAttrBuilder<IDotGenericElement>|void): IDotDocument;
-	ruby(attrs: (e: IDotAttrBuilder<IDotGenericElement>)=>IDotAttrBuilder<IDotGenericElement>|void, content?: DotContent): IDotDocument;
-	s(content?: DotContent, attrs?: (e: IDotAttrBuilder<IDotGenericElement>)=>IDotAttrBuilder<IDotGenericElement>|void): IDotDocument;
-	s(attrs: (e: IDotAttrBuilder<IDotGenericElement>)=>IDotAttrBuilder<IDotGenericElement>|void, content?: DotContent): IDotDocument;
-	samp(content?: DotContent, attrs?: (e: IDotAttrBuilder<IDotGenericElement>)=>IDotAttrBuilder<IDotGenericElement>|void): IDotDocument;
-	samp(attrs: (e: IDotAttrBuilder<IDotGenericElement>)=>IDotAttrBuilder<IDotGenericElement>|void, content?: DotContent): IDotDocument;
-	section(content?: DotContent, attrs?: (e: IDotAttrBuilder<IDotGenericElement>)=>IDotAttrBuilder<IDotGenericElement>|void): IDotDocument;
-	section(attrs: (e: IDotAttrBuilder<IDotGenericElement>)=>IDotAttrBuilder<IDotGenericElement>|void, content?: DotContent): IDotDocument;
+	progress(content?: DotContent, attrs?: IDotProgress): IDotDocument;
+	progress(attrs: IDotProgress, content?: DotContent): IDotDocument;
+	q(content?: DotContent, attrs?: IDotQ): IDotDocument;
+	q(attrs: IDotQ, content?: DotContent): IDotDocument;
 
-	select(content?: DotContent, attrs?: (attrs: IDotSelect)=>IDotSelect|void): IDotDocument;
-	select(attrs: (attrs: IDotSelect)=>IDotSelect|void, content?: DotContent): IDotDocument;
+	rp(content?: DotContent, attrs?: IDotGlobalAttrs): IDotDocument;
+	rp(attrs: IDotGlobalAttrs, content?: DotContent): IDotDocument;
+	rt(content?: DotContent, attrs?: IDotGlobalAttrs): IDotDocument;
+	rt(attrs: IDotGlobalAttrs, content?: DotContent): IDotDocument;
+	ruby(content?: DotContent, attrs?: IDotGlobalAttrs): IDotDocument;
+	ruby(attrs: IDotGlobalAttrs, content?: DotContent): IDotDocument;
+	s(content?: DotContent, attrs?: IDotGlobalAttrs): IDotDocument;
+	s(attrs: IDotGlobalAttrs, content?: DotContent): IDotDocument;
+	samp(content?: DotContent, attrs?: IDotGlobalAttrs): IDotDocument;
+	samp(attrs: IDotGlobalAttrs, content?: DotContent): IDotDocument;
+	section(content?: DotContent, attrs?: IDotGlobalAttrs): IDotDocument;
+	section(attrs: IDotGlobalAttrs, content?: DotContent): IDotDocument;
 
-	small(content?: DotContent, attrs?: (e: IDotAttrBuilder<IDotGenericElement>)=>IDotAttrBuilder<IDotGenericElement>|void): IDotDocument;
-	small(attrs: (e: IDotAttrBuilder<IDotGenericElement>)=>IDotAttrBuilder<IDotGenericElement>|void, content?: DotContent): IDotDocument;
+	select(content?: DotContent, attrs?: IDotSelect): IDotDocument;
+	select(attrs: IDotSelect, content?: DotContent): IDotDocument;
 
-	source(content?: DotContent, attrs?: (attrs: IDotSource)=>IDotSource|void): IDotDocument;
-	source(attrs: (attrs: IDotSource)=>IDotSource|void, content?: DotContent): IDotDocument;
+	small(content?: DotContent, attrs?: IDotGlobalAttrs): IDotDocument;
+	small(attrs: IDotGlobalAttrs, content?: DotContent): IDotDocument;
 
-	span(content?: DotContent, attrs?: (e: IDotAttrBuilder<IDotGenericElement>)=>IDotAttrBuilder<IDotGenericElement>|void): IDotDocument;
-	span(attrs: (e: IDotAttrBuilder<IDotGenericElement>)=>IDotAttrBuilder<IDotGenericElement>|void, content?: DotContent): IDotDocument;
-	strong(content?: DotContent, attrs?: (e: IDotAttrBuilder<IDotGenericElement>)=>IDotAttrBuilder<IDotGenericElement>|void): IDotDocument;
-	strong(attrs: (e: IDotAttrBuilder<IDotGenericElement>)=>IDotAttrBuilder<IDotGenericElement>|void, content?: DotContent): IDotDocument;
-	svg(content?: DotContent, attrs?: (e: IDotAttrBuilder<IDotGenericElement>)=>IDotAttrBuilder<IDotGenericElement>|void): IDotDocument;
-	svg(attrs: (e: IDotAttrBuilder<IDotGenericElement>)=>IDotAttrBuilder<IDotGenericElement>|void, content?: DotContent): IDotDocument;
-	sub(content?: DotContent, attrs?: (e: IDotAttrBuilder<IDotGenericElement>)=>IDotAttrBuilder<IDotGenericElement>|void): IDotDocument;
-	sub(attrs: (e: IDotAttrBuilder<IDotGenericElement>)=>IDotAttrBuilder<IDotGenericElement>|void, content?: DotContent): IDotDocument;
-	summary(content?: DotContent, attrs?: (e: IDotAttrBuilder<IDotGenericElement>)=>IDotAttrBuilder<IDotGenericElement>|void): IDotDocument;
-	summary(attrs: (e: IDotAttrBuilder<IDotGenericElement>)=>IDotAttrBuilder<IDotGenericElement>|void, content?: DotContent): IDotDocument;
-	sup(content?: DotContent, attrs?: (e: IDotAttrBuilder<IDotGenericElement>)=>IDotAttrBuilder<IDotGenericElement>|void): IDotDocument;
-	sup(attrs: (e: IDotAttrBuilder<IDotGenericElement>)=>IDotAttrBuilder<IDotGenericElement>|void, content?: DotContent): IDotDocument;
+	source(content?: DotContent, attrs?: IDotSource): IDotDocument;
+	source(attrs: IDotSource, content?: DotContent): IDotDocument;
 
-	table(content?: DotContent, attrs?: (attrs: IDotTable)=>IDotTable|void): IDotDocument;
-	table(attrs: (attrs: IDotTable)=>IDotTable|void, content?: DotContent): IDotDocument;
-	tBody(content?: DotContent, attrs?: (attrs: IDotTBody)=>IDotTBody|void): IDotDocument;
-	tBody(attrs: (attrs: IDotTBody)=>IDotTBody|void, content?: DotContent): IDotDocument;
-	td(content?: DotContent, attrs?: (attrs: IDotTd)=>IDotTd|void): IDotDocument;
-	td(attrs: (attrs: IDotTd)=>IDotTd|void, content?: DotContent): IDotDocument;
-	textArea(content?: DotContent, attrs?: (attrs: IDotTextArea)=>IDotTextArea|void): IDotDocument;
-	textArea(attrs: (attrs: IDotTextArea)=>IDotTextArea|void, content?: DotContent): IDotDocument;
-	tFoot(content?: DotContent, attrs?: (attrs: IDotTFoot)=>IDotTFoot|void): IDotDocument;
-	tFoot(attrs: (attrs: IDotTFoot)=>IDotTFoot|void, content?: DotContent): IDotDocument;
-	th(content?: DotContent, attrs?: (attrs: IDotTh)=>IDotTh|void): IDotDocument;
-	th(attrs: (attrs: IDotTh)=>IDotTh|void, content?: DotContent): IDotDocument;
-	tHead(content?: DotContent, attrs?: (attrs: IDotTHead)=>IDotTHead|void): IDotDocument;
-	tHead(attrs: (attrs: IDotTHead)=>IDotTHead|void, content?: DotContent): IDotDocument;
-	time(content?: DotContent, attrs?: (attrs: IDotTime)=>IDotTime|void): IDotDocument;
-	time(attrs: (attrs: IDotTime)=>IDotTime|void, content?: DotContent): IDotDocument;
-	tr(content?: DotContent, attrs?: (attrs: IDotTr)=>IDotTr|void): IDotDocument;
-	tr(attrs: (attrs: IDotTr)=>IDotTr|void, content?: DotContent): IDotDocument;
-	track(content?: DotContent, attrs?: (attrs: IDotTrack)=>IDotTrack|void): IDotDocument;
-	track(attrs: (attrs: IDotTrack)=>IDotTrack|void, content?: DotContent): IDotDocument;
+	span(content?: DotContent, attrs?: IDotGlobalAttrs): IDotDocument;
+	span(attrs: IDotGlobalAttrs, content?: DotContent): IDotDocument;
+	strong(content?: DotContent, attrs?: IDotGlobalAttrs): IDotDocument;
+	strong(attrs: IDotGlobalAttrs, content?: DotContent): IDotDocument;
+	svg(content?: DotContent, attrs?: IDotGlobalAttrs): IDotDocument;
+	svg(attrs: IDotGlobalAttrs, content?: DotContent): IDotDocument;
+	sub(content?: DotContent, attrs?: IDotGlobalAttrs): IDotDocument;
+	sub(attrs: IDotGlobalAttrs, content?: DotContent): IDotDocument;
+	summary(content?: DotContent, attrs?: IDotGlobalAttrs): IDotDocument;
+	summary(attrs: IDotGlobalAttrs, content?: DotContent): IDotDocument;
+	sup(content?: DotContent, attrs?: IDotGlobalAttrs): IDotDocument;
+	sup(attrs: IDotGlobalAttrs, content?: DotContent): IDotDocument;
 
-	u(content?: DotContent, attrs?: (e: IDotAttrBuilder<IDotGenericElement>)=>IDotAttrBuilder<IDotGenericElement>|void): IDotDocument;
-	u(attrs: (e: IDotAttrBuilder<IDotGenericElement>)=>IDotAttrBuilder<IDotGenericElement>|void, content?: DotContent): IDotDocument;
-	ul(content?: DotContent, attrs?: (e: IDotAttrBuilder<IDotGenericElement>)=>IDotAttrBuilder<IDotGenericElement>|void): IDotDocument;
-	ul(attrs: (e: IDotAttrBuilder<IDotGenericElement>)=>IDotAttrBuilder<IDotGenericElement>|void, content?: DotContent): IDotDocument;
-	var(content?: DotContent, attrs?: (e: IDotAttrBuilder<IDotGenericElement>)=>IDotAttrBuilder<IDotGenericElement>|void): IDotDocument;
-	var(attrs: (e: IDotAttrBuilder<IDotGenericElement>)=>IDotAttrBuilder<IDotGenericElement>|void, content?: DotContent): IDotDocument;
+	table(content?: DotContent, attrs?: IDotTable): IDotDocument;
+	table(attrs: IDotTable, content?: DotContent): IDotDocument;
+	tBody(content?: DotContent, attrs?: IDotTBody): IDotDocument;
+	tBody(attrs: IDotTBody, content?: DotContent): IDotDocument;
+	td(content?: DotContent, attrs?: IDotTd): IDotDocument;
+	td(attrs: IDotTd, content?: DotContent): IDotDocument;
+	textArea(content?: DotContent, attrs?: IDotTextArea): IDotDocument;
+	textArea(attrs: IDotTextArea, content?: DotContent): IDotDocument;
+	tFoot(content?: DotContent, attrs?: IDotTFoot): IDotDocument;
+	tFoot(attrs: IDotTFoot, content?: DotContent): IDotDocument;
+	th(content?: DotContent, attrs?: IDotTh): IDotDocument;
+	th(attrs: IDotTh, content?: DotContent): IDotDocument;
+	tHead(content?: DotContent, attrs?: IDotTHead): IDotDocument;
+	tHead(attrs: IDotTHead, content?: DotContent): IDotDocument;
+	time(content?: DotContent, attrs?: IDotTime): IDotDocument;
+	time(attrs: IDotTime, content?: DotContent): IDotDocument;
+	tr(content?: DotContent, attrs?: IDotTr): IDotDocument;
+	tr(attrs: IDotTr, content?: DotContent): IDotDocument;
+	track(content?: DotContent, attrs?: IDotTrack): IDotDocument;
+	track(attrs: IDotTrack, content?: DotContent): IDotDocument;
 
-	video(content?: DotContent, attrs?: (attrs: IDotVideo)=>IDotVideo|void): IDotDocument;
-	video(attrs: (attrs: IDotVideo)=>IDotVideo|void, content?: DotContent): IDotDocument;
+	u(content?: DotContent, attrs?: IDotGlobalAttrs): IDotDocument;
+	u(attrs: IDotGlobalAttrs, content?: DotContent): IDotDocument;
+	ul(content?: DotContent, attrs?: IDotGlobalAttrs): IDotDocument;
+	ul(attrs: IDotGlobalAttrs, content?: DotContent): IDotDocument;
+	var(content?: DotContent, attrs?: IDotGlobalAttrs): IDotDocument;
+	var(attrs: IDotGlobalAttrs, content?: DotContent): IDotDocument;
 
-	wbr(content?: DotContent, attrs?: (e: IDotAttrBuilder<IDotGenericElement>)=>IDotAttrBuilder<IDotGenericElement>|void): IDotDocument;
-	wbr(attrs: (e: IDotAttrBuilder<IDotGenericElement>)=>IDotAttrBuilder<IDotGenericElement>|void, content?: DotContent): IDotDocument;
+	video(content?: DotContent, attrs?: IDotVideo): IDotDocument;
+	video(attrs: IDotVideo, content?: DotContent): IDotDocument;
+
+	wbr(content?: DotContent, attrs?: IDotGlobalAttrs): IDotDocument;
+	wbr(attrs: IDotGlobalAttrs, content?: DotContent): IDotDocument;
 }
 
-type Styles = string|((css: IDotCss) => IDotcssProp|string);
+type Styles = string | IDotcssProp;
 interface IComponentFactory {
-    <T extends IComponent>(Base: new () => T, styles?: Styles|Styles[]): new () => T;
-	useStyles<T extends IComponent>(styles: Styles|Styles[]): (Base: new () => T) => new () => T;
-	hasEvents<T extends IComponent>(styles: Styles|Styles[]): (Base: new () => T) => new () => T;
+	<T extends IComponent>(Base: new () => T, styles?: Styles | Styles[]): new () => T;
+	useStyles<T extends IComponent>(styles: Styles | Styles[]): (Base: new () => T) => new () => T;
+	hasEvents<T extends IComponent>(styles: Styles | Styles[]): (Base: new () => T) => new () => T;
 	prop(target: any, propertyKey: string): void;
 }
 
@@ -347,20 +346,19 @@ interface IComponentFactory {
 /**
  * Interface for the dot object.
  */
-export interface IDotCore extends IDotDocument
-{
-	(targetSelector: string|Element|Node|NodeList|Array<Node|Element>): IDotDocument;
+export interface IDotCore extends IDotDocument {
+	(targetSelector: string | Element | Node | NodeList | Array<Node | Element>): IDotDocument;
 
 	version: string;
-	styleMode: "sync"|"async";
+	styleMode: "sync" | "async";
 
 	navigate(path: string, noHistory?: boolean, force?: boolean): void;
 	css: IDotCss;
 	bus: IEventBus;
 	// window: IDotWindowBuilder;
 
-	watch<Ti = IReactive|Array<any>|{[key: string|number]: any}|string|number|boolean, To = Ti>(initValue?: Ti, props?: {key?: string, transformer?: (value: Ti)=>To}): IReactive<Ti, To>;
-	
+	watch<Ti = IReactive | Array<any> | { [key: string | number]: any } | string | number | boolean, To = Ti>(initValue?: Ti, props?: { key?: string, transformer?: (value: Ti) => To }): IReactive<Ti, To>;
+
 	// Keep these around for a bit to show how it was done before in case I need to change anything prior to the v6 launch.
 	// component<T extends IComponent>(Base: new (...args: Parameters<T['build']>) => T): new (...args: Parameters<T['build']>) => T;
 	// useStyles<T extends IComponent>(styles: string|((css: IDotCss)=>IDotcssProp|string)): ((Base: new (...args: Parameters<T['build']>) => T) => new (...args: Parameters<T['build']>) => T);
@@ -369,16 +367,16 @@ export interface IDotCore extends IDotDocument
 	useStyles(document: Document, styles: Styles): HTMLStyleElement;
 }
 
-export interface IDotWindowBuilder{
+export interface IDotWindowBuilder {
 	(content): Window;
 }
 
-export interface IDotConditionalDocument extends IDotDocument{
+export interface IDotConditionalDocument extends IDotDocument {
 	/**
 	 * A conditional catch, analogous to else if. Can be used after a when function. Evaluates if the previous when's condition was false.
 	 * Renders the specified DOT if a condition is met. Dynamic binding is possible when condition and callback are functions.
 	*/
-	otherwiseWhen(condition:IReactive|boolean, callback: DotContent): IDotConditionalDocument;
+	otherwiseWhen(condition: IReactive | boolean, callback: DotContent): IDotConditionalDocument;
 	/**
 	 * A conditional final catch, analogous to else. Can be used after a when or otherwiseWhen function. Evaluates if the previous when/otherwiseWhen evaluated to false.
 	 * Renders the specified DOT if a condition is met. Dynamic binding is possible when callback is a function.
@@ -387,182 +385,173 @@ export interface IDotConditionalDocument extends IDotDocument{
 }
 
 // Attribute interface (for all elements):
-export interface IDotAttrBuilder<T>
-{
-	// (document?: Element, classPrefix?: number): IDotElement;
-	// TODO: consider allowing a function that passes in the container for the previous element to allow adding attributes to it.
-	// TODO: I'd really like to enable this. Unfortunately it's not terribly easy to implement.
-	// Might be impossible in ES5 (notwithstanding some possible hackery).
-	//(content?: DotContent): IDotElementDocument<IDotGenericElement>;
-	
-	// TODO: this will erase element context, which could be a bug.
-	// It can be duplicated multiple times below, or find a new solution.
+export interface IDotGlobalAttrs {
 	/**
 	 * Create a custom attribute.
 	*/
-	attr(name: string, value: unknown, arg3?: unknown): T;
+	// attr(name: string, value: unknown, arg3?: unknown): T;
+	custom?: Record<string, AttrVal<unknown>>
 	/**
 	 * Adds a data-<suffix> attribute to the current element which can contain custom data.
 	*/
-	customData(suffix: string, value: DotContentPrimitive): T;
+	customData?: Record<string, AttrVal<unknown>>;
 	/**
 	 * Create a named reference to the current element so that it can be accessed within the current component.
 	*/
-	ref(name: string, index?:number): T;
+	// TODO: this needs to be redone now. 
+	// The better way might be using the new reactive system instead of references.
+	// For now I'll leave it like this:
+	ref?: IReactive<HTMLElement>;
 
 	/** @deprecated Deprecated in HTML5. Use CSS. */
-	bgColor(value: AttrVal<unknown>): T;
+	bgColor?: AttrVal<unknown>;
 	/** @deprecated Deprecated in HTML5. Use CSS. */
-	color(value: AttrVal<unknown>): T;
+	color?: AttrVal<unknown>;
 	/** @deprecated Deprecated in HTML5. Use CSS. */
-	aLink(value: AttrVal<unknown>): T;
+	aLink?: AttrVal<unknown>;
 	/** @deprecated Deprecated in HTML5. */
-	archive(value: AttrVal<unknown>): T;
-	
+	archive?: AttrVal<unknown>;
+
 	// TODO: we're still missing some additional global attributes. See https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/
-	areaHidden(value: AttrVal<boolean>): T;
-	areaLabel(value: AttrVal<string>): T;
-	areaDescribedBy(value: AttrVal<string>): T;
-	areaControls(value: AttrVal<string>): T;
-	areaExpanded(value: AttrVal<boolean>): T;
-	areaChecked(value: AttrVal<string>): T;
-	areaSelected(value: AttrVal<boolean>): T;
-	accessKey(value: AttrVal<string>): T; // This could potentially be enumerated. But care should be taken as these types are already quite complex.
-	class(value: unknown): T; // TODO: need a better way of setting classes.
-	contentEditable(value: AttrVal<"true">|AttrVal<"false">|AttrVal<"plaintext-only">): T;
-	contextMenu(value: AttrVal<string>): T;
-	dir(value: AttrVal<string>): T;
-	draggable(value: AttrVal<"true">|AttrVal<"false">): T;
-	dropZone(value: AttrVal<"move">|AttrVal<"copy">|AttrVal<"link">): T;
-	exportParts(value: AttrVal<string>): T;
-	hidden(value: AttrVal<boolean>): T;
-	id(value: string): T;
-	inert(value: AttrVal<boolean>): T;
-	inputMode(value: AttrVal<string>): T;
-	is(value: AttrVal<string>): T;
-	itemId(value: AttrVal<string>): T;
-	itemProp(value: AttrVal<string>): T;
-	itemRef(value: AttrVal<string>): T;
-	itemScope(value: AttrVal<string>): T;
-	itemType(value: AttrVal<string>): T;
-	lang(value: AttrVal<string>): T;
-	nOnce(value: AttrVal<string>): T;
-	part(value: AttrVal<string>): T;
-	role(value: AttrVal<string>): T;
-	spellCheck(value: AttrVal<"true">|AttrVal<"false">): T;
-	style(value: string|IDotcssProp): T;
-	tabIndex(value: AttrVal<number>): T;
-	title(value: AttrVal<string>): T;
-	translate(value: AttrVal<string>): T;
-	virtualKeyboardPolicy(value: AttrVal<"auto">|AttrVal<"manual">): T;
+	areaHidden?: AttrVal<boolean>;
+	areaLabel?: AttrVal<string>;
+	areaDescribedBy?: AttrVal<string>;
+	areaControls?: AttrVal<string>;
+	areaExpanded?: AttrVal<boolean>;
+	areaChecked?: AttrVal<string>;
+	areaSelected?: AttrVal<boolean>;
+	accessKey?: AttrVal<string>; // This could potentially be enumerated. But care should be taken as these types are already quite complex.
+	class?: AttrVal<string> | Array<AttrVal<string>> | AttrVal<Array<string>> | Record<string, AttrVal<string>>; // Space-separated. TODO: need tests.
+	contentEditable?: AttrVal<"true"> | AttrVal<"false"> | AttrVal<"plaintext-only">;
+	contextMenu?: AttrVal<string>;
+	dir?: AttrVal<string>;
+	draggable?: AttrVal<"true"> | AttrVal<"false">;
+	dropZone?: AttrVal<"move"> | AttrVal<"copy"> | AttrVal<"link">;
+	exportParts?: AttrVal<string>;
+	hidden?: AttrVal<boolean>;
+	id?: string;
+	inert?: AttrVal<boolean>;
+	inputMode?: AttrVal<string>;
+	is?: AttrVal<string>;
+	itemId?: AttrVal<string>;
+	itemProp?: AttrVal<string>;
+	itemRef?: AttrVal<string>;
+	itemScope?: AttrVal<string>;
+	itemType?: AttrVal<string>;
+	lang?: AttrVal<string>;
+	nOnce?: AttrVal<string>;
+	part?: AttrVal<string>;
+	role?: AttrVal<string>;
+	spellCheck?: AttrVal<"true"> | AttrVal<"false">;
+	style?: string | IDotcssProp;
+	tabIndex?: AttrVal<number>;
+	title?: AttrVal<string>;
+	translate?: AttrVal<string>;
+	virtualKeyboardPolicy?: AttrVal<"auto"> | AttrVal<"manual">;
 
 	// Events
 
-	onContextMenu(callback: (e: Event)=>void): T; // global
-	onCopy(callback: (e: Event)=>void): T; // global
-	onCut(callback: (e: Event)=>void): T; // global
-	onPagePaste(callback: (e: Event)=>void): T; // global
+	onContextMenu?: (e: MouseEvent) => void; // global
+	onCopy?: (e: ClipboardEvent) => void; // global
+	onCut?: (e: ClipboardEvent) => void; // global
+	onPagePaste?: (e: ClipboardEvent) => void; // global
 
-	onDrag(callback: (e: DragEvent)=>void): T; // global
-	onDragEnd(callback: (e: DragEvent)=>void): T; // global
-	onDragStart(callback: (e: DragEvent)=>void): T; // global
-	onDragEnter(callback: (e: DragEvent)=>void): T; // global
-	onDragOver(callback: (e: DragEvent)=>void): T; // global
-	onDragLeave(callback: (e: DragEvent)=>void): T; // global
-	onDrop(callback: (e: DragEvent)=>void): T; // global
-	onError(callback: (e: Event)=>void): T; // loading elements
-	onInvalid(callback: (e: DragEvent)=>void): T; // global
-	onMouseWheel(callback: (e: WheelEvent)=>void): T; // global
-	onWheel(callback: (e: WheelEvent)=>void): T; // global
+	onDrag?: (e: DragEvent) => void; // global
+	onDragEnd?: (e: DragEvent) => void; // global
+	onDragStart?: (e: DragEvent) => void; // global
+	onDragEnter?: (e: DragEvent) => void; // global
+	onDragOver?: (e: DragEvent) => void; // global
+	onDragLeave?: (e: DragEvent) => void; // global
+	onDrop?: (e: DragEvent) => void; // global
+	onError?: (e: Event) => void; // loading elements.
+	onInvalid?: (e: Event) => void; // global
+	onMouseWheel?: (e: WheelEvent) => void; // global
+	onWheel?: (e: WheelEvent) => void; // global
 
 	// Configured.
-	onBlur(callback: (e: FocusEvent)=>void): T;
-	onChange(callback: (e: Event)=>void): T;
-	onClick(callback: (e: MouseEvent)=>void): T;
-	onDblClick(callback: (e: MouseEvent)=>void): T;
-	onFocus(callback: (e: FocusEvent)=>void): T;
-	onInput(callback: (e: InputEvent)=>void): T;
-	onKeyDown(callback: (e: KeyboardEvent)=>void): T;
-	onKeyPress(callback: (e: KeyboardEvent)=>void): T;
-	onKeyUp(callback: (e: KeyboardEvent)=>void): T;
-	onLoad(callback: (e: Event)=>void): T; // On specific resources only.
-	onMouseDown(callback: (e: MouseEvent)=>void): T;
-	onMouseEnter(callback: (e: MouseEvent)=>void): T;
-	onMouseLeave(callback: (e: MouseEvent)=>void): T;
-	onMouseMove(callback: (e: MouseEvent)=>void): T;
-	onMouseOut(callback: (e: MouseEvent)=>void): T;
-	onMouseOver(callback: (e: MouseEvent)=>void): T;
-	onMouseUp(callback: (e: MouseEvent)=>void): T;
-	onPointerCancel(callback: (e: PointerEvent)=>void): T;
-	onPointerDown(callback: (e: PointerEvent)=>void): T;
-	onPointerEnter(callback: (e: PointerEvent)=>void): T;
-	onPointerLeave(callback: (e: PointerEvent)=>void): T;
-	onPointerMove(callback: (e: PointerEvent)=>void): T;
-	onPointerOut(callback: (e: PointerEvent)=>void): T;
-	onPointerOver(callback: (e: PointerEvent)=>void): T;
-	onPointerUp(callback: (e: PointerEvent)=>void): T;
+	onBlur?: (e: FocusEvent) => void;
+	onChange?: (e: Event) => void;
+	onClick?: (e: MouseEvent) => void;
+	onDblClick?: (e: MouseEvent) => void;
+	onFocus?: (e: FocusEvent) => void;
+	onInput?: (e: InputEvent) => void;
+	onKeyDown?: (e: KeyboardEvent) => void;
+	onKeyPress?: (e: KeyboardEvent) => void;
+	onKeyUp?: (e: KeyboardEvent) => void;
+	onLoad?: (e: Event) => void; // On specific resources only.
+	onMouseDown?: (e: MouseEvent) => void;
+	onMouseEnter?: (e: MouseEvent) => void;
+	onMouseLeave?: (e: MouseEvent) => void;
+	onMouseMove?: (e: MouseEvent) => void;
+	onMouseOut?: (e: MouseEvent) => void;
+	onMouseOver?: (e: MouseEvent) => void;
+	onMouseUp?: (e: MouseEvent) => void;
+	onPointerCancel?: (e: PointerEvent) => void;
+	onPointerDown?: (e: PointerEvent) => void;
+	onPointerEnter?: (e: PointerEvent) => void;
+	onPointerLeave?: (e: PointerEvent) => void;
+	onPointerMove?: (e: PointerEvent) => void;
+	onPointerOut?: (e: PointerEvent) => void;
+	onPointerOver?: (e: PointerEvent) => void;
+	onPointerUp?: (e: PointerEvent) => void;
 
-	onTouchMove(callback: (e: TouchEvent)=>void): T;
-	onTouchCancel(callback: (e: TouchEvent)=>void): T;
-	onTouchEnd(callback: (e: TouchEvent)=>void): T;
-	onTouchStart(callback: (e: TouchEvent)=>void): T;
+	onTouchMove?: (e: TouchEvent) => void;
+	onTouchCancel?: (e: TouchEvent) => void;
+	onTouchEnd?: (e: TouchEvent) => void;
+	onTouchStart?: (e: TouchEvent) => void;
 
-	onReset(callback: (e: Event)=>void): T;
-	onScroll(callback: (e: MouseEvent)=>void): T;
-	onSelect(callback: (e: Event)=>void): T;
-	onSubmit(callback: (e: SubmitEvent)=>void): T;
-	onUnload(callback: (e: Event)=>void): T;
+	onReset?: (e: Event) => void;
+	onScroll?: (e: UIEvent) => void;
+	onSelect?: (e: Event) => void;
+	onSubmit?: (e: Event) => void;
+	onUnload?: (e: Event) => void;
 }
-
-interface IDotGenericElement extends IDotAttrBuilder<IDotGenericElement>{}
 
 // Interface for specific elements:
 
-interface IMountedComponent<T extends IComponent>{
-	on(event: string, callback: (...args: Array<any>)=>void): IMountedComponent<T>;
+interface IMountedComponent<T extends IComponent> {
+	on(event: string, callback: (...args: Array<any>) => void): IMountedComponent<T>;
 	prop(name: string, value: any): IMountedComponent<T>;
 }
 
-interface IDotA extends IDotAttrBuilder<IDotA>{
-	download(value: AttrVal<boolean>): IDotA;
-	hRef(value: AttrVal<string>): IDotA;
-	hRefLang(value: AttrVal<string>): IDotA;
-	charset(value: AttrVal<string>): IDotA;
-	coords(value: AttrVal<string>): IDotA;
-	shape(value: AttrVal<string>): IDotA;
-	media(value: AttrVal<string>): IDotA;
-	ping(value: AttrVal<string>): IDotA; // Space separated. Consider an array. Or do what we're doing for class.
-	rel(value: AttrVal<string>): IDotA;
+interface IDotA extends IDotGlobalAttrs {
+	download?: AttrVal<boolean>;
+	hRef?: AttrVal<string>;
+	hRefLang?: AttrVal<string>;
+	charset?: AttrVal<string>;
+	coords?: AttrVal<string>;
+	shape?: AttrVal<string>;
+	media?: AttrVal<string>;
+	ping?: AttrVal<string> | Array<AttrVal<string>> | AttrVal<Array<string>> | Record<string, AttrVal<string>>; // Space-separated. TODO: need tests.
+	rel?: AttrVal<string>;
 	/** @deprecated Deprecated in HTML5. */
-	rev(value: AttrVal<unknown>): IDotA;
-	name(value: AttrVal<string>): IDotA;
-	// rev(value: unknown): IDotA; // Not supported in HTML 5.
-	target(value: AttrVal<"_blank">|AttrVal<"_parent">|AttrVal<"_self">|AttrVal<"_top">): IDotA;
-	type(value: AttrVal<string>): IDotA;
+	rev?: AttrVal<unknown>;
+	name?: AttrVal<string>;
+	target?: AttrVal<"_blank"> | AttrVal<"_parent"> | AttrVal<"_self"> | AttrVal<"_top">;
+	type?: AttrVal<string>;
 }
-interface IDotArea extends IDotAttrBuilder<IDotArea>{
-	alt(value: AttrVal<string>): IDotArea;
-	coords(value: AttrVal<string>): IDotArea;
-	download(value: AttrVal<string>): IDotArea;
-	hRef(value: AttrVal<string>): IDotArea;
-	hRefLang(value: AttrVal<string>): IDotArea;
-	media(value: AttrVal<string>): IDotArea;
-	/** @deprecated Deprecated in HTML5. */
-	noHRef(value: AttrVal<string>): IDotArea;
-	rel(value: AttrVal<string>): IDotArea;
-	shape(value: AttrVal<string>): IDotArea;
-	target(value: AttrVal<string>): IDotArea;
+interface IDotArea extends IDotGlobalAttrs {
+	alt?: AttrVal<string>;
+	coords?: AttrVal<string>;
+	download?: AttrVal<string>;
+	hRef?: AttrVal<string>;
+	hRefLang?: AttrVal<string>;
+	media?: AttrVal<string>;
+	noHRef?: AttrVal<string>; // Deprecated in HTML5.
+	rel?: AttrVal<string>;
+	shape?: AttrVal<string>;
+	target?: AttrVal<string>;
 }
-interface IDotAudio extends IDotAttrBuilder<IDotAudio>{
-	autoPlay(value: AttrVal<boolean>): IDotAudio;
-	// buffered(value: unknown): IDotAudio; // Not used?
-	controls(value: AttrVal<boolean>): IDotAudio;
-	loop(value: AttrVal<boolean>): IDotAudio;
-	muted(value: AttrVal<boolean>): IDotAudio;
-	preload(value: AttrVal<"auto">|AttrVal<"metadata">|AttrVal<"none">): IDotAudio;
-	src(value: AttrVal<string>): IDotAudio;
-	crossOrigin(value: AttrVal<"anonymous">|AttrVal<"use-credentials">): IDotAudio;
-	
+interface IDotAudio extends IDotGlobalAttrs {
+	autoPlay?: AttrVal<boolean>;
+	// buffered?: unknown; // Not used?
+	controls?: AttrVal<boolean>;
+	loop?: AttrVal<boolean>;
+	muted?: AttrVal<boolean>;
+	preload?: AttrVal<"auto"> | AttrVal<"metadata"> | AttrVal<"none">;
+	src?: AttrVal<string>;
+	crossOrigin?: AttrVal<"anonymous"> | AttrVal<"use-credentials">;
+
 	// Special functions:
 	// TODO: these need to be removed from here.
 	// pause(): IDotAudio;
@@ -570,398 +559,423 @@ interface IDotAudio extends IDotAttrBuilder<IDotAudio>{
 	// stop(): IDotAudio;
 
 	// Events:
-	onAbort(callback: (e: Event)=>void): IDotAudio;
-	onCantPlayThrough(callback: (e: Event)=>void): IDotAudio;
-	onDurationChange(callback: (e: Event)=>void): IDotAudio;
-	onEmptied(callback: (e: Event)=>void): IDotAudio;
-	onEnded(callback: (e: Event)=>void): IDotAudio;
-	onLoadedData(callback: (e: Event)=>void): IDotAudio;
-	onLoadStart(callback: (e: Event)=>void): IDotAudio;
-	onLoadedMetadata(callback: (e: Event)=>void): IDotAudio;
-	onPause(callback: (e: Event)=>void): IDotAudio;
-	onPlay(callback: (e: Event)=>void): IDotAudio;
-	onPlaying(callback: (e: Event)=>void): IDotAudio;
-	onProgress(callback: (e: Event)=>void): IDotAudio;
-	onRateChange(callback: (e: Event)=>void): IDotAudio;
-	onSeeked(callback: (e: Event)=>void): IDotAudio;
-	onSeeking(callback: (e: Event)=>void): IDotAudio;
-	onStalled(callback: (e: Event)=>void): IDotAudio;
-	onSuspend(callback: (e: Event)=>void): IDotAudio;
-	onTimeUpdate(callback: (e: Event)=>void): IDotAudio;
-	onVolumeChange(callback: (e: Event)=>void): IDotAudio;
-	onWaiting(callback: (e: Event)=>void): IDotAudio;
-	onCanPlay(callback: (e: Event)=>void): IDotAudio;
+	onAbort?: (e: Event) => void;
+	onCantPlayThrough?: (e: Event) => void;
+	onDurationChange?: (e: Event) => void;
+	onEmptied?: (e: Event) => void;
+	onEnded?: (e: Event) => void;
+	onLoadedData?: (e: Event) => void;
+	onLoadStart?: (e: Event) => void;
+	onLoadedMetadata?: (e: Event) => void;
+	onPause?: (e: Event) => void;
+	onPlay?: (e: Event) => void;
+	onPlaying?: (e: Event) => void;
+	onProgress?: (e: Event) => void;
+	onRateChange?: (e: Event) => void;
+	onSeeked?: (e: Event) => void;
+	onSeeking?: (e: Event) => void;
+	onStalled?: (e: Event) => void;
+	onSuspend?: (e: Event) => void;
+	onTimeUpdate?: (e: Event) => void;
+	onVolumeChange?: (e: Event) => void;
+	onWaiting?: (e: Event) => void;
+	onCanPlay?: (e: Event) => void;
 }
-interface IDotBlockQuote extends IDotAttrBuilder<IDotBlockQuote>{
-	quoteCite(value: AttrVal<string>): IDotBlockQuote; // alias for cite
+interface IDotBlockQuote extends IDotGlobalAttrs {
+	quoteCite?: AttrVal<string>; // alias for cite
 }
-interface IDotBody extends IDotAttrBuilder<IDotBody>{
-	/** @deprecated Deprecated in HTML5. Use CSS. */
-	align(value: unknown): IDotBody;
-	/** @deprecated Deprecated in HTML5. Use CSS. */
-	background(value: unknown): IDotBody;
+
+interface IDotBody extends IDotGlobalAttrs {
+	align?: unknown; // Deprecated in HTML5. Use CSS.
+	background?: unknown; // Deprecated in HTML5. Use CSS.
 
 	// Events
-	onHashChange(callback: (e: Event)=>void): IDotBody;
-	onOffline(callback: (e: Event)=>void): IDotBody;
-	onOnline(callback: (e: Event)=>void): IDotBody;
-	onPageHide(callback: (e: Event)=>void): IDotBody;
-	onPageShow(callback: (e: Event)=>void): IDotBody;
-	onPopState(callback: (e: Event)=>void): IDotBody;
-	onResize(callback: (e: Event)=>void): IDotBody;
-	onStorage(callback: (e: Event)=>void): IDotBody;
+	onHashChange?: (e: HashChangeEvent) => void;
+	onOffline?: (e: Event) => void;
+	onOnline?: (e: Event) => void;
+	onPageHide?: (e: PageTransitionEvent) => void;
+	onPageShow?: (e: PageTransitionEvent) => void;
+	onPopState?: (e: PopStateEvent) => void;
+	onResize?: (e: UIEvent) => void;
+	onStorage?: (e: StorageEvent) => void;
 }
-interface IDotBr extends IDotAttrBuilder<IDotBr>{
-	/** @deprecated Deprecated in HTML5. Use CSS. */
-	clear(value: unknown): IDotBr;
-}
-interface IDotButton extends IDotAttrBuilder<IDotButton>{
-	autoFocus(value: AttrVal<boolean>): IDotButton;
-	formAction(value: AttrVal<string>): IDotButton;
-	disabled(value?: AttrVal<boolean>): IDotButton;
-	name(value: AttrVal<string>): IDotButton;
-	type(value: AttrVal<"button">|AttrVal<"submit">|AttrVal<"reset">): IDotButton;
-	whichForm(value: AttrVal<string>): IDotButton; // alias for form
-	value(value: AttrVal<string>): IDotButton;
-}
-interface IDotCanvas extends IDotAttrBuilder<IDotCanvas>{
-	height(value: AttrVal<number>): IDotCanvas;
-	width(value: AttrVal<number>): IDotCanvas;
-}
-interface IDotCol extends IDotAttrBuilder<IDotCol>{
-	/** @deprecated Deprecated in HTML5. Use CSS. */
-	charOff(value: AttrVal<unknown>): IDotCol;
-	colSpan(value: AttrVal<number>): IDotCol; // alias for span
-	vAlign(value: AttrVal<number>): IDotCol;
-}
-interface IDotColGroup extends IDotAttrBuilder<IDotColGroup>{
-	/** @deprecated Deprecated in HTML5. Use CSS. */
-	charOff(value: AttrVal<unknown>): IDotColGroup;
-	colSpan(value: AttrVal<number>): IDotColGroup; // alias for span
-	/** @deprecated Deprecated in HTML5. Use CSS. */
-	vAlign(value: AttrVal<unknown>): IDotColGroup;
-}
-interface IDotDel extends IDotAttrBuilder<IDotDel>{
-	dateTime(value: AttrVal<string>): IDotDel; // Would be cool if this could accept dates and just format them internally...
-	quoteCite(value: AttrVal<string>): IDotDel; // alias for cite
-}
-interface IDotDetails extends IDotAttrBuilder<IDotDetails>{
-	open(value: AttrVal<boolean>): IDotDetails;
 
+interface IDotBr extends IDotGlobalAttrs {
+	/** @deprecated Deprecated in HTML5. Use CSS. */
+	clear?: unknown;
+}
+interface IDotButton extends IDotGlobalAttrs {
+	autoFocus?: AttrVal<boolean>;
+	formAction?: AttrVal<string>;
+	disabled?: AttrVal<boolean>;
+	name?: AttrVal<string>;
+	type?: AttrVal<"button"> | AttrVal<"submit"> | AttrVal<"reset">;
+	whichForm?: AttrVal<string>; // alias for form
+	value?: AttrVal<string>;
+}
+interface IDotCanvas extends IDotGlobalAttrs {
+	height?: AttrVal<number>;
+	width?: AttrVal<number>;
+}
+
+interface IDotCol extends IDotGlobalAttrs {
+	/** @deprecated Deprecated in HTML5. Use CSS. */
+	charOff?: AttrVal<unknown>;
+	colSpan?: AttrVal<number>; // alias for span
+	vAlign?: AttrVal<number>;
+}
+
+interface IDotColGroup extends IDotGlobalAttrs {
+	/** @deprecated Deprecated in HTML5. Use CSS. */
+	charOff?: AttrVal<unknown>;
+	colSpan?: AttrVal<number>; // alias for span
+	/** @deprecated Deprecated in HTML5. Use CSS. */
+	vAlign?: AttrVal<unknown>;
+}
+
+interface IDotDel extends IDotGlobalAttrs {
+	dateTime?: AttrVal<string>; // Would be cool if this could accept dates and just format them internally...
+	quoteCite?: AttrVal<string>; // alias for cite
+}
+
+interface IDotDetails extends IDotGlobalAttrs {
+	open?: AttrVal<boolean>;
 	// Events:
-	onToggle (callback: (e: Event)=>void): IDotDetails;
+	onToggle?: (e: Event) => void;
 }
-interface IDotEmbed extends IDotAttrBuilder<IDotEmbed>{
-	height(value: AttrVal<number>): IDotEmbed;
-	src(value: AttrVal<string>): IDotEmbed;
-	type(value: AttrVal<string>): IDotEmbed;
-	width(value: AttrVal<number>): IDotEmbed;
+interface IDotEmbed extends IDotGlobalAttrs {
+	height?: AttrVal<number>;
+	src?: AttrVal<string>;
+	type?: AttrVal<string>;
+	width?: AttrVal<number>;
 }
-interface IDotFieldSet extends IDotAttrBuilder<IDotFieldSet>{
-	disabled(value: AttrVal<boolean>): IDotFieldSet;
-	name(value: AttrVal<string>): IDotFieldSet;
-	whichForm(value: AttrVal<string>): IDotFieldSet; // alias for form
+interface IDotFieldSet extends IDotGlobalAttrs {
+	disabled?: AttrVal<boolean>;
+	name?: AttrVal<string>;
+	whichForm?: AttrVal<string>; // alias for form
 }
-interface IDotForm extends IDotAttrBuilder<IDotForm>{
-	acceptCharset(value: AttrVal<string>): IDotForm; // accept-charset, apparently the only hyphenated attribute (aside from data-*)...
-	action(value: AttrVal<string>): IDotForm;
-	autoComplete(value: AttrVal<"on">|AttrVal<"off">): IDotForm;
-	encType(value: AttrVal<"application/x-www-form-urlencoded">|AttrVal<"multipart/form-data">|AttrVal<"text/plain">): IDotForm;
-	method(value: AttrVal<"get">|AttrVal<"post">): IDotForm;
-	name(value: AttrVal<string>): IDotForm;
-	noValidate(value: AttrVal<boolean>): IDotForm;
-	// rel(value: PrimativeOrObservable<string>): IDotForm; // Not used with forms?
-	target(value: AttrVal<"_self">|AttrVal<"_blank">|AttrVal<"_parent">|AttrVal<"_top">): IDotForm;
+interface IDotForm extends IDotGlobalAttrs {
+	acceptCharset?: AttrVal<string>; // accept-charset, apparently the only hyphenated attribute (aside from data-*)...
+	action?: AttrVal<string>;
+	autoComplete?: AttrVal<"on"> | AttrVal<"off">;
+	encType?: AttrVal<"application/x-www-form-urlencoded"> | AttrVal<"multipart/form-data"> | AttrVal<"text/plain">;
+	method?: AttrVal<"get"> | AttrVal<"post">;
+	name?: AttrVal<string>;
+	noValidate?: AttrVal<boolean>;
+	target?: AttrVal<"_self"> | AttrVal<"_blank"> | AttrVal<"_parent"> | AttrVal<"_top">;
+	// rel?: PrimativeOrObservable<string> IDotForm; // Not used with forms?
 }
-interface IDotHr extends IDotAttrBuilder<IDotHr>{
-	noShade(value: unknown): IDotHr;
+interface IDotHr extends IDotGlobalAttrs {
+	noShade?: AttrVal<unknown>;
 }
-interface IDotIFrame extends IDotAttrBuilder<IDotIFrame>{
-	allow(value: AttrVal<string>): IDotIFrame;
-	allowFullScreen(value: AttrVal<boolean>): IDotIFrame;
+interface IDotIFrame extends IDotGlobalAttrs {
+	allow?: AttrVal<string>;
+	allowFullScreen?: AttrVal<boolean>;
 	/** @deprecated Deprecated in HTML5. */
-	frameBorder(value: AttrVal<0>|AttrVal<1>): IDotIFrame;
-	height(value: AttrVal<number>): IDotIFrame;
+	frameBorder?: AttrVal<0> | AttrVal<1>;
+	height?: AttrVal<number>;
 	/** @deprecated Deprecated in HTML5. */
-	longDesc(value: AttrVal<string>): IDotIFrame;
-	marginHeight(value: AttrVal<number>): IDotIFrame;
-	marginWidth(value: AttrVal<number>): IDotIFrame;
-	name(value: AttrVal<string>): IDotIFrame;
-	referrerPolicy(value: AttrVal<string>): IDotIFrame;
-	sandbox(value: AttrVal<string>): IDotIFrame;
+	longDesc?: AttrVal<string>;
+	marginHeight?: AttrVal<number>;
+	marginWidth?: AttrVal<number>;
+	name?: AttrVal<string>;
+	referrerPolicy?: AttrVal<string>;
+	sandbox?: AttrVal<string>;
 	/** @deprecated Deprecated in HTML5. */
-	scrolling(value: AttrVal<string>): IDotIFrame;
-	seamless(value: AttrVal<boolean>): IDotIFrame;
-	src(value: AttrVal<string>): IDotIFrame;
-	srcDoc(value: AttrVal<string>): IDotIFrame;
-	width(value: AttrVal<number>): IDotIFrame;
+	scrolling?: AttrVal<string>;
+	seamless?: AttrVal<boolean>;
+	src?: AttrVal<string>;
+	srcDoc?: AttrVal<string>;
+	width?: AttrVal<number>;
 }
-interface IDotImg extends IDotAttrBuilder<IDotImg>{
-	alt(value: AttrVal<string>): IDotImg;
-	crossOrigin(value: AttrVal<"anonymous">|AttrVal<"use-credentials">): IDotImg;
-	decoding(value: AttrVal<"async">|AttrVal<"auto">|AttrVal<"sync">): IDotImg;
-	height(value: AttrVal<number>): IDotImg;
+interface IDotImg extends IDotGlobalAttrs {
+	alt?: AttrVal<string>;
+	crossOrigin?: AttrVal<"anonymous"> | AttrVal<"use-credentials">;
+	decoding?: AttrVal<"async"> | AttrVal<"auto"> | AttrVal<"sync">;
+	height?: AttrVal<number>;
 	/** @deprecated Deprecated in HTML5. Use CSS. */
-	hSpace(value: AttrVal<unknown>): IDotImg;
-	isMap(value: AttrVal<boolean>): IDotImg;
+	hSpace?: AttrVal<unknown>;
+	isMap?: AttrVal<boolean>;
 	/** @deprecated Deprecated in HTML5. Use CSS. */
-	loading(value: AttrVal<"eager">|AttrVal<"lazy">): IDotImg;
-	longDesc(value: AttrVal<string>): IDotImg;
-	referrerPolicy(value: AttrVal<string>): IDotImg;
-	sizes(value: AttrVal<string>): IDotImg;
-	src(value: AttrVal<string>): IDotImg;
-	srcSet(value: AttrVal<string>): IDotImg; // Comma separated. Consider accepting an array.
-	useMap(value: AttrVal<number>): IDotImg;
-	width(value: AttrVal<number>): IDotImg;
+	loading?: AttrVal<"eager"> | AttrVal<"lazy">;
+	longDesc?: AttrVal<string>;
+	referrerPolicy?: AttrVal<string>;
+	sizes?: AttrVal<string>;
+	src?: AttrVal<string>;
+	srcSet?: AttrVal<string>; // Comma separated. Consider accepting an array.
+	useMap?: AttrVal<number>;
+	width?: AttrVal<number>;
 }
-interface IDotInput extends IDotAttrBuilder<IDotInput>{
-	accept(value: AttrVal<string>): IDotInput;
-	alt(value: AttrVal<string>): IDotInput;
-	autoCapitalize(value: AttrVal<"none">|AttrVal<"sentences">|AttrVal<"words">|AttrVal<"characters">): IDotInput;
-	autoComplete(value: AttrVal<"on">|AttrVal<"off">): IDotInput;
-	autoFocus(value: AttrVal<boolean>): IDotInput;
-	checked(value?: AttrVal<boolean>): IDotInput;
-	enterKeyHint(value: AttrVal<"enter">|AttrVal<"done">|AttrVal<"go">|AttrVal<"next">|AttrVal<"preveous">|AttrVal<"search">|AttrVal<"send">): IDotInput;
-	dirName(value: AttrVal<string>): IDotInput;
-	disabled(value: AttrVal<boolean>): IDotInput;
-	formAction(value: AttrVal<string>): IDotInput;
-	height(value: AttrVal<number>): IDotInput;
-	list(value: AttrVal<string>): IDotInput;
-	max(value: AttrVal<number>): IDotInput;
-	maxLength(value: AttrVal<number>): IDotInput;
-	min(value: AttrVal<number>): IDotInput;
-	multiple(value: AttrVal<boolean>): IDotInput;
-	name(value: AttrVal<string>): IDotInput;
-	pattern(value: AttrVal<string>): IDotInput;
-	placeholder(value: AttrVal<string>): IDotInput;
-	readOnly(value: AttrVal<boolean>): IDotInput;
-	required(value: AttrVal<boolean>): IDotInput;
-	size(value: AttrVal<number>): IDotInput;
-	src(value: AttrVal<string>): IDotInput;
-	step(value: AttrVal<string>|AttrVal<number>): IDotInput;
-	type(value: "button"|"checkbox"|"color"|"date"|"datetime-local"|"email"|"file"|"hidden"|"image"|"month"|"number"|"password"|"radio"|"range"|"reset"|"search"|"submit"|"tel"|"text"|"time"|"url"|"week"): IDotInput;
-	whichForm(value: AttrVal<string>): IDotInput; // form
-	value(value: AttrVal<string>): IDotInput;
-	width(value: AttrVal<number>): IDotInput;
+interface IDotInput extends IDotGlobalAttrs {
+	accept?: AttrVal<string>;
+	alt?: AttrVal<string>;
+	autoCapitalize?: AttrVal<"none"> | AttrVal<"sentences"> | AttrVal<"words"> | AttrVal<"characters">;
+	autoComplete?: AttrVal<"on"> | AttrVal<"off">;
+	autoFocus?: AttrVal<boolean>;
+	checked?: AttrVal<boolean>;
+	enterKeyHint?: AttrVal<"enter"> | AttrVal<"done"> | AttrVal<"go"> | AttrVal<"next"> | AttrVal<"preveous"> | AttrVal<"search"> | AttrVal<"send">;
+	dirName?: AttrVal<string>;
+	disabled?: AttrVal<boolean>;
+	formAction?: AttrVal<string>;
+	height?: AttrVal<number>;
+	list?: AttrVal<string>;
+	max?: AttrVal<number>;
+	maxLength?: AttrVal<number>;
+	min?: AttrVal<number>;
+	multiple?: AttrVal<boolean>;
+	name?: AttrVal<string>;
+	pattern?: AttrVal<string>;
+	placeholder?: AttrVal<string>;
+	readOnly?: AttrVal<boolean>;
+	required?: AttrVal<boolean>;
+	size?: AttrVal<number>;
+	src?: AttrVal<string>;
+	step?: AttrVal<string> | AttrVal<number>;
+	type?: "button" | "checkbox" | "color" | "date" | "datetime-local" | "email" | "file" | "hidden" | "image" | "month" | "number" | "password" | "radio" | "range" | "reset" | "search" | "submit" | "tel" | "text" | "time" | "url" | "week";
+	whichForm?: AttrVal<string>; // form
+	value?: AttrVal<string>;
+	width?: AttrVal<number>;
 
 	// Special functions:
 	// getVal(): string
 	// setVal(value: unknown): IDotInput;
 
 	// Input-specific events:
-	onSearch(callback: (e: Event)=>void): IDotInput;
+	onSearch: (e: Event) => void;
 }
-interface IDotIns extends IDotAttrBuilder<IDotIns>{
-	dateTime(value: AttrVal<string>): IDotIns;
-	quoteCite(value: AttrVal<string>): IDotIns; // alias for cite
-}
-interface IDotKeyGen extends IDotAttrBuilder<IDotKeyGen>{
-	challenge(value: AttrVal<string>): IDotKeyGen;
-	keyType(value: AttrVal<string>): IDotKeyGen;
-}
-interface IDotLabel extends IDotAttrBuilder<IDotLabel>{
-	for(value: AttrVal<string>): IDotLabel;
-}
-interface IDotLi extends IDotAttrBuilder<IDotLi>{
-	value(value: AttrVal<number>): IDotLi;
-}
-interface IDotMap extends IDotAttrBuilder<IDotMap>{
-	name(value: AttrVal<string>): IDotMap;
-}
-interface IDotMenu extends IDotAttrBuilder<IDotMenu>{
-	type(value: AttrVal<string>): IDotMenu;
-}
-interface IDotMeter extends IDotAttrBuilder<IDotMeter>{
-	high(value: AttrVal<number>): IDotMeter;
-	low(value: AttrVal<number>): IDotMeter;
-	max(value: AttrVal<number>): IDotMeter;
-	min(value: AttrVal<number>): IDotMeter;
-	optimum(value: AttrVal<number>): IDotMeter;
-	value(value: AttrVal<number>): IDotMeter;
-}
-interface IDotObject extends IDotAttrBuilder<IDotObject>{
-	archive(value: AttrVal<string>): IDotObject;
-	classId(value: AttrVal<string>): IDotObject;
-	codeBase(value: AttrVal<string>): IDotObject;
-	codeType(value: AttrVal<string>): IDotObject;
-	objectData(value: AttrVal<string>): IDotObject; // alias for data
-	declare(value: AttrVal<boolean>): IDotObject;
-	height(value: AttrVal<number>): IDotObject;
-	name(value: AttrVal<string>): IDotObject;
-	standby(value: AttrVal<string>): IDotObject;
-	type(value: AttrVal<string>): IDotObject;
-	useMap(value: AttrVal<string>): IDotObject;
-	width(value: AttrVal<number>): IDotObject;
-}
-interface IDotOl extends IDotAttrBuilder<IDotOl>{
-	reversed(value: boolean): IDotOl;
-	start(value: number): IDotOl;
-}
-interface IDotOptGroup extends IDotAttrBuilder<IDotOptGroup>{
-	disabled(value: boolean): IDotOptGroup;
-}
-interface IDotOption extends IDotAttrBuilder<IDotOption>{
-	disabled(value: AttrVal<boolean>): IDotOption;
-	optionLabel(value: AttrVal<string>): IDotOption; // alias for label
-	selected(value: AttrVal<boolean>): IDotOption;
-	value(value: AttrVal<string>): IDotOption;
 
-	// Special functions:
-	// getVal(): string;
-	// setVal(value: unknown): IDotOption;
+interface IDotIns extends IDotGlobalAttrs {
+	dateTime?: AttrVal<string>;
+	quoteCite?: AttrVal<string>; // Alias for cite.
 }
-interface IDotOutput extends IDotAttrBuilder<IDotOutput>{
-	for(value: AttrVal<string>): IDotOutput;
-	name(value: AttrVal<string>): IDotOutput;
-	whichForm(value: AttrVal<string>): IDotOutput; // alias for form
+
+interface IDotKeyGen extends IDotGlobalAttrs {
+	challenge?: AttrVal<string>;
+	keyType?: AttrVal<string>;
 }
-interface IDotParam extends IDotAttrBuilder<IDotParam>{
-	name(value: AttrVal<string>): IDotParam;
-	value(value: AttrVal<string>): IDotParam;
+
+interface IDotLabel extends IDotGlobalAttrs {
+	for?: AttrVal<string>;
+}
+
+interface IDotLi extends IDotGlobalAttrs {
+	value?: AttrVal<number>;
+}
+
+interface IDotMap extends IDotGlobalAttrs {
+	name?: AttrVal<string>;
+}
+
+interface IDotMenu extends IDotGlobalAttrs {
+	type?: AttrVal<string>;
+}
+
+interface IDotMeter extends IDotGlobalAttrs {
+	high?: AttrVal<number>;
+	low?: AttrVal<number>;
+	max?: AttrVal<number>;
+	min?: AttrVal<number>;
+	optimum?: AttrVal<number>;
+	value?: AttrVal<number>;
+}
+
+interface IDotObject extends IDotGlobalAttrs {
+	archive?: AttrVal<string>;
+	classId?: AttrVal<string>;
+	codeBase?: AttrVal<string>;
+	codeType?: AttrVal<string>;
+	objectData?: AttrVal<string>; // Alias for data.
+	declare?: AttrVal<boolean>;
+	height?: AttrVal<number>;
+	name?: AttrVal<string>;
+	standby?: AttrVal<string>;
+	type?: AttrVal<string>;
+	useMap?: AttrVal<string>;
+	width?: AttrVal<number>;
+}
+
+interface IDotOl extends IDotGlobalAttrs {
 	/** @deprecated Deprecated in HTML5. */
-	valueType(value: AttrVal<unknown>): IDotParam;
+	reversed?: AttrVal<boolean>;
+	start?: AttrVal<number>;
 }
-interface IDotProgress extends IDotAttrBuilder<IDotProgress>{
-	max(value: AttrVal<number>): IDotProgress;
-	value(value: AttrVal<number>): IDotProgress;
+
+interface IDotOptGroup extends IDotGlobalAttrs {
+	disabled?: AttrVal<boolean>;
 }
-interface IDotQ extends IDotAttrBuilder<IDotQ>{
-	quoteCite(value: AttrVal<string>): IDotQ; // alias for cite
+
+interface IDotOption extends IDotGlobalAttrs {
+	disabled?: AttrVal<boolean>;
+	optionLabel?: AttrVal<string>; // Alias for label
+	selected?: AttrVal<boolean>;
+	value?: AttrVal<string>;
 }
-interface IDotSelect extends IDotAttrBuilder<IDotSelect>{
-	autoFocus(value: AttrVal<boolean>): IDotSelect;
-	disabled(value: AttrVal<boolean>): IDotSelect;
-	multiple(value: AttrVal<boolean>): IDotSelect;
-	name(value: AttrVal<string>): IDotSelect;
-	required(value: AttrVal<boolean>): IDotSelect;
-	size(value: AttrVal<number>): IDotSelect;
-	whichForm(value: AttrVal<string>): IDotSelect; // alias for form
-	value(value: AttrVal<string>); // Pseudo attribute for convenience. 
+
+interface IDotOutput extends IDotGlobalAttrs {
+	for?: AttrVal<string>;
+	name?: AttrVal<string>;
+	whichForm?: AttrVal<string>; // Alias for form
 }
-interface IDotSource extends IDotAttrBuilder<IDotSource>{
-	media(value: AttrVal<string>): IDotSource;
-	src(value: AttrVal<string>): IDotSource;
-	type(value: AttrVal<string>): IDotSource;
-	sizes(value: AttrVal<string>): IDotSource;
-	src(value: AttrVal<string>): IDotSource;
-	srcSet(value: AttrVal<string>): IDotSource;
-	type(value: AttrVal<string>): IDotSource;
-}
-interface IDotTable extends IDotAttrBuilder<IDotTable>{
-	/** @deprecated Deprecated in HTML5. Use CSS. */
-	border(value: AttrVal<string>|AttrVal<number>): IDotTable;
-	/** @deprecated Deprecated in HTML5. Use CSS. */
-	cellPadding(value: AttrVal<string>|AttrVal<number>): IDotTable;
-	/** @deprecated Deprecated in HTML5. Use CSS. */
-	cellSpacing(value: AttrVal<string>|AttrVal<number>): IDotTable;
-	/** @deprecated Deprecated in HTML5. Use CSS. */
-	frame(value: AttrVal<string>|AttrVal<number>): IDotTable;
+
+interface IDotParam extends IDotGlobalAttrs {
+	name?: AttrVal<string>;
+	value?: AttrVal<string>;
 	/** @deprecated Deprecated in HTML5. */
-	height(value: AttrVal<number>): IDotTable;
+	valueType?: AttrVal<unknown>;
+}
+
+interface IDotProgress extends IDotGlobalAttrs {
+	max?: AttrVal<number>;
+	value?: AttrVal<number>;
+}
+
+interface IDotQ extends IDotGlobalAttrs {
+	quoteCite?: AttrVal<string>; // alias for cite
+}
+
+interface IDotSelect extends IDotGlobalAttrs {
+	autoFocus?: AttrVal<boolean>;
+	disabled?: AttrVal<boolean>;
+	multiple?: AttrVal<boolean>;
+	name?: AttrVal<string>;
+	required?: AttrVal<boolean>;
+	size?: AttrVal<number>;
+	whichForm?: AttrVal<string>; // alias for form
+	value?: AttrVal<string>; // Pseudo attribute for convenience. 
+}
+
+interface IDotSource extends IDotGlobalAttrs {
+	media?: AttrVal<string>;
+	src?: AttrVal<string>;
+	type?: AttrVal<string>;
+	sizes?: AttrVal<string>;
+	srcSet?: AttrVal<string>;
+}
+interface IDotTable extends IDotGlobalAttrs {
 	/** @deprecated Deprecated in HTML5. Use CSS. */
-	rules(value: AttrVal<string>): IDotTable;
+	border?: AttrVal<string> | AttrVal<number>; 
+	/** @deprecated Deprecated in HTML5. Use CSS. */
+	cellPadding?: AttrVal<string> | AttrVal<number>; 
+	/** @deprecated Deprecated in HTML5. Use CSS. */
+	cellSpacing?: AttrVal<string> | AttrVal<number>; 
+	/** @deprecated Deprecated in HTML5. Use CSS. */
+	frame?: AttrVal<string> | AttrVal<number>; 
 	/** @deprecated Deprecated in HTML5. */
-	tableSummary(value: AttrVal<string>): IDotTable; // summary
+	height?: AttrVal<number>; 
+	/** @deprecated Deprecated in HTML5. Use CSS. */
+	rules?: AttrVal<string>; 
 	/** @deprecated Deprecated in HTML5. */
-	width(value: AttrVal<number>): IDotTable;
+	tableSummary?: AttrVal<string>; 
+	/** @deprecated Deprecated in HTML5. */
+	width?: AttrVal<number>; 
 }
-interface IDotTextArea extends IDotAttrBuilder<IDotTextArea>{
-	autoCapitalize(value: AttrVal<"none">|AttrVal<"sentences">|AttrVal<"words">|AttrVal<"characters">): IDotTextArea;
-	autoFocus(value: AttrVal<boolean>): IDotTextArea;
-	cols(value: AttrVal<number>): IDotTextArea;
-	dirName(value: AttrVal<string>): IDotTextArea;
-	disabled(value: AttrVal<boolean>): IDotTextArea;
-	enterKeyHint(value: AttrVal<"enter">|AttrVal<"done">|AttrVal<"go">|AttrVal<"next">|AttrVal<"preveous">|AttrVal<"search">|AttrVal<"send">): IDotTextArea;
-	maxLength(value: AttrVal<number>): IDotTextArea;
-	name(value: AttrVal<string>): IDotTextArea;
-	placeholder(value: AttrVal<string>): IDotTextArea;
-	readOnly(value: AttrVal<boolean>): IDotTextArea;
-	required(value: AttrVal<boolean>): IDotTextArea;
-	rows(value: AttrVal<number>): IDotTextArea;
-	whichForm(value: AttrVal<string>): IDotTextArea; // alias for form
-	wrap(value: AttrVal<string>): IDotTextArea;
-	value(value: AttrVal<string>); // Pseudo attribute for convenience. 
+
+interface IDotTextArea extends IDotGlobalAttrs {
+	autoCapitalize?: AttrVal<"none"> | AttrVal<"sentences"> | AttrVal<"words"> | AttrVal<"characters">;
+	autoFocus?: AttrVal<boolean>;
+	cols?: AttrVal<number>;
+	dirName?: AttrVal<string>;
+	disabled?: AttrVal<boolean>;
+	enterKeyHint?: AttrVal<"enter"> | AttrVal<"done"> | AttrVal<"go"> | AttrVal<"next"> | AttrVal<"preveous"> | AttrVal<"search"> | AttrVal<"send">;
+	maxLength?: AttrVal<number>;
+	name?: AttrVal<string>;
+	placeholder?: AttrVal<string>;
+	readOnly?: AttrVal<boolean>;
+	required?: AttrVal<boolean>;
+	rows?: AttrVal<number>;
+	whichForm?: AttrVal<string>; // alias for form
+	wrap?: AttrVal<string>;
+	value?: AttrVal<string>; // Pseudo attribute for convenience. 
 }
-interface IDotTBody extends IDotAttrBuilder<IDotTBody>{
+
+interface IDotTBody extends IDotGlobalAttrs {
 	/** @deprecated Deprecated in HTML5. Use CSS. */
-	charOff(value: AttrVal<unknown>): IDotTBody;
+	charOff?: AttrVal<unknown>;
 	/** @deprecated Deprecated in HTML5. Use CSS. */
-	vAlign(value: AttrVal<unknown>): IDotTBody;
+	vAlign?: AttrVal<unknown>;
 }
-interface IDotTd extends IDotAttrBuilder<IDotTd>{
-	
+
+interface IDotTd extends IDotGlobalAttrs {
+
 	/** @deprecated Deprecated in HTML5. Use CSS. */
-	axis(value: AttrVal<string>): IDotTd;
+	axis?: AttrVal<string>;
 	/** @deprecated Deprecated in HTML5. Use CSS. */
-	char(value: AttrVal<string>): IDotTd;
-	colSpan(value: AttrVal<number>): IDotTd;
+	char?: AttrVal<string>;
+	colSpan?: AttrVal<number>;
 	/** @deprecated Deprecated in HTML5. Use CSS. */
-	charOff(value: AttrVal<string>): IDotTd;
-	headers(value: AttrVal<string>): IDotTd;
+	charOff?: AttrVal<string>;
+	headers?: AttrVal<string>;
 	/** @deprecated Deprecated in HTML5. Use CSS. */
-	noWrap(value: AttrVal<boolean>): IDotTd;
-	rowSpan(value: AttrVal<number>): IDotTd;
-	scope(value: AttrVal<string>): IDotTd;
+	noWrap?: AttrVal<boolean>;
+	rowSpan?: AttrVal<number>;
+	scope?: AttrVal<string>;
 	/** @deprecated Deprecated in HTML5. Use CSS. */
-	vAlign(value: AttrVal<string>): IDotTd;
+	vAlign?: AttrVal<string>;
 }
-interface IDotTFoot extends IDotAttrBuilder<IDotTFoot>{
+
+interface IDotTFoot extends IDotGlobalAttrs {
 	/** @deprecated Deprecated in HTML5. Use CSS. */
-	charOff(value: AttrVal<number>): IDotTFoot;
+	charOff?: AttrVal<number>;
 	/** @deprecated Deprecated in HTML5. Use CSS. */
-	vAlign(value: AttrVal<string>): IDotTFoot;
+	vAlign?: AttrVal<string>;
 }
-interface IDotTime extends IDotAttrBuilder<IDotTime>{
-	dateTime(value: AttrVal<string>): IDotTime;
+
+interface IDotTime extends IDotGlobalAttrs {
+	dateTime?: AttrVal<string>;
 }
-interface IDotTh extends IDotAttrBuilder<IDotTh>{
+
+interface IDotTh extends IDotGlobalAttrs {
 	/** @deprecated Deprecated in HTML5. Use CSS. */
-	axis(value: AttrVal<string>): IDotTh;
-	colSpan(value: AttrVal<number>): IDotTh;
+	axis?: AttrVal<string>;
+	colSpan?: AttrVal<number>;
 	/** @deprecated Deprecated in HTML5. Use CSS. */
-	charOff(value: AttrVal<string>): IDotTh;
-	headers(value: AttrVal<string>): IDotTh;
-	rowSpan(value: AttrVal<number>): IDotTh;
-	scope(value: AttrVal<string>): IDotTh;
+	charOff?: AttrVal<string>;
+	headers?: AttrVal<string>;
+	rowSpan?: AttrVal<number>;
+	scope?: AttrVal<string>;
 	/** @deprecated Deprecated in HTML5. Use CSS. */
-	vAlign(value: AttrVal<string>): IDotTh;
+	vAlign?: AttrVal<string>;
 }
-interface IDotTHead extends IDotAttrBuilder<IDotTHead>{
+
+interface IDotTHead extends IDotGlobalAttrs {
 	/** @deprecated Deprecated in HTML5. Use CSS. */
-	charOff(value: AttrVal<string>|AttrVal<number>): IDotTHead;
+	charOff?: AttrVal<string> | AttrVal<number>;
 	/** @deprecated Deprecated in HTML5. Use CSS. */
-	vAlign(value: AttrVal<string>): IDotTHead;
+	vAlign?: AttrVal<string>;
 }
-interface IDotTr extends IDotAttrBuilder<IDotTr>{
+
+interface IDotTr extends IDotGlobalAttrs {
 	/** @deprecated Deprecated in HTML5. Use CSS. */
-	charOff(value: AttrVal<string>|AttrVal<number>): IDotTr;
+	charOff?: AttrVal<string> | AttrVal<number>;
 	/** @deprecated Deprecated in HTML5. Use CSS. */
-	vAlign(value: AttrVal<string>): IDotTr;
+	vAlign?: AttrVal<string>;
 }
-interface IDotTrack extends IDotAttrBuilder<IDotTrack>{
-	default(value: AttrVal<boolean>): IDotTrack;
-	kind(value: AttrVal<string>): IDotTrack;
-	src(value: AttrVal<string>): IDotTrack;
-	srcLang(value: AttrVal<string>): IDotTrack;
-	trackLabel(value: AttrVal<string>): IDotTrack; // alias for label
+
+interface IDotTrack extends IDotGlobalAttrs {
+	default?: AttrVal<boolean>;
+	kind?: AttrVal<string>;
+	src?: AttrVal<string>;
+	srcLang?: AttrVal<string>;
+	trackLabel?: AttrVal<string>; // alias for label
 
 	// Events:
-	onCueChange(callback: (e: Event)=>void): IDotTrack;
+	onCueChange?: (e: Event) => void;
 }
-interface IDotVideo extends IDotAttrBuilder<IDotVideo>{
-	autoPlay(value: AttrVal<boolean>): IDotVideo;
-	buffered(value: IReactive<unknown>): IDotVideo; // Managed by browser not user. TODO: we can possibly use events to update observable objects.
-	controls(value: AttrVal<boolean>): IDotVideo;
-	crossOrigin(value: AttrVal<"anonymous">|AttrVal<"use-credentials">): IDotVideo;
-	height(value: AttrVal<number>): IDotVideo;
-	loop(value: AttrVal<boolean>): IDotVideo;
-	muted(value: AttrVal<boolean>): IDotVideo;
-	playsInline(value: AttrVal<boolean>): IDotVideo;
-	poster(value: AttrVal<string>): IDotVideo;
-	preload(value: AttrVal<"none">|AttrVal<"metadata">|AttrVal<"auto">): IDotVideo;
-	src(value: AttrVal<string>): IDotVideo;
-	width(value: AttrVal<number>): IDotVideo;
-	
+
+interface IDotVideo extends IDotGlobalAttrs {
+	autoPlay?: AttrVal<boolean>;
+	buffered?: IReactive<unknown>; // Managed by browser not user. TODO: we can possibly use events to update observable objects.
+	controls?: AttrVal<boolean>;
+	crossOrigin?: AttrVal<"anonymous"> | AttrVal<"use-credentials">;
+	height?: AttrVal<number>;
+	loop?: AttrVal<boolean>;
+	muted?: AttrVal<boolean>;
+	playsInline?: AttrVal<boolean>;
+	poster?: AttrVal<string>;
+	preload?: AttrVal<"none"> | AttrVal<"metadata"> | AttrVal<"auto">;
+	src?: AttrVal<string>;
+	width?: AttrVal<number>;
+
 	// Special functions:
 	// TODO:
 	// pause(): IDotVideo;
@@ -969,25 +983,25 @@ interface IDotVideo extends IDotAttrBuilder<IDotVideo>{
 	// stop(): IDotVideo;
 
 	// Events:
-	onAbort(callback: (e: Event)=>void): IDotVideo;
-	onCantPlayThrough(callback: (e: Event)=>void): IDotVideo;
-	onDurationChange(callback: (e: Event)=>void): IDotVideo;
-	onEmptied(callback: (e: Event)=>void): IDotVideo;
-	onEnded(callback: (e: Event)=>void): IDotVideo;
-	onLoadedData(callback: (e: Event)=>void): IDotVideo;
-	onLoadStart(callback: (e: Event)=>void): IDotVideo;
-	onLoadedMetadata(callback: (e: Event)=>void): IDotVideo;
-	onPause(callback: (e: Event)=>void): IDotVideo;
-	onPlay(callback: (e: Event)=>void): IDotVideo;
-	onPlaying(callback: (e: Event)=>void): IDotVideo;
-	onProgress(callback: (e: Event)=>void): IDotVideo;
-	onRateChange(callback: (e: Event)=>void): IDotVideo;
-	onSeeked(callback: (e: Event)=>void): IDotVideo;
-	onSeeking(callback: (e: Event)=>void): IDotVideo;
-	onStalled(callback: (e: Event)=>void): IDotVideo;
-	onSuspend(callback: (e: Event)=>void): IDotVideo;
-	onTimeUpdate(callback: (e: Event)=>void): IDotVideo;
-	onVolumeChange(callback: (e: Event)=>void): IDotVideo;
-	onWaiting(callback: (e: Event)=>void): IDotVideo;
-	onCanPlay(callback: (e: Event)=>void): IDotVideo;
+	onAbort?: (e: Event) => void;
+	onCantPlayThrough?: (e: Event) => void;
+	onDurationChange?: (e: Event) => void;
+	onEmptied?: (e: Event) => void;
+	onEnded?: (e: Event) => void;
+	onLoadedData?: (e: Event) => void;
+	onLoadStart?: (e: Event) => void;
+	onLoadedMetadata?: (e: Event) => void;
+	onPause?: (e: Event) => void;
+	onPlay?: (e: Event) => void;
+	onPlaying?: (e: Event) => void;
+	onProgress?: (e: Event) => void;
+	onRateChange?: (e: Event) => void;
+	onSeeked?: (e: Event) => void;
+	onSeeking?: (e: Event) => void;
+	onStalled?: (e: Event) => void;
+	onSuspend?: (e: Event) => void;
+	onTimeUpdate?: (e: Event) => void;
+	onVolumeChange?: (e: Event) => void;
+	onWaiting?: (e: Event) => void;
+	onCanPlay?: (e: Event) => void;
 }

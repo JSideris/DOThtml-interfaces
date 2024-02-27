@@ -1,5 +1,5 @@
 
-import { IDotDocument, IDotGenericElement } from "./i-dot";
+import { IDotDocument } from "./i-dot";
 import IDotCss from "./i-dot-css";
 
 // export type EventNames<T> = T extends { allowedEvents: infer E } ? E : never;
@@ -31,12 +31,14 @@ export interface FrameworkItems {
 // it might just be better to rethink how stuff gets passed into components.
 export default interface IComponent {
 
+	readonly _?: FrameworkItems;
+
     // Lifecycle hooks
 
 	/**
 	 * A function returning DOThtml (required).
 	 */
-    build(_: FrameworkItems): IDotDocument;
+    build(): IDotDocument;
 
 	/**
 	 * An optional function that is called after builder that stylizes the component using a scoped style builder.

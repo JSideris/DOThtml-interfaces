@@ -346,908 +346,909 @@ interface IDotcssProp{
 
 
 	//color: 
-	color:(value: Color)=>IDotcssProp;
-	backgroundColor:(value: Color)=>IDotcssProp;
-	borderBottomColor:(value: Color)=>IDotcssProp;
-	borderColor:(value: Color)=>IDotcssProp;
-	borderLeftColor:(value: Color)=>IDotcssProp;
-	borderRightColor:(value: Color)=>IDotcssProp;
-	borderTopColor:(value: Color)=>IDotcssProp;
-	textDecorationColor:(value: Color)=>IDotcssProp;
-	outlineColor:(value: Color)=>IDotcssProp;
-	columnRuleColor:(value: Color)=>IDotcssProp;
+	color?: Color;
+	backgroundColor?: Color;
+	borderBottomColor?: Color;
+	borderColor?: Color;
+	borderLeftColor?: Color;
+	borderRightColor?: Color;
+	borderTopColor?: Color;
+	textDecorationColor?: Color;
+	outlineColor?: Color;
+	columnRuleColor?: Color;
 
 	//length:(value: 
-	backgroundSize:(value: BackgroundSizeValues)=>IDotcssProp;
-	backgroundSizeCm:(value: number)=>IDotcssProp;
-	backgroundSizeCh:(value: number)=>IDotcssProp;
-	backgroundSizeEm:(value: number)=>IDotcssProp;
-	backgroundSizeEx:(value: number)=>IDotcssProp;
-	backgroundSizeIn:(value: number)=>IDotcssProp;
-	backgroundSizeMm:(value: number)=>IDotcssProp;
-	backgroundSizeP:(value: number)=>IDotcssProp;
-	backgroundSizePc:(value: number)=>IDotcssProp;
-	backgroundSizePt:(value: number)=>IDotcssProp;
-	backgroundSizePx:(value: number)=>IDotcssProp;
-	backgroundSizeRem:(value: number)=>IDotcssProp;
-	backgroundSizeVh:(value: number)=>IDotcssProp;
-	backgroundSizeVw:(value: number)=>IDotcssProp;
-	backgroundSizeVMax:(value: number)=>IDotcssProp;
-	backgroundSizeVMin:(value: number)=>IDotcssProp;
+	backgroundSize?: BackgroundSizeValues;
+	backgroundSizeCm?: number;
+	backgroundSizeCh?: number;
+	backgroundSizeEm?: number;
+	backgroundSizeEx?: number;
+	backgroundSizeIn?: number;
+	backgroundSizeMm?: number;
+	backgroundSizeP?: number;
+	backgroundSizePc?: number;
+	backgroundSizePt?: number;
+	backgroundSizePx?: number;
+	backgroundSizeRem?: number;
+	backgroundSizeVh?: number;
+	backgroundSizeVw?: number;
+	backgroundSizeVMax?: number;
+	backgroundSizeVMin?: number;
 
-	blockSize:(value: NumericLength)=>IDotcssProp;
-	blockSizeCm:(value: number)=>IDotcssProp;
-	blockSizeCh:(value: number)=>IDotcssProp;
-	blockSizeEm:(value: number)=>IDotcssProp;
-	blockSizeEx:(value: number)=>IDotcssProp;
-	blockSizeIn:(value: number)=>IDotcssProp;
-	blockSizeMm:(value: number)=>IDotcssProp;
-	blockSizeP:(value: number)=>IDotcssProp;
-	blockSizePc:(value: number)=>IDotcssProp;
-	blockSizePt:(value: number)=>IDotcssProp;
-	blockSizePx:(value: number)=>IDotcssProp;
-	blockSizeRem:(value: number)=>IDotcssProp;
-	blockSizeVh:(value: number)=>IDotcssProp;
-	blockSizeVw:(value: number)=>IDotcssProp;
-	blockSizeVMax:(value: number)=>IDotcssProp;
-	blockSizeVMin:(value: number)=>IDotcssProp;
+	blockSize?: NumericLength;
+	blockSizeCm?: number;
+	blockSizeCh?: number;
+	blockSizeEm?: number;
+	blockSizeEx?: number;
+	blockSizeIn?: number;
+	blockSizeMm?: number;
+	blockSizeP?: number;
+	blockSizePc?: number;
+	blockSizePt?: number;
+	blockSizePx?: number;
+	blockSizeRem?: number;
+	blockSizeVh?: number;
+	blockSizeVw?: number;
+	blockSizeVMax?: number;
+	blockSizeVMin?: number;
 
-	borderBottomLeftRadius:(value: NumericLength)=>IDotcssProp;
-	borderBottomLeftRadiusCm:(value: number)=>IDotcssProp;
-	borderBottomLeftRadiusCh:(value: number)=>IDotcssProp;
-	borderBottomLeftRadiusEm:(value: number)=>IDotcssProp;
-	borderBottomLeftRadiusEx:(value: number)=>IDotcssProp;
-	borderBottomLeftRadiusIn:(value: number)=>IDotcssProp;
-	borderBottomLeftRadiusMm:(value: number)=>IDotcssProp;
-	borderBottomLeftRadiusP:(value: number)=>IDotcssProp;
-	borderBottomLeftRadiusPc:(value: number)=>IDotcssProp;
-	borderBottomLeftRadiusPt:(value: number)=>IDotcssProp;
-	borderBottomLeftRadiusPx:(value: number)=>IDotcssProp;
-	borderBottomLeftRadiusRem:(value: number)=>IDotcssProp;
-	borderBottomLeftRadiusVh:(value: number)=>IDotcssProp;
-	borderBottomLeftRadiusVw:(value: number)=>IDotcssProp;
-	borderBottomLeftRadiusVMax:(value: number)=>IDotcssProp;
-	borderBottomLeftRadiusVMin:(value: number)=>IDotcssProp;
+	borderBottomLeftRadius?: NumericLength;
+	borderBottomLeftRadiusCm?: number;
+	borderBottomLeftRadiusCh?: number;
+	borderBottomLeftRadiusEm?: number;
+	borderBottomLeftRadiusEx?: number;
+	borderBottomLeftRadiusIn?: number;
+	borderBottomLeftRadiusMm?: number;
+	borderBottomLeftRadiusP?: number;
+	borderBottomLeftRadiusPc?: number;
+	borderBottomLeftRadiusPt?: number;
+	borderBottomLeftRadiusPx?: number;
+	borderBottomLeftRadiusRem?: number;
+	borderBottomLeftRadiusVh?: number;
+	borderBottomLeftRadiusVw?: number;
+	borderBottomLeftRadiusVMax?: number;
+	borderBottomLeftRadiusVMin?: number;
 
-	borderBottomRightRadius:(value: NumericLength)=>IDotcssProp;
-	borderBottomRightRadiusCm:(value: number)=>IDotcssProp;
-	borderBottomRightRadiusCh:(value: number)=>IDotcssProp;
-	borderBottomRightRadiusEm:(value: number)=>IDotcssProp;
-	borderBottomRightRadiusEx:(value: number)=>IDotcssProp;
-	borderBottomRightRadiusIn:(value: number)=>IDotcssProp;
-	borderBottomRightRadiusMm:(value: number)=>IDotcssProp;
-	borderBottomRightRadiusP:(value: number)=>IDotcssProp;
-	borderBottomRightRadiusPc:(value: number)=>IDotcssProp;
-	borderBottomRightRadiusPt:(value: number)=>IDotcssProp;
-	borderBottomRightRadiusPx:(value: number)=>IDotcssProp;
-	borderBottomRightRadiusRem:(value: number)=>IDotcssProp;
-	borderBottomRightRadiusVh:(value: number)=>IDotcssProp;
-	borderBottomRightRadiusVw:(value: number)=>IDotcssProp;
-	borderBottomRightRadiusVMax:(value: number)=>IDotcssProp;
-	borderBottomRightRadiusVMin:(value: number)=>IDotcssProp;
+	borderBottomRightRadius?: NumericLength;
+	borderBottomRightRadiusCm?: number;
+	borderBottomRightRadiusCh?: number;
+	borderBottomRightRadiusEm?: number;
+	borderBottomRightRadiusEx?: number;
+	borderBottomRightRadiusIn?: number;
+	borderBottomRightRadiusMm?: number;
+	borderBottomRightRadiusP?: number;
+	borderBottomRightRadiusPc?: number;
+	borderBottomRightRadiusPt?: number;
+	borderBottomRightRadiusPx?: number;
+	borderBottomRightRadiusRem?: number;
+	borderBottomRightRadiusVh?: number;
+	borderBottomRightRadiusVw?: number;
+	borderBottomRightRadiusVMax?: number;
+	borderBottomRightRadiusVMin?: number;
 
-	borderBottomWidth:(value: NumericLength)=>IDotcssProp;
-	borderBottomWidthCm:(value: number)=>IDotcssProp;
-	borderBottomWidthCh:(value: number)=>IDotcssProp;
-	borderBottomWidthEm:(value: number)=>IDotcssProp;
-	borderBottomWidthEx:(value: number)=>IDotcssProp;
-	borderBottomWidthIn:(value: number)=>IDotcssProp;
-	borderBottomWidthMm:(value: number)=>IDotcssProp;
-	borderBottomWidthP:(value: number)=>IDotcssProp;
-	borderBottomWidthPc:(value: number)=>IDotcssProp;
-	borderBottomWidthPt:(value: number)=>IDotcssProp;
-	borderBottomWidthPx:(value: number)=>IDotcssProp;
-	borderBottomWidthRem:(value: number)=>IDotcssProp;
-	borderBottomWidthVh:(value: number)=>IDotcssProp;
-	borderBottomWidthVw:(value: number)=>IDotcssProp;
-	borderBottomWidthVMax:(value: number)=>IDotcssProp;
-	borderBottomWidthVMin:(value: number)=>IDotcssProp;
+	borderBottomWidth?: NumericLength;
+	borderBottomWidthCm?: number;
+	borderBottomWidthCh?: number;
+	borderBottomWidthEm?: number;
+	borderBottomWidthEx?: number;
+	borderBottomWidthIn?: number;
+	borderBottomWidthMm?: number;
+	borderBottomWidthP?: number;
+	borderBottomWidthPc?: number;
+	borderBottomWidthPt?: number;
+	borderBottomWidthPx?: number;
+	borderBottomWidthRem?: number;
+	borderBottomWidthVh?: number;
+	borderBottomWidthVw?: number;
+	borderBottomWidthVMax?: number;
+	borderBottomWidthVMin?: number;
 
-	borderImageWidth:(value: NumericLength)=>IDotcssProp;
-	borderImageWidthCm:(value: number)=>IDotcssProp;
-	borderImageWidthCh:(value: number)=>IDotcssProp;
-	borderImageWidthEm:(value: number)=>IDotcssProp;
-	borderImageWidthEx:(value: number)=>IDotcssProp;
-	borderImageWidthIn:(value: number)=>IDotcssProp;
-	borderImageWidthMm:(value: number)=>IDotcssProp;
-	borderImageWidthP:(value: number)=>IDotcssProp;
-	borderImageWidthPc:(value: number)=>IDotcssProp;
-	borderImageWidthPt:(value: number)=>IDotcssProp;
-	borderImageWidthPx:(value: number)=>IDotcssProp;
-	borderImageWidthRem:(value: number)=>IDotcssProp;
-	borderImageWidthVh:(value: number)=>IDotcssProp;
-	borderImageWidthVw:(value: number)=>IDotcssProp;
-	borderImageWidthVMax:(value: number)=>IDotcssProp;
-	borderImageWidthVMin:(value: number)=>IDotcssProp;
+	borderImageWidth?: NumericLength;
+	borderImageWidthCm?: number;
+	borderImageWidthCh?: number;
+	borderImageWidthEm?: number;
+	borderImageWidthEx?: number;
+	borderImageWidthIn?: number;
+	borderImageWidthMm?: number;
+	borderImageWidthP?: number;
+	borderImageWidthPc?: number;
+	borderImageWidthPt?: number;
+	borderImageWidthPx?: number;
+	borderImageWidthRem?: number;
+	borderImageWidthVh?: number;
+	borderImageWidthVw?: number;
+	borderImageWidthVMax?: number;
+	borderImageWidthVMin?: number;
 
-	borderLeftWidth:(value: NumericLength)=>IDotcssProp;
-	borderLeftWidthCm:(value: number)=>IDotcssProp;
-	borderLeftWidthCh:(value: number)=>IDotcssProp;
-	borderLeftWidthEm:(value: number)=>IDotcssProp;
-	borderLeftWidthEx:(value: number)=>IDotcssProp;
-	borderLeftWidthIn:(value: number)=>IDotcssProp;
-	borderLeftWidthMm:(value: number)=>IDotcssProp;
-	borderLeftWidthP:(value: number)=>IDotcssProp;
-	borderLeftWidthPc:(value: number)=>IDotcssProp;
-	borderLeftWidthPt:(value: number)=>IDotcssProp;
-	borderLeftWidthPx:(value: number)=>IDotcssProp;
-	borderLeftWidthRem:(value: number)=>IDotcssProp;
-	borderLeftWidthVh:(value: number)=>IDotcssProp;
-	borderLeftWidthVw:(value: number)=>IDotcssProp;
-	borderLeftWidthVMax:(value: number)=>IDotcssProp;
-	borderLeftWidthVMin:(value: number)=>IDotcssProp;
+	borderLeftWidth?: NumericLength;
+	borderLeftWidthCm?: number;
+	borderLeftWidthCh?: number;
+	borderLeftWidthEm?: number;
+	borderLeftWidthEx?: number;
+	borderLeftWidthIn?: number;
+	borderLeftWidthMm?: number;
+	borderLeftWidthP?: number;
+	borderLeftWidthPc?: number;
+	borderLeftWidthPt?: number;
+	borderLeftWidthPx?: number;
+	borderLeftWidthRem?: number;
+	borderLeftWidthVh?: number;
+	borderLeftWidthVw?: number;
+	borderLeftWidthVMax?: number;
+	borderLeftWidthVMin?: number;
 
-	borderRadius:(value: NumericLength)=>IDotcssProp;
-	borderRadiusCm:(value: number)=>IDotcssProp;
-	borderRadiusCh:(value: number)=>IDotcssProp;
-	borderRadiusEm:(value: number)=>IDotcssProp;
-	borderRadiusEx:(value: number)=>IDotcssProp;
-	borderRadiusIn:(value: number)=>IDotcssProp;
-	borderRadiusMm:(value: number)=>IDotcssProp;
-	borderRadiusP:(value: number)=>IDotcssProp;
-	borderRadiusPc:(value: number)=>IDotcssProp;
-	borderRadiusPt:(value: number)=>IDotcssProp;
-	borderRadiusPx:(value: number)=>IDotcssProp;
-	borderRadiusRem:(value: number)=>IDotcssProp;
-	borderRadiusVh:(value: number)=>IDotcssProp;
-	borderRadiusVw:(value: number)=>IDotcssProp;
-	borderRadiusVMax:(value: number)=>IDotcssProp;
-	borderRadiusVMin:(value: number)=>IDotcssProp;
+	borderRadius?: NumericLength;
+	borderRadiusCm?: number;
+	borderRadiusCh?: number;
+	borderRadiusEm?: number;
+	borderRadiusEx?: number;
+	borderRadiusIn?: number;
+	borderRadiusMm?: number;
+	borderRadiusP?: number;
+	borderRadiusPc?: number;
+	borderRadiusPt?: number;
+	borderRadiusPx?: number;
+	borderRadiusRem?: number;
+	borderRadiusVh?: number;
+	borderRadiusVw?: number;
+	borderRadiusVMax?: number;
+	borderRadiusVMin?: number;
 
-	borderRightWidth:(value: NumericLength)=>IDotcssProp;
-	borderRightWidthCm:(value: number)=>IDotcssProp;
-	borderRightWidthCh:(value: number)=>IDotcssProp;
-	borderRightWidthEm:(value: number)=>IDotcssProp;
-	borderRightWidthEx:(value: number)=>IDotcssProp;
-	borderRightWidthIn:(value: number)=>IDotcssProp;
-	borderRightWidthMm:(value: number)=>IDotcssProp;
-	borderRightWidthP:(value: number)=>IDotcssProp;
-	borderRightWidthPc:(value: number)=>IDotcssProp;
-	borderRightWidthPt:(value: number)=>IDotcssProp;
-	borderRightWidthPx:(value: number)=>IDotcssProp;
-	borderRightWidthRem:(value: number)=>IDotcssProp;
-	borderRightWidthVh:(value: number)=>IDotcssProp;
-	borderRightWidthVw:(value: number)=>IDotcssProp;
-	borderRightWidthVMax:(value: number)=>IDotcssProp;
-	borderRightWidthVMin:(value: number)=>IDotcssProp;
+	borderRightWidth?: NumericLength;
+	borderRightWidthCm?: number;
+	borderRightWidthCh?: number;
+	borderRightWidthEm?: number;
+	borderRightWidthEx?: number;
+	borderRightWidthIn?: number;
+	borderRightWidthMm?: number;
+	borderRightWidthP?: number;
+	borderRightWidthPc?: number;
+	borderRightWidthPt?: number;
+	borderRightWidthPx?: number;
+	borderRightWidthRem?: number;
+	borderRightWidthVh?: number;
+	borderRightWidthVw?: number;
+	borderRightWidthVMax?: number;
+	borderRightWidthVMin?: number;
 
-	borderTopLeftRadius:(value: NumericLength)=>IDotcssProp;
-	borderTopLeftRadiusCm:(value: number)=>IDotcssProp;
-	borderTopLeftRadiusCh:(value: number)=>IDotcssProp;
-	borderTopLeftRadiusEm:(value: number)=>IDotcssProp;
-	borderTopLeftRadiusEx:(value: number)=>IDotcssProp;
-	borderTopLeftRadiusIn:(value: number)=>IDotcssProp;
-	borderTopLeftRadiusMm:(value: number)=>IDotcssProp;
-	borderTopLeftRadiusP:(value: number)=>IDotcssProp;
-	borderTopLeftRadiusPc:(value: number)=>IDotcssProp;
-	borderTopLeftRadiusPt:(value: number)=>IDotcssProp;
-	borderTopLeftRadiusPx:(value: number)=>IDotcssProp;
-	borderTopLeftRadiusRem:(value: number)=>IDotcssProp;
-	borderTopLeftRadiusVh:(value: number)=>IDotcssProp;
-	borderTopLeftRadiusVw:(value: number)=>IDotcssProp;
-	borderTopLeftRadiusVMax:(value: number)=>IDotcssProp;
-	borderTopLeftRadiusVMin:(value: number)=>IDotcssProp;
+	borderTopLeftRadius?: NumericLength;
+	borderTopLeftRadiusCm?: number;
+	borderTopLeftRadiusCh?: number;
+	borderTopLeftRadiusEm?: number;
+	borderTopLeftRadiusEx?: number;
+	borderTopLeftRadiusIn?: number;
+	borderTopLeftRadiusMm?: number;
+	borderTopLeftRadiusP?: number;
+	borderTopLeftRadiusPc?: number;
+	borderTopLeftRadiusPt?: number;
+	borderTopLeftRadiusPx?: number;
+	borderTopLeftRadiusRem?: number;
+	borderTopLeftRadiusVh?: number;
+	borderTopLeftRadiusVw?: number;
+	borderTopLeftRadiusVMax?: number;
+	borderTopLeftRadiusVMin?: number;
 
-	borderTopRightRadius:(value: NumericLength)=>IDotcssProp;
-	borderTopRightRadiusCm:(value: number)=>IDotcssProp;
-	borderTopRightRadiusCh:(value: number)=>IDotcssProp;
-	borderTopRightRadiusEm:(value: number)=>IDotcssProp;
-	borderTopRightRadiusEx:(value: number)=>IDotcssProp;
-	borderTopRightRadiusIn:(value: number)=>IDotcssProp;
-	borderTopRightRadiusMm:(value: number)=>IDotcssProp;
-	borderTopRightRadiusP:(value: number)=>IDotcssProp;
-	borderTopRightRadiusPc:(value: number)=>IDotcssProp;
-	borderTopRightRadiusPt:(value: number)=>IDotcssProp;
-	borderTopRightRadiusPx:(value: number)=>IDotcssProp;
-	borderTopRightRadiusRem:(value: number)=>IDotcssProp;
-	borderTopRightRadiusVh:(value: number)=>IDotcssProp;
-	borderTopRightRadiusVw:(value: number)=>IDotcssProp;
-	borderTopRightRadiusVMax:(value: number)=>IDotcssProp;
-	borderTopRightRadiusVMin:(value: number)=>IDotcssProp;
+	borderTopRightRadius?: NumericLength;
+	borderTopRightRadiusCm?: number;
+	borderTopRightRadiusCh?: number;
+	borderTopRightRadiusEm?: number;
+	borderTopRightRadiusEx?: number;
+	borderTopRightRadiusIn?: number;
+	borderTopRightRadiusMm?: number;
+	borderTopRightRadiusP?: number;
+	borderTopRightRadiusPc?: number;
+	borderTopRightRadiusPt?: number;
+	borderTopRightRadiusPx?: number;
+	borderTopRightRadiusRem?: number;
+	borderTopRightRadiusVh?: number;
+	borderTopRightRadiusVw?: number;
+	borderTopRightRadiusVMax?: number;
+	borderTopRightRadiusVMin?: number;
 
-	borderTopWidth:(value: NumericLength)=>IDotcssProp;
-	borderTopWidthCm:(value: number)=>IDotcssProp;
-	borderTopWidthCh:(value: number)=>IDotcssProp;
-	borderTopWidthEm:(value: number)=>IDotcssProp;
-	borderTopWidthEx:(value: number)=>IDotcssProp;
-	borderTopWidthIn:(value: number)=>IDotcssProp;
-	borderTopWidthMm:(value: number)=>IDotcssProp;
-	borderTopWidthP:(value: number)=>IDotcssProp;
-	borderTopWidthPc:(value: number)=>IDotcssProp;
-	borderTopWidthPt:(value: number)=>IDotcssProp;
-	borderTopWidthPx:(value: number)=>IDotcssProp;
-	borderTopWidthRem:(value: number)=>IDotcssProp;
-	borderTopWidthVh:(value: number)=>IDotcssProp;
-	borderTopWidthVw:(value: number)=>IDotcssProp;
-	borderTopWidthVMax:(value: number)=>IDotcssProp;
-	borderTopWidthVMin:(value: number)=>IDotcssProp;
+	borderTopWidth?: NumericLength;
+	borderTopWidthCm?: number;
+	borderTopWidthCh?: number;
+	borderTopWidthEm?: number;
+	borderTopWidthEx?: number;
+	borderTopWidthIn?: number;
+	borderTopWidthMm?: number;
+	borderTopWidthP?: number;
+	borderTopWidthPc?: number;
+	borderTopWidthPt?: number;
+	borderTopWidthPx?: number;
+	borderTopWidthRem?: number;
+	borderTopWidthVh?: number;
+	borderTopWidthVw?: number;
+	borderTopWidthVMax?: number;
+	borderTopWidthVMin?: number;
 
-	borderWidth:(value: NumericLength)=>IDotcssProp;
-	borderWidthCm:(value: number)=>IDotcssProp;
-	borderWidthCh:(value: number)=>IDotcssProp;
-	borderWidthEm:(value: number)=>IDotcssProp;
-	borderWidthEx:(value: number)=>IDotcssProp;
-	borderWidthIn:(value: number)=>IDotcssProp;
-	borderWidthMm:(value: number)=>IDotcssProp;
-	borderWidthP:(value: number)=>IDotcssProp;
-	borderWidthPc:(value: number)=>IDotcssProp;
-	borderWidthPt:(value: number)=>IDotcssProp;
-	borderWidthPx:(value: number)=>IDotcssProp;
-	borderWidthRem:(value: number)=>IDotcssProp;
-	borderWidthVh:(value: number)=>IDotcssProp;
-	borderWidthVw:(value: number)=>IDotcssProp;
-	borderWidthVMax:(value: number)=>IDotcssProp;
-	borderWidthVMin:(value: number)=>IDotcssProp;
+	borderWidth?: NumericLength;
+	borderWidthCm?: number;
+	borderWidthCh?: number;
+	borderWidthEm?: number;
+	borderWidthEx?: number;
+	borderWidthIn?: number;
+	borderWidthMm?: number;
+	borderWidthP?: number;
+	borderWidthPc?: number;
+	borderWidthPt?: number;
+	borderWidthPx?: number;
+	borderWidthRem?: number;
+	borderWidthVh?: number;
+	borderWidthVw?: number;
+	borderWidthVMax?: number;
+	borderWidthVMin?: number;
 
-	bottom:(value: NumericLengthOrAuto)=>IDotcssProp;
-	bottomCm:(value: number)=>IDotcssProp;
-	bottomCh:(value: number)=>IDotcssProp;
-	bottomEm:(value: number)=>IDotcssProp;
-	bottomEx:(value: number)=>IDotcssProp;
-	bottomIn:(value: number)=>IDotcssProp;
-	bottomMm:(value: number)=>IDotcssProp;
-	bottomP:(value: number)=>IDotcssProp;
-	bottomPc:(value: number)=>IDotcssProp;
-	bottomPt:(value: number)=>IDotcssProp;
-	bottomPx:(value: number)=>IDotcssProp;
-	bottomRem:(value: number)=>IDotcssProp;
-	bottomVh:(value: number)=>IDotcssProp;
-	bottomVw:(value: number)=>IDotcssProp;
-	bottomVMax:(value: number)=>IDotcssProp;
-	bottomVMin:(value: number)=>IDotcssProp;
+	bottom?: NumericLengthOrAuto;
+	bottomCm?: number;
+	bottomCh?: number;
+	bottomEm?: number;
+	bottomEx?: number;
+	bottomIn?: number;
+	bottomMm?: number;
+	bottomP?: number;
+	bottomPc?: number;
+	bottomPt?: number;
+	bottomPx?: number;
+	bottomRem?: number;
+	bottomVh?: number;
+	bottomVw?: number;
+	bottomVMax?: number;
+	bottomVMin?: number;
 
-	gap:(value: NumericLength)=>IDotcssProp;
-	gapCm:(value: number)=>IDotcssProp;
-	gapCh:(value: number)=>IDotcssProp;
-	gapEm:(value: number)=>IDotcssProp;
-	gapEx:(value: number)=>IDotcssProp;
-	gapIn:(value: number)=>IDotcssProp;
-	gapMm:(value: number)=>IDotcssProp;
-	gapP:(value: number)=>IDotcssProp;
-	gapPc:(value: number)=>IDotcssProp;
-	gapPt:(value: number)=>IDotcssProp;
-	gapPx:(value: number)=>IDotcssProp;
-	gapRem:(value: number)=>IDotcssProp;
-	gapVh:(value: number)=>IDotcssProp;
-	gapVw:(value: number)=>IDotcssProp;
-	gapVMax:(value: number)=>IDotcssProp;
-	gapVMin:(value: number)=>IDotcssProp;
+	gap?: NumericLength;
+	gapCm?: number;
+	gapCh?: number;
+	gapEm?: number;
+	gapEx?: number;
+	gapIn?: number;
+	gapMm?: number;
+	gapP?: number;
+	gapPc?: number;
+	gapPt?: number;
+	gapPx?: number;
+	gapRem?: number;
+	gapVh?: number;
+	gapVw?: number;
+	gapVMax?: number;
+	gapVMin?: number;
 
-	height:(value: NumericLengthOrAuto)=>IDotcssProp;
-	heightCm:(value: number)=>IDotcssProp;
-	heightCh:(value: number)=>IDotcssProp;
-	heightEm:(value: number)=>IDotcssProp;
-	heightEx:(value: number)=>IDotcssProp;
-	heightIn:(value: number)=>IDotcssProp;
-	heightMm:(value: number)=>IDotcssProp;
-	heightP:(value: number)=>IDotcssProp;
-	heightPc:(value: number)=>IDotcssProp;
-	heightPt:(value: number)=>IDotcssProp;
-	heightPx:(value: number)=>IDotcssProp;
-	heightRem:(value: number)=>IDotcssProp;
-	heightVh:(value: number)=>IDotcssProp;
-	heightVw:(value: number)=>IDotcssProp;
-	heightVMax:(value: number)=>IDotcssProp;
-	heightVMin:(value: number)=>IDotcssProp;
+	height?: NumericLengthOrAuto;
+	heightCm?: number;
+	heightCh?: number;
+	heightEm?: number;
+	heightEx?: number;
+	heightIn?: number;
+	heightMm?: number;
+	heightP?: number;
+	heightPc?: number;
+	heightPt?: number;
+	heightPx?: number;
+	heightRem?: number;
+	heightVh?: number;
+	heightVw?: number;
+	heightVMax?: number;
+	heightVMin?: number;
 
-	left:(value: NumericLengthOrAuto)=>IDotcssProp;
-	leftCm:(value: number)=>IDotcssProp;
-	leftCh:(value: number)=>IDotcssProp;
-	leftEm:(value: number)=>IDotcssProp;
-	leftEx:(value: number)=>IDotcssProp;
-	leftIn:(value: number)=>IDotcssProp;
-	leftMm:(value: number)=>IDotcssProp;
-	leftP:(value: number)=>IDotcssProp;
-	leftPc:(value: number)=>IDotcssProp;
-	leftPt:(value: number)=>IDotcssProp;
-	leftPx:(value: number)=>IDotcssProp;
-	leftRem:(value: number)=>IDotcssProp;
-	leftVh:(value: number)=>IDotcssProp;
-	leftVw:(value: number)=>IDotcssProp;
-	leftVMax:(value: number)=>IDotcssProp;
-	leftVMin:(value: number)=>IDotcssProp;
+	left?: NumericLengthOrAuto;
+	leftCm?: number;
+	leftCh?: number;
+	leftEm?: number;
+	leftEx?: number;
+	leftIn?: number;
+	leftMm?: number;
+	leftP?: number;
+	leftPc?: number;
+	leftPt?: number;
+	leftPx?: number;
+	leftRem?: number;
+	leftVh?: number;
+	leftVw?: number;
+	leftVMax?: number;
+	leftVMin?: number;
 
-	margin:(value: NumericLengthOrAuto)=>IDotcssProp;
-	marginCm:(value: number)=>IDotcssProp;
-	marginCh:(value: number)=>IDotcssProp;
-	marginEm:(value: number)=>IDotcssProp;
-	marginEx:(value: number)=>IDotcssProp;
-	marginIn:(value: number)=>IDotcssProp;
-	marginMm:(value: number)=>IDotcssProp;
-	marginP:(value: number)=>IDotcssProp;
-	marginPc:(value: number)=>IDotcssProp;
-	marginPt:(value: number)=>IDotcssProp;
-	marginPx:(value: number)=>IDotcssProp;
-	marginRem:(value: number)=>IDotcssProp;
-	marginVh:(value: number)=>IDotcssProp;
-	marginVw:(value: number)=>IDotcssProp;
-	marginVMax:(value: number)=>IDotcssProp;
-	marginVMin:(value: number)=>IDotcssProp;
+	margin?: NumericLengthOrAuto;
+	marginCm?: number;
+	marginCh?: number;
+	marginEm?: number;
+	marginEx?: number;
+	marginIn?: number;
+	marginMm?: number;
+	marginP?: number;
+	marginPc?: number;
+	marginPt?: number;
+	marginPx?: number;
+	marginRem?: number;
+	marginVh?: number;
+	marginVw?: number;
+	marginVMax?: number;
+	marginVMin?: number;
 
-	marginBottom:(value: NumericLengthOrAuto)=>IDotcssProp;
-	marginBottomCm:(value: number)=>IDotcssProp;
-	marginBottomCh:(value: number)=>IDotcssProp;
-	marginBottomEm:(value: number)=>IDotcssProp;
-	marginBottomEx:(value: number)=>IDotcssProp;
-	marginBottomIn:(value: number)=>IDotcssProp;
-	marginBottomMm:(value: number)=>IDotcssProp;
-	marginBottomP:(value: number)=>IDotcssProp;
-	marginBottomPc:(value: number)=>IDotcssProp;
-	marginBottomPt:(value: number)=>IDotcssProp;
-	marginBottomPx:(value: number)=>IDotcssProp;
-	marginBottomRem:(value: number)=>IDotcssProp;
-	marginBottomVh:(value: number)=>IDotcssProp;
-	marginBottomVw:(value: number)=>IDotcssProp;
-	marginBottomVMax:(value: number)=>IDotcssProp;
-	marginBottomVMin:(value: number)=>IDotcssProp;
+	marginBottom?: NumericLengthOrAuto;
+	marginBottomCm?: number;
+	marginBottomCh?: number;
+	marginBottomEm?: number;
+	marginBottomEx?: number;
+	marginBottomIn?: number;
+	marginBottomMm?: number;
+	marginBottomP?: number;
+	marginBottomPc?: number;
+	marginBottomPt?: number;
+	marginBottomPx?: number;
+	marginBottomRem?: number;
+	marginBottomVh?: number;
+	marginBottomVw?: number;
+	marginBottomVMax?: number;
+	marginBottomVMin?: number;
 
-	marginLeft:(value: NumericLengthOrAuto)=>IDotcssProp;
-	marginLeftCm:(value: number)=>IDotcssProp;
-	marginLeftCh:(value: number)=>IDotcssProp;
-	marginLeftEm:(value: number)=>IDotcssProp;
-	marginLeftEx:(value: number)=>IDotcssProp;
-	marginLeftIn:(value: number)=>IDotcssProp;
-	marginLeftMm:(value: number)=>IDotcssProp;
-	marginLeftP:(value: number)=>IDotcssProp;
-	marginLeftPc:(value: number)=>IDotcssProp;
-	marginLeftPt:(value: number)=>IDotcssProp;
-	marginLeftPx:(value: number)=>IDotcssProp;
-	marginLeftRem:(value: number)=>IDotcssProp;
-	marginLeftVh:(value: number)=>IDotcssProp;
-	marginLeftVw:(value: number)=>IDotcssProp;
-	marginLeftVMax:(value: number)=>IDotcssProp;
-	marginLeftVMin:(value: number)=>IDotcssProp;
+	marginLeft?: NumericLengthOrAuto;
+	marginLeftCm?: number;
+	marginLeftCh?: number;
+	marginLeftEm?: number;
+	marginLeftEx?: number;
+	marginLeftIn?: number;
+	marginLeftMm?: number;
+	marginLeftP?: number;
+	marginLeftPc?: number;
+	marginLeftPt?: number;
+	marginLeftPx?: number;
+	marginLeftRem?: number;
+	marginLeftVh?: number;
+	marginLeftVw?: number;
+	marginLeftVMax?: number;
+	marginLeftVMin?: number;
 
-	marginRight:(value: NumericLengthOrAuto)=>IDotcssProp;
-	marginRightCm:(value: number)=>IDotcssProp;
-	marginRightCh:(value: number)=>IDotcssProp;
-	marginRightEm:(value: number)=>IDotcssProp;
-	marginRightEx:(value: number)=>IDotcssProp;
-	marginRightIn:(value: number)=>IDotcssProp;
-	marginRightMm:(value: number)=>IDotcssProp;
-	marginRightP:(value: number)=>IDotcssProp;
-	marginRightPc:(value: number)=>IDotcssProp;
-	marginRightPt:(value: number)=>IDotcssProp;
-	marginRightPx:(value: number)=>IDotcssProp;
-	marginRightRem:(value: number)=>IDotcssProp;
-	marginRightVh:(value: number)=>IDotcssProp;
-	marginRightVw:(value: number)=>IDotcssProp;
-	marginRightVMax:(value: number)=>IDotcssProp;
-	marginRightVMin:(value: number)=>IDotcssProp;
+	marginRight?: NumericLengthOrAuto;
+	marginRightCm?: number;
+	marginRightCh?: number;
+	marginRightEm?: number;
+	marginRightEx?: number;
+	marginRightIn?: number;
+	marginRightMm?: number;
+	marginRightP?: number;
+	marginRightPc?: number;
+	marginRightPt?: number;
+	marginRightPx?: number;
+	marginRightRem?: number;
+	marginRightVh?: number;
+	marginRightVw?: number;
+	marginRightVMax?: number;
+	marginRightVMin?: number;
 
-	marginTop:(value: NumericLengthOrAuto)=>IDotcssProp;
-	marginTopCm:(value: number)=>IDotcssProp;
-	marginTopCh:(value: number)=>IDotcssProp;
-	marginTopEm:(value: number)=>IDotcssProp;
-	marginTopEx:(value: number)=>IDotcssProp;
-	marginTopIn:(value: number)=>IDotcssProp;
-	marginTopMm:(value: number)=>IDotcssProp;
-	marginTopP:(value: number)=>IDotcssProp;
-	marginTopPc:(value: number)=>IDotcssProp;
-	marginTopPt:(value: number)=>IDotcssProp;
-	marginTopPx:(value: number)=>IDotcssProp;
-	marginTopRem:(value: number)=>IDotcssProp;
-	marginTopVh:(value: number)=>IDotcssProp;
-	marginTopVw:(value: number)=>IDotcssProp;
-	marginTopVMax:(value: number)=>IDotcssProp;
-	marginTopVMin:(value: number)=>IDotcssProp;
+	marginTop?: NumericLengthOrAuto;
+	marginTopCm?: number;
+	marginTopCh?: number;
+	marginTopEm?: number;
+	marginTopEx?: number;
+	marginTopIn?: number;
+	marginTopMm?: number;
+	marginTopP?: number;
+	marginTopPc?: number;
+	marginTopPt?: number;
+	marginTopPx?: number;
+	marginTopRem?: number;
+	marginTopVh?: number;
+	marginTopVw?: number;
+	marginTopVMax?: number;
+	marginTopVMin?: number;
 
-	maxHeight:(value: NumericLengthOrAuto)=>IDotcssProp;
-	maxHeightCm:(value: number)=>IDotcssProp;
-	maxHeightCh:(value: number)=>IDotcssProp;
-	maxHeightEm:(value: number)=>IDotcssProp;
-	maxHeightEx:(value: number)=>IDotcssProp;
-	maxHeightIn:(value: number)=>IDotcssProp;
-	maxHeightMm:(value: number)=>IDotcssProp;
-	maxHeightP:(value: number)=>IDotcssProp;
-	maxHeightPc:(value: number)=>IDotcssProp;
-	maxHeightPt:(value: number)=>IDotcssProp;
-	maxHeightPx:(value: number)=>IDotcssProp;
-	maxHeightRem:(value: number)=>IDotcssProp;
-	maxHeightVh:(value: number)=>IDotcssProp;
-	maxHeightVw:(value: number)=>IDotcssProp;
-	maxHeightVMax:(value: number)=>IDotcssProp;
-	maxHeightVMin:(value: number)=>IDotcssProp;
+	maxHeight?: NumericLengthOrAuto;
+	maxHeightCm?: number;
+	maxHeightCh?: number;
+	maxHeightEm?: number;
+	maxHeightEx?: number;
+	maxHeightIn?: number;
+	maxHeightMm?: number;
+	maxHeightP?: number;
+	maxHeightPc?: number;
+	maxHeightPt?: number;
+	maxHeightPx?: number;
+	maxHeightRem?: number;
+	maxHeightVh?: number;
+	maxHeightVw?: number;
+	maxHeightVMax?: number;
+	maxHeightVMin?: number;
 
-	maxWidth:(value: NumericLengthOrAuto)=>IDotcssProp;
-	maxWidthCm:(value: number)=>IDotcssProp;
-	maxWidthCh:(value: number)=>IDotcssProp;
-	maxWidthEm:(value: number)=>IDotcssProp;
-	maxWidthEx:(value: number)=>IDotcssProp;
-	maxWidthIn:(value: number)=>IDotcssProp;
-	maxWidthMm:(value: number)=>IDotcssProp;
-	maxWidthP:(value: number)=>IDotcssProp;
-	maxWidthPc:(value: number)=>IDotcssProp;
-	maxWidthPt:(value: number)=>IDotcssProp;
-	maxWidthPx:(value: number)=>IDotcssProp;
-	maxWidthRem:(value: number)=>IDotcssProp;
-	maxWidthVh:(value: number)=>IDotcssProp;
-	maxWidthVw:(value: number)=>IDotcssProp;
-	maxWidthVMax:(value: number)=>IDotcssProp;
-	maxWidthVMin:(value: number)=>IDotcssProp;
+	maxWidth?: NumericLengthOrAuto;
+	maxWidthCm?: number;
+	maxWidthCh?: number;
+	maxWidthEm?: number;
+	maxWidthEx?: number;
+	maxWidthIn?: number;
+	maxWidthMm?: number;
+	maxWidthP?: number;
+	maxWidthPc?: number;
+	maxWidthPt?: number;
+	maxWidthPx?: number;
+	maxWidthRem?: number;
+	maxWidthVh?: number;
+	maxWidthVw?: number;
+	maxWidthVMax?: number;
+	maxWidthVMin?: number;
 
-	minHeight:(value: NumericLengthOrAuto)=>IDotcssProp;
-	minHeightCm:(value: number)=>IDotcssProp;
-	minHeightCh:(value: number)=>IDotcssProp;
-	minHeightEm:(value: number)=>IDotcssProp;
-	minHeightEx:(value: number)=>IDotcssProp;
-	minHeightIn:(value: number)=>IDotcssProp;
-	minHeightMm:(value: number)=>IDotcssProp;
-	minHeightP:(value: number)=>IDotcssProp;
-	minHeightPc:(value: number)=>IDotcssProp;
-	minHeightPt:(value: number)=>IDotcssProp;
-	minHeightPx:(value: number)=>IDotcssProp;
-	minHeightRem:(value: number)=>IDotcssProp;
-	minHeightVh:(value: number)=>IDotcssProp;
-	minHeightVw:(value: number)=>IDotcssProp;
-	minHeightVMax:(value: number)=>IDotcssProp;
-	minHeightVMin:(value: number)=>IDotcssProp;
+	minHeight?: NumericLengthOrAuto;
+	minHeightCm?: number;
+	minHeightCh?: number;
+	minHeightEm?: number;
+	minHeightEx?: number;
+	minHeightIn?: number;
+	minHeightMm?: number;
+	minHeightP?: number;
+	minHeightPc?: number;
+	minHeightPt?: number;
+	minHeightPx?: number;
+	minHeightRem?: number;
+	minHeightVh?: number;
+	minHeightVw?: number;
+	minHeightVMax?: number;
+	minHeightVMin?: number;
 
-	minWidth:(value: NumericLengthOrAuto)=>IDotcssProp;
-	minWidthCm:(value: number)=>IDotcssProp;
-	minWidthCh:(value: number)=>IDotcssProp;
-	minWidthEm:(value: number)=>IDotcssProp;
-	minWidthEx:(value: number)=>IDotcssProp;
-	minWidthIn:(value: number)=>IDotcssProp;
-	minWidthMm:(value: number)=>IDotcssProp;
-	minWidthP:(value: number)=>IDotcssProp;
-	minWidthPc:(value: number)=>IDotcssProp;
-	minWidthPt:(value: number)=>IDotcssProp;
-	minWidthPx:(value: number)=>IDotcssProp;
-	minWidthRem:(value: number)=>IDotcssProp;
-	minWidthVh:(value: number)=>IDotcssProp;
-	minWidthVw:(value: number)=>IDotcssProp;
-	minWidthVMax:(value: number)=>IDotcssProp;
-	minWidthVMin:(value: number)=>IDotcssProp;
+	minWidth?: NumericLengthOrAuto;
+	minWidthCm?: number;
+	minWidthCh?: number;
+	minWidthEm?: number;
+	minWidthEx?: number;
+	minWidthIn?: number;
+	minWidthMm?: number;
+	minWidthP?: number;
+	minWidthPc?: number;
+	minWidthPt?: number;
+	minWidthPx?: number;
+	minWidthRem?: number;
+	minWidthVh?: number;
+	minWidthVw?: number;
+	minWidthVMax?: number;
+	minWidthVMin?: number;
 
-	outlineOffset:(value: NumericLength)=>IDotcssProp;
-	outlineOffsetCm:(value: number)=>IDotcssProp;
-	outlineOffsetCh:(value: number)=>IDotcssProp;
-	outlineOffsetEm:(value: number)=>IDotcssProp;
-	outlineOffsetEx:(value: number)=>IDotcssProp;
-	outlineOffsetIn:(value: number)=>IDotcssProp;
-	outlineOffsetMm:(value: number)=>IDotcssProp;
-	outlineOffsetP:(value: number)=>IDotcssProp;
-	outlineOffsetPc:(value: number)=>IDotcssProp;
-	outlineOffsetPt:(value: number)=>IDotcssProp;
-	outlineOffsetPx:(value: number)=>IDotcssProp;
-	outlineOffsetRem:(value: number)=>IDotcssProp;
-	outlineOffsetVh:(value: number)=>IDotcssProp;
-	outlineOffsetVw:(value: number)=>IDotcssProp;
-	outlineOffsetVMax:(value: number)=>IDotcssProp;
-	outlineOffsetVMin:(value: number)=>IDotcssProp;
+	outlineOffset?: NumericLength;
+	outlineOffsetCm?: number;
+	outlineOffsetCh?: number;
+	outlineOffsetEm?: number;
+	outlineOffsetEx?: number;
+	outlineOffsetIn?: number;
+	outlineOffsetMm?: number;
+	outlineOffsetP?: number;
+	outlineOffsetPc?: number;
+	outlineOffsetPt?: number;
+	outlineOffsetPx?: number;
+	outlineOffsetRem?: number;
+	outlineOffsetVh?: number;
+	outlineOffsetVw?: number;
+	outlineOffsetVMax?: number;
+	outlineOffsetVMin?: number;
 
-	padding:(value: NumericLengthOrAuto)=>IDotcssProp;
-	paddingCm:(value: number)=>IDotcssProp;
-	paddingCh:(value: number)=>IDotcssProp;
-	paddingEm:(value: number)=>IDotcssProp;
-	paddingEx:(value: number)=>IDotcssProp;
-	paddingIn:(value: number)=>IDotcssProp;
-	paddingMm:(value: number)=>IDotcssProp;
-	paddingP:(value: number)=>IDotcssProp;
-	paddingPc:(value: number)=>IDotcssProp;
-	paddingPt:(value: number)=>IDotcssProp;
-	paddingPx:(value: number)=>IDotcssProp;
-	paddingRem:(value: number)=>IDotcssProp;
-	paddingVh:(value: number)=>IDotcssProp;
-	paddingVw:(value: number)=>IDotcssProp;
-	paddingVMax:(value: number)=>IDotcssProp;
-	paddingVMin:(value: number)=>IDotcssProp;
+	padding?: NumericLengthOrAuto;
+	paddingCm?: number;
+	paddingCh?: number;
+	paddingEm?: number;
+	paddingEx?: number;
+	paddingIn?: number;
+	paddingMm?: number;
+	paddingP?: number;
+	paddingPc?: number;
+	paddingPt?: number;
+	paddingPx?: number;
+	paddingRem?: number;
+	paddingVh?: number;
+	paddingVw?: number;
+	paddingVMax?: number;
+	paddingVMin?: number;
 
-	paddingBottom:(value: NumericLengthOrAuto)=>IDotcssProp;
-	paddingBottomCm:(value: number)=>IDotcssProp;
-	paddingBottomCh:(value: number)=>IDotcssProp;
-	paddingBottomEm:(value: number)=>IDotcssProp;
-	paddingBottomEx:(value: number)=>IDotcssProp;
-	paddingBottomIn:(value: number)=>IDotcssProp;
-	paddingBottomMm:(value: number)=>IDotcssProp;
-	paddingBottomP:(value: number)=>IDotcssProp;
-	paddingBottomPc:(value: number)=>IDotcssProp;
-	paddingBottomPt:(value: number)=>IDotcssProp;
-	paddingBottomPx:(value: number)=>IDotcssProp;
-	paddingBottomRem:(value: number)=>IDotcssProp;
-	paddingBottomVh:(value: number)=>IDotcssProp;
-	paddingBottomVw:(value: number)=>IDotcssProp;
-	paddingBottomVMax:(value: number)=>IDotcssProp;
-	paddingBottomVMin:(value: number)=>IDotcssProp;
+	paddingBottom?: NumericLengthOrAuto;
+	paddingBottomCm?: number;
+	paddingBottomCh?: number;
+	paddingBottomEm?: number;
+	paddingBottomEx?: number;
+	paddingBottomIn?: number;
+	paddingBottomMm?: number;
+	paddingBottomP?: number;
+	paddingBottomPc?: number;
+	paddingBottomPt?: number;
+	paddingBottomPx?: number;
+	paddingBottomRem?: number;
+	paddingBottomVh?: number;
+	paddingBottomVw?: number;
+	paddingBottomVMax?: number;
+	paddingBottomVMin?: number;
 
-	paddingLeft:(value: NumericLengthOrAuto)=>IDotcssProp;
-	paddingLeftCm:(value: number)=>IDotcssProp;
-	paddingLeftCh:(value: number)=>IDotcssProp;
-	paddingLeftEm:(value: number)=>IDotcssProp;
-	paddingLeftEx:(value: number)=>IDotcssProp;
-	paddingLeftIn:(value: number)=>IDotcssProp;
-	paddingLeftMm:(value: number)=>IDotcssProp;
-	paddingLeftP:(value: number)=>IDotcssProp;
-	paddingLeftPc:(value: number)=>IDotcssProp;
-	paddingLeftPt:(value: number)=>IDotcssProp;
-	paddingLeftPx:(value: number)=>IDotcssProp;
-	paddingLeftRem:(value: number)=>IDotcssProp;
-	paddingLeftVh:(value: number)=>IDotcssProp;
-	paddingLeftVw:(value: number)=>IDotcssProp;
-	paddingLeftVMax:(value: number)=>IDotcssProp;
-	paddingLeftVMin:(value: number)=>IDotcssProp;
+	paddingLeft?: NumericLengthOrAuto;
+	paddingLeftCm?: number;
+	paddingLeftCh?: number;
+	paddingLeftEm?: number;
+	paddingLeftEx?: number;
+	paddingLeftIn?: number;
+	paddingLeftMm?: number;
+	paddingLeftP?: number;
+	paddingLeftPc?: number;
+	paddingLeftPt?: number;
+	paddingLeftPx?: number;
+	paddingLeftRem?: number;
+	paddingLeftVh?: number;
+	paddingLeftVw?: number;
+	paddingLeftVMax?: number;
+	paddingLeftVMin?: number;
 
-	paddingRight:(value: NumericLengthOrAuto)=>IDotcssProp;
-	paddingRightCm:(value: number)=>IDotcssProp;
-	paddingRightCh:(value: number)=>IDotcssProp;
-	paddingRightEm:(value: number)=>IDotcssProp;
-	paddingRightEx:(value: number)=>IDotcssProp;
-	paddingRightIn:(value: number)=>IDotcssProp;
-	paddingRightMm:(value: number)=>IDotcssProp;
-	paddingRightP:(value: number)=>IDotcssProp;
-	paddingRightPc:(value: number)=>IDotcssProp;
-	paddingRightPt:(value: number)=>IDotcssProp;
-	paddingRightPx:(value: number)=>IDotcssProp;
-	paddingRightRem:(value: number)=>IDotcssProp;
-	paddingRightVh:(value: number)=>IDotcssProp;
-	paddingRightVw:(value: number)=>IDotcssProp;
-	paddingRightVMax:(value: number)=>IDotcssProp;
-	paddingRightVMin:(value: number)=>IDotcssProp;
+	paddingRight?: NumericLengthOrAuto;
+	paddingRightCm?: number;
+	paddingRightCh?: number;
+	paddingRightEm?: number;
+	paddingRightEx?: number;
+	paddingRightIn?: number;
+	paddingRightMm?: number;
+	paddingRightP?: number;
+	paddingRightPc?: number;
+	paddingRightPt?: number;
+	paddingRightPx?: number;
+	paddingRightRem?: number;
+	paddingRightVh?: number;
+	paddingRightVw?: number;
+	paddingRightVMax?: number;
+	paddingRightVMin?: number;
 
-	paddingTop:(value: NumericLengthOrAuto)=>IDotcssProp;
-	paddingTopCm:(value: number)=>IDotcssProp;
-	paddingTopCh:(value: number)=>IDotcssProp;
-	paddingTopEm:(value: number)=>IDotcssProp;
-	paddingTopEx:(value: number)=>IDotcssProp;
-	paddingTopIn:(value: number)=>IDotcssProp;
-	paddingTopMm:(value: number)=>IDotcssProp;
-	paddingTopP:(value: number)=>IDotcssProp;
-	paddingTopPc:(value: number)=>IDotcssProp;
-	paddingTopPt:(value: number)=>IDotcssProp;
-	paddingTopPx:(value: number)=>IDotcssProp;
-	paddingTopRem:(value: number)=>IDotcssProp;
-	paddingTopVh:(value: number)=>IDotcssProp;
-	paddingTopVw:(value: number)=>IDotcssProp;
-	paddingTopVMax:(value: number)=>IDotcssProp;
-	paddingTopVMin:(value: number)=>IDotcssProp;
+	paddingTop?: NumericLengthOrAuto;
+	paddingTopCm?: number;
+	paddingTopCh?: number;
+	paddingTopEm?: number;
+	paddingTopEx?: number;
+	paddingTopIn?: number;
+	paddingTopMm?: number;
+	paddingTopP?: number;
+	paddingTopPc?: number;
+	paddingTopPt?: number;
+	paddingTopPx?: number;
+	paddingTopRem?: number;
+	paddingTopVh?: number;
+	paddingTopVw?: number;
+	paddingTopVMax?: number;
+	paddingTopVMin?: number;
 
-	right:(value: NumericLengthOrAuto)=>IDotcssProp;
-	rightCm:(value: number)=>IDotcssProp;
-	rightCh:(value: number)=>IDotcssProp;
-	rightEm:(value: number)=>IDotcssProp;
-	rightEx:(value: number)=>IDotcssProp;
-	rightIn:(value: number)=>IDotcssProp;
-	rightMm:(value: number)=>IDotcssProp;
-	rightP:(value: number)=>IDotcssProp;
-	rightPc:(value: number)=>IDotcssProp;
-	rightPt:(value: number)=>IDotcssProp;
-	rightPx:(value: number)=>IDotcssProp;
-	rightRem:(value: number)=>IDotcssProp;
-	rightVh:(value: number)=>IDotcssProp;
-	rightVw:(value: number)=>IDotcssProp;
-	rightVMax:(value: number)=>IDotcssProp;
-	rightVMin:(value: number)=>IDotcssProp;
+	right?: NumericLengthOrAuto;
+	rightCm?: number;
+	rightCh?: number;
+	rightEm?: number;
+	rightEx?: number;
+	rightIn?: number;
+	rightMm?: number;
+	rightP?: number;
+	rightPc?: number;
+	rightPt?: number;
+	rightPx?: number;
+	rightRem?: number;
+	rightVh?: number;
+	rightVw?: number;
+	rightVMax?: number;
+	rightVMin?: number;
 
-	textIndent:(value: NumericLengthOrAuto)=>IDotcssProp;
-	textIndentCm:(value: number)=>IDotcssProp;
-	textIndentCh:(value: number)=>IDotcssProp;
-	textIndentEm:(value: number)=>IDotcssProp;
-	textIndentEx:(value: number)=>IDotcssProp;
-	textIndentIn:(value: number)=>IDotcssProp;
-	textIndentMm:(value: number)=>IDotcssProp;
-	textIndentP:(value: number)=>IDotcssProp;
-	textIndentPc:(value: number)=>IDotcssProp;
-	textIndentPt:(value: number)=>IDotcssProp;
-	textIndentPx:(value: number)=>IDotcssProp;
-	textIndentRem:(value: number)=>IDotcssProp;
-	textIndentVh:(value: number)=>IDotcssProp;
-	textIndentVw:(value: number)=>IDotcssProp;
-	textIndentVMax:(value: number)=>IDotcssProp;
-	textIndentVMin:(value: number)=>IDotcssProp;
+	textIndent?: NumericLengthOrAuto;
+	textIndentCm?: number;
+	textIndentCh?: number;
+	textIndentEm?: number;
+	textIndentEx?: number;
+	textIndentIn?: number;
+	textIndentMm?: number;
+	textIndentP?: number;
+	textIndentPc?: number;
+	textIndentPt?: number;
+	textIndentPx?: number;
+	textIndentRem?: number;
+	textIndentVh?: number;
+	textIndentVw?: number;
+	textIndentVMax?: number;
+	textIndentVMin?: number;
 
-	top:(value: NumericLengthOrAuto)=>IDotcssProp;
-	topCm:(value: number)=>IDotcssProp;
-	topCh:(value: number)=>IDotcssProp;
-	topEm:(value: number)=>IDotcssProp;
-	topEx:(value: number)=>IDotcssProp;
-	topIn:(value: number)=>IDotcssProp;
-	topMm:(value: number)=>IDotcssProp;
-	topP:(value: number)=>IDotcssProp;
-	topPc:(value: number)=>IDotcssProp;
-	topPt:(value: number)=>IDotcssProp;
-	topPx:(value: number)=>IDotcssProp;
-	topRem:(value: number)=>IDotcssProp;
-	topVh:(value: number)=>IDotcssProp;
-	topVw:(value: number)=>IDotcssProp;
-	topVMax:(value: number)=>IDotcssProp;
-	topVMin:(value: number)=>IDotcssProp;
+	top?: NumericLengthOrAuto;
+	topCm?: number;
+	topCh?: number;
+	topEm?: number;
+	topEx?: number;
+	topIn?: number;
+	topMm?: number;
+	topP?: number;
+	topPc?: number;
+	topPt?: number;
+	topPx?: number;
+	topRem?: number;
+	topVh?: number;
+	topVw?: number;
+	topVMax?: number;
+	topVMin?: number;
 
-	width:(value: NumericLengthOrAuto)=>IDotcssProp;
-	widthCm:(value: number)=>IDotcssProp;
-	widthCh:(value: number)=>IDotcssProp;
-	widthEm:(value: number)=>IDotcssProp;
-	widthEx:(value: number)=>IDotcssProp;
-	widthIn:(value: number)=>IDotcssProp;
-	widthMm:(value: number)=>IDotcssProp;
-	widthP:(value: number)=>IDotcssProp;
-	widthPc:(value: number)=>IDotcssProp;
-	widthPt:(value: number)=>IDotcssProp;
-	widthPx:(value: number)=>IDotcssProp;
-	widthRem:(value: number)=>IDotcssProp;
-	widthVh:(value: number)=>IDotcssProp;
-	widthVw:(value: number)=>IDotcssProp;
-	widthVMax:(value: number)=>IDotcssProp;
-	widthVMin:(value: number)=>IDotcssProp;
+	width?: NumericLengthOrAuto;
+	widthCm?: number;
+	widthCh?: number;
+	widthEm?: number;
+	widthEx?: number;
+	widthIn?: number;
+	widthMm?: number;
+	widthP?: number;
+	widthPc?: number;
+	widthPt?: number;
+	widthPx?: number;
+	widthRem?: number;
+	widthVh?: number;
+	widthVw?: number;
+	widthVMax?: number;
+	widthVMin?: number;
 
-	lineHeight:(value: NumericLength)=>IDotcssProp;
-	lineHeightCm:(value: number)=>IDotcssProp;
-	lineHeightCh:(value: number)=>IDotcssProp;
-	lineHeightEm:(value: number)=>IDotcssProp;
-	lineHeightEx:(value: number)=>IDotcssProp;
-	lineHeightIn:(value: number)=>IDotcssProp;
-	lineHeightMm:(value: number)=>IDotcssProp;
-	lineHeightP:(value: number)=>IDotcssProp;
-	lineHeightPc:(value: number)=>IDotcssProp;
-	lineHeightPt:(value: number)=>IDotcssProp;
-	lineHeightPx:(value: number)=>IDotcssProp;
-	lineHeightRem:(value: number)=>IDotcssProp;
-	lineHeightVh:(value: number)=>IDotcssProp;
-	lineHeightVw:(value: number)=>IDotcssProp;
-	lineHeightVMax:(value: number)=>IDotcssProp;
-	lineHeightVMin:(value: number)=>IDotcssProp;
+	lineHeight?: NumericLength;
+	lineHeightCm?: number;
+	lineHeightCh?: number;
+	lineHeightEm?: number;
+	lineHeightEx?: number;
+	lineHeightIn?: number;
+	lineHeightMm?: number;
+	lineHeightP?: number;
+	lineHeightPc?: number;
+	lineHeightPt?: number;
+	lineHeightPx?: number;
+	lineHeightRem?: number;
+	lineHeightVh?: number;
+	lineHeightVw?: number;
+	lineHeightVMax?: number;
+	lineHeightVMin?: number;
 
-	fontSize:(value: NumericLength)=>IDotcssProp;
-	fontSizeCm:(value: number)=>IDotcssProp;
-	fontSizeCh:(value: number)=>IDotcssProp;
-	fontSizeEm:(value: number)=>IDotcssProp;
-	fontSizeEx:(value: number)=>IDotcssProp;
-	fontSizeIn:(value: number)=>IDotcssProp;
-	fontSizeMm:(value: number)=>IDotcssProp;
-	fontSizeP:(value: number)=>IDotcssProp;
-	fontSizePc:(value: number)=>IDotcssProp;
-	fontSizePt:(value: number)=>IDotcssProp;
-	fontSizePx:(value: number)=>IDotcssProp;
-	fontSizeRem:(value: number)=>IDotcssProp;
-	fontSizeVh:(value: number)=>IDotcssProp;
-	fontSizeVw:(value: number)=>IDotcssProp;
-	fontSizeVMax:(value: number)=>IDotcssProp;
-	fontSizeVMin:(value: number)=>IDotcssProp;
+	fontSize?: NumericLength;
+	fontSizeCm?: number;
+	fontSizeCh?: number;
+	fontSizeEm?: number;
+	fontSizeEx?: number;
+	fontSizeIn?: number;
+	fontSizeMm?: number;
+	fontSizeP?: number;
+	fontSizePc?: number;
+	fontSizePt?: number;
+	fontSizePx?: number;
+	fontSizeRem?: number;
+	fontSizeVh?: number;
+	fontSizeVw?: number;
+	fontSizeVMax?: number;
+	fontSizeVMin?: number;
 
-	flexBasis:(value: NumericLengthOrAuto)=>IDotcssProp;
-	flexBasisCm:(value: number)=>IDotcssProp;
-	flexBasisCh:(value: number)=>IDotcssProp;
-	flexBasisEm:(value: number)=>IDotcssProp;
-	flexBasisEx:(value: number)=>IDotcssProp;
-	flexBasisIn:(value: number)=>IDotcssProp;
-	flexBasisMm:(value: number)=>IDotcssProp;
-	flexBasisP:(value: number)=>IDotcssProp;
-	flexBasisPc:(value: number)=>IDotcssProp;
-	flexBasisPt:(value: number)=>IDotcssProp;
-	flexBasisPx:(value: number)=>IDotcssProp;
-	flexBasisRem:(value: number)=>IDotcssProp;
-	flexBasisVh:(value: number)=>IDotcssProp;
-	flexBasisVw:(value: number)=>IDotcssProp;
-	flexBasisVMax:(value: number)=>IDotcssProp;
-	flexBasisVMin:(value: number)=>IDotcssProp;
+	flexBasis?: NumericLengthOrAuto;
+	flexBasisCm?: number;
+	flexBasisCh?: number;
+	flexBasisEm?: number;
+	flexBasisEx?: number;
+	flexBasisIn?: number;
+	flexBasisMm?: number;
+	flexBasisP?: number;
+	flexBasisPc?: number;
+	flexBasisPt?: number;
+	flexBasisPx?: number;
+	flexBasisRem?: number;
+	flexBasisVh?: number;
+	flexBasisVw?: number;
+	flexBasisVMax?: number;
+	flexBasisVMin?: number;
 	
-	//url: 
-	backgroundImage: (value: BackgroundImageFormat)=>IDotcssProp;
-	borderImage: (value: BackgroundImageFormat)=>IDotcssProp;
-	listStyleImage: (value: BackgroundImageFormat)=>IDotcssProp;
-	content: (value: BasicCommonValues|Url)=>IDotcssProp;
+	//url?: 
+	backgroundImage?: BackgroundImageFormat;
+	borderImage?: BackgroundImageFormat;
+	listStyleImage?: BackgroundImageFormat;
+	content?: BasicCommonValues|Url;
 
-	//complex: 
-	transform: (transformOrTransformBuilder: BasicCommonValues|TransformationBuilder)=>IDotcssProp;
-	filter: (filterBuilder: FilterBuilder)=>IDotcssProp;
-	backdropFilter: (filterBuilder: FilterBuilder)=>IDotcssProp;
+	//complex?: 
+	transform?: BasicCommonValues|TransformationBuilder;
+	filter?: FilterBuilder;
+	backdropFilter?: FilterBuilder;
 	
 	//misc numeric: 
-	opacity: number|string;
+	opacity?: number|string;
 
-	//misc: 
-	all: (value: BasicCommonValues)=>IDotcssProp;
-	appearance: (value: AppearanceValues)=>IDotcssProp;
-	aspectRatio: (value: string)=>IDotcssProp; // TODO: better typing on this. Low priority.
+	//misc?: 
+	all?: BasicCommonValues;
+	appearance?: AppearanceValues;
+	aspectRatio?: string; // TODO?: better typing on this. Low priority.
 
-	background: (value: BasicCommonValues|string)=>IDotcssProp
-	backgroundAttachment: (value: BackgroundAttachmentValues)=>IDotcssProp
-	backgroundBlendMode: (value: BasicCommonValues|string)=>IDotcssProp
-	backgroundPosition: (value: BackgroundPositionShorthand2D)=>IDotcssProp
-	backgroundRepeat: (value: BackgroundRepeatValues2d)=>IDotcssProp
-	backgroundClip: (value: BasicCommonValues|string)=>IDotcssProp
-	backgroundOrigin: (value: BackgroundOriginValues)=>IDotcssProp
+	background?: BasicCommonValues|string;
+	backgroundAttachment?: BackgroundAttachmentValues;
+	backgroundBlendMode?: BasicCommonValues|string;
+	backgroundPosition?: BackgroundPositionShorthand2D;
+	backgroundRepeat?: BackgroundRepeatValues2d;
+	backgroundClip?: BasicCommonValues|string;
+	backgroundOrigin?: BackgroundOriginValues;
 
-	borderImageOutset: (value: BasicCommonValues|string)=>IDotcssProp
-	borderImageRepeat: (value: BackgroundRepeatValues2d)=>IDotcssProp
-	borderImageSlice: (value: BasicCommonValues|string)=>IDotcssProp
-	borderImageSource: (value: BasicCommonValues|string)=>IDotcssProp
+	borderImageOutset?: BasicCommonValues|string;
+	borderImageRepeat?: BackgroundRepeatValues2d;
+	borderImageSlice?: BasicCommonValues|string;
+	borderImageSource?: BasicCommonValues|string;
 	
-	border: (value: BorderShorthand)=>IDotcssProp
-	borderBottom: (value: BorderShorthand)=>IDotcssProp
-	borderLeft: (value: BorderShorthand)=>IDotcssProp
-	borderRight: (value: BorderShorthand)=>IDotcssProp
-	borderTop: (value: BorderShorthand)=>IDotcssProp
+	border?: BorderShorthand;
+	borderBottom?: BorderShorthand;
+	borderLeft?: BorderShorthand;
+	borderRight?: BorderShorthand;
+	borderTop?: BorderShorthand;
 
-	borderBottomStyle: (value: BorderStyles)=>IDotcssProp
-	borderLeftStyle: (value: BorderStyles)=>IDotcssProp
-	borderRightStyle: (value: BorderStyles)=>IDotcssProp
-	borderStyle: (value: BorderStyles)=>IDotcssProp
-	borderTopStyle: (value: BorderStyles)=>IDotcssProp
+	borderBottomStyle?: BorderStyles;
+	borderLeftStyle?: BorderStyles;
+	borderRightStyle?: BorderStyles;
+	borderStyle?: BorderStyles;
+	borderTopStyle?: BorderStyles;
 
-	boxDecorationBreak: (value: BasicCommonValues|string)=>IDotcssProp
-	boxShadow: (value: BasicCommonValues|string)=>IDotcssProp
-	clear: (value: BasicCommonValues|string)=>IDotcssProp
-	clip: (value: BasicCommonValues|string)=>IDotcssProp
-	display: (value: DisplayValues)=>IDotcssProp
-	float: (value: BasicCommonValues|string)=>IDotcssProp
-	overflow: (value: BasicCommonValues|string)=>IDotcssProp
-	box: (value: BasicCommonValues|string)=>IDotcssProp
-	overflowX: (value: BasicCommonValues|string)=>IDotcssProp
-	overflowY: (value: BasicCommonValues|string)=>IDotcssProp
-	position: (value: PositionNames)=>IDotcssProp
-	visibility: (value: BasicCommonValues|string)=>IDotcssProp
-	verticalAlign: (value: BasicCommonValues|string)=>IDotcssProp
-	zIndex: (value: string|number)=>IDotcssProp
-	alignContent: (value: BasicCommonValues|string)=>IDotcssProp
-	alignItems: (value: BasicCommonValues|string)=>IDotcssProp
-	alignSelf: (value: BasicCommonValues|string)=>IDotcssProp
-	flex: (value: FlexShorthand)=>IDotcssProp
-	// flexBasis: (value: FlexBasisNames)=>IDotcssProp
-	flexDirection: (value: FlexDirectionNames)=>IDotcssProp
-	flexFlow: (value: FlexFlowShorthand)=>IDotcssProp
-	flexGrow: (value: BasicCommonValues|number)=>IDotcssProp
-	flexShrink: (value: BasicCommonValues|number)=>IDotcssProp
-	flexWrap: (value: FlexWrapNames)=>IDotcssProp
-	grid: (value: BasicCommonValues|string)=>IDotcssProp
-	gridArea: (value: BasicCommonValues|string)=>IDotcssProp
-	gridAutoColumns: (value: BasicCommonValues|string)=>IDotcssProp
-	gridautoRows: (value: BasicCommonValues|string)=>IDotcssProp
-	gridColumn: (value: BasicCommonValues|string)=>IDotcssProp
-	gridColumnEnd: (value: BasicCommonValues|string)=>IDotcssProp
-	gridColumnGap: (value: BasicCommonValues|string)=>IDotcssProp
-	gridColumnStart: (value: BasicCommonValues|string)=>IDotcssProp
-	gridGap: (value: BasicCommonValues|string)=>IDotcssProp
-	gridRow: (value: BasicCommonValues|string)=>IDotcssProp
-	gridRowEnd: (value: BasicCommonValues|string)=>IDotcssProp
-	gridRowGap: (value: BasicCommonValues|string)=>IDotcssProp
-	gridRowStart: (value: BasicCommonValues|string)=>IDotcssProp
-	gridTemplate: (value: BasicCommonValues|string)=>IDotcssProp
-	gridTemplateAreas: (value: BasicCommonValues|string)=>IDotcssProp
-	gridTemplateColumns: (value: BasicCommonValues|string)=>IDotcssProp
-	gridTemplateRows: (value: BasicCommonValues|string)=>IDotcssProp
-	imageOrientation: (value: BasicCommonValues|string)=>IDotcssProp
-	justifyContent: (value: BasicCommonValues|string)=>IDotcssProp
-	order: (value: BasicCommonValues|number)=>IDotcssProp
-	hangingPunctuation: (value: BasicCommonValues|string)=>IDotcssProp
-	hyphens: (value: BasicCommonValues|string)=>IDotcssProp
-	letterSpacing: (value: BasicCommonValues|string)=>IDotcssProp
-	lineBreak: (value: BasicCommonValues|string)=>IDotcssProp
-	overflowWrap: (value: BasicCommonValues|string)=>IDotcssProp
-	tabSize: (value: BasicCommonValues|string)=>IDotcssProp
-	textAlign: (value: BasicCommonValues|string)=>IDotcssProp
-	textAlignLast: (value: BasicCommonValues|string)=>IDotcssProp
-	textCombineUpright: (value: BasicCommonValues|string)=>IDotcssProp
-	textJustify: (value: BasicCommonValues|string)=>IDotcssProp
-	textTransform: (value: BasicCommonValues|string)=>IDotcssProp
-	whiteSpace: (value: BasicCommonValues|string)=>IDotcssProp
-	wordBreak: (value: BasicCommonValues|string)=>IDotcssProp
-	wordSpacing: (value: BasicCommonValues|string)=>IDotcssProp
-	wordWrap: (value: BasicCommonValues|string)=>IDotcssProp
-	textDecoration: (value: BasicCommonValues|string)=>IDotcssProp
-	textDecorationLine: (value: BasicCommonValues|string)=>IDotcssProp
-	textDecorationStyle: (value: BasicCommonValues|string)=>IDotcssProp
-	textShadow: (value: BasicCommonValues|string)=>IDotcssProp
-	textUnderlinePosition: (value: BasicCommonValues|string)=>IDotcssProp
-	font: (value: BasicCommonValues|string)=>IDotcssProp
-	fontFamily: (value: BasicCommonValues|string)=>IDotcssProp
-	fontFeatureSettings: (value: BasicCommonValues|string)=>IDotcssProp
-	fontKerning: (value: BasicCommonValues|string)=>IDotcssProp
-	fontLanguageOverride: (value: BasicCommonValues|string)=>IDotcssProp
-	fontSizeAdjust: (value: BasicCommonValues|string)=>IDotcssProp
-	fontStretch: (value: BasicCommonValues|string)=>IDotcssProp
-	fontStyle: (value: FontStyleValues)=>IDotcssProp
-	fontSynthesis: (value: BasicCommonValues|string)=>IDotcssProp
-	fontVariant: (value: FontVariantValues)=>IDotcssProp
-	fontVariantAlternates: (value: BasicCommonValues|string)=>IDotcssProp
-	fontVariantCaps: (value: FontVariantCapsValues)=>IDotcssProp
-	fontVariantEastAsian: (value: BasicCommonValues|string)=>IDotcssProp
-	fontVariantLigatures: (value: BasicCommonValues|string)=>IDotcssProp
-	fontVariantNumeric: (value: BasicCommonValues|string)=>IDotcssProp
-	fontVariantPosition: (value: BasicCommonValues|string)=>IDotcssProp
-	fontWeight: (value: BasicCommonValues|string)=>IDotcssProp
-	direction: (value: DirectionValues)=>IDotcssProp
-	textOrientation: (value: BasicCommonValues|string)=>IDotcssProp
-	unicodeBidi: (value: BasicCommonValues|string)=>IDotcssProp
-	userSelect: (value: BasicCommonValues|string)=>IDotcssProp
-	writingMode: (value: BasicCommonValues|string)=>IDotcssProp
-	borderCollapse: (value: BasicCommonValues|string)=>IDotcssProp
-	borderSpacing: (value: BasicCommonValues|string)=>IDotcssProp
-	captionSide: (value: BasicCommonValues|string)=>IDotcssProp
-	emptyCells: (value: BasicCommonValues|string)=>IDotcssProp
-	tableLayout: (value: BasicCommonValues|string)=>IDotcssProp
-	counterIncrement: (value: BasicCommonValues|string)=>IDotcssProp
-	counterReset: (value: BasicCommonValues|string)=>IDotcssProp
-	listStyle: (value: BasicCommonValues|string)=>IDotcssProp
-	listStylePosition: (value: BasicCommonValues|string)=>IDotcssProp
-	listStyleType: (value: BasicCommonValues|string)=>IDotcssProp
-	animation: (value: BasicCommonValues|string)=>IDotcssProp
-	animationDelay: (value: BasicCommonValues|string)=>IDotcssProp
-	animationDirection: (value: BasicCommonValues|string)=>IDotcssProp
-	animationDuration: (value: BasicCommonValues|string)=>IDotcssProp
-	animationFillMode: (value: BasicCommonValues|string)=>IDotcssProp
-	animationIterationCount: (value: BasicCommonValues|string)=>IDotcssProp
-	animationName: (value: BasicCommonValues|string)=>IDotcssProp
-	animationPlayState: (value: BasicCommonValues|string)=>IDotcssProp
-	animationTimingFunction: (value: BasicCommonValues|string)=>IDotcssProp
-	backfaceVisibility: (value: BackfaceVisibilityValues)=>IDotcssProp
-	perspective2d: (value: BasicCommonValues|string)=>IDotcssProp
-	perspectiveOrigin: (value: BasicCommonValues|string)=>IDotcssProp
-	transformOrigin: (value: BasicCommonValues|string)=>IDotcssProp
-	transformStyle: (value: BasicCommonValues|string)=>IDotcssProp
-	transition: (value: BasicCommonValues|string)=>IDotcssProp
-	transitionProperty: (value: BasicCommonValues|string)=>IDotcssProp
-	transitionDuration: (value: BasicCommonValues|string)=>IDotcssProp
-	transitionTimingFunction: (value: BasicCommonValues|string)=>IDotcssProp
-	transitionDelay: (value: BasicCommonValues|string)=>IDotcssProp
-	boxSizing: (value: BasicCommonValues|string)=>IDotcssProp
-	cursor: (value: BasicCommonValues|string)=>IDotcssProp
-	imeMode: (value: BasicCommonValues|string)=>IDotcssProp
-	navDown: (value: BasicCommonValues|string)=>IDotcssProp
-	navIndex: (value: BasicCommonValues|string)=>IDotcssProp
-	navLeft: (value: BasicCommonValues|string)=>IDotcssProp
-	navRight: (value: BasicCommonValues|string)=>IDotcssProp
-	navUp: (value: BasicCommonValues|string)=>IDotcssProp
-	outline: (value: BorderShorthand)=>IDotcssProp
-	//outlineOffset: (value: BasicCommonValues|string)=>IDotcssProp // Now animated.
-	outlineStyle: (value: BorderStyles)=>IDotcssProp
-	outlineWidth: (value: OutlineWidthValues)=>IDotcssProp
-	resize: (value: BasicCommonValues|string)=>IDotcssProp
-	textOverflow: (value: BasicCommonValues|string)=>IDotcssProp
-	breakAfter: (value: BasicCommonValues|string)=>IDotcssProp
-	breakBefore: (value: BasicCommonValues|string)=>IDotcssProp
-	breakInside: (value: BasicCommonValues|string)=>IDotcssProp
-	columnCount: (value: BasicCommonValues|string)=>IDotcssProp
-	columnFill: (value: BasicCommonValues|string)=>IDotcssProp
-	columnGap: (value: BasicCommonValues|string)=>IDotcssProp
-	columnRule: (value: BasicCommonValues|string)=>IDotcssProp
-	columnRuleStyle: (value: BasicCommonValues|string)=>IDotcssProp
-	columnRuleWidth: (value: BasicCommonValues|string)=>IDotcssProp
-	columnSpan: (value: BasicCommonValues|string)=>IDotcssProp
-	columnWidth: (value: BasicCommonValues|string)=>IDotcssProp
-	columns: (value: BasicCommonValues|string)=>IDotcssProp
-	widows: (value: BasicCommonValues|string)=>IDotcssProp
-	orphans: (value: BasicCommonValues|string)=>IDotcssProp
-	pageBreakAfter: (value: BasicCommonValues|string)=>IDotcssProp
-	pageBreakBefore: (value: BasicCommonValues|string)=>IDotcssProp
-	pageBreakInside: (value: BasicCommonValues|string)=>IDotcssProp
-	marks: (value: BasicCommonValues|string)=>IDotcssProp
-	quotes: (value: BasicCommonValues|string)=>IDotcssProp
-	imageRendering: (value: BasicCommonValues|string)=>IDotcssProp
-	imageResolution: (value: BasicCommonValues|string)=>IDotcssProp
-	objectFit: (value: BasicCommonValues|string)=>IDotcssProp
-	objectPosition: (value: BasicCommonValues|string)=>IDotcssProp
-	mask: (value: BasicCommonValues|string)=>IDotcssProp
-	maskType: (value: BasicCommonValues|string)=>IDotcssProp
-	mark: (value: BasicCommonValues|string)=>IDotcssProp
-	markAfter: (value: BasicCommonValues|string)=>IDotcssProp
-	markBefore: (value: BasicCommonValues|string)=>IDotcssProp
-	phonemes: (value: BasicCommonValues|string)=>IDotcssProp
-	rest: (value: BasicCommonValues|string)=>IDotcssProp
-	restAfter: (value: BasicCommonValues|string)=>IDotcssProp
-	restBefore: (value: BasicCommonValues|string)=>IDotcssProp
-	voiceBalance: (value: BasicCommonValues|string)=>IDotcssProp
-	voiceDuration: (value: BasicCommonValues|string)=>IDotcssProp
-	voicePitch: (value: BasicCommonValues|string)=>IDotcssProp
-	voicePitchRange: (value: BasicCommonValues|string)=>IDotcssProp
-	voiceRate: (value: BasicCommonValues|string)=>IDotcssProp
-	voiceStress: (value: BasicCommonValues|string)=>IDotcssProp
-	voiceVolume: (value: BasicCommonValues|string)=>IDotcssProp
-	marqueeDirection: (value: BasicCommonValues|string)=>IDotcssProp
-	marqueePlayCount: (value: BasicCommonValues|string)=>IDotcssProp
-	marqueeSpeed: (value: BasicCommonValues|string)=>IDotcssProp
-	marqueeStyle: (value: BasicCommonValues|string)=>IDotcssProp
-	pointerEvents: (value: BasicCommonValues|string)=>IDotcssProp
+	boxDecorationBreak?: BasicCommonValues|string;
+	boxShadow?: BasicCommonValues|string;
+	clear?: BasicCommonValues|string;
+	clip?: BasicCommonValues|string;
+	display?: DisplayValues;
+	float?: BasicCommonValues|string;
+	overflow?: BasicCommonValues|string;
+	box?: BasicCommonValues|string;
+	overflowX?: BasicCommonValues|string;
+	overflowY?: BasicCommonValues|string;
+	position?: PositionNames;
+	visibility?: BasicCommonValues|string;
+	verticalAlign?: BasicCommonValues|string;
+	zIndex?: string|number;
+	alignContent?: BasicCommonValues|string;
+	alignItems?: BasicCommonValues|string;
+	alignSelf?: BasicCommonValues|string;
+	flex?: FlexShorthand;
+	// flexBasis?: FlexBasisNames;
+	flexDirection?: FlexDirectionNames;
+	flexFlow?: FlexFlowShorthand;
+	flexGrow?: BasicCommonValues|number;
+	flexShrink?: BasicCommonValues|number;
+	flexWrap?: FlexWrapNames;
+	grid?: BasicCommonValues|string;
+	gridArea?: BasicCommonValues|string;
+	gridAutoColumns?: BasicCommonValues|string;
+	gridautoRows?: BasicCommonValues|string;
+	gridColumn?: BasicCommonValues|string;
+	gridColumnEnd?: BasicCommonValues|string;
+	gridColumnGap?: BasicCommonValues|string;
+	gridColumnStart?: BasicCommonValues|string;
+	gridGap?: BasicCommonValues|string;
+	gridRow?: BasicCommonValues|string;
+	gridRowEnd?: BasicCommonValues|string;
+	gridRowGap?: BasicCommonValues|string;
+	gridRowStart?: BasicCommonValues|string;
+	gridTemplate?: BasicCommonValues|string;
+	gridTemplateAreas?: BasicCommonValues|string;
+	gridTemplateColumns?: BasicCommonValues|string;
+	gridTemplateRows?: BasicCommonValues|string;
+	imageOrientation?: BasicCommonValues|string;
+	justifyContent?: BasicCommonValues|string;
+	order?: BasicCommonValues|number;
+	hangingPunctuation?: BasicCommonValues|string;
+	hyphens?: BasicCommonValues|string;
+	letterSpacing?: BasicCommonValues|string;
+	lineBreak?: BasicCommonValues|string;
+	overflowWrap?: BasicCommonValues|string;
+	tabSize?: BasicCommonValues|string;
+	textAlign?: BasicCommonValues|string;
+	textAlignLast?: BasicCommonValues|string;
+	textCombineUpright?: BasicCommonValues|string;
+	textJustify?: BasicCommonValues|string;
+	textTransform?: BasicCommonValues|string;
+	whiteSpace?: BasicCommonValues|string;
+	wordBreak?: BasicCommonValues|string;
+	wordSpacing?: BasicCommonValues|string;
+	wordWrap?: BasicCommonValues|string;
+	textDecoration?: BasicCommonValues|string;
+	textDecorationLine?: BasicCommonValues|string;
+	textDecorationStyle?: BasicCommonValues|string;
+	textShadow?: BasicCommonValues|string;
+	textUnderlinePosition?: BasicCommonValues|string;
+	font?: BasicCommonValues|string;
+	fontFamily?: BasicCommonValues|string;
+	fontFeatureSettings?: BasicCommonValues|string;
+	fontKerning?: BasicCommonValues|string;
+	fontLanguageOverride?: BasicCommonValues|string;
+	fontSizeAdjust?: BasicCommonValues|string;
+	fontStretch?: BasicCommonValues|string;
+	fontStyle?: FontStyleValues;
+	fontSynthesis?: BasicCommonValues|string;
+	fontVariant?: FontVariantValues;
+	fontVariantAlternates?: BasicCommonValues|string;
+	fontVariantCaps?: FontVariantCapsValues;
+	fontVariantEastAsian?: BasicCommonValues|string;
+	fontVariantLigatures?: BasicCommonValues|string;
+	fontVariantNumeric?: BasicCommonValues|string;
+	fontVariantPosition?: BasicCommonValues|string;
+	fontWeight?: BasicCommonValues|string;
+	direction?: DirectionValues;
+	textOrientation?: BasicCommonValues|string;
+	unicodeBidi?: BasicCommonValues|string;
+	userSelect?: BasicCommonValues|string;
+	writingMode?: BasicCommonValues|string;
+	borderCollapse?: BasicCommonValues|string;
+	borderSpacing?: BasicCommonValues|string;
+	captionSide?: BasicCommonValues|string;
+	emptyCells?: BasicCommonValues|string;
+	tableLayout?: BasicCommonValues|string;
+	counterIncrement?: BasicCommonValues|string;
+	counterReset?: BasicCommonValues|string;
+	listStyle?: BasicCommonValues|string;
+	listStylePosition?: BasicCommonValues|string;
+	listStyleType?: BasicCommonValues|string;
+	animation?: BasicCommonValues|string;
+	animationDelay?: BasicCommonValues|string;
+	animationDirection?: BasicCommonValues|string;
+	animationDuration?: BasicCommonValues|string;
+	animationFillMode?: BasicCommonValues|string;
+	animationIterationCount?: BasicCommonValues|string;
+	animationName?: BasicCommonValues|string;
+	animationPlayState?: BasicCommonValues|string;
+	animationTimingFunction?: BasicCommonValues|string;
+	backfaceVisibility?: BackfaceVisibilityValues;
+	perspective2d?: BasicCommonValues|string;
+	perspectiveOrigin?: BasicCommonValues|string;
+	transformOrigin?: BasicCommonValues|string;
+	transformStyle?: BasicCommonValues|string;
+	transition?: BasicCommonValues|string;
+	transitionProperty?: BasicCommonValues|string;
+	transitionDuration?: BasicCommonValues|string;
+	transitionTimingFunction?: BasicCommonValues|string;
+	transitionDelay?: BasicCommonValues|string;
+	boxSizing?: BasicCommonValues|string;
+	cursor?: BasicCommonValues|string;
+	imeMode?: BasicCommonValues|string;
+	navDown?: BasicCommonValues|string;
+	navIndex?: BasicCommonValues|string;
+	navLeft?: BasicCommonValues|string;
+	navRight?: BasicCommonValues|string;
+	navUp?: BasicCommonValues|string;
+	outline?: BorderShorthand;
+	//outlineOffset?: BasicCommonValues|string; // Now animated.
+	outlineStyle?: BorderStyles;
+	outlineWidth?: OutlineWidthValues;
+	resize?: BasicCommonValues|string;
+	textOverflow?: BasicCommonValues|string;
+	breakAfter?: BasicCommonValues|string;
+	breakBefore?: BasicCommonValues|string;
+	breakInside?: BasicCommonValues|string;
+	columnCount?: BasicCommonValues|string;
+	columnFill?: BasicCommonValues|string;
+	columnGap?: BasicCommonValues|string;
+	columnRule?: BasicCommonValues|string;
+	columnRuleStyle?: BasicCommonValues|string;
+	columnRuleWidth?: BasicCommonValues|string;
+	columnSpan?: BasicCommonValues|string;
+	columnWidth?: BasicCommonValues|string;
+	columns?: BasicCommonValues|string;
+	widows?: BasicCommonValues|string;
+	orphans?: BasicCommonValues|string;
+	pageBreakAfter?: BasicCommonValues|string;
+	pageBreakBefore?: BasicCommonValues|string;
+	pageBreakInside?: BasicCommonValues|string;
+	marks?: BasicCommonValues|string;
+	quotes?: BasicCommonValues|string;
+	imageRendering?: BasicCommonValues|string;
+	imageResolution?: BasicCommonValues|string;
+	objectFit?: BasicCommonValues|string;
+	objectPosition?: BasicCommonValues|string;
+	mask?: BasicCommonValues|string;
+	maskType?: BasicCommonValues|string;
+	mark?: BasicCommonValues|string;
+	markAfter?: BasicCommonValues|string;
+	markBefore?: BasicCommonValues|string;
+	phonemes?: BasicCommonValues|string;
+	rest?: BasicCommonValues|string;
+	restAfter?: BasicCommonValues|string;
+	restBefore?: BasicCommonValues|string;
+	voiceBalance?: BasicCommonValues|string;
+	voiceDuration?: BasicCommonValues|string;
+	voicePitch?: BasicCommonValues|string;
+	voicePitchRange?: BasicCommonValues|string;
+	voiceRate?: BasicCommonValues|string;
+	voiceStress?: BasicCommonValues|string;
+	voiceVolume?: BasicCommonValues|string;
+	marqueeDirection?: BasicCommonValues|string;
+	marqueePlayCount?: BasicCommonValues|string;
+	marqueeSpeed?: BasicCommonValues|string;
+	marqueeStyle?: BasicCommonValues|string;
+	pointerEvents?: BasicCommonValues|string;
 }
 
 export default interface IDotCss extends IDotcssProp{
-
+	// TODO: ensure each of these has test cases.
 	(selector: "@charset", charset: string): void;
-	(selector: "@color-profile", name: string): IColorProfileBuilder;
-	(selector: "@container", condition: string): IDotcssProp;
-	(selector: "@counter-style", name: string): ICounterStyleBuilder;
+	(selector: "@color-profile", name: string, styles: IColorProfileBuilder): void;
+	(selector: "@container", condition: string, styles: IDotcssProp): void;
+	(selector: "@counter-style", name: string, styles: ICounterStyleBuilder): void;
 
-	(selector?: Array<HTMLElement>|HTMLElement|string): IDotcssProp;
+	(selector: Array<HTMLElement>|HTMLElement|string, styles: IDotcssProp): void;
+	(styles: IDotcssProp): void;
 
 	version: string;
 }
@@ -1288,155 +1289,163 @@ export interface TransformationBuilder {
 	(trns: ITransformationContext): ITransformationContext|string;
 }
 
+// TODO: add tests for these. Especially the 2-parameter ones.
 export type ITransformationContext = {
-	matrix: (a: number, b: number, c: number, d: number, tx: number, ty: number)=>ITransformationContext;
-	matrix3d: (a1:number, b1:number, c1:number, d1:number, a2:number, b2:number, c2:number, d2:number, a3:number, b3:number, c3:number, d3:number, a4:number, b4:number, c4:number, d4:number)=>ITransformationContext;
+	// a, b, c, d, tx, ty
+	matrix?: [number, number, number, number, number, number];
+	// a1, b1, c1, d1,  a2, b2, c2, d2,  a3, b3, c3, d3,  a4, b4, c4, d4
+	matrix3d?: [
+		number, number, number, number, 
+		number, number, number, number, 
+		number, number, number, number, 
+		number, number, number, number
+	];
 	
-	translate: (x: NumericLength, y?:NumericLength)=>ITransformationContext;
-	translateCm: (x: number, y?:number)=>ITransformationContext;
-	translateCh: (x: number, y?:number)=>ITransformationContext;
-	translateEm: (x: number, y?:number)=>ITransformationContext;
-	translateEx: (x: number, y?:number)=>ITransformationContext;
-	translateIn: (x: number, y?:number)=>ITransformationContext;
-	translateMm: (x: number, y?:number)=>ITransformationContext;
-	translateP: (x: number, y?:number)=>ITransformationContext;
-	translatePc: (x: number, y?:number)=>ITransformationContext;
-	translatePt: (x: number, y?:number)=>ITransformationContext;
-	translatePx: (x: number, y?:number)=>ITransformationContext;
-	translateRem: (x: number, y?:number)=>ITransformationContext;
-	translateVh: (x: number, y?:number)=>ITransformationContext;
-	translateVw: (x: number, y?:number)=>ITransformationContext;
-	translateVMax: (x: number, y?:number)=>ITransformationContext;
-	translateVMin: (x: number, y?:number)=>ITransformationContext;
-	translate3d: (x: NumericLength, y: NumericLength, z: NumericLength)=>ITransformationContext;
-	translate3dCm: (x: number, y: number, z: number)=>ITransformationContext;
-	translate3dCh: (x: number, y: number, z: number)=>ITransformationContext;
-	translate3dEm: (x: number, y: number, z: number)=>ITransformationContext;
-	translate3dEx: (x: number, y: number, z: number)=>ITransformationContext;
-	translate3dIn: (x: number, y: number, z: number)=>ITransformationContext;
-	translate3dMm: (x: number, y: number, z: number)=>ITransformationContext;
-	translate3dP: (x: number, y: number, z: number)=>ITransformationContext;
-	translate3dPc: (x: number, y: number, z: number)=>ITransformationContext;
-	translate3dPt: (x: number, y: number, z: number)=>ITransformationContext;
-	translate3dPx: (x: number, y: number, z: number)=>ITransformationContext;
-	translate3dRem: (x: number, y: number, z: number)=>ITransformationContext;
-	translate3dVh: (x: number, y: number, z: number)=>ITransformationContext;
-	translate3dVw: (x: number, y: number, z: number)=>ITransformationContext;
-	translate3dVMax: (x: number, y: number, z: number)=>ITransformationContext;
-	translate3dVMin: (x: number, y: number, z: number)=>ITransformationContext;
-	translateX: (v: NumericLength)=>ITransformationContext;
-	translateXCm: (v: number)=>ITransformationContext;
-	translateXCh: (v: number)=>ITransformationContext;
-	translateXEm: (v: number)=>ITransformationContext;
-	translateXEx: (v: number)=>ITransformationContext;
-	translateXIn: (v: number)=>ITransformationContext;
-	translateXMm: (v: number)=>ITransformationContext;
-	translateXP: (v: number)=>ITransformationContext;
-	translateXPc: (v: number)=>ITransformationContext;
-	translateXPt: (v: number)=>ITransformationContext;
-	translateXPx: (v: number)=>ITransformationContext;
-	translateXRem: (v: number)=>ITransformationContext;
-	translateXVh: (v: number)=>ITransformationContext;
-	translateXVw: (v: number)=>ITransformationContext;
-	translateXVMax: (v: number)=>ITransformationContext;
-	translateXVMin: (v: number)=>ITransformationContext;
-	translateY: (v: NumericLength)=>ITransformationContext;
-	translateYCm: (v: number)=>ITransformationContext;
-	translateYCh: (v: number)=>ITransformationContext;
-	translateYEm: (v: number)=>ITransformationContext;
-	translateYEx: (v: number)=>ITransformationContext;
-	translateYIn: (v: number)=>ITransformationContext;
-	translateYMm: (v: number)=>ITransformationContext;
-	translateYP: (v: number)=>ITransformationContext;
-	translateYPc: (v: number)=>ITransformationContext;
-	translateYPt: (v: number)=>ITransformationContext;
-	translateYPx: (v: number)=>ITransformationContext;
-	translateYRem: (v: number)=>ITransformationContext;
-	translateYVh: (v: number)=>ITransformationContext;
-	translateYVw: (v: number)=>ITransformationContext;
-	translateYVMax: (v: number)=>ITransformationContext;
-	translateYVMin: (v: number)=>ITransformationContext;
-	translateZ: (v: NumericLength)=>ITransformationContext;
-	translateZCm: (v: number)=>ITransformationContext;
-	translateZCh: (v: number)=>ITransformationContext;
-	translateZEm: (v: number)=>ITransformationContext;
-	translateZEx: (v: number)=>ITransformationContext;
-	translateZIn: (v: number)=>ITransformationContext;
-	translateZMm: (v: number)=>ITransformationContext;
-	translateZP: (v: number)=>ITransformationContext;
-	translateZPc: (v: number)=>ITransformationContext;
-	translateZPt: (v: number)=>ITransformationContext;
-	translateZPx: (v: number)=>ITransformationContext;
-	translateZRem: (v: number)=>ITransformationContext;
-	translateZVh: (v: number)=>ITransformationContext;
-	translateZVw: (v: number)=>ITransformationContext;
-	translateZVMax: (v: number)=>ITransformationContext;
-	translateZVMin: (v: number)=>ITransformationContext;
+	translate: NumericLength | [NumericLength, NumericLength]
+	translateCm: number | [number, number]
+	translateCh: number | [number, number]
+	translateEm: number | [number, number]
+	translateEx: number | [number, number]
+	translateIn: number | [number, number]
+	translateMm: number | [number, number]
+	translateP: number | [number, number]
+	translatePc: number | [number, number]
+	translatePt: number | [number, number]
+	translatePx: number | [number, number]
+	translateRem: number | [number, number]
+	translateVh: number | [number, number]
+	translateVw: number | [number, number]
+	translateVMax: number | [number, number]
+	translateVMin: number | [number, number]
+	translate3d?: [NumericLength, NumericLength, NumericLength];
+	translate3dCm?: [number, number, number];
+	translate3dCh?: [number, number, number];
+	translate3dEm?: [number, number, number];
+	translate3dEx?: [number, number, number];
+	translate3dIn?: [number, number, number];
+	translate3dMm?: [number, number, number];
+	translate3dP?: [number, number, number];
+	translate3dPc?: [number, number, number];
+	translate3dPt?: [number, number, number];
+	translate3dPx?: [number, number, number];
+	translate3dRem?: [number, number, number];
+	translate3dVh?: [number, number, number];
+	translate3dVw?: [number, number, number];
+	translate3dVMax?: [number, number, number];
+	translate3dVMin?: [number, number, number];
+	translateX?: NumericLength;
+	translateXCm?: number;
+	translateXCh?: number;
+	translateXEm?: number;
+	translateXEx?: number;
+	translateXIn?: number;
+	translateXMm?: number;
+	translateXP?: number;
+	translateXPc?: number;
+	translateXPt?: number;
+	translateXPx?: number;
+	translateXRem?: number;
+	translateXVh?: number;
+	translateXVw?: number;
+	translateXVMax?: number;
+	translateXVMin?: number;
+	translateY?: NumericLength;
+	translateYCm?: number;
+	translateYCh?: number;
+	translateYEm?: number;
+	translateYEx?: number;
+	translateYIn?: number;
+	translateYMm?: number;
+	translateYP?: number;
+	translateYPc?: number;
+	translateYPt?: number;
+	translateYPx?: number;
+	translateYRem?: number;
+	translateYVh?: number;
+	translateYVw?: number;
+	translateYVMax?: number;
+	translateYVMin?: number;
+	translateZ?: NumericLength;
+	translateZCm?: number;
+	translateZCh?: number;
+	translateZEm?: number;
+	translateZEx?: number;
+	translateZIn?: number;
+	translateZMm?: number;
+	translateZP?: number;
+	translateZPc?: number;
+	translateZPt?: number;
+	translateZPx?: number;
+	translateZRem?: number;
+	translateZVh?: number;
+	translateZVw?: number;
+	translateZVMax?: number;
+	translateZVMin?: number;
 	
-	scale: (x: number, y?: number)=>ITransformationContext;
-	scale3d: (x: number, y: number, z: number)=>ITransformationContext;
-	scaleX: (v: number)=>ITransformationContext;
-	scaleY: (v: number)=>ITransformationContext;
-	scaleZ: (v: number)=>ITransformationContext;
+	scale?: number | [number, number];
+	scale3d?: [number, number, number];
+	scaleX?: number;
+	scaleY?: number;
+	scaleZ?: number;
 	
-	rotate: (v: NumericAngle)=>ITransformationContext;
-	rotateDeg: (v: number)=>ITransformationContext;
-	rotateTurn: (v: number)=>ITransformationContext;
-	rotateRad: (v: number)=>ITransformationContext;
-	rotateGrad: (v: number)=>ITransformationContext;
-	rotate3d: (x: number, y: number, z: number, a: NumericAngle)=>ITransformationContext;
-	rotate3dDeg: (x: number, y: number, z: number, a: number)=>ITransformationContext;
-	rotate3dTurn: (x: number, y: number, z: number, a: number)=>ITransformationContext;
-	rotate3dRad: (x: number, y: number, z: number, a: number)=>ITransformationContext;
-	rotate3dGrad: (x: number, y: number, z: number, a: number)=>ITransformationContext;
-	rotateX: (v: NumericAngle)=>ITransformationContext;
-	rotateXDeg: (v: number)=>ITransformationContext;
-	rotateXTurn: (v: number)=>ITransformationContext;
-	rotateXRad: (v: number)=>ITransformationContext;
-	rotateXGrad: (v: number)=>ITransformationContext;
-	rotateY: (v: NumericAngle)=>ITransformationContext;
-	rotateYDeg: (v: number)=>ITransformationContext;
-	rotateYTurn: (v: number)=>ITransformationContext;
-	rotateYRad: (v: number)=>ITransformationContext;
-	rotateYGrad: (v: number)=>ITransformationContext;
-	rotateZ: (v: NumericAngle)=>ITransformationContext;
-	rotateZDeg: (v: number)=>ITransformationContext;
-	rotateZTurn: (v: number)=>ITransformationContext;
-	rotateZRad: (v: number)=>ITransformationContext;
-	rotateZGrad: (v: number)=>ITransformationContext;
+	rotate?: NumericAngle;
+	rotateDeg?: number;
+	rotateTurn?: number;
+	rotateRad?: number;
+	rotateGrad?: number;
+	rotate3d?: [number, number, number, NumericAngle];
+	rotate3dDeg?: [number, number, number, number];
+	rotate3dTurn?: [number, number, number, number];
+	rotate3dRad?: [number, number, number, number];
+	rotate3dGrad?: [number, number, number, number];
+	rotateX?: NumericAngle;
+	rotateXDeg?: number;
+	rotateXTurn?: number;
+	rotateXRad?: number;
+	rotateXGrad?: number;
+	rotateY?: NumericAngle;
+	rotateYDeg?: number;
+	rotateYTurn?: number;
+	rotateYRad?: number;
+	rotateYGrad?: number;
+	rotateZ?: NumericAngle;
+	rotateZDeg?: number;
+	rotateZTurn?: number;
+	rotateZRad?: number;
+	rotateZGrad?: number;
 	
-	skew: (x: NumericAngle, y?: NumericAngle)=>ITransformationContext;
-	skewDeg: (x: number, y?: number)=>ITransformationContext;
-	skewTurn: (x: number, y?: number)=>ITransformationContext;
-	skewRad: (x: number, y?: number)=>ITransformationContext;
-	skewGrad: (x: number, y?: number)=>ITransformationContext;
-	skewX: (v: NumericAngle)=>ITransformationContext;
-	skewXDeg: (v: number)=>ITransformationContext;
-	skewXTurn: (v: number)=>ITransformationContext;
-	skewXRad: (v: number)=>ITransformationContext;
-	skewXGrad: (v: number)=>ITransformationContext;
-	skewY: (v: NumericAngle)=>ITransformationContext;
-	skewYDeg: (v: number)=>ITransformationContext;
-	skewYTurn: (v: number)=>ITransformationContext;
-	skewYRad: (v: number)=>ITransformationContext;
-	skewYGrad: (v: number)=>ITransformationContext;
+	skew?: NumericAngle | [NumericAngle, NumericAngle];
+	skewDeg?: number | [number, number];
+	skewTurn?: number | [number, number];
+	skewRad?: number | [number, number];
+	skewGrad?: number | [number, number];
+	skewX?: NumericAngle;
+	skewXDeg?: number;
+	skewXTurn?: number;
+	skewXRad?: number;
+	skewXGrad?: number;
+	skewY?: NumericAngle;
+	skewYDeg?: number;
+	skewYTurn?: number;
+	skewYRad?: number;
+	skewYGrad?: number;
 	
-	perspective: (v: NumericLength)=>ITransformationContext;
-	perspectiveCm: (v: number)=>ITransformationContext;
-	perspectiveCh: (v: number)=>ITransformationContext;
-	perspectiveEm: (v: number)=>ITransformationContext;
-	perspectiveEx: (v: number)=>ITransformationContext;
-	perspectiveIn: (v: number)=>ITransformationContext;
-	perspectiveMm: (v: number)=>ITransformationContext;
-	perspectiveP: (v: number)=>ITransformationContext;
-	perspectivePc: (v: number)=>ITransformationContext;
-	perspectivePt: (v: number)=>ITransformationContext;
-	perspectivePx: (v: number)=>ITransformationContext;
-	perspectiveRem: (v: number)=>ITransformationContext;
-	perspectiveVh: (v: number)=>ITransformationContext;
-	perspectiveVw: (v: number)=>ITransformationContext;
-	perspectiveVMax: (v: number)=>ITransformationContext;
-	perspectiveVMin: (v: number)=>ITransformationContext;
+	perspective?: NumericLength;
+	perspectiveCm?: number;
+	perspectiveCh?: number;
+	perspectiveEm?: number;
+	perspectiveEx?: number;
+	perspectiveIn?: number;
+	perspectiveMm?: number;
+	perspectiveP?: number;
+	perspectivePc?: number;
+	perspectivePt?: number;
+	perspectivePx?: number;
+	perspectiveRem?: number;
+	perspectiveVh?: number;
+	perspectiveVw?: number;
+	perspectiveVMax?: number;
+	perspectiveVMin?: number;
 }
 
 export interface FilterBuilder{
@@ -1445,39 +1454,38 @@ export interface FilterBuilder{
 
 type IFilterContext = {
 	// url(commonfilters.svg#filter); // Don't know how this works yet.
-	blur(v: NumericLength): IFilterContext;
-	brightness(v: Percentage): IFilterContext;
-	contrast(v: Percentage): IFilterContext;
-	dropShadow(x: NumericLength, y: NumericLength, blur: NumericLength, color: Color): IFilterContext;
-	grayscale(v: Percentage): IFilterContext;
-	hueRotate(v: AngleUnits): IFilterContext;
-	invert(v: Percentage): IFilterContext;
-	opacity(v: Percentage): IFilterContext;
-	sepia(v: Percentage): IFilterContext;
-	saturate(v: Percentage): IFilterContext;
+	blur?: NumericLength;
+	brightness?: Percentage;
+	contrast?: Percentage;
+	dropShadow?: {x?: NumericLength, y?: NumericLength, blur?: NumericLength, color?: Color};
+	grayscale?: Percentage;
+	hueRotate?: AngleUnits;
+	invert?: Percentage;
+	opacity?: Percentage;
+	sepia?: Percentage;
+	saturate?: Percentage;
 	// url(filters.svg#filter) blur(4px) saturate(150%); // example.
 }
 
 // AT RULE BUILDERS
 
 interface IColorProfileBuilder{
-	src: (value: Url)=>IColorProfileBuilder;
-	renderingIntent(value: "relative-colorimetric"|"absolute-colorimetric"|"perceptual"|"saturation");
+	src?: Url;
+	renderingIntent?: "relative-colorimetric"|"absolute-colorimetric"|"perceptual"|"saturation";
 }
 
-type SystemValue = "cyclic"|"numeric"|"alphabetic"|"symbolic"|"additive"|"fixed"|"extends";
+type SystemValue = "cyclic"|"numeric"|"alphabetic"|"symbolic"|"additive"|`fixed ${number}`|`extends ${string}`;
 interface ICounterStyleBuilder{
 
-    system(value: "fixed", arg: number): ICounterStyleBuilder;
-    system(value: "extends", arg: string): ICounterStyleBuilder;
-    system(value: Exclude<SystemValue, "fixed" | "extends">): ICounterStyleBuilder;
+	// TODO: need a testcase on this.
+	system?: SystemValue|["fixed", number]|["extends", string];
 
-	symbols: (value: string)=> ICounterStyleBuilder; // TODO
-	additiveSymbols: (value: string)=> ICounterStyleBuilder; // TODO
-	negative: (value: string)=> ICounterStyleBuilder; // TODO
-	prefix: (value: string)=> ICounterStyleBuilder; // TOOD
-	suffix: (value: string)=> ICounterStyleBuilder; // TODO
-	range: (value: string)=> ICounterStyleBuilder; // TODO
-	pad: (value: string)=> ICounterStyleBuilder; // TODO
-	speakAs: (value: string)=> ICounterStyleBuilder; // TODO
+	symbols?: string;
+	additiveSymbols?: string;
+	negative?: string;
+	prefix?: string;
+	suffix?: string;
+	range?: string;
+	pad?: string;
+	speakAs?: string;
 }
