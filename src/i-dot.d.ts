@@ -741,7 +741,7 @@ interface IDotInput extends IDotGlobalAttrs {
 	// setVal(value: unknown): IDotInput;
 
 	// Input-specific events:
-	onSearch: (e: Event) => void;
+	onSearch?: (e: Event) => void;
 }
 
 interface IDotIns extends IDotGlobalAttrs {
