@@ -54,8 +54,8 @@ export interface IDotDocument {
 	 * Mounts a component.
 	 * TODO: add second arg.
 	 */
-	mount<T extends IComponent>(component: T, init?: (e: IMountedComponent<T>) => IMountedComponent<T> | void): IDotDocument;
-	mount<T extends IComponent>(init: (c: IMountedComponent<T>) => IMountedComponent<T> | void, component: T): IDotDocument;
+	mount<T extends IComponent>(component: T): IDotDocument;
+	// mount<T extends IComponent>(init: (c: IMountedComponent<T>) => IMountedComponent<T> | void, component: T): IDotDocument;
 	// mount(component: IComponent, init: (init=>IMountedComponent): IMountedComponent|void): IDotDocument;
 	/**
 	 * Iterates n times, appending the result of each iteration to the VDBO.
@@ -509,10 +509,10 @@ export interface IDotGlobalAttrs {
 
 // Interface for specific elements:
 
-interface IMountedComponent<T extends IComponent> {
-	on(event: string, callback: (...args: Array<any>) => void): IMountedComponent<T>;
-	prop(name: string, value: any): IMountedComponent<T>;
-}
+// interface IMountedComponent<T extends IComponent> {
+// 	on(event: string, callback: (...args: Array<any>) => void): IMountedComponent<T>;
+// 	prop(name: string, value: any): IMountedComponent<T>;
+// }
 
 interface IDotA extends IDotGlobalAttrs {
 	download?: AttrVal<boolean>;
