@@ -26,22 +26,18 @@ export interface FrameworkItems {
 	// html: IDotGenericElement;
 }
 
-export type ComponentArgs<TProps extends Array<string>, TEvents extends Array<string>> = {
-    [key in TProps[number]]: any;
-} & {
-    [key in TEvents[number]]: (...args: any[]) => void;
-}
-
 
 // TODO: there's a weird problem where if a constructor is not provided, it's not possible have a custom builder.
 // It should be the contsructor that depends on the builder, not the other way around. If we can't get this working, 
 // it might just be better to rethink how stuff gets passed into components.
-export default interface IComponent<TProps extends Array<string> = [], TEvents extends Array<string> = []> {
+export default interface IComponent/*<TProps extends Array<string> = [], TEvents extends Array<string> = []>*/ {
 
 	readonly _?: FrameworkItems;
 
-	new (attrs: ComponentArgs<TProps, TEvents>): IComponent<TProps, TEvents>;
-	new (): IComponent<TProps, TEvents>;
+	// Regrettably, TS forces clients to implement the constructor, which is not ideal because we want to internalize that.
+	// There's no way to make the constructor optional.
+	// new (attrs?: ComponentArgs<TProps, TEvents>): IComponent<TProps, TEvents>;
+	// new (): IComponent<TProps, TEvents>;
 
     // Lifecycle hooks
 

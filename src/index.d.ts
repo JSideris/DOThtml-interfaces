@@ -8,11 +8,5 @@ export * from "./i-dot-css";
 
 export { default as IComponent, FrameworkItems } from "./i-component";
 
-export { default as IReactive } from "./i-reactive";
+export { IReactive, IReactiveWatcher } from "./i-reactive";
 export { default as IEventBus } from "./i-event-bus";
-
-declare global {
-	interface Window {
-		dot: IDotCore;
-	}
-}

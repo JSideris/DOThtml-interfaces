@@ -2,7 +2,7 @@
 import IComponent, { FrameworkItems } from "./i-component";
 import IDotCss, { IDotcssProp } from "./i-dot-css";
 import IEventBus from "./i-event-bus";
-import IReactive from "./i-reactive";
+import {IReactive} from "./i-reactive";
 
 type DotContentPrimitive = string | number | boolean;
 type DotContentBasic = DotContentPrimitive | Node | Element | NodeList | IComponent | IDotDocument//typeof DotDocument;
@@ -335,13 +335,27 @@ export interface IDotDocument {
 }
 
 type Styles = string | IDotcssProp;
-interface IComponentFactory {
-	<T extends IComponent>(Base: new () => T, styles?: Styles | Styles[]): new () => T;
-	useStyles<T extends IComponent>(styles: Styles | Styles[]): (Base: new () => T) => new () => T;
-	hasEvents<T extends IComponent>(styles: Styles | Styles[]): (Base: new () => T) => new () => T;
-	prop(target: any, propertyKey: string): void;
-}
+// interface IComponentFactory {
+// 	<TProps extends string[], TEvents extends string[], T extends IComponent<TProps, TEvents>>(
+// 		Base: new () => T, styles?: Styles | Styles[]
+// 	): new (attrs?: ComponentArgs<TProps, TEvents>) => T & { new (attrs?: ComponentArgs<TProps, TEvents>): IComponent<TProps, TEvents> };
+// }
 
+// interface IComponentFactory {
+//     <TProps extends string[], TEvents extends string[], T extends IComponent<TProps, TEvents>>(
+//         Base: new () => T, styles?: Styles | Styles[]
+//     ): new (attrs?: ComponentArgs<TProps, TEvents>) => T & IComponent<TProps, TEvents>;
+// }
+
+// useStyles<T extends IComponent>(styles: Styles | Styles[]): (Base: new () => T) => new () => T;
+// hasEvents<T extends IComponent>(styles: Styles | Styles[]): (Base: new () => T) => new () => T;
+// prop(target: any, propertyKey: string): void;
+
+export type ComponentArgs<TProps extends Array<string> = [], TEvents extends Array<string> = []> = {
+	[key in TProps[number]]?: any;
+} & Partial<{
+	[key in TEvents[number]]?: (...args: any[]) => void;
+}>;
 
 /**
  * Interface for the dot object.
@@ -363,7 +377,13 @@ export interface IDotCore extends IDotDocument {
 	// component<T extends IComponent>(Base: new (...args: Parameters<T['build']>) => T): new (...args: Parameters<T['build']>) => T;
 	// useStyles<T extends IComponent>(styles: string|((css: IDotCss)=>IDotcssProp|string)): ((Base: new (...args: Parameters<T['build']>) => T) => new (...args: Parameters<T['build']>) => T);
 
-	component: IComponentFactory;
+	// component: IComponentFactory;
+	// Works but doesn't infer types from the component.
+	// There's room for improvement here but it's not clear to me how to do it.
+	// What I'd like to do is have the types tied to the IComponent interface rather than the component factory function.
+	component<TProps extends string[] = [], TEvents extends string[] = []>(Base: new () => IComponent)
+		: new (attrs?: ComponentArgs<TProps, TEvents>) => IComponent & { new (attrs?: ComponentArgs<TProps, TEvents>): IComponent };
+
 	useStyles(document: Document, styles: Styles): HTMLStyleElement;
 }
 
@@ -421,7 +441,7 @@ export interface IDotGlobalAttrs {
 	areaChecked?: AttrVal<string>;
 	areaSelected?: AttrVal<boolean>;
 	accessKey?: AttrVal<string>; // This could potentially be enumerated. But care should be taken as these types are already quite complex.
-	class?: AttrVal<string> | Array<AttrVal<string>> | AttrVal<Array<string>> | Record<string, AttrVal<string>>; // Space-separated. TODO: need tests.
+	class?: AttrVal<string> | Array<AttrVal<string>> | AttrVal<Array<string>> | Record<string, AttrVal<boolean>>; // Space-separated. TODO: need tests.
 	contentEditable?: AttrVal<"true"> | AttrVal<"false"> | AttrVal<"plaintext-only">;
 	contextMenu?: AttrVal<string>;
 	dir?: AttrVal<string>;

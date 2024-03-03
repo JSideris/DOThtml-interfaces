@@ -1,5 +1,5 @@
 
-export default interface IReactive<Ti = any, To = Ti>{
+export interface IReactive<Ti = any, To = Ti>{
 	// The untransformed value.
 	_value: Ti;
 	// Get the value.
@@ -12,10 +12,14 @@ export default interface IReactive<Ti = any, To = Ti>{
 	// If a key is not provided, identification is done automatically by the framework by comparing object references.
 	key: string;
 	// Optional transformer that can transform the input.
-	transformer?: (input: Ti)=>To;
+	transform?: (input: Ti)=>To;
 	// subscribeNode(node: Node): number;
 	// subscribeAttr(node: HTMLElement, attributeName: string): number;
 	subscribeCallback(callback: (value: To)=>void): number;
 	detachBinding(id: number);
 	updateObservers(): void;
+}
+
+export interface IReactiveWatcher<T = any>{
+	observerUpdate(value: T, obsreverId: number): void;
 }
