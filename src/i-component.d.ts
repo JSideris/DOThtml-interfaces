@@ -1,6 +1,6 @@
 
 import { IDotDocument } from "./i-dot";
-import IDotCss from "./i-dot-css";
+import IDotCss from "./styles/i-dot-css";
 
 // export type EventNames<T> = T extends { allowedEvents: infer E } ? E : never;
 

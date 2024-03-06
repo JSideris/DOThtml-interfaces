@@ -1,6 +1,6 @@
 
 import IComponent, { FrameworkItems } from "./i-component";
-import IDotCss, { IDotcssProp } from "./i-dot-css";
+import IDotCss, { IDotcssProp } from "./styles/i-dot-css";
 import IEventBus from "./i-event-bus";
 import {IReactive} from "./i-reactive";
 

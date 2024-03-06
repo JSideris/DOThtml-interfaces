@@ -2,8 +2,8 @@ import { IDotCore } from "./i-dot";
 
 export * from "./i-dot";
 
-export { default as IDotCss } from "./i-dot-css";
-export * from "./i-dot-css";
+export { default as IDotCss } from "./styles/i-dot-css";
+export * from "./styles/i-dot-css";
 
 
 export { default as IComponent, FrameworkItems } from "./i-component";
