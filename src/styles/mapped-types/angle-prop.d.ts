@@ -1,6 +1,6 @@
 import { IReactive } from "../../i-reactive";
 
-type V = IReactive<number|string> | number | string;
+type V = IReactive<any> | number | string;
 
 type AngleUnitSuffix = "" | "Deg" | "Grad" | "Rad" | "Turn";
 

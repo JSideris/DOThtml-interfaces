@@ -382,7 +382,7 @@ export interface IDotCore extends IDotDocument {
 	// Works but doesn't infer types from the component.
 	// There's room for improvement here but it's not clear to me how to do it.
 	// What I'd like to do is have the types tied to the IComponent interface rather than the component factory function.
-	component<TProps extends string[] = [], TEvents extends string[] = []>(Base: new () => IComponent)
+	component<TProps extends string[] = [], TEvents extends string[] = []>(Base: new () => IComponent, styles?: string|IDotcssProp|Array<string|IDotcssProp>)
 		: new (attrs?: ComponentArgs<TProps, TEvents>) => IComponent & { new (attrs?: ComponentArgs<TProps, TEvents>): IComponent };
 
 	useStyles(document: Document, styles: Styles): HTMLStyleElement;

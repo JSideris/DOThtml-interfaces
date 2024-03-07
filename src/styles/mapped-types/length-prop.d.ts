@@ -4,9 +4,9 @@ import { GKV } from "../css-types";
 
 type LengthUnitSuffix = "" | "Cm" | "Ch" | "Em" | "Ex" | "In" | "Mm" | "P" | "Pc" | "Pt" | "Px" | "Rem" | "Vh" | "Vw" | "VMax" | "VMin";
 
-type V<S> = IReactive<number|string> | number | S;
+type V<S> = IReactive<any> | number | S;
 
-type LengthProp<Prefix extends string, Qty extends 1|2|3|4 = 1, S extends string|IReactive<string> = GKV> = {
+type LengthProp<Prefix extends string, Qty extends 1|2|3|4 = 1, S extends string|IReactive<any> = GKV> = {
 	[Key in LengthUnitSuffix as `${Prefix}${Key}`]?: (
 		(Qty extends 1 ? V<S>|[V<S>] : void) |
 		(Qty extends 2 ? [V<S>, V<S>] : void) |
