@@ -1,8 +1,9 @@
 
 import IComponent, { FrameworkItems } from "./i-component";
-import IDotCss, { IDotcssProp } from "./styles/i-dot-css";
+import IDotCss from "./styles/i-dot-css";
 import IEventBus from "./i-event-bus";
 import {IReactive} from "./i-reactive";
+import IDotcssProp from "./styles/i-css-prop";
 
 type DotContentPrimitive = string | number | boolean;
 type DotContentBasic = DotContentPrimitive | Node | Element | NodeList | IComponent | IDotDocument//typeof DotDocument;
