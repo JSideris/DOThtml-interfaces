@@ -1,8 +1,10 @@
-import AngleProp from "./mapped-types/angle-prop";
-import { ValueOrReactive } from "./css-types";
-import LengthProp from "./mapped-types/length-prop";
+import AngleProp from "../mapped-types/angle-prop";
+import { ValueOrReactive } from "../css-types";
+import LengthProp from "../mapped-types/length-prop";
 
-export interface ITransformationProp extends
+// Transforms are special because the order matters and functions can be called mulitple times.
+// To support this functionality, we use an array of transform JSON specs.
+export default interface ITransformationProp extends
 	LengthProp<"translate", 1|2>, 
 	LengthProp<"translate3d", 3>,
 	LengthProp<"translateX">,

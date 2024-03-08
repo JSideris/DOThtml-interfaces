@@ -1,6 +1,6 @@
-import AngleProp from "./mapped-types/angle-prop";
-import { Percentage, ValueOrReactive } from "./css-types";
-import LengthProp from "./mapped-types/length-prop";
+import AngleProp from "../mapped-types/angle-prop";
+import { Percentage, ValueOrReactive } from "../css-types";
+import LengthProp from "../mapped-types/length-prop";
 import IShadowProp from "./i-shadow-prop";
 
 export default interface IFilterProp extends
