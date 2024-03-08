@@ -1,9 +1,9 @@
 
 import { IReactive } from "../i-reactive";
 import { GKV, ValueOrReactive } from "./css-types";
-import IFilterProp from "./i-filter-prop";
-import IShadowProp from "./i-shadow-prop";
-import { ITransformationProp } from "./i-transformation-prop";
+import IFilterProp from "./complex-css-types/i-filter-prop";
+import IShadowProp from "./complex-css-types/i-shadow-prop";
+import ITransformationProp from "./complex-css-types/i-transformation-prop";
 import ColorProp from "./mapped-types/color-props";
 import LengthProp from "./mapped-types/length-prop";
 
@@ -79,7 +79,7 @@ export default interface IDotcssProp extends
 	content?: ValueOrReactive<string>;
 
 	//complex: 
-	transform?: ValueOrReactive<string>|ITransformationProp;
+	transform?: ValueOrReactive<string>|ITransformationProp|Array<ITransformationProp>;
 	filter?: ValueOrReactive<string>|IFilterProp;
 	backdropFilter?: ValueOrReactive<string>|IFilterProp;
 	
