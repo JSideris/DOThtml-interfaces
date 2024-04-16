@@ -394,10 +394,12 @@ export interface IDotWindowWrapper{
 	window: Window;
 	document: Document;
 	title: string;
+	width: number;
+	height: number;
 }
 
 export interface IDotWindowBuilder {
-	(options: {content: IDotDocument, width: number, height: number, title: string}): IDotWindowWrapper;
+	(options: {content: IDotDocument, width?: number, height?: number, title?: string}): IDotWindowWrapper;
 }
 
 export interface IDotConditionalDocument extends IDotDocument {
