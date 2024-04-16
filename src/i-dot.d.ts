@@ -388,14 +388,16 @@ export interface IDotCore extends IDotDocument {
 	useStyles(document: Document, styles: Styles): HTMLStyleElement;
 }
 
+export interface IDotWindowWrapper{
+	open(): void;
+	close(): void;
+	window: Window;
+	document: Document;
+	title: string;
+}
+
 export interface IDotWindowBuilder {
-	(options: {content: IDotDocument, width: number, height: number}): {
-		open(): void;
-		close(): void;
-		window: Window;
-		document: Document;
-		title: string;
-	};
+	(options: {content: IDotDocument, width: number, height: number, title: string}): IDotWindowWrapper;
 }
 
 export interface IDotConditionalDocument extends IDotDocument {
