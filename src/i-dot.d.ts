@@ -370,7 +370,7 @@ export interface IDotCore extends IDotDocument {
 	navigate(path: string, noHistory?: boolean, force?: boolean): void;
 	css: IDotCss;
 	bus: IEventBus;
-	// window: IDotWindowBuilder;
+	window: IDotWindowBuilder;
 
 	watch<Ti = IReactive | Array<any> | { [key: string | number]: any } | string | number | boolean, To = Ti>(initValue?: Ti, props?: { key?: string, transformer?: (value: Ti) => To }): IReactive<Ti, To>;
 
@@ -389,7 +389,13 @@ export interface IDotCore extends IDotDocument {
 }
 
 export interface IDotWindowBuilder {
-	(content): Window;
+	(options: {content: IDotDocument, width: number, height: number}): {
+		open(): void;
+		close(): void;
+		window: Window;
+		document: Document;
+		title: string;
+	};
 }
 
 export interface IDotConditionalDocument extends IDotDocument {
