@@ -16,7 +16,7 @@ type AttrVal<T = string | number | boolean> = T | IReactive<T>;
  */
 export interface IDotDocument {
 	// Creating a blank DotDocument.
-	(document?: Element, classPrefix?: number, targetWindow?: Window & (typeof globalThis)): void;
+	// (document?: Element, classPrefix?: number, targetWindow?: Window): void;
 
 	// Internal use only:
 	// Removed in v6.
@@ -362,7 +362,7 @@ export type ComponentArgs<TProps extends Array<string> = [], TEvents extends Arr
  * Interface for the dot object.
  */
 export interface IDotCore extends IDotDocument {
-	(targetSelector: string | Element | Node | NodeList | Array<Node | Element>): IDotDocument;
+	(targetSelector: string | Element | Node | NodeList | Array<Node | Element>, targetWindow?: Window): IDotDocument;
 
 	version: string;
 	styleMode: "sync" | "async";

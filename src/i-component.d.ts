@@ -18,6 +18,7 @@ export interface FrameworkItems {
 		readonly shadowRoot: ShadowRoot;
 		readonly isRendered: boolean;
 		readonly tagName: string;
+		readonly styles: Array<string>;
 		readonly args: Array<any>;
 		// readonly styleElement: HTMLStyleElement;
 		readonly sharedStyles: CSSStyleSheet[];
@@ -42,24 +43,34 @@ export default interface IComponent/*<TProps extends Array<string> = [], TEvents
     // Lifecycle hooks
 
 	/**
-	 * A function returning DOThtml (required).
+	 * A function returning DOThtml (required). The `build` hook is called once per component instance, and constructs the component's virtual DOM.
 	 */
     build(): IDotDocument;
 
 	/**
-	 * An optional function that is called after builder that stylizes the component using a scoped style builder.
+	 * An optional function called after the component is built. Is only called once per component instance. 
 	 */
-    style?(css: IDotCss): void;
+    built?(): void;
+	
+	/**
+	 * An optional function that gets called before the component is mounted.
+	 */
+    mounting?(): void;
 
 	/**
-	 * An optional function that gets called before the component is created, scoped to the new component object.
+	 * An optional function called after the element has been mounted. May be called mulitple times if the component is rerendered.
 	 */
-    creating?(): void;
+    mounted?(): void;
+	
+	/**
+	 * An optional function that gets called before the component is unmounted. Use it to do custom cleanup or data saving.
+	 */
+    unmounting?(): void;
 
 	/**
-	 * An optional function called after the element has been added. One parameter will be provided containing the added element.
+	 * An optional function called after the element has been unmounted. May be called mulitple times if the component is rerendered.
 	 */
-    ready?(): void;
+    unmounted?(): void;
 
 	/**
 	 * An optional function called before the component is deleted.
@@ -70,9 +81,4 @@ export default interface IComponent/*<TProps extends Array<string> = [], TEvents
 	 * An optional function called after the component is deleted.
 	 */
     deleted?(): void;
-
-	/**
-	 * An optional function called after the component is built.
-	 */
-    built?(): void;
 }
