@@ -1,12 +1,12 @@
 
-import IComponent, { FrameworkItems } from "./i-component";
+import IDotComponent from "./i-dot-component";
 import IDotCss from "./styles/i-dot-css";
 import IEventBus from "./i-event-bus";
 import {IReactive} from "./i-reactive";
 import IDotcssProp from "./styles/i-css-prop";
 
 type DotContentPrimitive = string | number | boolean;
-type DotContentBasic = DotContentPrimitive | Node | Element | NodeList | IComponent | IDotDocument//typeof DotDocument;
+type DotContentBasic = DotContentPrimitive | Node | Element | NodeList | IDotComponent | IDotDocument//typeof DotDocument;
 export type DotContent = DotContentBasic | Array<DotContent> | IReactive;//|(()=>DotContent);
 
 type AttrVal<T = string | number | boolean> = T | IReactive<T>;
@@ -55,7 +55,7 @@ export interface IDotDocument {
 	 * Mounts a component.
 	 * TODO: add second arg.
 	 */
-	mount<T extends IComponent>(component: T): IDotDocument;
+	mount<T extends IDotComponent>(component: T): IDotDocument;
 	// mount<T extends IComponent>(init: (c: IMountedComponent<T>) => IMountedComponent<T> | void, component: T): IDotDocument;
 	// mount(component: IComponent, init: (init=>IMountedComponent): IMountedComponent|void): IDotDocument;
 	/**
@@ -382,8 +382,8 @@ export interface IDotCore extends IDotDocument {
 	// Works but doesn't infer types from the component.
 	// There's room for improvement here but it's not clear to me how to do it.
 	// What I'd like to do is have the types tied to the IComponent interface rather than the component factory function.
-	component<TProps extends string[] = [], TEvents extends string[] = []>(Base: new () => IComponent, styles?: string|IDotcssProp|Array<string|IDotcssProp>)
-		: new (attrs?: ComponentArgs<TProps, TEvents>) => IComponent & { new (attrs?: ComponentArgs<TProps, TEvents>): IComponent };
+	component<TProps extends string[] = [], TEvents extends string[] = []>(Base: new () => IDotComponent, styles?: string|IDotcssProp|Array<string|IDotcssProp>)
+		: new (attrs?: ComponentArgs<TProps, TEvents>) => IDotComponent & { new (attrs?: ComponentArgs<TProps, TEvents>): IDotComponent };
 
 	useStyles(document: Document, styles: Styles): HTMLStyleElement;
 }
@@ -399,7 +399,7 @@ export interface IDotWindowWrapper{
 }
 
 export interface IDotWindowBuilder {
-	(options: {content: IDotDocument, width?: number, height?: number, title?: string}): IDotWindowWrapper;
+	(options: {content: IDotComponent|IDotDocument, width?: number, height?: number, title?: string}): IDotWindowWrapper;
 }
 
 export interface IDotConditionalDocument extends IDotDocument {

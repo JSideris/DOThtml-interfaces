@@ -1,6 +1,5 @@
 
 import { IDotCore, IDotDocument } from "./i-dot";
-import IDotCss from "./styles/i-dot-css";
 
 // export type EventNames<T> = T extends { allowedEvents: infer E } ? E : never;
 
@@ -18,7 +17,7 @@ export interface FrameworkItems {
 		readonly shadowRoot: ShadowRoot;
 		readonly isRendered: boolean;
 		readonly tagName: string;
-		readonly styles: Array<string>;
+		// readonly styles: Array<string>; // Can't have this anymore because it's a memory leak.
 		readonly args: Array<any>;
 		// readonly styleElement: HTMLStyleElement;
 		readonly sharedStyles: CSSStyleSheet[];
@@ -31,7 +30,7 @@ export interface FrameworkItems {
 // TODO: there's a weird problem where if a constructor is not provided, it's not possible have a custom builder.
 // It should be the contsructor that depends on the builder, not the other way around. If we can't get this working, 
 // it might just be better to rethink how stuff gets passed into components.
-export default interface IComponent/*<TProps extends Array<string> = [], TEvents extends Array<string> = []>*/ {
+export default interface IDotComponent/*<TProps extends Array<string> = [], TEvents extends Array<string> = []>*/ {
 
 	readonly _?: FrameworkItems;
 
@@ -77,8 +76,9 @@ export default interface IComponent/*<TProps extends Array<string> = [], TEvents
 	 * A function that returns a string containing CSS rules to be applied to all instances of the component.
 	 * It will only be called exactly once per component. We use a function so that you can return a potentially 
 	 * large string containing CSS without introducing a memory leak. The reason it's not static is so that 
-	 * it will work in JavaScript, and because static members are not valid in DI interfaces.
-	 * @returns A string containing CSS rules.
+	 * it will work in JavaScript, and because static members are not valid in DI interfaces. All styles are scoped
+	 * to the component's shadow DOM.
+	 * @returns A string (or array of strings) containing imported CSS rules.
 	 */
-	stylize?(): string;
+	stylize?(): string|Array<string>;
 }
