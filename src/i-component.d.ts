@@ -1,5 +1,5 @@
 
-import { IDotDocument } from "./i-dot";
+import { IDotCore, IDotDocument } from "./i-dot";
 import IDotCss from "./styles/i-dot-css";
 
 // export type EventNames<T> = T extends { allowedEvents: infer E } ? E : never;
@@ -44,8 +44,9 @@ export default interface IComponent/*<TProps extends Array<string> = [], TEvents
 
 	/**
 	 * A function returning DOThtml (required). The `build` hook is called once per component instance, and constructs the component's virtual DOM.
-	 */
-    build(): IDotDocument;
+	 * @param dot - The DOThtml core object passed in for DI purposes. You can also just use the main .
+	 * @returns The DOThtml document representing the component's virtual DOM.	 */
+    build(dot: IDotCore): IDotDocument;
 
 	/**
 	 * An optional function called after the component is built. Is only called once per component instance. 
@@ -73,12 +74,11 @@ export default interface IComponent/*<TProps extends Array<string> = [], TEvents
     unmounted?(): void;
 
 	/**
-	 * An optional function called before the component is deleted.
+	 * A function that returns a string containing CSS rules to be applied to all instances of the component.
+	 * It will only be called exactly once per component. We use a function so that you can return a potentially 
+	 * large string containing CSS without introducing a memory leak. The reason it's not static is so that 
+	 * it will work in JavaScript, and because static members are not valid in DI interfaces.
+	 * @returns A string containing CSS rules.
 	 */
-    deleting?(): void;
-
-	/**
-	 * An optional function called after the component is deleted.
-	 */
-    deleted?(): void;
+	stylize?(): string;
 }
