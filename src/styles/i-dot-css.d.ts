@@ -1,11 +1,4 @@
-// import {IReactive} from "../i-reactive";
-// import { GKV, Color, ComplexType, Percentage } from "./css-types";
-// import IDotcssProp from "./i-css-prop";
-// import IFilterProp from "./i-filter-prop";
-// import IShadowProp from "./i-shadow-prop";
-// import { ITransformationProp } from "./i-transformation-prop";
-// import ColorProp from "./mapped-types/color-props";
-// import LengthProp from "./mapped-types/length-prop";
+
 
 import IAtColorProfileBuilder from "./at-rules/i-at-color-profile-builder";
 import IAtCounterStyleBuilder from "./at-rules/i-at-counter-style-builder";

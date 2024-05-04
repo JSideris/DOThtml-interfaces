@@ -8,5 +8,5 @@ export * from "./styles/i-dot-css";
 
 export { default as IDotComponent, FrameworkItems } from "./i-dot-component";
 
-export { IReactive, IReactiveWatcher } from "./i-reactive";
+export { IReactive, IReactiveWatcher, IBoundReactive } from "./i-reactive";
 export { default as IEventBus } from "./i-event-bus";
