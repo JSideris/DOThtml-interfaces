@@ -9,7 +9,7 @@ type DotContentPrimitive = string | number | boolean;
 type DotContentBasic = DotContentPrimitive | Node | Element | NodeList | IDotComponent | IDotDocument//typeof DotDocument;
 export type DotContent = DotContentBasic | Array<DotContent> | IBoundReactive;//|(()=>DotContent);
 
-type AttrVal<T = string | number | boolean> = T | IBoundReactive<T>;
+type AttrVal<T = string | number | boolean> = T | IBoundReactive<any>;
 
 /**
  * Global interface containing elements.
@@ -763,8 +763,8 @@ interface IDotInput extends IDotGlobalAttrs {
 	src?: AttrVal<string>;
 	step?: AttrVal<string> | AttrVal<number>;
 	type?: "button" | "checkbox" | "color" | "date" | "datetime-local" | "email" | "file" | "hidden" | "image" | "month" | "number" | "password" | "radio" | "range" | "reset" | "search" | "submit" | "tel" | "text" | "time" | "url" | "week";
-	whichForm?: AttrVal<string>; // form
 	value?: AttrVal<string>;
+	whichForm?: AttrVal<string>; // form
 	width?: AttrVal<number>;
 
 	// Special functions:
