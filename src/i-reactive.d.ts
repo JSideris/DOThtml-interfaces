@@ -1,11 +1,9 @@
 
-export interface IReactive<T = any> extends IBoundReactive<T, T>{
-	// The untransformed value.
-	_value: T;
+export interface IReactive<T = any>{
 	// Get the value.
-	getValue(): T;
+	get value(): T;
 	// Set the value.
-	setValue(v: T|null|undefined);
+	set value(v: T|null|undefined);
 
 	// Key is used for observable array proxy bindings.
 	// If a key is provided, it's used to uniquely identify array elements.
@@ -13,14 +11,24 @@ export interface IReactive<T = any> extends IBoundReactive<T, T>{
 	key: string;
 	// subscribeNode(node: Node): number;
 	// subscribeAttr(node: HTMLElement, attributeName: string): number;
-	subscribeCallback(callback: (value: T)=>void): number;
-	detachBinding(id: number);
+	// subscribeCallback(callback: (value: T)=>void): number;
+	// detachBinding(id: number);
+
+	_subscribe(boundReactive: IBoundReactive, item: any);
+	_detachBinding(id: number);
+
+	/**
+	 * Called manually by the user to trigger an update.
+	 * Useful for arrays and objects.
+	 */
 	updateObservers(): void;
 
 	bindAs<Td = string>(transform: {
 		display?: (v: T)=>Td;
 		read?: (v: string)=>T;
 	}): IBoundReactive<T, Td>;
+
+	bind(): IBoundReactive<T>;
 }
 
 export interface IReactiveWatcher<T = any>{
@@ -30,5 +38,7 @@ export interface IReactiveWatcher<T = any>{
 export interface IBoundReactive<T = any, Td = T>{
 	_source: IReactive<T>;
 	_get: ()=>Td;
-	_set: (v: string)=>void;
+	_set: (v: string|number|boolean)=>void;
 }
+
+export type AnyReactive = IBoundReactive|IReactive;

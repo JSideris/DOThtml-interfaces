@@ -1,6 +1,6 @@
-import { IBoundReactive } from "../../i-reactive";
+import { AnyReactive } from "../../i-reactive";
 
-type V = IBoundReactive<any> | number | string;
+type V = AnyReactive | number | string;
 
 type AngleUnitSuffix = "" | "Deg" | "Grad" | "Rad" | "Turn";
 

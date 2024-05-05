@@ -5,7 +5,7 @@ import IShadowProp from "./complex-css-types/i-shadow-prop";
 import ITransformationProp from "./complex-css-types/i-transformation-prop";
 import ColorProp from "./mapped-types/color-props";
 import LengthProp from "./mapped-types/length-prop";
-import { IBoundReactive } from "../i-reactive";
+import { IBoundReactive, IReactive } from "../i-reactive";
 
 type BackgroundPositionShorthand2D = string;
 type BackgroundRepeatValues2d = "no-repeat"|"repeat"|"space"|"round";
@@ -93,7 +93,7 @@ export default interface IDotcssProp extends
 
 	background?: GKV|string; // TODO: shorthand. Requires advanced typing.
 	backgroundAttachment?: GKV|"scroll"|"fixed"|"local"; // ✔️
-	backgroundBlendMode?: GKV|Array<IBoundReactive<string>|"darken"|"luminocity"|"normal">; // ✔️
+	backgroundBlendMode?: GKV|Array<IBoundReactive<any, string>|IReactive<string>|"darken"|"luminocity"|"normal">; // ✔️
 	backgroundPosition?: GKV|BackgroundPositionShorthand2D;
 	backgroundRepeat?: GKV|BackgroundRepeatValues2d;
 	backgroundClip?: GKV|string;
