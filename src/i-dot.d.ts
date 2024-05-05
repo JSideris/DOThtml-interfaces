@@ -65,7 +65,12 @@ export interface IDotDocument {
 	*/
 	iterate(n: number, callback: (i: number) => DotContent): IDotDocument;
 	each<T>(a: Array<T> | { [key: string | number]: T }, callback: (x: T, i: number, k: string | number) => DotContent): IDotDocument;
-	each<T>(a: IReactive<Array<T>>|IBoundReactive<any, Array<T> | { [key: string | number]: T }>, callback: (x: T, i: IBoundReactive<number>, k: string | number) => DotContent): IDotDocument;
+	each<T>(a: 
+		IReactive<Array<T>>
+		|IReactive<Record<string|number, T>>
+		|IBoundReactive<any, Array<T>>
+		|IBoundReactive<any, IReactive<Record<string|number, T>>>
+		, callback: (x: T, i: IBoundReactive<number>, k: string | number) => DotContent): IDotDocument;
 
 	/**
 	 * Removes the targeted document and everything in it.

@@ -1,6 +1,6 @@
 {
   "name": "dothtml-interfaces",
-  "version": "0.4.2",
+  "version": "0.4.3",
   "description": "Dependency injection interfaces for DOTHtml.",
   "main": "src/index.d.ts",
   "types": "src/index.d.ts",

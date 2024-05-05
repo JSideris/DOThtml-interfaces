@@ -14,6 +14,11 @@ export interface IReactive<T = any>{
 	// subscribeCallback(callback: (value: T)=>void): number;
 	// detachBinding(id: number);
 
+	/** 
+	 * Subscribe to changes in the reactive object.
+	*/
+	subscribe(callback: Function): number;
+
 	_subscribe(boundReactive: IBoundReactive, item: any);
 	_detachBinding(id: number);
 
@@ -39,6 +44,11 @@ export interface IBoundReactive<T = any, Td = T>{
 	_source: IReactive<T>;
 	_get: ()=>Td;
 	_set: (v: string|number|boolean)=>void;
+	
+	_transform: {
+		display?: (v: T)=>Td;
+		read?: (v: string)=>T;
+	}
 }
 
 export type AnyReactive = IBoundReactive|IReactive;
