@@ -1,5 +1,5 @@
 
-export interface IReactive<T = any>{
+export interface IWatcher<T = any>{
 	// Get the value.
 	get value(): T;
 	// Set the value.
@@ -19,7 +19,7 @@ export interface IReactive<T = any>{
 	*/
 	subscribe(callback: Function): number;
 
-	_subscribe(boundReactive: IBoundReactive, item: any);
+	_subscribe(boundReactive: IBinding, item: any);
 	_detachBinding(id: number);
 
 	/**
@@ -28,20 +28,20 @@ export interface IReactive<T = any>{
 	 */
 	updateObservers(): void;
 
-	bindAs<Td = string>(transform: {
+	bindAs<Td = string>(transform: (((v: T)=>Td)|({
 		display?: (v: T)=>Td;
 		read?: (v: string)=>T;
-	}): IBoundReactive<T, Td>;
+	}))): IBinding<T, Td>;
 
-	bind(): IBoundReactive<T>;
+	bind(): IBinding<T>;
 }
 
-export interface IReactiveWatcher<T = any>{
+export interface IObserver<T = any>{
 	observerUpdate(value: T, obsreverId: number): void;
 }
 
-export interface IBoundReactive<T = any, Td = T>{
-	_source: IReactive<T>;
+export interface IBinding<T = any, Td = T>{
+	_source: IWatcher<T>;
 	_get: ()=>Td;
 	_set: (v: string|number|boolean)=>void;
 	
@@ -51,4 +51,4 @@ export interface IBoundReactive<T = any, Td = T>{
 	}
 }
 
-export type AnyReactive = IBoundReactive|IReactive;
+export type IReactive = IBinding|IWatcher;

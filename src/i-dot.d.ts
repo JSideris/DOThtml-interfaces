@@ -2,14 +2,14 @@
 import IDotComponent from "./i-dot-component";
 import IDotCss from "./styles/i-dot-css";
 import IEventBus from "./i-event-bus";
-import {AnyReactive, IBoundReactive, IReactive} from "./i-reactive";
+import {IReactive, IBinding, IWatcher} from "./i-reactive";
 import IDotcssProp from "./styles/i-css-prop";
 
 type DotContentPrimitive = string | number | boolean;
 type DotContentBasic = DotContentPrimitive | Node | Element | NodeList | IDotComponent | IDotDocument//typeof DotDocument;
-export type DotContent = DotContentBasic | Array<DotContent> | AnyReactive;//|(()=>DotContent);
+export type DotContent = DotContentBasic | Array<DotContent> | IReactive;//|(()=>DotContent);
 
-type AttrVal<T = string | number | boolean> = T | AnyReactive;
+type AttrVal<T = string | number | boolean> = T | IReactive;
 
 /**
  * Global interface containing elements.
@@ -25,7 +25,7 @@ export interface IDotDocument {
 	/**
 	 * A conditional function, analogous to if. Renders the specified DOT if a condition is met. Dynamic binding is possible when condition and callback are functions.
 	*/
-	when(condition: AnyReactive | boolean, DotContent): IDotConditionalDocument;
+	when(condition: IReactive | boolean, DotContent): IDotConditionalDocument;
 
 	// Main functions.
 	// TODO: please make this into a test case.
@@ -46,11 +46,11 @@ export interface IDotDocument {
 	/**
 	 * Creates a generic HTML node that can render a string, HTML nodes, or dotHTML content.
 	*/
-	html(content: string | number | boolean | AnyReactive): IDotDocument;
+	html(content: string | number | boolean | IReactive): IDotDocument;
 	/**
 	 * Creates a text node that will render as a string, rather than being parsed as markup.
 	*/
-	text(content: string | number | boolean | AnyReactive): IDotDocument;
+	text(content: string | number | boolean | IReactive): IDotDocument;
 	/**
 	 * Mounts a component.
 	 * TODO: add second arg.
@@ -66,11 +66,11 @@ export interface IDotDocument {
 	iterate(n: number, callback: (i: number) => DotContent): IDotDocument;
 	each<T>(a: Array<T> | { [key: string | number]: T }, callback: (x: T, i: number, k: string | number) => DotContent): IDotDocument;
 	each<T>(a: 
-		IReactive<Array<T>>
-		|IReactive<Record<string|number, T>>
-		|IBoundReactive<any, Array<T>>
-		|IBoundReactive<any, IReactive<Record<string|number, T>>>
-		, callback: (x: T, i: IBoundReactive<number>, k: string | number) => DotContent): IDotDocument;
+		IWatcher<Array<T>>
+		|IWatcher<Record<string|number, T>>
+		|IBinding<any, Array<T>>
+		|IBinding<any, IWatcher<Record<string|number, T>>>
+		, callback: (x: T, i: IBinding<number>, k: string | number) => DotContent): IDotDocument;
 
 	/**
 	 * Removes the targeted document and everything in it.
@@ -377,7 +377,7 @@ export interface IDotCore extends IDotDocument {
 	bus: IEventBus;
 	window: IDotWindowBuilder;
 
-	watch<Ti = AnyReactive | Array<any> | { [key: string | number]: any } | string | number | boolean>(initValue?: Ti, key?: (Ti extends Array<any> | { [key: string | number]: any } ? string : never)): IReactive<Ti>;
+	watch<Ti = IReactive | Array<any> | { [key: string | number]: any } | string | number | boolean>(initValue?: Ti, key?: (Ti extends Array<any> | { [key: string | number]: any } ? string : never)): IWatcher<Ti>;
 
 	// Keep these around for a bit to show how it was done before in case I need to change anything prior to the v6 launch.
 	// component<T extends IComponent>(Base: new (...args: Parameters<T['build']>) => T): new (...args: Parameters<T['build']>) => T;
@@ -412,7 +412,7 @@ export interface IDotConditionalDocument extends IDotDocument {
 	 * A conditional catch, analogous to else if. Can be used after a when function. Evaluates if the previous when's condition was false.
 	 * Renders the specified DOT if a condition is met. Dynamic binding is possible when condition and callback are functions.
 	*/
-	otherwiseWhen(condition: AnyReactive | boolean, callback: DotContent): IDotConditionalDocument;
+	otherwiseWhen(condition: IReactive | boolean, callback: DotContent): IDotConditionalDocument;
 	/**
 	 * A conditional final catch, analogous to else. Can be used after a when or otherwiseWhen function. Evaluates if the previous when/otherwiseWhen evaluated to false.
 	 * Renders the specified DOT if a condition is met. Dynamic binding is possible when callback is a function.
@@ -1000,7 +1000,7 @@ interface IDotTrack extends IDotGlobalAttrs {
 
 interface IDotVideo extends IDotGlobalAttrs {
 	autoPlay?: AttrVal<boolean>;
-	buffered?: AnyReactive; // Managed by browser not user. TODO: we can possibly use events to update observable objects.
+	buffered?: IReactive; // Managed by browser not user. TODO: we can possibly use events to update observable objects.
 	controls?: AttrVal<boolean>;
 	crossOrigin?: AttrVal<"anonymous"> | AttrVal<"use-credentials">;
 	height?: AttrVal<number>;

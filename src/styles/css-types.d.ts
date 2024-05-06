@@ -1,11 +1,11 @@
-import { IBoundReactive, IReactive } from "../i-reactive";
+import { IBinding, IWatcher } from "../i-reactive";
 
 // Global keyword values.
-export type GKV = IReactive<string>|IBoundReactive<any, string>|"inherit"|"initial"|"unset"|"revert"|"revert-layer";
+export type GKV = IWatcher<string>|IBinding<any, string>|"inherit"|"initial"|"unset"|"revert"|"revert-layer";
 
 export type ComplexType = string;
 
-export type ValueOrReactive<T> = T|IBoundReactive<any, T>|IReactive<T>;
+export type ValueOrReactive<T> = T|IBinding<any, T>|IWatcher<T>;
 
 // BASIC TYPES
 export type Str = `"${string|""}"`|`'${string|""}'`; // TODO: wherever str is required, we could just inject quotes...
