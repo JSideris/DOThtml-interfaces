@@ -381,6 +381,7 @@ export interface IDotCore extends IDotDocument {
 	window: IDotWindowBuilder;
 
 	watch<Ti = IReactive | Array<any> | { [key: string | number]: any } | string | number | boolean>(initValue?: Ti, key?: (Ti extends Array<any> | { [key: string | number]: any } ? string : never)): IWatcher<Ti>;
+	ref(): IRef;
 
 	// Keep these around for a bit to show how it was done before in case I need to change anything prior to the v6 launch.
 	// component<T extends IComponent>(Base: new (...args: Parameters<T['build']>) => T): new (...args: Parameters<T['build']>) => T;
