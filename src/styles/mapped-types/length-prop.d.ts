@@ -1,4 +1,5 @@
-import { IReactive, IBinding } from "../../i-reactive";
+import { IReactive } from "../../bindings/i-reactive";
+import { IBinding } from "../../bindings/i-binding";
 import { GKV } from "../css-types";
 // import { NumericLength } from "./css-types";
 

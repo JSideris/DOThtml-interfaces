@@ -1,4 +1,5 @@
-import { IBinding, IWatcher } from "../i-reactive";
+import { IBinding } from "../bindings/i-binding";
+import { IWatcher } from "../bindings/i-watcher";
 
 // Global keyword values.
 export type GKV = IWatcher<string>|IBinding<any, string>|"inherit"|"initial"|"unset"|"revert"|"revert-layer";

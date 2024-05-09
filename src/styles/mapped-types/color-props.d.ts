@@ -1,4 +1,5 @@
-import { IBinding, IWatcher } from "../../i-reactive";
+import { IBinding } from "../../bindings/i-binding";
+import { IWatcher } from "../../bindings/i-watcher";
 
 type V = IBinding<any, number|string>| IWatcher<number|string> | number | string;
 

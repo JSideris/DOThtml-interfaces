@@ -5,7 +5,8 @@ import IShadowProp from "./complex-css-types/i-shadow-prop";
 import ITransformationProp from "./complex-css-types/i-transformation-prop";
 import ColorProp from "./mapped-types/color-props";
 import LengthProp from "./mapped-types/length-prop";
-import { IBinding, IWatcher } from "../i-reactive";
+import { IBinding } from "../bindings/i-binding";
+import { IWatcher } from "../bindings/i-watcher";
 
 type BackgroundPositionShorthand2D = string;
 type BackgroundRepeatValues2d = "no-repeat"|"repeat"|"space"|"round";

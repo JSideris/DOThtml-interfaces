@@ -1,3 +1,4 @@
+import { IBinding } from "./i-binding";
 
 export interface IWatcher<T = any>{
 	// Get the value.
@@ -35,20 +36,3 @@ export interface IWatcher<T = any>{
 
 	bind(): IBinding<T>;
 }
-
-export interface IObserver<T = any>{
-	observerUpdate(value: T, obsreverId: number): void;
-}
-
-export interface IBinding<T = any, Td = T>{
-	_source: IWatcher<T>;
-	_get: ()=>Td;
-	_set: (v: string|number|boolean)=>void;
-	
-	_transform: {
-		display?: (v: T)=>Td;
-		read?: (v: string)=>T;
-	}
-}
-
-export type IReactive = IBinding|IWatcher;

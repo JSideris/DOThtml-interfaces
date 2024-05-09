@@ -2,10 +2,13 @@
 import IDotComponent from "./i-dot-component";
 import IDotCss from "./styles/i-dot-css";
 import IEventBus from "./i-event-bus";
-import {IReactive, IBinding, IWatcher} from "./i-reactive";
+import {IReactive} from "./bindings/i-reactive";
+import { IBinding } from "./bindings/i-binding";
+import { IWatcher } from "./bindings/i-watcher";
 import IDotcssProp from "./styles/i-css-prop";
+import { IRef } from "./bindings/i-ref";
 
-type DotContentPrimitive = string | number | boolean;
+type DotContentPrimitive = string | number | boolean | undefined | null;
 type DotContentBasic = DotContentPrimitive | Node | Element | NodeList | IDotComponent | IDotDocument//typeof DotDocument;
 export type DotContent = DotContentBasic | Array<DotContent> | IReactive;//|(()=>DotContent);
 
@@ -421,7 +424,7 @@ export interface IDotConditionalDocument extends IDotDocument {
 }
 
 // Attribute interface (for all elements):
-export interface IDotGlobalAttrs {
+export interface IDotGlobalAttrs<T extends HTMLElement = HTMLElement> {
 	/**
 	 * Create a custom attribute.
 	*/
@@ -437,7 +440,7 @@ export interface IDotGlobalAttrs {
 	// TODO: this needs to be redone now. 
 	// The better way might be using the new reactive system instead of references.
 	// For now I'll leave it like this:
-	// ref?: IReactive<HTMLElement>;
+	ref?: IRef<T>;
 
 	/** @deprecated Deprecated in HTML5. Use CSS. */
 	bgColor?: AttrVal<unknown>;
@@ -550,7 +553,7 @@ export interface IDotGlobalAttrs {
 // 	prop(name: string, value: any): IMountedComponent<T>;
 // }
 
-interface IDotA extends IDotGlobalAttrs {
+interface IDotA extends IDotGlobalAttrs<HTMLAnchorElement> {
 	download?: AttrVal<boolean>;
 	hRef?: AttrVal<string>;
 	hRefLang?: AttrVal<string>;
@@ -566,7 +569,7 @@ interface IDotA extends IDotGlobalAttrs {
 	target?: AttrVal<"_blank"> | AttrVal<"_parent"> | AttrVal<"_self"> | AttrVal<"_top">;
 	type?: AttrVal<string>;
 }
-interface IDotArea extends IDotGlobalAttrs {
+interface IDotArea extends IDotGlobalAttrs<HTMLAreaElement> {
 	alt?: AttrVal<string>;
 	coords?: AttrVal<string>;
 	download?: AttrVal<string>;
@@ -578,7 +581,7 @@ interface IDotArea extends IDotGlobalAttrs {
 	shape?: AttrVal<string>;
 	target?: AttrVal<string>;
 }
-interface IDotAudio extends IDotGlobalAttrs {
+interface IDotAudio extends IDotGlobalAttrs<HTMLAudioElement> {
 	autoPlay?: AttrVal<boolean>;
 	// buffered?: unknown; // Not used?
 	controls?: AttrVal<boolean>;
@@ -617,11 +620,11 @@ interface IDotAudio extends IDotGlobalAttrs {
 	onWaiting?: (e: Event) => void;
 	onCanPlay?: (e: Event) => void;
 }
-interface IDotBlockQuote extends IDotGlobalAttrs {
+interface IDotBlockQuote extends IDotGlobalAttrs<HTMLQuoteElement> {
 	quoteCite?: AttrVal<string>; // alias for cite
 }
 
-interface IDotBody extends IDotGlobalAttrs {
+interface IDotBody extends IDotGlobalAttrs<HTMLBodyElement> {
 	align?: unknown; // Deprecated in HTML5. Use CSS.
 	background?: unknown; // Deprecated in HTML5. Use CSS.
 
@@ -636,11 +639,11 @@ interface IDotBody extends IDotGlobalAttrs {
 	onStorage?: (e: StorageEvent) => void;
 }
 
-interface IDotBr extends IDotGlobalAttrs {
+interface IDotBr extends IDotGlobalAttrs<HTMLBRElement> {
 	/** @deprecated Deprecated in HTML5. Use CSS. */
 	clear?: unknown;
 }
-interface IDotButton extends IDotGlobalAttrs {
+interface IDotButton extends IDotGlobalAttrs<HTMLButtonElement> {
 	autoFocus?: AttrVal<boolean>;
 	formAction?: AttrVal<string>;
 	disabled?: AttrVal<boolean>;
@@ -649,19 +652,19 @@ interface IDotButton extends IDotGlobalAttrs {
 	whichForm?: AttrVal<string>; // alias for form
 	value?: AttrVal<string>;
 }
-interface IDotCanvas extends IDotGlobalAttrs {
+interface IDotCanvas extends IDotGlobalAttrs<HTMLCanvasElement> {
 	height?: AttrVal<number>;
 	width?: AttrVal<number>;
 }
 
-interface IDotCol extends IDotGlobalAttrs {
+interface IDotCol extends IDotGlobalAttrs<HTMLTableColElement> {
 	/** @deprecated Deprecated in HTML5. Use CSS. */
 	charOff?: AttrVal<unknown>;
 	colSpan?: AttrVal<number>; // alias for span
 	vAlign?: AttrVal<number>;
 }
 
-interface IDotColGroup extends IDotGlobalAttrs {
+interface IDotColGroup extends IDotGlobalAttrs<HTMLTableColElement> {
 	/** @deprecated Deprecated in HTML5. Use CSS. */
 	charOff?: AttrVal<unknown>;
 	colSpan?: AttrVal<number>; // alias for span
@@ -674,23 +677,23 @@ interface IDotDel extends IDotGlobalAttrs {
 	quoteCite?: AttrVal<string>; // alias for cite
 }
 
-interface IDotDetails extends IDotGlobalAttrs {
+interface IDotDetails extends IDotGlobalAttrs<HTMLDetailsElement> {
 	open?: AttrVal<boolean>;
 	// Events:
 	onToggle?: (e: Event) => void;
 }
-interface IDotEmbed extends IDotGlobalAttrs {
+interface IDotEmbed extends IDotGlobalAttrs<HTMLEmbedElement> {
 	height?: AttrVal<number>;
 	src?: AttrVal<string>;
 	type?: AttrVal<string>;
 	width?: AttrVal<number>;
 }
-interface IDotFieldSet extends IDotGlobalAttrs {
+interface IDotFieldSet extends IDotGlobalAttrs<HTMLFieldSetElement> {
 	disabled?: AttrVal<boolean>;
 	name?: AttrVal<string>;
 	whichForm?: AttrVal<string>; // alias for form
 }
-interface IDotForm extends IDotGlobalAttrs {
+interface IDotForm extends IDotGlobalAttrs<HTMLFormElement> {
 	acceptCharset?: AttrVal<string>; // accept-charset, apparently the only hyphenated attribute (aside from data-*)...
 	action?: AttrVal<string>;
 	autoComplete?: AttrVal<"on"> | AttrVal<"off">;
@@ -701,10 +704,10 @@ interface IDotForm extends IDotGlobalAttrs {
 	target?: AttrVal<"_self"> | AttrVal<"_blank"> | AttrVal<"_parent"> | AttrVal<"_top">;
 	// rel?: PrimativeOrObservable<string> IDotForm; // Not used with forms?
 }
-interface IDotHr extends IDotGlobalAttrs {
+interface IDotHr extends IDotGlobalAttrs<HTMLHRElement> {
 	noShade?: AttrVal<unknown>;
 }
-interface IDotIFrame extends IDotGlobalAttrs {
+interface IDotIFrame extends IDotGlobalAttrs<HTMLIFrameElement> {
 	allow?: AttrVal<string>;
 	allowFullScreen?: AttrVal<boolean>;
 	/** @deprecated Deprecated in HTML5. */
@@ -724,7 +727,7 @@ interface IDotIFrame extends IDotGlobalAttrs {
 	srcDoc?: AttrVal<string>;
 	width?: AttrVal<number>;
 }
-interface IDotImg extends IDotGlobalAttrs {
+interface IDotImg extends IDotGlobalAttrs<HTMLImageElement> {
 	alt?: AttrVal<string>;
 	crossOrigin?: AttrVal<"anonymous"> | AttrVal<"use-credentials">;
 	decoding?: AttrVal<"async"> | AttrVal<"auto"> | AttrVal<"sync">;
@@ -742,7 +745,7 @@ interface IDotImg extends IDotGlobalAttrs {
 	useMap?: AttrVal<number>;
 	width?: AttrVal<number>;
 }
-interface IDotInput extends IDotGlobalAttrs {
+interface IDotInput extends IDotGlobalAttrs<HTMLInputElement> {
 	accept?: AttrVal<string>;
 	alt?: AttrVal<string>;
 	autoCapitalize?: AttrVal<"none"> | AttrVal<"sentences"> | AttrVal<"words"> | AttrVal<"characters">;
@@ -790,23 +793,23 @@ interface IDotKeyGen extends IDotGlobalAttrs {
 	keyType?: AttrVal<string>;
 }
 
-interface IDotLabel extends IDotGlobalAttrs {
+interface IDotLabel extends IDotGlobalAttrs<HTMLLabelElement> {
 	for?: AttrVal<string>;
 }
 
-interface IDotLi extends IDotGlobalAttrs {
+interface IDotLi extends IDotGlobalAttrs<HTMLLIElement> {
 	value?: AttrVal<number>;
 }
 
-interface IDotMap extends IDotGlobalAttrs {
+interface IDotMap extends IDotGlobalAttrs<HTMLMapElement> {
 	name?: AttrVal<string>;
 }
 
-interface IDotMenu extends IDotGlobalAttrs {
+interface IDotMenu extends IDotGlobalAttrs<HTMLMenuElement> {
 	type?: AttrVal<string>;
 }
 
-interface IDotMeter extends IDotGlobalAttrs {
+interface IDotMeter extends IDotGlobalAttrs<HTMLMeterElement> {
 	high?: AttrVal<number>;
 	low?: AttrVal<number>;
 	max?: AttrVal<number>;
@@ -815,7 +818,7 @@ interface IDotMeter extends IDotGlobalAttrs {
 	value?: AttrVal<number>;
 }
 
-interface IDotObject extends IDotGlobalAttrs {
+interface IDotObject extends IDotGlobalAttrs<HTMLObjectElement> {
 	archive?: AttrVal<string>;
 	classId?: AttrVal<string>;
 	codeBase?: AttrVal<string>;
@@ -830,46 +833,46 @@ interface IDotObject extends IDotGlobalAttrs {
 	width?: AttrVal<number>;
 }
 
-interface IDotOl extends IDotGlobalAttrs {
+interface IDotOl extends IDotGlobalAttrs<HTMLUListElement> {
 	/** @deprecated Deprecated in HTML5. */
 	reversed?: AttrVal<boolean>;
 	start?: AttrVal<number>;
 }
 
-interface IDotOptGroup extends IDotGlobalAttrs {
+interface IDotOptGroup extends IDotGlobalAttrs<HTMLUListElement> {
 	disabled?: AttrVal<boolean>;
 }
 
-interface IDotOption extends IDotGlobalAttrs {
+interface IDotOption extends IDotGlobalAttrs<HTMLUListElement> {
 	disabled?: AttrVal<boolean>;
 	optionLabel?: AttrVal<string>; // Alias for label
 	selected?: AttrVal<boolean>;
 	value?: AttrVal<string>;
 }
 
-interface IDotOutput extends IDotGlobalAttrs {
+interface IDotOutput extends IDotGlobalAttrs<HTMLOutputElement> {
 	for?: AttrVal<string>;
 	name?: AttrVal<string>;
 	whichForm?: AttrVal<string>; // Alias for form
 }
 
-interface IDotParam extends IDotGlobalAttrs {
+interface IDotParam extends IDotGlobalAttrs<HTMLParamElement> {
 	name?: AttrVal<string>;
 	value?: AttrVal<string>;
 	/** @deprecated Deprecated in HTML5. */
 	valueType?: AttrVal<unknown>;
 }
 
-interface IDotProgress extends IDotGlobalAttrs {
+interface IDotProgress extends IDotGlobalAttrs<HTMLProgressElement> {
 	max?: AttrVal<number>;
 	value?: AttrVal<number>;
 }
 
-interface IDotQ extends IDotGlobalAttrs {
+interface IDotQ extends IDotGlobalAttrs<HTMLQuoteElement> {
 	quoteCite?: AttrVal<string>; // alias for cite
 }
 
-interface IDotSelect extends IDotGlobalAttrs {
+interface IDotSelect extends IDotGlobalAttrs<HTMLSelectElement> {
 	autoFocus?: AttrVal<boolean>;
 	disabled?: AttrVal<boolean>;
 	multiple?: AttrVal<boolean>;
@@ -880,14 +883,14 @@ interface IDotSelect extends IDotGlobalAttrs {
 	value?: AttrVal<string>; // Pseudo attribute for convenience. 
 }
 
-interface IDotSource extends IDotGlobalAttrs {
+interface IDotSource extends IDotGlobalAttrs<HTMLSourceElement> {
 	media?: AttrVal<string>;
 	src?: AttrVal<string>;
 	type?: AttrVal<string>;
 	sizes?: AttrVal<string>;
 	srcSet?: AttrVal<string>;
 }
-interface IDotTable extends IDotGlobalAttrs {
+interface IDotTable extends IDotGlobalAttrs<HTMLTableElement> {
 	/** @deprecated Deprecated in HTML5. Use CSS. */
 	border?: AttrVal<string> | AttrVal<number>; 
 	/** @deprecated Deprecated in HTML5. Use CSS. */
@@ -906,7 +909,7 @@ interface IDotTable extends IDotGlobalAttrs {
 	width?: AttrVal<number>; 
 }
 
-interface IDotTextArea extends IDotGlobalAttrs {
+interface IDotTextArea extends IDotGlobalAttrs<HTMLTextAreaElement> {
 	autoCapitalize?: AttrVal<"none"> | AttrVal<"sentences"> | AttrVal<"words"> | AttrVal<"characters">;
 	autoFocus?: AttrVal<boolean>;
 	cols?: AttrVal<number>;
@@ -924,14 +927,14 @@ interface IDotTextArea extends IDotGlobalAttrs {
 	value?: AttrVal<string>; // Pseudo attribute for convenience. 
 }
 
-interface IDotTBody extends IDotGlobalAttrs {
+interface IDotTBody extends IDotGlobalAttrs<HTMLTableSectionElement> {
 	/** @deprecated Deprecated in HTML5. Use CSS. */
 	charOff?: AttrVal<unknown>;
 	/** @deprecated Deprecated in HTML5. Use CSS. */
 	vAlign?: AttrVal<unknown>;
 }
 
-interface IDotTd extends IDotGlobalAttrs {
+interface IDotTd extends IDotGlobalAttrs<HTMLTableCellElement> {
 
 	/** @deprecated Deprecated in HTML5. Use CSS. */
 	axis?: AttrVal<string>;
@@ -949,18 +952,18 @@ interface IDotTd extends IDotGlobalAttrs {
 	vAlign?: AttrVal<string>;
 }
 
-interface IDotTFoot extends IDotGlobalAttrs {
+interface IDotTFoot extends IDotGlobalAttrs<HTMLTableSectionElement> {
 	/** @deprecated Deprecated in HTML5. Use CSS. */
 	charOff?: AttrVal<number>;
 	/** @deprecated Deprecated in HTML5. Use CSS. */
 	vAlign?: AttrVal<string>;
 }
 
-interface IDotTime extends IDotGlobalAttrs {
+interface IDotTime extends IDotGlobalAttrs<HTMLTimeElement> {
 	dateTime?: AttrVal<string>;
 }
 
-interface IDotTh extends IDotGlobalAttrs {
+interface IDotTh extends IDotGlobalAttrs<HTMLTableCellElement> {
 	/** @deprecated Deprecated in HTML5. Use CSS. */
 	axis?: AttrVal<string>;
 	colSpan?: AttrVal<number>;
@@ -973,21 +976,21 @@ interface IDotTh extends IDotGlobalAttrs {
 	vAlign?: AttrVal<string>;
 }
 
-interface IDotTHead extends IDotGlobalAttrs {
+interface IDotTHead extends IDotGlobalAttrs<HTMLTableSectionElement> {
 	/** @deprecated Deprecated in HTML5. Use CSS. */
 	charOff?: AttrVal<string> | AttrVal<number>;
 	/** @deprecated Deprecated in HTML5. Use CSS. */
 	vAlign?: AttrVal<string>;
 }
 
-interface IDotTr extends IDotGlobalAttrs {
+interface IDotTr extends IDotGlobalAttrs<HTMLTableRowElement> {
 	/** @deprecated Deprecated in HTML5. Use CSS. */
 	charOff?: AttrVal<string> | AttrVal<number>;
 	/** @deprecated Deprecated in HTML5. Use CSS. */
 	vAlign?: AttrVal<string>;
 }
 
-interface IDotTrack extends IDotGlobalAttrs {
+interface IDotTrack extends IDotGlobalAttrs<HTMLTrackElement> {
 	default?: AttrVal<boolean>;
 	kind?: AttrVal<string>;
 	src?: AttrVal<string>;
@@ -998,7 +1001,7 @@ interface IDotTrack extends IDotGlobalAttrs {
 	onCueChange?: (e: Event) => void;
 }
 
-interface IDotVideo extends IDotGlobalAttrs {
+interface IDotVideo extends IDotGlobalAttrs<HTMLVideoElement> {
 	autoPlay?: AttrVal<boolean>;
 	buffered?: IReactive; // Managed by browser not user. TODO: we can possibly use events to update observable objects.
 	controls?: AttrVal<boolean>;

@@ -1,4 +1,4 @@
-import { IReactive } from "../../i-reactive";
+import { IReactive } from "../../bindings/i-reactive";
 
 type V = IReactive | number | string;
 
